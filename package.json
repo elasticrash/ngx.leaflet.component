@@ -4,8 +4,10 @@
   "description": "an angular.io (2) component collection for leaflet",
   "main": "index.js",
   "scripts": {
+    "start": "tsc",
     "tsc": "tsc",
-    "tsc:w": "tsc -w"
+    "tsc:w": "tsc -w",
+    "postinstall": "typings install"
   },
   "repository": {
     "type": "git",
@@ -17,7 +19,10 @@
     "url": "https://github.com/elasticrash/Angular2.leaflet.component/issues"
   },
   "dependencies": {
-    "@angular/core": "~2.1.0"
+    "@angular/core": "~2.1.0",
+    "rxjs": "5.0.0-beta.12",
+    "zone.js": "^0.6.25",
+    "leaflet": "^1.0.1"
   },
   "homepage": "https://github.com/elasticrash/Angular2.leaflet.component#readme"
 }

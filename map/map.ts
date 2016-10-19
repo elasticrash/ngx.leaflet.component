@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component } from '../node_modules/@angular/core';
 var Lealflet = require('leaflet');
+
 declare var L: any;
 
 @Component({
   selector: 'leaf-element',
-  templateUrl: 'app/templates/leaflet.element.html',
-  styleUrls: [],
+  templateUrl: 'map.html',
+  styleUrls: ['map.css','../node_modules/leaflet/dist/leaflet.css'],
 })
 
 export class LeafletElement {
