@@ -1,0 +1,23 @@
+{
+  "name": "angular2.leaflet.components",
+  "version": "1.0.0",
+  "description": "an angular.io (2) component collection for leaflet",
+  "main": "index.js",
+  "scripts": {
+    "tsc": "tsc",
+    "tsc:w": "tsc -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/elasticrash/Angular2.leaflet.component.git"
+  },
+  "author": "Stefanos Kouroupis",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/elasticrash/Angular2.leaflet.component/issues"
+  },
+  "dependencies": {
+    "@angular/core": "~2.1.0"
+  },
+  "homepage": "https://github.com/elasticrash/Angular2.leaflet.component#readme"
+}
