@@ -9,6 +9,6 @@
         "removeComments": false,
         "noImplicitAny": false,
         "rootDir": ".",
-        "outDir": "dist/angular2.leaflet.component" // Pay attention here
+        "outDir": "" // Pay attention here
     }
 }
