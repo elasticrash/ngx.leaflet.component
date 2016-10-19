@@ -1,4 +1,4 @@
-import { Component } from '../node_modules/@angular/core';
+import { Component } from '@angular/core';
 var Lealflet = require('leaflet');
 
 declare var L: any;
