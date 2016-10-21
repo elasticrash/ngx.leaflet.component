@@ -12,5 +12,6 @@ declare var L: any;
 
 export class LayerElement {
   ngOnInit() {
+    //L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(map);
   }
 }

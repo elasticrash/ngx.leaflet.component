@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { MapService } from '../services/map.service';
+
 var Lealflet = require('leaflet');
 
 declare var L: any;
@@ -8,11 +10,14 @@ declare var L: any;
   selector: 'leaf-element',
   templateUrl: 'map.html',
   styleUrls: ['map.css'],
+  providers: [MapService]
 })
 
 export class LeafletElement {
-  ngOnInit() {
-    let map = L.map("map", {
+  map: any;
+
+  constructor(private mapService: MapService) {
+    this.map = L.map("map", {
       zoomControl: false,
       center: L.latLng(40.731253, -73.996139),
       zoom: 12,
@@ -21,8 +26,11 @@ export class LeafletElement {
       layers: []
     });
 
-    L.control.zoom({ position: "topright" }).addTo(map);
-    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(map);
-    L.control.scale().addTo(map);
+    mapService.setMap(this.map);
+  }
+
+  ngOnInit() {
+    L.control.zoom({ position: "topright" }).addTo(this.map);
+    L.control.scale().addTo(this.map);
   }
 }

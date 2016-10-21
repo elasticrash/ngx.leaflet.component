@@ -9,12 +9,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var map_service_1 = require('../services/map.service');
 var Lealflet = require('leaflet');
 var LeafletElement = (function () {
-    function LeafletElement() {
-    }
-    LeafletElement.prototype.ngOnInit = function () {
-        var map = L.map("map", {
+    function LeafletElement(mapService) {
+        this.mapService = mapService;
+        this.map = L.map("map", {
             zoomControl: false,
             center: L.latLng(40.731253, -73.996139),
             zoom: 12,
@@ -22,9 +22,11 @@ var LeafletElement = (function () {
             maxZoom: 19,
             layers: []
         });
-        L.control.zoom({ position: "topright" }).addTo(map);
-        L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png').addTo(map);
-        L.control.scale().addTo(map);
+        mapService.setMap(this.map);
+    }
+    LeafletElement.prototype.ngOnInit = function () {
+        L.control.zoom({ position: "topright" }).addTo(this.map);
+        L.control.scale().addTo(this.map);
     };
     LeafletElement = __decorate([
         core_1.Component({
@@ -32,8 +34,9 @@ var LeafletElement = (function () {
             selector: 'leaf-element',
             templateUrl: 'map.html',
             styleUrls: ['map.css'],
+            providers: [map_service_1.MapService]
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [map_service_1.MapService])
     ], LeafletElement);
     return LeafletElement;
 }());
