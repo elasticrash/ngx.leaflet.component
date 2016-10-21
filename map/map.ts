@@ -4,9 +4,10 @@ var Lealflet = require('leaflet');
 declare var L: any;
 
 @Component({
+  moduleId: module.id,
   selector: 'leaf-element',
   templateUrl: 'map.html',
-  styleUrls: ['map.css','../node_modules/leaflet/dist/leaflet.css'],
+  styleUrls: ['map.css', '../node_modules/leaflet/dist/leaflet.css'],
 })
 
 export class LeafletElement {

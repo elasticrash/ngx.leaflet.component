@@ -17,6 +17,7 @@ var LayerElement = (function () {
     };
     LayerElement = __decorate([
         core_1.Component({
+            moduleId: module.id,
             selector: 'layer-element',
             templateUrl: 'layer.html',
             styleUrls: ['layer.css'],

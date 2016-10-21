@@ -4,6 +4,7 @@ var Lealflet = require('leaflet');
 declare var L: any;
 
 @Component({
+  moduleId: module.id,
   selector: 'layer-element',
   templateUrl: 'layer.html',
   styleUrls: ['layer.css'],

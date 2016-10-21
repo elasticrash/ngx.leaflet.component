@@ -1,2 +1,2 @@
-import {LeafletElement} from './map/map';
-import {LayerElement} from './layer/layer';
+import { LeafletElement } from './map/map';
+export declare const CandTLeafletComponent: typeof LeafletElement[];

@@ -28,6 +28,7 @@ var LeafletElement = (function () {
     };
     LeafletElement = __decorate([
         core_1.Component({
+            moduleId: module.id,
             selector: 'leaf-element',
             templateUrl: 'map.html',
             styleUrls: ['map.css', '../node_modules/leaflet/dist/leaflet.css'],
