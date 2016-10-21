@@ -14,7 +14,9 @@ var Lealflet = require('leaflet');
 var LeafletElement = (function () {
     function LeafletElement(mapService) {
         this.mapService = mapService;
-        this.map = L.map("map", {
+    }
+    LeafletElement.prototype.ngOnInit = function () {
+        var map = L.map("map", {
             zoomControl: false,
             center: L.latLng(40.731253, -73.996139),
             zoom: 12,
@@ -22,11 +24,9 @@ var LeafletElement = (function () {
             maxZoom: 19,
             layers: []
         });
-        mapService.setMap(this.map);
-    }
-    LeafletElement.prototype.ngOnInit = function () {
-        L.control.zoom({ position: "topright" }).addTo(this.map);
-        L.control.scale().addTo(this.map);
+        this.mapService.setMap(map);
+        L.control.zoom({ position: "topright" }).addTo(map);
+        L.control.scale().addTo(map);
     };
     LeafletElement = __decorate([
         core_1.Component({

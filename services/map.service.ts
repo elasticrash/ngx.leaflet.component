@@ -3,9 +3,10 @@ import { Injectable } from '@angular/core';
 
 @Injectable()
 export class MapService {
-    map: any;
+    private map;
+ constructor() {}
 
-    public setMap(map: any) {
+    public setMap(map) {
         this.map = map;
     }
     public getMap() {

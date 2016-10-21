@@ -1,5 +1,6 @@
 export declare class MapService {
-    map: any;
+    private map;
+    constructor();
     setMap(map: any): void;
     getMap(): any;
 }

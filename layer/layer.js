@@ -9,20 +9,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var map_service_1 = require('../services/map.service');
 var Lealflet = require('leaflet');
 var LayerElement = (function () {
-    function LayerElement() {
+    function LayerElement(mapService) {
+        this.mapService = mapService;
+        this.tileLayer = '';
     }
     LayerElement.prototype.ngOnInit = function () {
+        var map = this.mapService.getMap();
+        L.tileLayer(this.tileLayer).addTo(map);
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], LayerElement.prototype, "tileLayer", void 0);
     LayerElement = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'layer-element',
             templateUrl: 'layer.html',
-            styleUrls: ['layer.css'],
+            styleUrls: ['layer.css']
         }), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [map_service_1.MapService])
     ], LayerElement);
     return LayerElement;
 }());

@@ -14,10 +14,12 @@ declare var L: any;
 })
 
 export class LeafletElement {
-  map: any;
 
   constructor(private mapService: MapService) {
-    this.map = L.map("map", {
+  }
+
+  ngOnInit() {
+     let map = L.map("map", {
       zoomControl: false,
       center: L.latLng(40.731253, -73.996139),
       zoom: 12,
@@ -26,11 +28,9 @@ export class LeafletElement {
       layers: []
     });
 
-    mapService.setMap(this.map);
-  }
+    this.mapService.setMap(map);
 
-  ngOnInit() {
-    L.control.zoom({ position: "topright" }).addTo(this.map);
-    L.control.scale().addTo(this.map);
+    L.control.zoom({ position: "topright" }).addTo(map);
+    L.control.scale().addTo(map);
   }
 }
