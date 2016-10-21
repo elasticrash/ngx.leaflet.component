@@ -7,7 +7,7 @@ declare var L: any;
   moduleId: module.id,
   selector: 'leaf-element',
   templateUrl: 'map.html',
-  styleUrls: ['map.css', '../node_modules/leaflet/dist/leaflet.css'],
+  styleUrls: ['map.css'],
 })
 
 export class LeafletElement {
