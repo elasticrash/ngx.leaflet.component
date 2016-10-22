@@ -13,13 +13,24 @@ declare var L: any;
 })
 
 export class LayerElement {
-  @Input() tileLayer:string = '';
+  @Input() slippyLayer: string = '';
+  @Input() wmsLayer: string = '';
+  @Input() name: string = '';
+  @Input() opacity: number = 1;
+
 
   constructor(private mapService: MapService) {
   }
 
   ngOnInit() {
     let map = this.mapService.getMap();
-    L.tileLayer(this.tileLayer).addTo(map);
+    if (this.slippyLayer !== "") {
+      L.tileLayer(this.slippyLayer).addTo(map);
+    }
+    if (this.wmsLayer !== "" && this.name !== "") {
+      L.tileLayer.wms(this.wmsLayer, {
+        layers: this.name
+      }).setOpacity(this.opacity).addTo(map);
+    }
   }
 }

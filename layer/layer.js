@@ -14,16 +14,38 @@ var Lealflet = require('leaflet');
 var LayerElement = (function () {
     function LayerElement(mapService) {
         this.mapService = mapService;
-        this.tileLayer = '';
+        this.slippyLayer = '';
+        this.wmsLayer = '';
+        this.name = '';
+        this.opacity = 1;
     }
     LayerElement.prototype.ngOnInit = function () {
         var map = this.mapService.getMap();
-        L.tileLayer(this.tileLayer).addTo(map);
+        if (this.slippyLayer !== "") {
+            L.tileLayer(this.slippyLayer).addTo(map);
+        }
+        if (this.wmsLayer !== "" && this.name !== "") {
+            L.tileLayer.wms(this.wmsLayer, {
+                layers: this.name
+            }).setOpacity(this.opacity).addTo(map);
+        }
     };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', String)
-    ], LayerElement.prototype, "tileLayer", void 0);
+    ], LayerElement.prototype, "slippyLayer", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], LayerElement.prototype, "wmsLayer", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], LayerElement.prototype, "name", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], LayerElement.prototype, "opacity", void 0);
     LayerElement = __decorate([
         core_1.Component({
             moduleId: module.id,
