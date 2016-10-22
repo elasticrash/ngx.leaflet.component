@@ -59,3 +59,5 @@ usage
  ```
  
  at the moment it only accepts tileLayers
+
+ you can see an example on the following repository https://github.com/elasticrash/Angular.io.MapViewer on develop branch
