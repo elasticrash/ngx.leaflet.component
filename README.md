@@ -50,3 +50,12 @@ import { AppComponent } from './components/app.component';
 ```
 
 Leaflet stylesheet is not included, so you need to add it yourself
+
+usage
+```html
+<leaf-element>
+		<layer-element [tileLayer]="'http://{s}.tile.osm.org/{z}/{x}/{y}.png'"></layer-element>
+	</leaf-element>
+ ```
+ 
+ at the moment it only accepts tileLayers
