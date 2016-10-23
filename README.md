@@ -7,6 +7,12 @@ my own attemp on creating an Angular 2 leaflet v1.x component
 Bare in mind that I just started developing this and I don't have much time to plan things ahead
 mainly due to not enough free time, so I am making changes as I go
 
+
+Install
+```terminal
+npm install angular2.leaflet.components
+```
+
 in SystemJs use the following configuration
 
 ```javascript
