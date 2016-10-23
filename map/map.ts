@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { MapService } from '../services/map.service';
 
 var Lealflet = require('leaflet');
@@ -14,6 +14,11 @@ declare var L: any;
 })
 
 export class LeafletElement {
+  @Input() lat: number = 52.6;
+  @Input() lon: number = -1.1;
+  @Input() zoom: number = 12;
+  @Input() minZoom: number = 4;
+  @Input() maxZoom: number = 19;
 
   constructor(private mapService: MapService) {
   }
@@ -21,10 +26,10 @@ export class LeafletElement {
   ngOnInit() {
      let map = L.map("map", {
       zoomControl: false,
-      center: L.latLng(40.731253, -73.996139),
-      zoom: 12,
-      minZoom: 4,
-      maxZoom: 19,
+      center: L.latLng(this.lat, this.lon),
+      zoom: this.zoom,
+      minZoom: this.minZoom,
+      maxZoom: this.maxZoom,
       layers: []
     });
 
@@ -32,5 +37,6 @@ export class LeafletElement {
 
     L.control.zoom({ position: "topright" }).addTo(map);
     L.control.scale().addTo(map);
+    
   }
 }

@@ -18,6 +18,18 @@ var MapService = (function () {
     MapService.prototype.getMap = function () {
         return this.map;
     };
+    MapService.prototype.addBasemap = function (basemap) {
+        this.basemaps = this.basemaps.push(basemap);
+    };
+    MapService.prototype.addOverlay = function (overlay) {
+        this.overlays = this.overlays.push(overlay);
+    };
+    MapService.prototype.getBasemaps = function () {
+        return this.basemaps;
+    };
+    MapService.prototype.getOverlays = function () {
+        return this.overlays;
+    };
     MapService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [])
