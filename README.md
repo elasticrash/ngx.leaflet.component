@@ -3,6 +3,7 @@
 my own attemp on creating an Angular 2 leaflet v1.x component
 
 22/10/2016
+
 Bare in mind that I just started developing this and I don't have much time to plan things ahead
 mainly due to not enough free time, so I am making changes as I go
 
@@ -52,23 +53,9 @@ import { AppComponent } from './components/app.component';
 
 Leaflet stylesheet is not included, so you need to add it yourself
 
-usage
+for usage check the wiki
 
-```html
-<leaf-element>
-		<layer-element [slippyLayer]="'http://{s}.tile.osm.org/{z}/{x}/{y}.png'"></layer-element>
-    	<layer-element 
-		[wmsLayer]="'http://sedac.ciesin.columbia.edu/geoserver/wms'"
-		[name]="'gpw-v3:gpw-v3-population-density_2000'"
-		[opacity]=0.3></layer-element>
-	</leaf-element>Ï
-    </leaf-element>
-```
+https://github.com/elasticrash/Angular2.leaflet.component/wiki
 
-I've made some changes since yesterday
-layer-element now supports two different type of layers
-
-slippyLayer which are the tileLayers with the zoom/x/y url structure
-wmsLayers which need the url and a name, also for wms you can even set the opacity from the template (like the example above)
-
-you can see an example on the following repository https://github.com/elasticrash/Angular.io.MapViewer on develop branch
+you can see an example on the following repository
+ https://github.com/elasticrash/Angular.io.MapViewer on develop branch
