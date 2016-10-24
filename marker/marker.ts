@@ -15,12 +15,22 @@ declare var L: any;
 export class MarkerElement {
   @Input() lat: number = 52.6;
   @Input() lon: number = -1.1;
+  @Input() mouseover: string = "";
 
   constructor(private mapService: MapService) {
   }
 
   ngOnInit() {
     let map = this.mapService.getMap();
-    let marker = L.marker([this.lat, this.lon]).addTo(map);
+    let marker = L.marker([this.lat, this.lon]);
+    if (this.mouseover !== "") {
+      marker.bindPopup(this.mouseover);
+      marker.on('mouseover', function () {
+        this.openPopup();
+      }).on('mouseout', function () {
+        this.closePopup();
+      });
+    }
+    marker.addTo(map);
   }
 }
