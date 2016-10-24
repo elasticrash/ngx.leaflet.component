@@ -11,48 +11,39 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var map_service_1 = require('../services/map.service');
 var Lealflet = require('leaflet');
-var MarkerElement = (function () {
-    function MarkerElement(mapService) {
+var CircleElement = (function () {
+    function CircleElement(mapService) {
         this.mapService = mapService;
         this.lat = 52.6;
         this.lon = -1.1;
-        this.mouseover = "";
+        this.radius = 20;
     }
-    MarkerElement.prototype.ngOnInit = function () {
+    CircleElement.prototype.ngOnInit = function () {
         var map = this.mapService.getMap();
-        var marker = L.marker([this.lat, this.lon]);
-        if (this.mouseover !== "") {
-            marker.bindPopup(this.mouseover);
-            marker.on('mouseover', function () {
-                this.openPopup();
-            }).on('mouseout', function () {
-                this.closePopup();
-            });
-        }
-        marker.addTo(map);
+        var circle = L.circle([this.lat, this.lon], this.radius).addTo(map);
     };
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Number)
-    ], MarkerElement.prototype, "lat", void 0);
+    ], CircleElement.prototype, "lat", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Number)
-    ], MarkerElement.prototype, "lon", void 0);
+    ], CircleElement.prototype, "lon", void 0);
     __decorate([
         core_1.Input(), 
-        __metadata('design:type', String)
-    ], MarkerElement.prototype, "mouseover", void 0);
-    MarkerElement = __decorate([
+        __metadata('design:type', Number)
+    ], CircleElement.prototype, "radius", void 0);
+    CircleElement = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'marker-element',
-            templateUrl: 'marker.html',
-            styleUrls: ['marker.css']
+            selector: 'circle-element',
+            templateUrl: 'circle.html',
+            styleUrls: ['circle.css']
         }), 
         __metadata('design:paramtypes', [map_service_1.MapService])
-    ], MarkerElement);
-    return MarkerElement;
+    ], CircleElement);
+    return CircleElement;
 }());
-exports.MarkerElement = MarkerElement;
-//# sourceMappingURL=marker.js.map
+exports.CircleElement = CircleElement;
+//# sourceMappingURL=circle.js.map
