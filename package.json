@@ -1,6 +1,6 @@
 {
   "name": "angular2.leaflet.components",
-  "version": "1.0.13",
+  "version": "1.0.14",
   "description": "an angular.io (2) component collection for leaflet",
   "main": "index.js",
   "scripts": {
