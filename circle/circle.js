@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var map_service_1 = require('../services/map.service');
+var path_1 = require('../models/path');
 var Lealflet = require('leaflet');
 var CircleElement = (function () {
     function CircleElement(mapService) {
@@ -19,8 +20,9 @@ var CircleElement = (function () {
         this.radius = 20;
     }
     CircleElement.prototype.ngOnInit = function () {
+        var inheritedOptions = new path_1.path(null);
         var map = this.mapService.getMap();
-        var circle = L.circle([this.lat, this.lon], this.radius).addTo(map);
+        var circle = L.circle([this.lat, this.lon], this.radius, inheritedOptions).addTo(map);
     };
     __decorate([
         core_1.Input(), 
