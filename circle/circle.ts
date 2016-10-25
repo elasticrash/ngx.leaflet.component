@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { MapService } from '../services/map.service';
 import { path } from '../models/path';
+import { Ipath } from '../interfaces/path';
 
 var Lealflet = require('leaflet');
 
@@ -17,7 +18,7 @@ export class CircleElement {
   @Input() lat: number = 52.6;
   @Input() lon: number = -1.1;
   @Input() radius: number = 20;
-  //@Input() Options: path;
+  @Input() Options: Ipath;
   //TODO need to overide Options without adding an @Input for every Option property
 
   constructor(private mapService: MapService) {
