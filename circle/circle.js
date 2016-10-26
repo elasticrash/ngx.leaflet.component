@@ -18,9 +18,10 @@ var CircleElement = (function () {
         this.lat = 52.6;
         this.lon = -1.1;
         this.radius = 20;
+        this.Options = new path_1.path(null);
     }
     CircleElement.prototype.ngOnInit = function () {
-        var inheritedOptions = new path_1.path(null);
+        var inheritedOptions = new path_1.path(this.Options);
         var map = this.mapService.getMap();
         var circle = L.circle([this.lat, this.lon], this.radius, inheritedOptions).addTo(map);
     };
@@ -36,6 +37,10 @@ var CircleElement = (function () {
         core_1.Input(), 
         __metadata('design:type', Number)
     ], CircleElement.prototype, "radius", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], CircleElement.prototype, "Options", void 0);
     CircleElement = __decorate([
         core_1.Component({
             moduleId: module.id,

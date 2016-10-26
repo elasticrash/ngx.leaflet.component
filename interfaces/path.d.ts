@@ -1,4 +1,4 @@
-export interface pathOptions {
+export interface Ipath {
     stroke: boolean;
     weight: number;
     opacity: number;

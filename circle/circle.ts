@@ -18,14 +18,13 @@ export class CircleElement {
   @Input() lat: number = 52.6;
   @Input() lon: number = -1.1;
   @Input() radius: number = 20;
-  @Input() Options: Ipath;
-  //TODO need to overide Options without adding an @Input for every Option property
+  @Input() Options: Ipath = new path(null);
 
   constructor(private mapService: MapService) {
   }
 
   ngOnInit() {
-    let inheritedOptions = new path(/*this.Options*/ null);
+    let inheritedOptions = new path(this.Options);
     let map = this.mapService.getMap();
     let circle = L.circle([this.lat, this.lon], this.radius, inheritedOptions).addTo(map);
   }
