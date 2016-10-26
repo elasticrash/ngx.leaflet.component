@@ -1,10 +1,7 @@
-export declare class path {
-    constructor(pathInfo: any);
+export interface Ipath {
     stroke: boolean;
-    color: string;
     weight: number;
     opacity: number;
-    lineCap: string;
     lineJoin: string;
     dashArray: string;
     dashOffset: string;
