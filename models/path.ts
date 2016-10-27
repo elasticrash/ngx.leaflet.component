@@ -1,7 +1,11 @@
 export class path {
     constructor(pathInfo: any) {
         if (pathInfo !== null) {
-            this.color = pathInfo.color;
+            for (var key in pathInfo) {
+                if (pathInfo[key]) {
+                    this[key] = pathInfo[key];
+                }
+            }
         }
     }
     stroke: boolean = true;	//Whether to draw stroke along the path. Set it to false to disable borders on polygons or circles.

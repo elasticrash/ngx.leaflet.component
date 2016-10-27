@@ -15,7 +15,11 @@ var path = (function () {
         this.fillRule = 'evenodd';
         this.className = null;
         if (pathInfo !== null) {
-            this.color = pathInfo.color;
+            for (var key in pathInfo) {
+                if (pathInfo[key]) {
+                    this[key] = pathInfo[key];
+                }
+            }
         }
     }
     return path;
