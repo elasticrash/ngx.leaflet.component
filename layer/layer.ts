@@ -24,13 +24,18 @@ export class LayerElement {
 
   ngOnInit() {
     let map = this.mapService.getMap();
+    let layer = {};
     if (this.slippyLayer !== "") {
-      L.tileLayer(this.slippyLayer).addTo(map);
+      layer = L.tileLayer(this.slippyLayer).addTo(map);
     }
     if (this.wmsLayer !== "" && this.name !== "") {
-      L.tileLayer.wms(this.wmsLayer, {
+      layer = L.tileLayer.wms(this.wmsLayer, {
         layers: this.name
       }).setOpacity(this.opacity).addTo(map);
+    }
+
+    if(layer!=={}){
+      this.mapService.addOverlay(layer);
     }
   }
 }

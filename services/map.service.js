@@ -11,6 +11,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var MapService = (function () {
     function MapService() {
+        this.basemaps = [];
+        this.overlays = [];
     }
     MapService.prototype.setMap = function (map) {
         this.map = map;
@@ -19,10 +21,10 @@ var MapService = (function () {
         return this.map;
     };
     MapService.prototype.addBasemap = function (basemap) {
-        this.basemaps = this.basemaps.push(basemap);
+        this.basemaps.push(basemap);
     };
     MapService.prototype.addOverlay = function (overlay) {
-        this.overlays = this.overlays.push(overlay);
+        this.overlays.push(overlay);
     };
     MapService.prototype.getBasemaps = function () {
         return this.basemaps;

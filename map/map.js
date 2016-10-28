@@ -19,6 +19,7 @@ var LeafletElement = (function () {
         this.zoom = 12;
         this.minZoom = 4;
         this.maxZoom = 19;
+        this.layerControl = false;
     }
     LeafletElement.prototype.ngOnInit = function () {
         var map = L.map("map", {
@@ -32,6 +33,12 @@ var LeafletElement = (function () {
         this.mapService.setMap(map);
         L.control.zoom({ position: "topright" }).addTo(map);
         L.control.scale().addTo(map);
+    };
+    LeafletElement.prototype.ngAfterViewInit = function () {
+        if (this.layerControl) {
+            var map = this.mapService.getMap();
+            L.control.layers(this.mapService.getBasemaps(), this.mapService.getOverlays()).addTo(map);
+        }
     };
     __decorate([
         core_1.Input(), 
@@ -53,6 +60,10 @@ var LeafletElement = (function () {
         core_1.Input(), 
         __metadata('design:type', Number)
     ], LeafletElement.prototype, "maxZoom", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Boolean)
+    ], LeafletElement.prototype, "layerControl", void 0);
     LeafletElement = __decorate([
         core_1.Component({
             moduleId: module.id,

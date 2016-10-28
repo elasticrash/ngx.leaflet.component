@@ -6,6 +6,8 @@ export declare class LeafletElement {
     zoom: number;
     minZoom: number;
     maxZoom: number;
+    layerControl: boolean;
     constructor(mapService: MapService);
     ngOnInit(): void;
+    ngAfterViewInit(): void;
 }

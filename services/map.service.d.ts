@@ -7,6 +7,6 @@ export declare class MapService {
     getMap(): any;
     addBasemap(basemap: any): void;
     addOverlay(overlay: any): void;
-    getBasemaps(): any;
-    getOverlays(): any;
+    getBasemaps(): any[];
+    getOverlays(): any[];
 }
