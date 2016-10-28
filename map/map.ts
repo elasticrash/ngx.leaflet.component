@@ -19,12 +19,13 @@ export class LeafletElement {
   @Input() zoom: number = 12;
   @Input() minZoom: number = 4;
   @Input() maxZoom: number = 19;
+  @Input() layerControl: boolean = false;
 
   constructor(private mapService: MapService) {
   }
 
   ngOnInit() {
-     let map = L.map("map", {
+    let map = L.map("map", {
       zoomControl: false,
       center: L.latLng(this.lat, this.lon),
       zoom: this.zoom,
@@ -37,6 +38,13 @@ export class LeafletElement {
 
     L.control.zoom({ position: "topright" }).addTo(map);
     L.control.scale().addTo(map);
-    
+
+  }
+
+  ngAfterViewInit() {
+    if (this.layerControl) {
+      let map = this.mapService.getMap();
+      L.control.layers(this.mapService.getBasemaps(), this.mapService.getOverlays()).addTo(map);
+    }
   }
 }

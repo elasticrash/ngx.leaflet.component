@@ -4,8 +4,8 @@ import { Injectable } from '@angular/core';
 @Injectable()
 export class MapService {
     private map;
-    private basemaps;
-    private overlays;
+    private basemaps:Array<any> = [];
+    private overlays:Array<any> = [];
 
  constructor() {}
 
@@ -17,11 +17,11 @@ export class MapService {
     }
 
     public addBasemap(basemap){
-        this.basemaps = this.basemaps.push(basemap);
+        this.basemaps.push(basemap);
     }
 
     public addOverlay(overlay){
-        this.overlays = this.overlays.push(overlay);
+        this.overlays.push(overlay);
     }
 
     public getBasemaps(){
