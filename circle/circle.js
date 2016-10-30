@@ -10,11 +10,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var map_service_1 = require('../services/map.service');
+var group_service_1 = require('../services/group.service');
 var path_1 = require('../models/path');
 var Lealflet = require('leaflet');
 var CircleElement = (function () {
-    function CircleElement(mapService) {
+    function CircleElement(mapService, groupService) {
         this.mapService = mapService;
+        this.groupService = groupService;
         this.lat = 52.6;
         this.lon = -1.1;
         this.radius = 20;
@@ -24,6 +26,7 @@ var CircleElement = (function () {
         var inheritedOptions = new path_1.path(this.Options);
         var map = this.mapService.getMap();
         var circle = L.circle([this.lat, this.lon], this.radius, inheritedOptions).addTo(map);
+        this.groupService.addOLayersToGroup(circle);
     };
     __decorate([
         core_1.Input(), 
@@ -48,7 +51,7 @@ var CircleElement = (function () {
             templateUrl: 'circle.html',
             styleUrls: ['circle.css']
         }), 
-        __metadata('design:paramtypes', [map_service_1.MapService])
+        __metadata('design:paramtypes', [map_service_1.MapService, group_service_1.GroupService])
     ], CircleElement);
     return CircleElement;
 }());

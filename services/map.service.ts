@@ -6,6 +6,7 @@ export class MapService {
     private map;
     private basemaps:Array<any> = [];
     private overlays:Array<any> = [];
+    private layerControl: Boolean = false;
 
  constructor() {}
 
@@ -14,6 +15,13 @@ export class MapService {
     }
     public getMap() {
         return this.map;
+    }
+
+    public setLayerControl(state) {
+        this.layerControl = state;
+    }
+    public getLayerControl() {
+        return this.layerControl;
     }
 
     public addBasemap(basemap){
