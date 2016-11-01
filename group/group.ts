@@ -31,6 +31,7 @@ export class LeafletGroup {
         if (this.mapService.getLayerControl) {
             let map = this.mapService.getMap();
             let layerGroup = L.layerGroup(this.groupService.getLayerGroup());
+            layerGroup.addTo(map);
 
             //add layerGroup to control
             this.mapService.addOverlay(layerGroup);

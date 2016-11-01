@@ -33,11 +33,16 @@ var CircleElement = (function () {
         if (this.LeafletElement || this.LeafletGroup) {
             var inheritedOptions = new path_1.path(this.Options);
             var map = this.mapService.getMap();
-            var circle = L.circle([this.lat, this.lon], this.radius, inheritedOptions).addTo(map);
-            this.groupService.addOLayersToGroup(circle);
+            var circle = L.circle([this.lat, this.lon], this.radius, inheritedOptions);
+            if (this.LeafletGroup) {
+                this.groupService.addOLayersToGroup(circle);
+            }
+            else {
+                circle.addTo(map);
+            }
         }
         else {
-            console.warn("This circle element will not be rendered \n the expected parent node of circle-element should be either leaf-element or leaflet-group");
+            console.warn("This circle-element will not be rendered \n the expected parent node of circle-element should be either leaf-element or leaflet-group");
         }
     };
     __decorate([

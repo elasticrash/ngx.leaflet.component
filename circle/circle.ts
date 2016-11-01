@@ -35,8 +35,13 @@ export class CircleElement {
     if (this.LeafletElement || this.LeafletGroup) {
       let inheritedOptions = new path(this.Options);
       let map = this.mapService.getMap();
-      let circle = L.circle([this.lat, this.lon], this.radius, inheritedOptions).addTo(map);
-      this.groupService.addOLayersToGroup(circle);
+      let circle = L.circle([this.lat, this.lon], this.radius, inheritedOptions);
+
+      if (this.LeafletGroup) {
+        this.groupService.addOLayersToGroup(circle);
+      } else {
+        circle.addTo(map);
+      }
     } else {
       console.warn("This circle-element will not be rendered \n the expected parent node of circle-element should be either leaf-element or leaflet-group");
     }

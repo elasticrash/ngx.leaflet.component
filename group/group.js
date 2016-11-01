@@ -24,6 +24,7 @@ var LeafletGroup = (function () {
         if (this.mapService.getLayerControl) {
             var map = this.mapService.getMap();
             var layerGroup = L.layerGroup(this.groupService.getLayerGroup());
+            layerGroup.addTo(map);
             this.mapService.addOverlay(layerGroup);
         }
     };
