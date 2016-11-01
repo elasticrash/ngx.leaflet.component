@@ -1,4 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, Injector, Optional } from '@angular/core';
+import { LeafletElement } from '../map/map';
+import { LeafletGroup } from '../group/group';
 import { MapService } from '../services/map.service';
 import { GroupService } from '../services/group.service';
 import { path } from '../models/path';
@@ -23,14 +25,20 @@ export class CircleElement {
 
   constructor(
     private mapService: MapService,
-    private groupService: GroupService) {
+    private groupService: GroupService,
+    @Optional() private LeafletElement?: LeafletElement,
+    @Optional() private LeafletGroup?: LeafletGroup) {
   }
 
   ngOnInit() {
-    let inheritedOptions = new path(this.Options);
-    let map = this.mapService.getMap();
-    let circle = L.circle([this.lat, this.lon], this.radius, inheritedOptions).addTo(map);
-
-    this.groupService.addOLayersToGroup(circle);
+    //check if any of the two optional injections exist
+    if (this.LeafletElement || this.LeafletGroup) {
+      let inheritedOptions = new path(this.Options);
+      let map = this.mapService.getMap();
+      let circle = L.circle([this.lat, this.lon], this.radius, inheritedOptions).addTo(map);
+      this.groupService.addOLayersToGroup(circle);
+    } else {
+      console.warn("This circle-element will not be rendered \n the expected parent node of circle-element should be either leaf-element or leaflet-group");
+    }
   }
 }
