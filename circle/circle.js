@@ -8,22 +8,42 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
 var core_1 = require('@angular/core');
+var map_1 = require('../map/map');
+var group_1 = require('../group/group');
 var map_service_1 = require('../services/map.service');
+var group_service_1 = require('../services/group.service');
 var path_1 = require('../models/path');
 var Lealflet = require('leaflet');
 var CircleElement = (function () {
-    function CircleElement(mapService) {
+    function CircleElement(mapService, groupService, LeafletElement, LeafletGroup) {
         this.mapService = mapService;
+        this.groupService = groupService;
+        this.LeafletElement = LeafletElement;
+        this.LeafletGroup = LeafletGroup;
         this.lat = 52.6;
         this.lon = -1.1;
         this.radius = 20;
         this.Options = new path_1.path(null);
     }
     CircleElement.prototype.ngOnInit = function () {
-        var inheritedOptions = new path_1.path(this.Options);
-        var map = this.mapService.getMap();
-        var circle = L.circle([this.lat, this.lon], this.radius, inheritedOptions).addTo(map);
+        if (this.LeafletElement || this.LeafletGroup) {
+            var inheritedOptions = new path_1.path(this.Options);
+            var map = this.mapService.getMap();
+            var circle = L.circle([this.lat, this.lon], this.radius, inheritedOptions);
+            if (this.LeafletGroup) {
+                this.groupService.addOLayersToGroup(circle);
+            }
+            else {
+                circle.addTo(map);
+            }
+        }
+        else {
+            console.warn("This circle-element will not be rendered \n the expected parent node of circle-element should be either leaf-element or leaflet-group");
+        }
     };
     __decorate([
         core_1.Input(), 
@@ -47,8 +67,10 @@ var CircleElement = (function () {
             selector: 'circle-element',
             templateUrl: 'circle.html',
             styleUrls: ['circle.css']
-        }), 
-        __metadata('design:paramtypes', [map_service_1.MapService])
+        }),
+        __param(2, core_1.Optional()),
+        __param(3, core_1.Optional()), 
+        __metadata('design:paramtypes', [map_service_1.MapService, group_service_1.GroupService, map_1.LeafletElement, group_1.LeafletGroup])
     ], CircleElement);
     return CircleElement;
 }());

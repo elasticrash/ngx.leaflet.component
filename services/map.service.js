@@ -13,12 +13,19 @@ var MapService = (function () {
     function MapService() {
         this.basemaps = [];
         this.overlays = [];
+        this.layerControl = false;
     }
     MapService.prototype.setMap = function (map) {
         this.map = map;
     };
     MapService.prototype.getMap = function () {
         return this.map;
+    };
+    MapService.prototype.setLayerControl = function (state) {
+        this.layerControl = state;
+    };
+    MapService.prototype.getLayerControl = function () {
+        return this.layerControl;
     };
     MapService.prototype.addBasemap = function (basemap) {
         this.basemaps.push(basemap);

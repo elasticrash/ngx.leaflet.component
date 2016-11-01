@@ -31,6 +31,7 @@ var LeafletElement = (function () {
             layers: []
         });
         this.mapService.setMap(map);
+        this.mapService.setLayerControl(this.layerControl);
         L.control.zoom({ position: "topright" }).addTo(map);
         L.control.scale().addTo(map);
     };
