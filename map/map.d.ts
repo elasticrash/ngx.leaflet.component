@@ -1,3 +1,4 @@
+import { ElementRef } from '@angular/core';
 import { MapService } from '../services/map.service';
 export declare class LeafletElement {
     private mapService;
@@ -7,6 +8,7 @@ export declare class LeafletElement {
     minZoom: number;
     maxZoom: number;
     layerControl: boolean;
+    mapElement: ElementRef;
     constructor(mapService: MapService);
     ngOnInit(): void;
     ngAfterViewInit(): void;
