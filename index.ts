@@ -2,6 +2,8 @@ import { LeafletElement } from './map/map';
 import { LayerElement } from './layer/layer';
 import { MarkerElement } from './marker/marker';
 import { CircleElement } from './circle/circle';
+import { PolygonElement } from './polygon/polygon';
+import { PolylineElement } from './polyline/polyline';
 import { LeafletGroup } from './group/group';
 
 import { MapService } from './services/map.service'
@@ -13,6 +15,8 @@ export const CandTLeafletComponent = [
     LayerElement,
     MarkerElement,
     CircleElement,
+    PolygonElement,
+    PolylineElement,
     LeafletGroup
 ];
 

@@ -20,7 +20,7 @@ export class LeafletElement {
   @Input() minZoom: number = 4;
   @Input() maxZoom: number = 19;
   @Input() layerControl: boolean = false;
-
+  
   constructor(private mapService: MapService) {
   }
 
