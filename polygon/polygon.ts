@@ -3,6 +3,7 @@ import { LeafletElement } from '../map/map';
 import { LeafletGroup } from '../group/group';
 import { MapService } from '../services/map.service';
 import { GroupService } from '../services/group.service';
+import { PopupService } from '../services/popup.service';
 import { path } from '../models/path';
 import { Ipath } from '../interfaces/path';
 
@@ -18,12 +19,15 @@ declare var L: any;
 })
 
 export class PolygonElement {
-  @Input() latlngs: Array<Array<number>> = [[52.65, -1.2],[52.645, -1.15], [52.696, -1.155], [52.697, -1.189]];
+  @Input() latlngs: Array<Array<number>> = [[52.65, -1.2], [52.645, -1.15], [52.696, -1.155], [52.697, -1.189]];
   @Input() Options: Ipath = new path(null);
+  @Input() mouseover: string = "";
+  @Input() onclick: string = "";
 
   constructor(
     private mapService: MapService,
     private groupService: GroupService,
+    private popupService: PopupService,
     @Optional() private LeafletElement?: LeafletElement,
     @Optional() private LeafletGroup?: LeafletGroup) {
   }
@@ -34,6 +38,9 @@ export class PolygonElement {
       let inheritedOptions = new path(this.Options);
       let map = this.mapService.getMap();
       let polygon = L.polygon([this.latlngs], inheritedOptions);
+
+      //add popup methods on element
+      this.popupService.enablePopup(this.mouseover, this.onclick, polygon);
 
       if (this.LeafletGroup) {
         this.groupService.addOLayersToGroup(polygon);
