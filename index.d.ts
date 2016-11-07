@@ -7,5 +7,6 @@ import { PolylineElement } from './polyline/polyline';
 import { LeafletGroup } from './group/group';
 import { MapService } from './services/map.service';
 import { GroupService } from './services/group.service';
+import { PopupService } from './services/popup.service';
 export declare const CandTLeafletComponent: (typeof LeafletElement | typeof LeafletGroup | typeof CircleElement | typeof LayerElement | typeof MarkerElement | typeof PolygonElement | typeof PolylineElement)[];
-export declare const CandTLeafletService: (typeof MapService | typeof GroupService)[];
+export declare const CandTLeafletService: (typeof MapService | typeof GroupService | typeof PopupService)[];

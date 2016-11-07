@@ -1,6 +1,7 @@
 import { Component, Input, Injector, Optional } from '@angular/core';
 import { MapService } from '../services/map.service';
 import { GroupService } from '../services/group.service';
+import { PopupService } from '../services/popup.service';
 import { LeafletElement } from '../map/map';
 import { LeafletGroup } from '../group/group';
 
@@ -12,17 +13,20 @@ declare var L: any;
   moduleId: module.id,
   selector: 'marker-element',
   templateUrl: 'marker.html',
-  styleUrls: ['marker.css']
+  styleUrls: ['marker.css'],
+  providers: [PopupService]
 })
 
 export class MarkerElement {
   @Input() lat: number = 52.6;
   @Input() lon: number = -1.1;
   @Input() mouseover: string = "";
+  @Input() onclick: string = "";
 
   constructor(
     private mapService: MapService,
     private groupService: GroupService,
+    private popupService: PopupService,
     @Optional() private LeafletElement?: LeafletElement,
     @Optional() private LeafletGroup?: LeafletGroup) {
   }
@@ -31,16 +35,11 @@ export class MarkerElement {
     if (this.LeafletElement || this.LeafletGroup) {
 
       let map = this.mapService.getMap();
-      
-      let marker = L.marker([this.lat, this.lon]);
-      if (this.mouseover !== "") {
-        marker.bindPopup(this.mouseover);
-        marker.on('mouseover', function () {
-          this.openPopup();
-        }).on('mouseout', function () {
-          this.closePopup();
-        });
-      }
+
+      var marker = L.marker([this.lat, this.lon]);
+
+      //add popup methods on element
+      this.popupService.enablePopup(this.mouseover, this.onclick, marker);
 
       //only if the parent is map should the marker-element should be directly added to the map
       if (this.LeafletGroup) {

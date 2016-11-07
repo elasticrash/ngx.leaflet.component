@@ -14,31 +14,27 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 var core_1 = require('@angular/core');
 var map_service_1 = require('../services/map.service');
 var group_service_1 = require('../services/group.service');
+var popup_service_1 = require('../services/popup.service');
 var map_1 = require('../map/map');
 var group_1 = require('../group/group');
 var Lealflet = require('leaflet');
 var MarkerElement = (function () {
-    function MarkerElement(mapService, groupService, LeafletElement, LeafletGroup) {
+    function MarkerElement(mapService, groupService, popupService, LeafletElement, LeafletGroup) {
         this.mapService = mapService;
         this.groupService = groupService;
+        this.popupService = popupService;
         this.LeafletElement = LeafletElement;
         this.LeafletGroup = LeafletGroup;
         this.lat = 52.6;
         this.lon = -1.1;
         this.mouseover = "";
+        this.onclick = "";
     }
     MarkerElement.prototype.ngOnInit = function () {
         if (this.LeafletElement || this.LeafletGroup) {
             var map = this.mapService.getMap();
             var marker = L.marker([this.lat, this.lon]);
-            if (this.mouseover !== "") {
-                marker.bindPopup(this.mouseover);
-                marker.on('mouseover', function () {
-                    this.openPopup();
-                }).on('mouseout', function () {
-                    this.closePopup();
-                });
-            }
+            this.popupService.enablePopup(this.mouseover, this.onclick, marker);
             if (this.LeafletGroup) {
                 this.groupService.addOLayersToGroup(marker);
             }
@@ -62,16 +58,21 @@ var MarkerElement = (function () {
         core_1.Input(), 
         __metadata('design:type', String)
     ], MarkerElement.prototype, "mouseover", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], MarkerElement.prototype, "onclick", void 0);
     MarkerElement = __decorate([
         core_1.Component({
             moduleId: module.id,
             selector: 'marker-element',
             templateUrl: 'marker.html',
-            styleUrls: ['marker.css']
+            styleUrls: ['marker.css'],
+            providers: [popup_service_1.PopupService]
         }),
-        __param(2, core_1.Optional()),
-        __param(3, core_1.Optional()), 
-        __metadata('design:paramtypes', [map_service_1.MapService, group_service_1.GroupService, map_1.LeafletElement, group_1.LeafletGroup])
+        __param(3, core_1.Optional()),
+        __param(4, core_1.Optional()), 
+        __metadata('design:paramtypes', [map_service_1.MapService, group_service_1.GroupService, popup_service_1.PopupService, map_1.LeafletElement, group_1.LeafletGroup])
     ], MarkerElement);
     return MarkerElement;
 }());

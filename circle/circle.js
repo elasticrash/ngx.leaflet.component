@@ -16,17 +16,21 @@ var map_1 = require('../map/map');
 var group_1 = require('../group/group');
 var map_service_1 = require('../services/map.service');
 var group_service_1 = require('../services/group.service');
+var popup_service_1 = require('../services/popup.service');
 var path_1 = require('../models/path');
 var Lealflet = require('leaflet');
 var CircleElement = (function () {
-    function CircleElement(mapService, groupService, LeafletElement, LeafletGroup) {
+    function CircleElement(mapService, groupService, popupService, LeafletElement, LeafletGroup) {
         this.mapService = mapService;
         this.groupService = groupService;
+        this.popupService = popupService;
         this.LeafletElement = LeafletElement;
         this.LeafletGroup = LeafletGroup;
         this.lat = 52.6;
         this.lon = -1.1;
         this.radius = 20;
+        this.mouseover = "";
+        this.onclick = "";
         this.Options = new path_1.path(null);
     }
     CircleElement.prototype.ngOnInit = function () {
@@ -34,6 +38,7 @@ var CircleElement = (function () {
             var inheritedOptions = new path_1.path(this.Options);
             var map = this.mapService.getMap();
             var circle = L.circle([this.lat, this.lon], this.radius, inheritedOptions);
+            this.popupService.enablePopup(this.mouseover, this.onclick, circle);
             if (this.LeafletGroup) {
                 this.groupService.addOLayersToGroup(circle);
             }
@@ -59,6 +64,14 @@ var CircleElement = (function () {
     ], CircleElement.prototype, "radius", void 0);
     __decorate([
         core_1.Input(), 
+        __metadata('design:type', String)
+    ], CircleElement.prototype, "mouseover", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], CircleElement.prototype, "onclick", void 0);
+    __decorate([
+        core_1.Input(), 
         __metadata('design:type', Object)
     ], CircleElement.prototype, "Options", void 0);
     CircleElement = __decorate([
@@ -68,9 +81,9 @@ var CircleElement = (function () {
             templateUrl: 'circle.html',
             styleUrls: ['circle.css']
         }),
-        __param(2, core_1.Optional()),
-        __param(3, core_1.Optional()), 
-        __metadata('design:paramtypes', [map_service_1.MapService, group_service_1.GroupService, map_1.LeafletElement, group_1.LeafletGroup])
+        __param(3, core_1.Optional()),
+        __param(4, core_1.Optional()), 
+        __metadata('design:paramtypes', [map_service_1.MapService, group_service_1.GroupService, popup_service_1.PopupService, map_1.LeafletElement, group_1.LeafletGroup])
     ], CircleElement);
     return CircleElement;
 }());

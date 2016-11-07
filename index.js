@@ -8,6 +8,7 @@ var polyline_1 = require('./polyline/polyline');
 var group_1 = require('./group/group');
 var map_service_1 = require('./services/map.service');
 var group_service_1 = require('./services/group.service');
+var popup_service_1 = require('./services/popup.service');
 exports.CandTLeafletComponent = [
     map_1.LeafletElement,
     layer_1.LayerElement,
@@ -17,5 +18,5 @@ exports.CandTLeafletComponent = [
     polyline_1.PolylineElement,
     group_1.LeafletGroup
 ];
-exports.CandTLeafletService = [map_service_1.MapService, group_service_1.GroupService];
+exports.CandTLeafletService = [map_service_1.MapService, group_service_1.GroupService, popup_service_1.PopupService];
 //# sourceMappingURL=index.js.map
