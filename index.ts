@@ -8,7 +8,7 @@ import { LeafletGroup } from './group/group';
 
 import { MapService } from './services/map.service'
 import { GroupService } from './services/group.service'
-
+import { PopupService } from './services/popup.service';
 
 export const CandTLeafletComponent = [
     LeafletElement,
@@ -20,4 +20,4 @@ export const CandTLeafletComponent = [
     LeafletGroup
 ];
 
-export const CandTLeafletService = [MapService, GroupService];
+export const CandTLeafletService = [MapService, GroupService, PopupService];

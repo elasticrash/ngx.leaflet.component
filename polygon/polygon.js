@@ -16,22 +16,27 @@ var map_1 = require('../map/map');
 var group_1 = require('../group/group');
 var map_service_1 = require('../services/map.service');
 var group_service_1 = require('../services/group.service');
+var popup_service_1 = require('../services/popup.service');
 var path_1 = require('../models/path');
 var Lealflet = require('leaflet');
 var PolygonElement = (function () {
-    function PolygonElement(mapService, groupService, LeafletElement, LeafletGroup) {
+    function PolygonElement(mapService, groupService, popupService, LeafletElement, LeafletGroup) {
         this.mapService = mapService;
         this.groupService = groupService;
+        this.popupService = popupService;
         this.LeafletElement = LeafletElement;
         this.LeafletGroup = LeafletGroup;
         this.latlngs = [[52.65, -1.2], [52.645, -1.15], [52.696, -1.155], [52.697, -1.189]];
         this.Options = new path_1.path(null);
+        this.mouseover = "";
+        this.onclick = "";
     }
     PolygonElement.prototype.ngOnInit = function () {
         if (this.LeafletElement || this.LeafletGroup) {
             var inheritedOptions = new path_1.path(this.Options);
             var map = this.mapService.getMap();
             var polygon = L.polygon([this.latlngs], inheritedOptions);
+            this.popupService.enablePopup(this.mouseover, this.onclick, polygon);
             if (this.LeafletGroup) {
                 this.groupService.addOLayersToGroup(polygon);
             }
@@ -51,6 +56,14 @@ var PolygonElement = (function () {
         core_1.Input(), 
         __metadata('design:type', Object)
     ], PolygonElement.prototype, "Options", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], PolygonElement.prototype, "mouseover", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], PolygonElement.prototype, "onclick", void 0);
     PolygonElement = __decorate([
         core_1.Component({
             moduleId: module.id,
@@ -58,9 +71,9 @@ var PolygonElement = (function () {
             templateUrl: 'polygon.html',
             styleUrls: ['polygon.css']
         }),
-        __param(2, core_1.Optional()),
-        __param(3, core_1.Optional()), 
-        __metadata('design:paramtypes', [map_service_1.MapService, group_service_1.GroupService, map_1.LeafletElement, group_1.LeafletGroup])
+        __param(3, core_1.Optional()),
+        __param(4, core_1.Optional()), 
+        __metadata('design:paramtypes', [map_service_1.MapService, group_service_1.GroupService, popup_service_1.PopupService, map_1.LeafletElement, group_1.LeafletGroup])
     ], PolygonElement);
     return PolygonElement;
 }());

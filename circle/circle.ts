@@ -3,6 +3,7 @@ import { LeafletElement } from '../map/map';
 import { LeafletGroup } from '../group/group';
 import { MapService } from '../services/map.service';
 import { GroupService } from '../services/group.service';
+import { PopupService } from '../services/popup.service';
 import { path } from '../models/path';
 import { Ipath } from '../interfaces/path';
 
@@ -21,11 +22,14 @@ export class CircleElement {
   @Input() lat: number = 52.6;
   @Input() lon: number = -1.1;
   @Input() radius: number = 20;
+  @Input() mouseover: string = "";
+  @Input() onclick: string = "";
   @Input() Options: Ipath = new path(null);
 
   constructor(
     private mapService: MapService,
     private groupService: GroupService,
+    private popupService: PopupService,
     @Optional() private LeafletElement?: LeafletElement,
     @Optional() private LeafletGroup?: LeafletGroup) {
   }
@@ -37,6 +41,9 @@ export class CircleElement {
       let map = this.mapService.getMap();
       let circle = L.circle([this.lat, this.lon], this.radius, inheritedOptions);
 
+      //add popup methods on element
+      this.popupService.enablePopup(this.mouseover, this.onclick, circle);
+      
       if (this.LeafletGroup) {
         this.groupService.addOLayersToGroup(circle);
       } else {

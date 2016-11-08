@@ -22,7 +22,7 @@ var LeafletElement = (function () {
         this.layerControl = false;
     }
     LeafletElement.prototype.ngOnInit = function () {
-        var map = L.map("map", {
+        var map = L.map(this.mapElement.nativeElement, {
             zoomControl: false,
             center: L.latLng(this.lat, this.lon),
             zoom: this.zoom,
@@ -30,6 +30,7 @@ var LeafletElement = (function () {
             maxZoom: this.maxZoom,
             layers: []
         });
+        this.mapElement.nativeElement.myMapProperty = map;
         this.mapService.setMap(map);
         this.mapService.setLayerControl(this.layerControl);
         L.control.zoom({ position: "topright" }).addTo(map);
@@ -65,6 +66,10 @@ var LeafletElement = (function () {
         core_1.Input(), 
         __metadata('design:type', Boolean)
     ], LeafletElement.prototype, "layerControl", void 0);
+    __decorate([
+        core_1.ViewChild('map'), 
+        __metadata('design:type', core_1.ElementRef)
+    ], LeafletElement.prototype, "mapElement", void 0);
     LeafletElement = __decorate([
         core_1.Component({
             moduleId: module.id,

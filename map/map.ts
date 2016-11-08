@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef } from '@angular/core';
 import { MapService } from '../services/map.service';
 
 var Lealflet = require('leaflet');
@@ -20,12 +20,13 @@ export class LeafletElement {
   @Input() minZoom: number = 4;
   @Input() maxZoom: number = 19;
   @Input() layerControl: boolean = false;
-  
+  @ViewChild('map') mapElement: ElementRef;
+
   constructor(private mapService: MapService) {
   }
 
   ngOnInit() {
-    let map = L.map("map", {
+    let map = L.map(this.mapElement.nativeElement, {
       zoomControl: false,
       center: L.latLng(this.lat, this.lon),
       zoom: this.zoom,
@@ -33,6 +34,7 @@ export class LeafletElement {
       maxZoom: this.maxZoom,
       layers: []
     });
+    this.mapElement.nativeElement.myMapProperty = map;
 
     //set variables for childrent components
     this.mapService.setMap(map);
