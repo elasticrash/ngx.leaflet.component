@@ -48,11 +48,13 @@ then on you app module include this
 
 ```javascript
 import { CandTLeafletComponent  } from 'angular2.leaflet.components';
+import { CandTLeafletService } from 'angular2.leaflet.components';
 import { AppComponent } from './components/app.component';
 
 @NgModule({
   imports: [... ],
   declarations: [..., CandTLeafletComponent],
+  providers: [CandTLeafletService],
   bootstrap: [AppComponent]
 })
 ```
