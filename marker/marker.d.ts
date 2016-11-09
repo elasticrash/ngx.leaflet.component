@@ -13,6 +13,9 @@ export declare class MarkerElement {
     lon: number;
     mouseover: string;
     onclick: string;
+    iconUrl: string;
     constructor(mapService: MapService, groupService: GroupService, popupService: PopupService, LeafletElement?: LeafletElement, LeafletGroup?: LeafletGroup);
     ngOnInit(): void;
+    createMarkerlayer(marker: any, map: any): void;
+    imageExists(url: any, callback: any): void;
 }
