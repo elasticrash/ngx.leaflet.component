@@ -4,6 +4,11 @@ import { GroupService } from '../services/group.service';
 import { PopupService } from '../services/popup.service';
 import { LeafletElement } from '../map/map';
 import { LeafletGroup } from '../group/group';
+import { Http, Response, Headers, RequestOptions, Request, RequestMethod } from '@angular/http';
+import { Observable } from 'rxjs/Rx';
+
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 
 var Lealflet = require('leaflet');
 
@@ -28,6 +33,7 @@ export class MarkerElement {
     private mapService: MapService,
     private groupService: GroupService,
     private popupService: PopupService,
+    private http: Http,
     @Optional() private LeafletElement?: LeafletElement,
     @Optional() private LeafletGroup?: LeafletGroup) {
   }
@@ -61,10 +67,10 @@ export class MarkerElement {
                   var myIcon = L.icon({
                     iconUrl: model.iconUrl,
                     iconSize: [img.height, img.height],
-                    iconAnchor: [img.height/2, img.height-1],
+                    iconAnchor: [img.height / 2, img.height - 1],
                     popupAnchor: [0, -img.height]
                   });
-                  marker = L.marker([model.lat, model.lon], {icon: myIcon});
+                  marker = L.marker([model.lat, model.lon], { icon: myIcon });
                   model.createMarkerlayer(marker, map);
                 };
               }
@@ -96,5 +102,11 @@ export class MarkerElement {
     img.onload = function () { callback(true); };
     img.onerror = function () { callback(false); };
     img.src = url;
+  }
+
+  getImage(): Observable<any> {
+    return this.http.get(this.iconUrl)
+      .map((res: Response) => res.json())
+
   }
 }
