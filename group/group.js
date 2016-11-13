@@ -18,13 +18,14 @@ var LeafletGroup = (function () {
         this.groupService = groupService;
     }
     LeafletGroup.prototype.ngOnInit = function () {
+        this.mapService.increaseNumber();
     };
     LeafletGroup.prototype.ngAfterViewInit = function () {
         var model = this;
         if (this.groupService.getLayerGroup().length !== this.groupService.getLayerNumber()) {
             setTimeout(function () {
                 model.loop();
-            }, 100);
+            }, 200);
         }
         else {
             this.addLayerGroupToScope();
@@ -35,7 +36,7 @@ var LeafletGroup = (function () {
         if (this.groupService.getLayerGroup().length !== this.groupService.getLayerNumber()) {
             setTimeout(function () {
                 model.loop();
-            }, 100);
+            }, 200);
         }
         else {
             this.addLayerGroupToScope();

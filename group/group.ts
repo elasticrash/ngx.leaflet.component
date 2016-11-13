@@ -22,6 +22,7 @@ export class LeafletGroup {
     }
 
     ngOnInit() {
+        this.mapService.increaseNumber();
     }
 
     ngAfterViewInit() {
@@ -29,7 +30,7 @@ export class LeafletGroup {
         if (this.groupService.getLayerGroup().length !== this.groupService.getLayerNumber()) {
             setTimeout(function () {
                 model.loop();
-            }, 100);
+            }, 200);
         } else {
             this.addLayerGroupToScope();
         }
@@ -40,7 +41,7 @@ export class LeafletGroup {
         if (this.groupService.getLayerGroup().length !== this.groupService.getLayerNumber()) {
             setTimeout(function () {
                 model.loop();
-            }, 100);
+            }, 200);
         }
         else { this.addLayerGroupToScope() };
     }

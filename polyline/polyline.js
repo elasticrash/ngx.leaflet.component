@@ -40,6 +40,7 @@ var PolylineElement = (function () {
             this.popupService.enablePopup(this.mouseover, this.onclick, polyline);
             if (this.LeafletGroup) {
                 this.groupService.addOLayersToGroup(polyline);
+                this.groupService.increaseNumber();
             }
             else {
                 polyline.addTo(map);

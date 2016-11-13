@@ -46,9 +46,31 @@ export class LeafletElement {
   }
 
   ngAfterViewInit() {
+    let model = this;
     if (this.layerControl) {
       let map = this.mapService.getMap();
-      L.control.layers(this.mapService.getBasemaps(), this.mapService.getOverlays()).addTo(map);
+
+      if (this.mapService.getBasemaps().length + this.mapService.getOverlays().length !== this.mapService.getLayerNumber()) {
+        setTimeout(function () {
+          model.loop();
+        }, 200);
+      } else {
+        L.control.layers(this.mapService.getBasemaps(), this.mapService.getOverlays()).addTo(map);
+      }
     }
+  }
+
+  loop() {
+    let model = this;
+    let map = this.mapService.getMap();
+
+    if (this.mapService.getBasemaps().length + this.mapService.getOverlays().length !== this.mapService.getLayerNumber()) {
+      setTimeout(function () {
+        model.loop();
+      }, 200);
+    }
+    else {
+      L.control.layers(this.mapService.getBasemaps(), this.mapService.getOverlays()).addTo(map);
+    };
   }
 }

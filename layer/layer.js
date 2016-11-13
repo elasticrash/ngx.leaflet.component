@@ -20,6 +20,7 @@ var LayerElement = (function () {
         this.opacity = 1;
     }
     LayerElement.prototype.ngOnInit = function () {
+        this.mapService.increaseNumber();
         var map = this.mapService.getMap();
         var layer = {};
         if (this.slippyLayer !== "") {

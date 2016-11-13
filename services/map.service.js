@@ -14,6 +14,7 @@ var MapService = (function () {
         this.basemaps = [];
         this.overlays = [];
         this.layerControl = false;
+        this.layersInControlNumber = 0;
     }
     MapService.prototype.setMap = function (map) {
         this.map = map;
@@ -38,6 +39,12 @@ var MapService = (function () {
     };
     MapService.prototype.getOverlays = function () {
         return this.overlays;
+    };
+    MapService.prototype.increaseNumber = function () {
+        this.layersInControlNumber += 1;
+    };
+    MapService.prototype.getLayerNumber = function () {
+        return this.layersInControlNumber;
     };
     MapService = __decorate([
         core_1.Injectable(), 
