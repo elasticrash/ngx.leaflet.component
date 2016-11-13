@@ -22,17 +22,34 @@ export class LeafletGroup {
     }
 
     ngOnInit() {
-
-        let map = this.mapService.getMap();
-
     }
 
     ngAfterViewInit() {
-        if (this.mapService.getLayerControl) {
-            let map = this.mapService.getMap();
-            let layerGroup = L.layerGroup(this.groupService.getLayerGroup());
-            layerGroup.addTo(map);
+        let model = this;
+        if (this.groupService.getLayerGroup().length !== this.groupService.getLayerNumber()) {
+            setTimeout(function () {
+                model.loop();
+            }, 100);
+        } else {
+            this.addLayerGroupToScope();
+        }
+    }
 
+    loop() {
+        let model = this;
+        if (this.groupService.getLayerGroup().length !== this.groupService.getLayerNumber()) {
+            setTimeout(function () {
+                model.loop();
+            }, 100);
+        }
+        else { this.addLayerGroupToScope() };
+    }
+
+    addLayerGroupToScope() {
+        let map = this.mapService.getMap();
+        let layerGroup = L.layerGroup(this.groupService.getLayerGroup());
+        layerGroup.addTo(map);
+        if (this.mapService.getLayerControl) {
             //add layerGroup to control
             this.mapService.addOverlay(layerGroup);
         }

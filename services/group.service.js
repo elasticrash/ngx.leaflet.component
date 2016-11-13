@@ -12,12 +12,19 @@ var core_1 = require('@angular/core');
 var GroupService = (function () {
     function GroupService() {
         this.layerGroup = [];
+        this.layerGroupNumber = 0;
     }
     GroupService.prototype.addOLayersToGroup = function (overlay) {
         this.layerGroup.push(overlay);
     };
     GroupService.prototype.getLayerGroup = function () {
         return this.layerGroup;
+    };
+    GroupService.prototype.increaseNumber = function () {
+        this.layerGroupNumber += 1;
+    };
+    GroupService.prototype.getLayerNumber = function () {
+        return this.layerGroupNumber;
     };
     GroupService = __decorate([
         core_1.Injectable(), 
