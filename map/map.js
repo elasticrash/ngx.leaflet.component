@@ -37,10 +37,31 @@ var LeafletElement = (function () {
         L.control.scale().addTo(map);
     };
     LeafletElement.prototype.ngAfterViewInit = function () {
+        var model = this;
         if (this.layerControl) {
             var map = this.mapService.getMap();
+            if (this.mapService.getBasemaps().length + this.mapService.getOverlays().length !== this.mapService.getLayerNumber()) {
+                setTimeout(function () {
+                    model.loop();
+                }, 200);
+            }
+            else {
+                L.control.layers(this.mapService.getBasemaps(), this.mapService.getOverlays()).addTo(map);
+            }
+        }
+    };
+    LeafletElement.prototype.loop = function () {
+        var model = this;
+        var map = this.mapService.getMap();
+        if (this.mapService.getBasemaps().length + this.mapService.getOverlays().length !== this.mapService.getLayerNumber()) {
+            setTimeout(function () {
+                model.loop();
+            }, 200);
+        }
+        else {
             L.control.layers(this.mapService.getBasemaps(), this.mapService.getOverlays()).addTo(map);
         }
+        ;
     };
     __decorate([
         core_1.Input(), 

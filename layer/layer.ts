@@ -23,6 +23,7 @@ export class LayerElement {
   }
 
   ngOnInit() {
+    this.mapService.increaseNumber();
     let map = this.mapService.getMap();
     let layer = {};
     if (this.slippyLayer !== "") {
@@ -34,7 +35,7 @@ export class LayerElement {
       }).setOpacity(this.opacity).addTo(map);
     }
 
-    if(layer!=={}){
+    if (layer !== {}) {
       this.mapService.addOverlay(layer);
     }
   }

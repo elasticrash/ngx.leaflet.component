@@ -7,8 +7,9 @@ export class MapService {
     private basemaps:Array<any> = [];
     private overlays:Array<any> = [];
     private layerControl: Boolean = false;
-
- constructor() {}
+    private layersInControlNumber: number = 0;
+    
+     constructor() {}
 
     public setMap(map) {
         this.map = map;
@@ -38,5 +39,13 @@ export class MapService {
 
     public getOverlays(){
         return this.overlays;
+    }
+
+     public increaseNumber() {
+        this.layersInControlNumber += 1;
+    }
+
+    public getLayerNumber() {
+        return this.layersInControlNumber;
     }
 }

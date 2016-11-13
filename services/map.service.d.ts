@@ -3,6 +3,7 @@ export declare class MapService {
     private basemaps;
     private overlays;
     private layerControl;
+    private layersInControlNumber;
     constructor();
     setMap(map: any): void;
     getMap(): any;
@@ -12,4 +13,6 @@ export declare class MapService {
     addOverlay(overlay: any): void;
     getBasemaps(): any[];
     getOverlays(): any[];
+    increaseNumber(): void;
+    getLayerNumber(): number;
 }

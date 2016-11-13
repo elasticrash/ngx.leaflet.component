@@ -46,6 +46,7 @@ export class PolylineElement {
 
       if (this.LeafletGroup) {
         this.groupService.addOLayersToGroup(polyline);
+        this.groupService.increaseNumber();
       } else {
         polyline.addTo(map);
       }

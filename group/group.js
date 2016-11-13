@@ -18,13 +18,36 @@ var LeafletGroup = (function () {
         this.groupService = groupService;
     }
     LeafletGroup.prototype.ngOnInit = function () {
-        var map = this.mapService.getMap();
+        this.mapService.increaseNumber();
     };
     LeafletGroup.prototype.ngAfterViewInit = function () {
+        var model = this;
+        if (this.groupService.getLayerGroup().length !== this.groupService.getLayerNumber()) {
+            setTimeout(function () {
+                model.loop();
+            }, 200);
+        }
+        else {
+            this.addLayerGroupToScope();
+        }
+    };
+    LeafletGroup.prototype.loop = function () {
+        var model = this;
+        if (this.groupService.getLayerGroup().length !== this.groupService.getLayerNumber()) {
+            setTimeout(function () {
+                model.loop();
+            }, 200);
+        }
+        else {
+            this.addLayerGroupToScope();
+        }
+        ;
+    };
+    LeafletGroup.prototype.addLayerGroupToScope = function () {
+        var map = this.mapService.getMap();
+        var layerGroup = L.layerGroup(this.groupService.getLayerGroup());
+        layerGroup.addTo(map);
         if (this.mapService.getLayerControl) {
-            var map = this.mapService.getMap();
-            var layerGroup = L.layerGroup(this.groupService.getLayerGroup());
-            layerGroup.addTo(map);
             this.mapService.addOverlay(layerGroup);
         }
     };

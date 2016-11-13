@@ -12,4 +12,5 @@ export declare class LeafletElement {
     constructor(mapService: MapService);
     ngOnInit(): void;
     ngAfterViewInit(): void;
+    loop(): void;
 }
