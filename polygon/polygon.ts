@@ -44,6 +44,7 @@ export class PolygonElement {
 
       if (this.LeafletGroup) {
         this.groupService.addOLayersToGroup(polygon);
+        this.groupService.increaseNumber();
       } else {
         polygon.addTo(map);
       }

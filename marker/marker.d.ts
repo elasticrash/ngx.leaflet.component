@@ -3,10 +3,15 @@ import { GroupService } from '../services/group.service';
 import { PopupService } from '../services/popup.service';
 import { LeafletElement } from '../map/map';
 import { LeafletGroup } from '../group/group';
+import { Http } from '@angular/http';
+import { Observable } from 'rxjs/Rx';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
 export declare class MarkerElement {
     private mapService;
     private groupService;
     private popupService;
+    private http;
     private LeafletElement;
     private LeafletGroup;
     lat: number;
@@ -14,8 +19,9 @@ export declare class MarkerElement {
     mouseover: string;
     onclick: string;
     iconUrl: string;
-    constructor(mapService: MapService, groupService: GroupService, popupService: PopupService, LeafletElement?: LeafletElement, LeafletGroup?: LeafletGroup);
+    constructor(mapService: MapService, groupService: GroupService, popupService: PopupService, http: Http, LeafletElement?: LeafletElement, LeafletGroup?: LeafletGroup);
     ngOnInit(): void;
     createMarkerlayer(marker: any, map: any): void;
     imageExists(url: any, callback: any): void;
+    getImage(): Observable<any>;
 }
