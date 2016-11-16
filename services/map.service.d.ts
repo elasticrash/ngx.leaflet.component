@@ -9,9 +9,9 @@ export declare class MapService {
     getMap(): any;
     setLayerControl(state: any): void;
     getLayerControl(): Boolean;
-    addBasemap(basemap: any): void;
+    addBasemap(basemap: any, name: any): void;
     addOverlay(overlay: any): void;
-    getBasemaps(): any[];
+    getBasemaps(): Object;
     getOverlays(): any[];
     increaseNumber(): void;
     getLayerNumber(): number;

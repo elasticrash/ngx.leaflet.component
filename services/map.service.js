@@ -11,7 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var MapService = (function () {
     function MapService() {
-        this.basemaps = [];
+        this.basemaps = {};
         this.overlays = [];
         this.layerControl = false;
         this.layersInControlNumber = 0;
@@ -28,8 +28,24 @@ var MapService = (function () {
     MapService.prototype.getLayerControl = function () {
         return this.layerControl;
     };
-    MapService.prototype.addBasemap = function (basemap) {
-        this.basemaps.push(basemap);
+    MapService.prototype.addBasemap = function (basemap, name) {
+        if (name === '') {
+            name = 'unknown layer';
+        }
+        if (this.basemaps[name] === undefined) {
+            this.basemaps[name] = basemap;
+        }
+        else {
+            var nameindex = 0;
+            if (name.indexOf('(') !== -1) {
+                nameindex = name.split('(')[1].split(')')[0];
+            }
+            else {
+                nameindex = 1;
+            }
+            name = name + '(' + (nameindex += 1) + ')';
+            this.addBasemap(basemap, name);
+        }
     };
     MapService.prototype.addOverlay = function (overlay) {
         this.overlays.push(overlay);

@@ -51,7 +51,6 @@ var MarkerElement = (function () {
             else {
                 this.imageExists(this.iconUrl, function (exists) {
                     model.getImage().subscribe(function (image) {
-                        console.log("image", image);
                         var img = document.createElement("img");
                         window.URL.createObjectURL(image.blob());
                         var reader = new FileReader();

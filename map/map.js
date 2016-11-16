@@ -40,7 +40,7 @@ var LeafletElement = (function () {
         var model = this;
         if (this.layerControl) {
             var map = this.mapService.getMap();
-            if (this.mapService.getBasemaps().length + this.mapService.getOverlays().length !== this.mapService.getLayerNumber()) {
+            if (Object.keys(this.mapService.getBasemaps()).length + this.mapService.getOverlays().length !== this.mapService.getLayerNumber()) {
                 setTimeout(function () {
                     model.loop();
                 }, 200);
@@ -53,7 +53,7 @@ var LeafletElement = (function () {
     LeafletElement.prototype.loop = function () {
         var model = this;
         var map = this.mapService.getMap();
-        if (this.mapService.getBasemaps().length + this.mapService.getOverlays().length !== this.mapService.getLayerNumber()) {
+        if (Object.keys(this.mapService.getBasemaps()).length + this.mapService.getOverlays().length !== this.mapService.getLayerNumber()) {
             setTimeout(function () {
                 model.loop();
             }, 200);
