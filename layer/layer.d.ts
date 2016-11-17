@@ -5,6 +5,7 @@ export declare class LayerElement {
     wmsLayer: string;
     name: string;
     opacity: number;
+    type: string;
     constructor(mapService: MapService);
     ngOnInit(): void;
 }

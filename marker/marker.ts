@@ -60,8 +60,6 @@ export class MarkerElement {
 
           model.getImage().subscribe(
             image => {
-              console.log("image", image);
-
               var img = document.createElement("img");
               window.URL.createObjectURL(image.blob())
               var reader = new FileReader();
