@@ -16,6 +16,7 @@ var LeafletGroup = (function () {
     function LeafletGroup(mapService, groupService) {
         this.mapService = mapService;
         this.groupService = groupService;
+        this.name = '';
     }
     LeafletGroup.prototype.ngOnInit = function () {
         this.mapService.increaseNumber();
@@ -48,9 +49,13 @@ var LeafletGroup = (function () {
         var layerGroup = L.layerGroup(this.groupService.getLayerGroup());
         layerGroup.addTo(map);
         if (this.mapService.getLayerControl) {
-            this.mapService.addOverlay(layerGroup);
+            this.mapService.addOverlay(layerGroup, this.name);
         }
     };
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', String)
+    ], LeafletGroup.prototype, "name", void 0);
     LeafletGroup = __decorate([
         core_1.Component({
             moduleId: module.id,

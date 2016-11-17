@@ -50,7 +50,7 @@ export class LeafletElement {
     if (this.layerControl) {
       let map = this.mapService.getMap();
 
-      if (Object.keys(this.mapService.getBasemaps()).length + this.mapService.getOverlays().length !== this.mapService.getLayerNumber()) {
+      if (Object.keys(this.mapService.getBasemaps()).length + Object.keys(this.mapService.getOverlays()).length !== this.mapService.getLayerNumber()) {
         setTimeout(function () {
           model.loop();
         }, 200);
@@ -64,7 +64,7 @@ export class LeafletElement {
     let model = this;
     let map = this.mapService.getMap();
 
-    if (Object.keys(this.mapService.getBasemaps()).length + this.mapService.getOverlays().length !== this.mapService.getLayerNumber()) {
+    if (Object.keys(this.mapService.getBasemaps()).length + Object.keys(this.mapService.getOverlays()).length !== this.mapService.getLayerNumber()) {
       setTimeout(function () {
         model.loop();
       }, 200);

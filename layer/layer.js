@@ -34,7 +34,7 @@ var LayerElement = (function () {
         }
         if (layer !== {}) {
             if (this.type === "overlay") {
-                this.mapService.addOverlay(layer);
+                this.mapService.addOverlay(layer, this.name);
                 layer.addTo(map);
             }
             else if (this.type === "basemap") {

@@ -5,7 +5,7 @@ import { Injectable } from '@angular/core';
 export class MapService {
     private map;
     private basemaps: Object = {};
-    private overlays: Array<any> = [];
+    private overlays: Object = {};
     private layerControl: Boolean = false;
     private layersInControlNumber: number = 0;
 
@@ -32,20 +32,31 @@ export class MapService {
         if (this.basemaps[name] === undefined) {
             this.basemaps[name] = basemap;
         } else {
-
-            let nameindex = 0;
-            if (name.indexOf('(') !== -1) {
-                nameindex = name.split('(')[1].split(')')[0];
-            } else {
-                nameindex = 1;
-            }
-            name = name + '(' + (nameindex += 1) + ')';
+            name = this.getUniqueName(name);
             this.addBasemap(basemap, name)
         }
     }
 
-    public addOverlay(overlay) {
-        this.overlays.push(overlay);
+    public getUniqueName(name) {
+        let nameindex = 0;
+        if (name.indexOf('(') !== -1) {
+            nameindex = name.split('(')[1].split(')')[0];
+        } else {
+            nameindex = 1;
+        }
+        return name = name + '(' + (nameindex += 1) + ')';
+    }
+
+    public addOverlay(overlay, name) {
+        if (name === '') {
+            name = 'unknown group';
+        }
+        if (this.overlays[name] === undefined) {
+            this.overlays[name] = overlay;
+        } else {
+            name = this.getUniqueName(name);
+            this.addOverlay(overlay, name)
+        }
     }
 
     public getBasemaps() {

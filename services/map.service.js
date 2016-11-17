@@ -12,7 +12,7 @@ var core_1 = require('@angular/core');
 var MapService = (function () {
     function MapService() {
         this.basemaps = {};
-        this.overlays = [];
+        this.overlays = {};
         this.layerControl = false;
         this.layersInControlNumber = 0;
     }
@@ -36,19 +36,31 @@ var MapService = (function () {
             this.basemaps[name] = basemap;
         }
         else {
-            var nameindex = 0;
-            if (name.indexOf('(') !== -1) {
-                nameindex = name.split('(')[1].split(')')[0];
-            }
-            else {
-                nameindex = 1;
-            }
-            name = name + '(' + (nameindex += 1) + ')';
+            name = this.getUniqueName(name);
             this.addBasemap(basemap, name);
         }
     };
-    MapService.prototype.addOverlay = function (overlay) {
-        this.overlays.push(overlay);
+    MapService.prototype.getUniqueName = function (name) {
+        var nameindex = 0;
+        if (name.indexOf('(') !== -1) {
+            nameindex = name.split('(')[1].split(')')[0];
+        }
+        else {
+            nameindex = 1;
+        }
+        return name = name + '(' + (nameindex += 1) + ')';
+    };
+    MapService.prototype.addOverlay = function (overlay, name) {
+        if (name === '') {
+            name = 'unknown group';
+        }
+        if (this.overlays[name] === undefined) {
+            this.overlays[name] = overlay;
+        }
+        else {
+            name = this.getUniqueName(name);
+            this.addOverlay(overlay, name);
+        }
     };
     MapService.prototype.getBasemaps = function () {
         return this.basemaps;

@@ -15,6 +15,7 @@ declare var L: any;
 })
 
 export class LeafletGroup {
+    @Input() name: string = '';
 
     constructor(
         private mapService: MapService,
@@ -52,7 +53,7 @@ export class LeafletGroup {
         layerGroup.addTo(map);
         if (this.mapService.getLayerControl) {
             //add layerGroup to control
-            this.mapService.addOverlay(layerGroup);
+            this.mapService.addOverlay(layerGroup, this.name);
         }
     }
 }
