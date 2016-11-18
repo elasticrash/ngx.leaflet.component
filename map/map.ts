@@ -32,7 +32,8 @@ export class LeafletElement {
       zoom: this.zoom,
       minZoom: this.minZoom,
       maxZoom: this.maxZoom,
-      layers: []
+      layers: [],
+      closePopupOnClick: false
     });
     this.mapElement.nativeElement.myMapProperty = map;
 
