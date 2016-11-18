@@ -3,8 +3,6 @@ import { LeafletElement } from '../map/map';
 import { LeafletGroup } from '../group/group';
 import { MapService } from '../services/map.service';
 import { GroupService } from '../services/group.service';
-import { path } from '../models/path';
-import { Ipath } from '../interfaces/path';
 
 var Lealflet = require('leaflet');
 
@@ -18,14 +16,13 @@ declare var L: any;
 })
 
 export class PopupElement {
-    @Input() lat: number = 52.6;
-    @Input() lon: number = -1.9;
-    @Input() content: string = "nice popup";
-    @Input() Options: Ipath = new path(null);    
+  @Input() lat: number = 52.6;
+  @Input() lon: number = -1.9;
+  @Input() content: string = "nice popup";
 
   constructor(
     private mapService: MapService,
-    private groupService: GroupService,    
+    private groupService: GroupService,
     @Optional() private LeafletElement?: LeafletElement,
     @Optional() private LeafletGroup?: LeafletGroup) {
   }
@@ -33,10 +30,9 @@ export class PopupElement {
   ngOnInit() {
     //check if any of the two optional injections exist
     if (this.LeafletElement || this.LeafletGroup) {
-      let inheritedOptions = new path(this.Options);
-      
+
       let map = this.mapService.getMap();
-      let popup = L.popup(inheritedOptions).setLatLng([this.lat, this.lon]).setContent(this.content);     
+      let popup = L.popup({ autoClose: false, keepInView: true, closeButton: false }).setLatLng([this.lat, this.lon]).setContent(this.content);
 
       if (this.LeafletGroup) {
         this.groupService.addOLayersToGroup(popup);

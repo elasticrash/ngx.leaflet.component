@@ -16,7 +16,6 @@ var map_1 = require('../map/map');
 var group_1 = require('../group/group');
 var map_service_1 = require('../services/map.service');
 var group_service_1 = require('../services/group.service');
-var path_1 = require('../models/path');
 var Lealflet = require('leaflet');
 var PopupElement = (function () {
     function PopupElement(mapService, groupService, LeafletElement, LeafletGroup) {
@@ -27,13 +26,11 @@ var PopupElement = (function () {
         this.lat = 52.6;
         this.lon = -1.9;
         this.content = "nice popup";
-        this.Options = new path_1.path(null);
     }
     PopupElement.prototype.ngOnInit = function () {
         if (this.LeafletElement || this.LeafletGroup) {
-            var inheritedOptions = new path_1.path(this.Options);
             var map = this.mapService.getMap();
-            var popup = L.popup(inheritedOptions).setLatLng([this.lat, this.lon]).setContent(this.content);
+            var popup = L.popup({ autoClose: false, keepInView: true, closeButton: false }).setLatLng([this.lat, this.lon]).setContent(this.content);
             if (this.LeafletGroup) {
                 this.groupService.addOLayersToGroup(popup);
                 this.groupService.increaseNumber();
@@ -58,10 +55,6 @@ var PopupElement = (function () {
         core_1.Input(), 
         __metadata('design:type', String)
     ], PopupElement.prototype, "content", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Object)
-    ], PopupElement.prototype, "Options", void 0);
     PopupElement = __decorate([
         core_1.Component({
             moduleId: module.id,
