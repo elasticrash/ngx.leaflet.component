@@ -26,7 +26,7 @@ export class ScaleControl {
             let map = this.mapService.getMap();          
             L.control.scale(this.Options).addTo(map);
         } else {
-            console.warn("This scale-control will not be rendered \n the expected parent node of scale-control should be either leaf-element");
+            console.warn("This scale-control will not be rendered \n the expected parent node of scale-control should be leaf-element");
         }
     }
 }

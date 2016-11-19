@@ -34,6 +34,7 @@ var LeafletElement = (function () {
         this.mapElement.nativeElement.myMapProperty = map;
         this.mapService.setMap(map);
         this.mapService.setLayerControl(this.layerControl);
+        L.control.attribution({ position: "topright" });
     };
     LeafletElement.prototype.ngAfterViewInit = function () {
         var model = this;
