@@ -42,7 +42,7 @@ export class LeafletElement {
     this.mapService.setLayerControl(this.layerControl);
 
     //at some point they need to be optional and configurable
-    L.control.zoom({ position: "topright" }).addTo(map);
+    //L.control.zoom({ position: "topright" }).addTo(map);
     L.control.scale().addTo(map);
   }
 

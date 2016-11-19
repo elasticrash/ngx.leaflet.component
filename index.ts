@@ -5,6 +5,7 @@ import { CircleElement } from './circle/circle';
 import { PolygonElement } from './polygon/polygon';
 import { PolylineElement } from './polyline/polyline';
 import { PopupElement } from './popup/popup';
+import { ZoomControl } from './zoom/zoom';
 import { LeafletGroup } from './group/group';
 
 import { MapService } from './services/map.service'
@@ -19,7 +20,8 @@ export const CandTLeafletComponent = [
     PolygonElement,
     PolylineElement,
     PopupElement,
-    LeafletGroup
+    LeafletGroup,
+    ZoomControl
 ];
 
 export const CandTLeafletService = [MapService, GroupService, PopupService];
