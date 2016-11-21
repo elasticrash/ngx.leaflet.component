@@ -32,6 +32,7 @@ var PolylineElement = (function () {
         this.onclick = "";
         this.polyline = null;
         this.inheritedOptions = null;
+        this.originalObject = this.latlngs.slice();
     }
     PolylineElement.prototype.ngOnInit = function () {
         if (this.LeafletElement || this.LeafletGroup) {
@@ -52,9 +53,18 @@ var PolylineElement = (function () {
             console.warn("This polyline-element will not be rendered \n the expected parent node of polyline-element should be either leaf-element or leaflet-group");
         }
     };
-    PolylineElement.prototype.ngOnChanges = function (inputChanges) {
-        this.polyline = L.polyline(this.latlngs, this.inheritedOptions);
-        console.log(inputChanges);
+    PolylineElement.prototype.ngDoCheck = function (inputChanges) {
+        var _this = this;
+        var same = true;
+        this.originalObject.forEach(function (element, index) {
+            if (element[0] !== _this.latlngs[index][0] || element[1] !== _this.latlngs[index][1]) {
+                same == false;
+            }
+        });
+        if (!same) {
+            this.originalObject = this.latlngs.slice();
+            console.log("latlngchanged");
+        }
     };
     __decorate([
         core_1.Input(), 
@@ -77,8 +87,7 @@ var PolylineElement = (function () {
             moduleId: module.id,
             selector: 'polyline-element',
             templateUrl: 'polyline.html',
-            styleUrls: ['polyline.css'],
-            changeDetection: core_1.ChangeDetectionStrategy.OnPush
+            styleUrls: ['polyline.css']
         }),
         __param(3, core_1.Optional()),
         __param(4, core_1.Optional()), 

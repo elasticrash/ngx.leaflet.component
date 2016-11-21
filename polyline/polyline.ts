@@ -1,4 +1,4 @@
-import { Component, Input, Injector, Optional, ChangeDetectionStrategy } from '@angular/core';
+import { Component, Input, Injector, Optional } from '@angular/core';
 import { LeafletElement } from '../map/map';
 import { LeafletGroup } from '../group/group';
 import { MapService } from '../services/map.service';
@@ -15,8 +15,7 @@ declare var L: any;
   moduleId: module.id,
   selector: 'polyline-element',
   templateUrl: 'polyline.html',
-  styleUrls: ['polyline.css'],
-  changeDetection: ChangeDetectionStrategy.OnPush
+  styleUrls: ['polyline.css']
 })
 
 export class PolylineElement {
@@ -26,6 +25,7 @@ export class PolylineElement {
   @Input() onclick: string = "";
   polyline: any = null;
   inheritedOptions: any = null;
+  originalObject: Array<Array<number>> = [...this.latlngs];
 
   constructor(
     private mapService: MapService,
@@ -58,8 +58,22 @@ export class PolylineElement {
     }
   }
 
-  ngOnChanges(inputChanges) {
-    this.polyline = L.polyline(this.latlngs, this.inheritedOptions);
-    console.log(inputChanges);
+  ngDoCheck(inputChanges) {
+    //this.polyline = L.polyline(this.latlngs, this.inheritedOptions);
+    // if (this.originalObject !== this.latlngs) {
+    //   this.originalObject = this.latlngs;
+    //   console.log("latlngchanged");
+    // }
+    var same: Boolean = true;
+    this.originalObject.forEach((element, index) => {
+      if (element[0] !== this.latlngs[index][0] || element[1] !== this.latlngs[index][1]) {
+        same == false;
+      }
+    });
+
+    if (!same) {
+      this.originalObject = [...this.latlngs];
+      console.log("latlngchanged");
+    }
   }
 }

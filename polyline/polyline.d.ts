@@ -16,7 +16,8 @@ export declare class PolylineElement {
     onclick: string;
     polyline: any;
     inheritedOptions: any;
+    originalObject: Array<Array<number>>;
     constructor(mapService: MapService, groupService: GroupService, popupService: PopupService, LeafletElement?: LeafletElement, LeafletGroup?: LeafletGroup);
     ngOnInit(): void;
-    ngOnChanges(inputChanges: any): void;
+    ngDoCheck(inputChanges: any): void;
 }
