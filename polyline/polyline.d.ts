@@ -14,6 +14,9 @@ export declare class PolylineElement {
     Options: Ipath;
     mouseover: string;
     onclick: string;
+    polyline: any;
+    inheritedOptions: any;
     constructor(mapService: MapService, groupService: GroupService, popupService: PopupService, LeafletElement?: LeafletElement, LeafletGroup?: LeafletGroup);
     ngOnInit(): void;
+    ngOnChanges(inputChanges: any): void;
 }

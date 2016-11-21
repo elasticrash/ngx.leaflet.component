@@ -30,25 +30,31 @@ var PolylineElement = (function () {
         this.Options = new path_1.path(null);
         this.mouseover = "";
         this.onclick = "";
+        this.polyline = null;
+        this.inheritedOptions = null;
     }
     PolylineElement.prototype.ngOnInit = function () {
         if (this.LeafletElement || this.LeafletGroup) {
-            var inheritedOptions = new path_1.path(this.Options);
-            inheritedOptions.fill = false;
+            this.inheritedOptions = new path_1.path(this.Options);
+            this.inheritedOptions.fill = false;
             var map = this.mapService.getMap();
-            var polyline = L.polyline(this.latlngs, inheritedOptions);
-            this.popupService.enablePopup(this.mouseover, this.onclick, polyline);
+            this.polyline = L.polyline(this.latlngs, this.inheritedOptions);
+            this.popupService.enablePopup(this.mouseover, this.onclick, this.polyline);
             if (this.LeafletGroup) {
-                this.groupService.addOLayersToGroup(polyline);
+                this.groupService.addOLayersToGroup(this.polyline);
                 this.groupService.increaseNumber();
             }
             else {
-                polyline.addTo(map);
+                this.polyline.addTo(map);
             }
         }
         else {
             console.warn("This polyline-element will not be rendered \n the expected parent node of polyline-element should be either leaf-element or leaflet-group");
         }
+    };
+    PolylineElement.prototype.ngOnChanges = function (inputChanges) {
+        this.polyline = L.polyline(this.latlngs, this.inheritedOptions);
+        console.log(inputChanges);
     };
     __decorate([
         core_1.Input(), 
@@ -71,7 +77,8 @@ var PolylineElement = (function () {
             moduleId: module.id,
             selector: 'polyline-element',
             templateUrl: 'polyline.html',
-            styleUrls: ['polyline.css']
+            styleUrls: ['polyline.css'],
+            changeDetection: core_1.ChangeDetectionStrategy.OnPush
         }),
         __param(3, core_1.Optional()),
         __param(4, core_1.Optional()), 
