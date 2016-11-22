@@ -59,21 +59,21 @@ export class PolylineElement {
   }
 
   ngDoCheck(inputChanges) {
-    //this.polyline = L.polyline(this.latlngs, this.inheritedOptions);
-    // if (this.originalObject !== this.latlngs) {
-    //   this.originalObject = this.latlngs;
-    //   console.log("latlngchanged");
-    // }
+    let map = this.mapService.getMap();
+
     var same: Boolean = true;
     this.originalObject.forEach((element, index) => {
       if (element[0] !== this.latlngs[index][0] || element[1] !== this.latlngs[index][1]) {
-        same == false;
+        same = false;
       }
     });
 
     if (!same) {
       this.originalObject = [...this.latlngs];
       console.log("latlngchanged");
+      map.removeLayer(this.polyline);
+      this.polyline = L.polyline(this.latlngs, this.inheritedOptions);
+      this.polyline.addTo(map);
     }
   }
 }

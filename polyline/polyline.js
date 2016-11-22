@@ -55,15 +55,19 @@ var PolylineElement = (function () {
     };
     PolylineElement.prototype.ngDoCheck = function (inputChanges) {
         var _this = this;
+        var map = this.mapService.getMap();
         var same = true;
         this.originalObject.forEach(function (element, index) {
             if (element[0] !== _this.latlngs[index][0] || element[1] !== _this.latlngs[index][1]) {
-                same == false;
+                same = false;
             }
         });
         if (!same) {
             this.originalObject = this.latlngs.slice();
             console.log("latlngchanged");
+            map.removeLayer(this.polyline);
+            this.polyline = L.polyline(this.latlngs, this.inheritedOptions);
+            this.polyline.addTo(map);
         }
     };
     __decorate([
