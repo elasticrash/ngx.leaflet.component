@@ -7,6 +7,7 @@ import { PolylineElement } from './polyline/polyline';
 import { PopupElement } from './popup/popup';
 import { ZoomControl } from './zoom/zoom';
 import { ScaleControl } from './scale/scale';
+import { AttributionControl } from './attribution/attribution';
 import { LeafletGroup } from './group/group';
 
 import { MapService } from './services/map.service'
@@ -23,7 +24,8 @@ export const CandTLeafletComponent = [
     PopupElement,
     LeafletGroup,
     ZoomControl,
-    ScaleControl
+    ScaleControl,
+    AttributionControl
 ];
 
 export const CandTLeafletService = [MapService, GroupService, PopupService];

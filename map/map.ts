@@ -39,10 +39,7 @@ export class LeafletElement {
 
     //set variables for childrent components
     this.mapService.setMap(map);
-    this.mapService.setLayerControl(this.layerControl);
-
-    //at some point they need to be optional and configurable    
-    L.control.attribution({ position: "topright" });
+    this.mapService.setLayerControl(this.layerControl);    
   }
 
   ngAfterViewInit() {

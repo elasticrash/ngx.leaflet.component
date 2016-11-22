@@ -14,38 +14,38 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 var core_1 = require('@angular/core');
 var map_1 = require('../map/map');
 var map_service_1 = require('../services/map.service');
-var scaleModel_1 = require('../models/scaleModel');
+var attributionModel_1 = require('../models/attributionModel');
 var Lealflet = require('leaflet');
-var ScaleControl = (function () {
-    function ScaleControl(mapService, LeafletElement) {
+var AttributionControl = (function () {
+    function AttributionControl(mapService, LeafletElement) {
         this.mapService = mapService;
         this.LeafletElement = LeafletElement;
-        this.Options = new scaleModel_1.scaleModel(null);
+        this.Options = new attributionModel_1.attributionModel(null);
     }
-    ScaleControl.prototype.ngOnInit = function () {
+    AttributionControl.prototype.ngOnInit = function () {
         if (this.LeafletElement) {
             var map = this.mapService.getMap();
-            L.control.scale(this.Options).addTo(map);
+            L.control.attribution(this.Options).addTo(map);
         }
         else {
-            console.warn("This scale-control will not be rendered \n the expected parent node of scale-control should be leaf-element");
+            console.warn("This zoom-control will not be rendered \n the expected parent node of zoom-control should be leaf-element");
         }
     };
     __decorate([
         core_1.Input(), 
-        __metadata('design:type', scaleModel_1.scaleModel)
-    ], ScaleControl.prototype, "Options", void 0);
-    ScaleControl = __decorate([
+        __metadata('design:type', attributionModel_1.attributionModel)
+    ], AttributionControl.prototype, "Options", void 0);
+    AttributionControl = __decorate([
         core_1.Component({
             moduleId: module.id,
-            selector: 'scale-control',
-            templateUrl: 'scale.html',
-            styleUrls: ['scale.css']
+            selector: 'attribution-control',
+            templateUrl: 'attribution.html',
+            styleUrls: ['attribution.css']
         }),
         __param(1, core_1.Optional()), 
         __metadata('design:paramtypes', [map_service_1.MapService, map_1.LeafletElement])
-    ], ScaleControl);
-    return ScaleControl;
+    ], AttributionControl);
+    return AttributionControl;
 }());
-exports.ScaleControl = ScaleControl;
-//# sourceMappingURL=scale.js.map
+exports.AttributionControl = AttributionControl;
+//# sourceMappingURL=attribution.js.map

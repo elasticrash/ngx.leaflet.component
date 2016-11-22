@@ -8,6 +8,7 @@ var polyline_1 = require('./polyline/polyline');
 var popup_1 = require('./popup/popup');
 var zoom_1 = require('./zoom/zoom');
 var scale_1 = require('./scale/scale');
+var attribution_1 = require('./attribution/attribution');
 var group_1 = require('./group/group');
 var map_service_1 = require('./services/map.service');
 var group_service_1 = require('./services/group.service');
@@ -22,7 +23,8 @@ exports.CandTLeafletComponent = [
     popup_1.PopupElement,
     group_1.LeafletGroup,
     zoom_1.ZoomControl,
-    scale_1.ScaleControl
+    scale_1.ScaleControl,
+    attribution_1.AttributionControl
 ];
 exports.CandTLeafletService = [map_service_1.MapService, group_service_1.GroupService, popup_service_1.PopupService];
 //# sourceMappingURL=index.js.map
