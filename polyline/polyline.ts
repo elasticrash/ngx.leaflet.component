@@ -70,8 +70,9 @@ export class PolylineElement {
 
     if (!same) {
       this.originalObject = [...this.latlngs];
-      console.log("latlngchanged");
+      console.log("original length", this.originalObject.length);
       map.removeLayer(this.polyline);
+      this.inheritedOptions.color = '#'+(Math.random()*0xFFFFFF<<0).toString(16);
       this.polyline = L.polyline(this.latlngs, this.inheritedOptions);
       this.polyline.addTo(map);
     }
