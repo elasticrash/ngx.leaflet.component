@@ -15,6 +15,7 @@ export declare class MapService {
     getBasemaps(): Object;
     getOverlays(): Object;
     getObservableOverlays(): any;
+    getObservableBasemaps(): any;
     refreshOverlays(remove: any, add: any): void;
     increaseNumber(): void;
     getLayerNumber(): number;

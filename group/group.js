@@ -22,27 +22,10 @@ var LeafletGroup = (function () {
         this.mapService.increaseNumber();
     };
     LeafletGroup.prototype.ngAfterViewInit = function () {
-        var model = this;
-        if (this.groupService.getLayerGroup().length !== this.groupService.getLayerNumber()) {
-            setTimeout(function () {
-                model.loop();
-            }, 200);
-        }
-        else {
-            this.addLayerGroupToScope();
-        }
-    };
-    LeafletGroup.prototype.loop = function () {
-        var model = this;
-        if (this.groupService.getLayerGroup().length !== this.groupService.getLayerNumber()) {
-            setTimeout(function () {
-                model.loop();
-            }, 200);
-        }
-        else {
-            this.addLayerGroupToScope();
-        }
-        ;
+        var _this = this;
+        this._subscription = this.groupService.getObservableLayerGroup().subscribe(function (data) {
+            _this.addLayerGroupToScope();
+        });
     };
     LeafletGroup.prototype.addLayerGroupToScope = function () {
         var map = this.mapService.getMap();

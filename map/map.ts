@@ -51,7 +51,13 @@ export class LeafletElement {
 
   ngAfterViewInit() {
 
+    //observe overlayes being added and refresh the layerControl
     this._subscription = this.mapService.getObservableOverlays().subscribe(data => {
+      this.setLayerControl();
+    });
+
+    //observe overlayes being added and refresh the layerControl
+    this._subscription = this.mapService.getObservableBasemaps().subscribe(data => {
       this.setLayerControl();
     });
 
@@ -59,37 +65,12 @@ export class LeafletElement {
   }
 
   setLayerControl() {
-    let model = this;
     if (this.layerControl) {
       let map = this.mapService.getMap();
-
-      if (Object.keys(this.mapService.getBasemaps()).length + Object.keys(this.mapService.getOverlays()).length !== this.mapService.getLayerNumber()) {
-        setTimeout(function () {
-          model.loop();
-        }, 200);
-      } else {
-        if (this.layerControlObject !== null) {
-          this.layerControlObject.getContainer().innerHTML='';
-        }
-        this.layerControlObject = L.control.layers(this.mapService.getBasemaps(), this.mapService.getOverlays()).addTo(map);
-      }
-    }
-  }
-
-  loop() {
-    let model = this;
-    let map = this.mapService.getMap();
-
-    if (Object.keys(this.mapService.getBasemaps()).length + Object.keys(this.mapService.getOverlays()).length !== this.mapService.getLayerNumber()) {
-      setTimeout(function () {
-        model.loop();
-      }, 200);
-    }
-    else {
       if (this.layerControlObject !== null) {
-        this.layerControlObject.getContainer().innerHTML='';
+        this.layerControlObject.getContainer().innerHTML = '';
       }
       this.layerControlObject = L.control.layers(this.mapService.getBasemaps(), this.mapService.getOverlays()).addTo(map);
-    };
+    }
   }
 }

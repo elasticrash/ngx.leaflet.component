@@ -9,6 +9,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var Rx_1 = require('rxjs/Rx');
 var GroupService = (function () {
     function GroupService() {
         this.layerGroup = [];
@@ -16,6 +17,13 @@ var GroupService = (function () {
     }
     GroupService.prototype.addOLayersToGroup = function (overlay) {
         this.layerGroup.push(overlay);
+    };
+    GroupService.prototype.getObservableLayerGroup = function () {
+        var _this = this;
+        return Rx_1.Observable.create(function (observer) {
+            observer.next(_this.getLayerGroup.length);
+            observer.complete();
+        });
     };
     GroupService.prototype.getLayerGroup = function () {
         return this.layerGroup;

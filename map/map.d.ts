@@ -15,5 +15,4 @@ export declare class LeafletElement {
     ngOnInit(): void;
     ngAfterViewInit(): void;
     setLayerControl(): void;
-    loop(): void;
 }

@@ -43,40 +43,19 @@ var LeafletElement = (function () {
         this._subscription = this.mapService.getObservableOverlays().subscribe(function (data) {
             _this.setLayerControl();
         });
+        this._subscription = this.mapService.getObservableBasemaps().subscribe(function (data) {
+            _this.setLayerControl();
+        });
         this.setLayerControl();
     };
     LeafletElement.prototype.setLayerControl = function () {
-        var model = this;
         if (this.layerControl) {
             var map = this.mapService.getMap();
-            if (Object.keys(this.mapService.getBasemaps()).length + Object.keys(this.mapService.getOverlays()).length !== this.mapService.getLayerNumber()) {
-                setTimeout(function () {
-                    model.loop();
-                }, 200);
-            }
-            else {
-                if (this.layerControlObject !== null) {
-                    this.layerControlObject.getContainer().innerHTML = '';
-                }
-                this.layerControlObject = L.control.layers(this.mapService.getBasemaps(), this.mapService.getOverlays()).addTo(map);
-            }
-        }
-    };
-    LeafletElement.prototype.loop = function () {
-        var model = this;
-        var map = this.mapService.getMap();
-        if (Object.keys(this.mapService.getBasemaps()).length + Object.keys(this.mapService.getOverlays()).length !== this.mapService.getLayerNumber()) {
-            setTimeout(function () {
-                model.loop();
-            }, 200);
-        }
-        else {
             if (this.layerControlObject !== null) {
                 this.layerControlObject.getContainer().innerHTML = '';
             }
             this.layerControlObject = L.control.layers(this.mapService.getBasemaps(), this.mapService.getOverlays()).addTo(map);
         }
-        ;
     };
     __decorate([
         core_1.Input(), 

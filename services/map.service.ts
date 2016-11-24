@@ -72,7 +72,14 @@ export class MapService {
         return Observable.create(observer => {
             var overlays = this.getOverlays();
             observer.next(overlays);
-            //call complete if you want to close this stream (like a promise)
+            observer.complete();
+        });
+    }
+
+     public getObservableBasemaps() {
+        return Observable.create(observer => {
+            var basemaps = this.getBasemaps();
+            observer.next(basemaps);
             observer.complete();
         });
     }

@@ -3,6 +3,7 @@ export declare class GroupService {
     private layerGroupNumber;
     constructor();
     addOLayersToGroup(overlay: any): void;
+    getObservableLayerGroup(): any;
     getLayerGroup(): any[];
     increaseNumber(): void;
     getLayerNumber(): number;

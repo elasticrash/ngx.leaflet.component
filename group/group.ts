@@ -16,6 +16,7 @@ declare var L: any;
 
 export class LeafletGroup {
     @Input() name: string = '';
+    _subscription;
 
     constructor(
         private mapService: MapService,
@@ -27,24 +28,9 @@ export class LeafletGroup {
     }
 
     ngAfterViewInit() {
-        let model = this;
-        if (this.groupService.getLayerGroup().length !== this.groupService.getLayerNumber()) {
-            setTimeout(function () {
-                model.loop();
-            }, 200);
-        } else {
+        this._subscription = this.groupService.getObservableLayerGroup().subscribe(data => {
             this.addLayerGroupToScope();
-        }
-    }
-
-    loop() {
-        let model = this;
-        if (this.groupService.getLayerGroup().length !== this.groupService.getLayerNumber()) {
-            setTimeout(function () {
-                model.loop();
-            }, 200);
-        }
-        else { this.addLayerGroupToScope() };
+        });
     }
 
     addLayerGroupToScope() {

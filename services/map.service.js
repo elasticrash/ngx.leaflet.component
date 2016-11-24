@@ -77,6 +77,14 @@ var MapService = (function () {
             observer.complete();
         });
     };
+    MapService.prototype.getObservableBasemaps = function () {
+        var _this = this;
+        return Rx_1.Observable.create(function (observer) {
+            var basemaps = _this.getBasemaps();
+            observer.next(basemaps);
+            observer.complete();
+        });
+    };
     MapService.prototype.refreshOverlays = function (remove, add) {
         var overlays = this.getOverlays();
         for (var key in overlays) {

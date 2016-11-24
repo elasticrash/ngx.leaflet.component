@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Rx';
 
 declare var L: any;
 
@@ -11,6 +12,14 @@ export class GroupService {
 
     public addOLayersToGroup(overlay) {
         this.layerGroup.push(overlay);
+    }
+
+    public getObservableLayerGroup() {
+        return Observable.create(observer => {
+            var layerGroup = this.getLayerGroup();
+            observer.next(layerGroup);
+            observer.complete();
+        });
     }
 
     public getLayerGroup() {
@@ -38,6 +47,5 @@ export class GroupService {
         this.layerGroup.splice(rindex, 1);
 
         this.addOLayersToGroup(add);
-        L.layerGroup(this.getLayerGroup()).addTo(map);
     }
 }
