@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Rx';
 
 
 @Injectable()
@@ -6,7 +7,7 @@ export class MapService {
     private map;
     private basemaps: Object = {};
     private overlays: Object = {};
-    private layerControl: Boolean = false;
+    private layerControlflag: Boolean = false;
     private layersInControlNumber: number = 0;
 
     constructor() { }
@@ -19,10 +20,10 @@ export class MapService {
     }
 
     public setLayerControl(state) {
-        this.layerControl = state;
+        this.layerControlflag = state;
     }
     public getLayerControl() {
-        return this.layerControl;
+        return this.layerControlflag;
     }
 
     public addBasemap(basemap, name) {
@@ -65,6 +66,28 @@ export class MapService {
 
     public getOverlays() {
         return this.overlays;
+    }
+
+    public getObservableOverlays() {
+        return Observable.create(observer => {
+            var overlays = this.getOverlays();
+            observer.next(overlays);
+            //call complete if you want to close this stream (like a promise)
+            observer.complete();
+        });
+    }
+
+    public refreshOverlays(remove, add) {
+        let overlays = this.getOverlays();
+        for (var key in overlays) {
+            if (overlays[key] instanceof Array) {
+                overlays[key].forEach((element, index, arr) => {
+                    if (element._leaflet_id == remove._leaflet_id) {
+                        arr[index] = add;
+                    }
+                });
+            }
+        }
     }
 
     public increaseNumber() {

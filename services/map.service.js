@@ -9,11 +9,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
 var core_1 = require('@angular/core');
+var Rx_1 = require('rxjs/Rx');
 var MapService = (function () {
     function MapService() {
         this.basemaps = {};
         this.overlays = {};
-        this.layerControl = false;
+        this.layerControlflag = false;
         this.layersInControlNumber = 0;
     }
     MapService.prototype.setMap = function (map) {
@@ -23,10 +24,10 @@ var MapService = (function () {
         return this.map;
     };
     MapService.prototype.setLayerControl = function (state) {
-        this.layerControl = state;
+        this.layerControlflag = state;
     };
     MapService.prototype.getLayerControl = function () {
-        return this.layerControl;
+        return this.layerControlflag;
     };
     MapService.prototype.addBasemap = function (basemap, name) {
         if (name === '') {
@@ -67,6 +68,26 @@ var MapService = (function () {
     };
     MapService.prototype.getOverlays = function () {
         return this.overlays;
+    };
+    MapService.prototype.getObservableOverlays = function () {
+        var _this = this;
+        return Rx_1.Observable.create(function (observer) {
+            var overlays = _this.getOverlays();
+            observer.next(overlays);
+            observer.complete();
+        });
+    };
+    MapService.prototype.refreshOverlays = function (remove, add) {
+        var overlays = this.getOverlays();
+        for (var key in overlays) {
+            if (overlays[key] instanceof Array) {
+                overlays[key].forEach(function (element, index, arr) {
+                    if (element._leaflet_id == remove._leaflet_id) {
+                        arr[index] = add;
+                    }
+                });
+            }
+        }
     };
     MapService.prototype.increaseNumber = function () {
         this.layersInControlNumber += 1;

@@ -20,6 +20,7 @@ var LeafletElement = (function () {
         this.minZoom = 4;
         this.maxZoom = 19;
         this.layerControl = false;
+        this.layerControlObject = null;
     }
     LeafletElement.prototype.ngOnInit = function () {
         var map = L.map(this.mapElement.nativeElement, {
@@ -38,6 +39,13 @@ var LeafletElement = (function () {
         L.control.scale().addTo(map);
     };
     LeafletElement.prototype.ngAfterViewInit = function () {
+        var _this = this;
+        this._subscription = this.mapService.getObservableOverlays().subscribe(function (data) {
+            _this.setLayerControl();
+        });
+        this.setLayerControl();
+    };
+    LeafletElement.prototype.setLayerControl = function () {
         var model = this;
         if (this.layerControl) {
             var map = this.mapService.getMap();
@@ -47,7 +55,10 @@ var LeafletElement = (function () {
                 }, 200);
             }
             else {
-                L.control.layers(this.mapService.getBasemaps(), this.mapService.getOverlays()).addTo(map);
+                if (this.layerControlObject !== null) {
+                    this.layerControlObject.getContainer().innerHTML = '';
+                }
+                this.layerControlObject = L.control.layers(this.mapService.getBasemaps(), this.mapService.getOverlays()).addTo(map);
             }
         }
     };
@@ -60,7 +71,10 @@ var LeafletElement = (function () {
             }, 200);
         }
         else {
-            L.control.layers(this.mapService.getBasemaps(), this.mapService.getOverlays()).addTo(map);
+            if (this.layerControlObject !== null) {
+                this.layerControlObject.getContainer().innerHTML = '';
+            }
+            this.layerControlObject = L.control.layers(this.mapService.getBasemaps(), this.mapService.getOverlays()).addTo(map);
         }
         ;
     };

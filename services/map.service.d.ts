@@ -2,7 +2,7 @@ export declare class MapService {
     private map;
     private basemaps;
     private overlays;
-    private layerControl;
+    private layerControlflag;
     private layersInControlNumber;
     constructor();
     setMap(map: any): void;
@@ -14,6 +14,8 @@ export declare class MapService {
     addOverlay(overlay: any, name: any): void;
     getBasemaps(): Object;
     getOverlays(): Object;
+    getObservableOverlays(): any;
+    refreshOverlays(remove: any, add: any): void;
     increaseNumber(): void;
     getLayerNumber(): number;
 }

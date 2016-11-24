@@ -6,4 +6,5 @@ export declare class GroupService {
     getLayerGroup(): any[];
     increaseNumber(): void;
     getLayerNumber(): number;
+    refreshGroup(remove: any, add: any, map: any): void;
 }

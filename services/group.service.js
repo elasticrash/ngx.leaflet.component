@@ -26,6 +26,18 @@ var GroupService = (function () {
     GroupService.prototype.getLayerNumber = function () {
         return this.layerGroupNumber;
     };
+    GroupService.prototype.refreshGroup = function (remove, add, map) {
+        map.removeLayer(this.getLayerGroup());
+        var rindex = -1;
+        this.layerGroup.forEach(function (element, index) {
+            if (element._leaflet_id == remove._leaflet_id) {
+                rindex = index;
+            }
+        });
+        this.layerGroup.splice(rindex, 1);
+        this.addOLayersToGroup(add);
+        L.layerGroup(this.getLayerGroup()).addTo(map);
+    };
     GroupService = __decorate([
         core_1.Injectable(), 
         __metadata('design:paramtypes', [])

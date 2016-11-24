@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 
+declare var L: any;
 
 @Injectable()
 export class GroupService {
@@ -22,5 +23,21 @@ export class GroupService {
 
     public getLayerNumber() {
         return this.layerGroupNumber;
+    }
+
+    public refreshGroup(remove, add, map) {
+        map.removeLayer(this.getLayerGroup());
+
+        var rindex = -1;
+        this.layerGroup.forEach((element, index) => {
+            if (element._leaflet_id == remove._leaflet_id) {
+                rindex = index;
+            }
+        });
+
+        this.layerGroup.splice(rindex, 1);
+
+        this.addOLayersToGroup(add);
+        L.layerGroup(this.getLayerGroup()).addTo(map);
     }
 }

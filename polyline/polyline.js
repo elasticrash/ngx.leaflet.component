@@ -64,10 +64,18 @@ var PolylineElement = (function () {
         });
         if (!same) {
             this.originalObject = this.latlngs.slice();
-            map.removeLayer(this.polyline);
-            this.inheritedOptions.color = '#' + (Math.random() * 0xFFFFFF << 0).toString(16);
-            this.polyline = L.polyline(this.latlngs, this.inheritedOptions);
-            this.polyline.addTo(map);
+            if (this.groupService) {
+                map.removeLayer(this.polyline);
+                var PolylineElementforRemoval = Object.assign({}, this.polyline);
+                this.polyline = L.polyline(this.latlngs, this.inheritedOptions);
+                this.groupService.refreshGroup(PolylineElementforRemoval, this.polyline, map);
+                this.mapService.refreshOverlays(PolylineElementforRemoval, this.polyline);
+            }
+            else {
+                map.removeLayer(this.polyline);
+                this.polyline = L.polyline(this.latlngs, this.inheritedOptions);
+                this.polyline.addTo(map);
+            }
         }
     };
     __decorate([

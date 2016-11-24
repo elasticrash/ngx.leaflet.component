@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef, EventEmitter } from '@angular/core';
 import { MapService } from '../services/map.service';
 
 var Lealflet = require('leaflet');
@@ -21,6 +21,9 @@ export class LeafletElement {
   @Input() maxZoom: number = 19;
   @Input() layerControl: boolean = false;
   @ViewChild('map') mapElement: ElementRef;
+  _subscription;
+  layerControlObject = null;
+
 
   constructor(private mapService: MapService) {
   }
@@ -47,6 +50,15 @@ export class LeafletElement {
   }
 
   ngAfterViewInit() {
+
+    this._subscription = this.mapService.getObservableOverlays().subscribe(data => {
+      this.setLayerControl();
+    });
+
+    this.setLayerControl();
+  }
+
+  setLayerControl() {
     let model = this;
     if (this.layerControl) {
       let map = this.mapService.getMap();
@@ -56,7 +68,10 @@ export class LeafletElement {
           model.loop();
         }, 200);
       } else {
-        L.control.layers(this.mapService.getBasemaps(), this.mapService.getOverlays()).addTo(map);
+        if (this.layerControlObject !== null) {
+          this.layerControlObject.getContainer().innerHTML='';
+        }
+        this.layerControlObject = L.control.layers(this.mapService.getBasemaps(), this.mapService.getOverlays()).addTo(map);
       }
     }
   }
@@ -71,7 +86,10 @@ export class LeafletElement {
       }, 200);
     }
     else {
-      L.control.layers(this.mapService.getBasemaps(), this.mapService.getOverlays()).addTo(map);
+      if (this.layerControlObject !== null) {
+        this.layerControlObject.getContainer().innerHTML='';
+      }
+      this.layerControlObject = L.control.layers(this.mapService.getBasemaps(), this.mapService.getOverlays()).addTo(map);
     };
   }
 }
