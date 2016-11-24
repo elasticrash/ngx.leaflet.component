@@ -38,7 +38,7 @@ var PolygonElement = (function () {
             var polygon = L.polygon([this.latlngs], inheritedOptions);
             this.popupService.enablePopup(this.mouseover, this.onclick, polygon);
             if (this.LeafletGroup) {
-                this.groupService.addOLayersToGroup(polygon);
+                this.groupService.addOLayersToGroup(polygon, map);
                 this.groupService.increaseNumber();
             }
             else {

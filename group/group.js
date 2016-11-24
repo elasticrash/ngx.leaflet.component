@@ -23,19 +23,13 @@ var LeafletGroup = (function () {
     };
     LeafletGroup.prototype.ngAfterViewInit = function () {
         var _this = this;
-        this._subscriptionLG = this.groupService.getObservableLayerGroup().subscribe(function (data) {
-            _this.addLayerGroupToScope();
-        });
-        this._subscriptionF = this.groupService.getObservableFlag().subscribe(function (data) {
+        this._subscriptionLG = this.groupService.getObservableGroup().subscribe(function (data) {
             _this.addLayerGroupToScope();
         });
     };
     LeafletGroup.prototype.addLayerGroupToScope = function () {
-        var map = this.mapService.getMap();
-        var layerGroup = L.layerGroup(this.groupService.getLayerGroup());
-        layerGroup.addTo(map);
         if (this.mapService.getLayerControl) {
-            this.mapService.addOverlay(layerGroup, this.name);
+            this.mapService.addOverlay(this.groupService.getGroup(), this.name);
         }
     };
     __decorate([

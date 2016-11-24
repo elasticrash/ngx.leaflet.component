@@ -14,28 +14,26 @@ var GroupService = (function () {
     function GroupService() {
         this.layerGroup = [];
         this.layerGroupNumber = 0;
-        this.flag = true;
+        this.group = {};
     }
-    GroupService.prototype.addOLayersToGroup = function (overlay) {
+    GroupService.prototype.addOLayersToGroup = function (overlay, map) {
+        if (Object.keys(this.group).length !== 0) {
+            map.removeLayer(this.group);
+        }
         this.layerGroup.push(overlay);
-        this.flag = !this.flag;
-        return this.flag;
+        this.group = L.layerGroup(this.getLayerGroup());
+        this.group.addTo(map);
     };
-    GroupService.prototype.getObservableLayerGroup = function () {
+    GroupService.prototype.getObservableGroup = function () {
         var _this = this;
         return Rx_1.Observable.create(function (observer) {
-            var layerGroup = _this.getLayerGroup();
-            observer.next(layerGroup);
+            var group = _this.getGroup();
+            observer.next(group);
             observer.complete();
         });
     };
-    GroupService.prototype.getObservableFlag = function () {
-        var _this = this;
-        return Rx_1.Observable.create(function (observer) {
-            var flag = _this.flag;
-            observer.next(flag);
-            observer.complete();
-        });
+    GroupService.prototype.getGroup = function () {
+        return this.group;
     };
     GroupService.prototype.getLayerGroup = function () {
         return this.layerGroup;
@@ -45,19 +43,6 @@ var GroupService = (function () {
     };
     GroupService.prototype.getLayerNumber = function () {
         return this.layerGroupNumber;
-    };
-    GroupService.prototype.refreshGroup = function (remove, add, map) {
-        map.removeLayer(this.getLayerGroup());
-        var rindex = -1;
-        this.layerGroup.forEach(function (element, index) {
-            if (element._leaflet_id == remove._leaflet_id) {
-                rindex = index;
-            }
-        });
-        this.layerGroup.splice(rindex, 1);
-        this.flag = !this.flag;
-        this.addOLayersToGroup(add);
-        this.flag = !this.flag;
     };
     GroupService = __decorate([
         core_1.Injectable(), 

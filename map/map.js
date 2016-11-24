@@ -46,7 +46,6 @@ var LeafletElement = (function () {
         this._subscriptionBS = this.mapService.getObservableBasemaps().subscribe(function (data) {
             _this.setLayerControl();
         });
-        this.setLayerControl();
     };
     LeafletElement.prototype.setLayerControl = function () {
         if (this.layerControl) {

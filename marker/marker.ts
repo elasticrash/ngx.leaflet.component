@@ -92,7 +92,7 @@ export class MarkerElement {
 
     //only if the parent is map should the marker-element should be directly added to the map
     if (this.LeafletGroup) {
-      this.groupService.addOLayersToGroup(marker);
+      this.groupService.addOLayersToGroup(marker, map);
     } else {
       marker.addTo(map);
     }

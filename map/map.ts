@@ -26,7 +26,6 @@ export class LeafletElement {
 
   layerControlObject = null;
 
-
   constructor(private mapService: MapService) {
   }
 
@@ -62,8 +61,6 @@ export class LeafletElement {
     this._subscriptionBS = this.mapService.getObservableBasemaps().subscribe(data => {
       this.setLayerControl();
     });
-
-    this.setLayerControl();
   }
 
   setLayerControl() {

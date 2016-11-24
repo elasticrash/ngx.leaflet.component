@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
 
+declare var L: any;
 
 @Injectable()
 export class MapService {
@@ -9,6 +10,7 @@ export class MapService {
     private overlays: Object = {};
     private layerControlflag: Boolean = false;
     private layersInControlNumber: number = 0;
+    private layerControlObject: any = {};
 
     constructor() { }
 
@@ -76,7 +78,7 @@ export class MapService {
         });
     }
 
-     public getObservableBasemaps() {
+    public getObservableBasemaps() {
         return Observable.create(observer => {
             var basemaps = this.getBasemaps();
             observer.next(basemaps);

@@ -16,6 +16,7 @@ var MapService = (function () {
         this.overlays = {};
         this.layerControlflag = false;
         this.layersInControlNumber = 0;
+        this.layerControlObject = {};
     }
     MapService.prototype.setMap = function (map) {
         this.map = map;

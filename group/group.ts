@@ -29,22 +29,15 @@ export class LeafletGroup {
     }
 
     ngAfterViewInit() {
-        this._subscriptionLG = this.groupService.getObservableLayerGroup().subscribe(data => {
-            this.addLayerGroupToScope();
-        });
-
-        this._subscriptionF = this.groupService.getObservableFlag().subscribe(data => {
-            this.addLayerGroupToScope();
+        this._subscriptionLG = this.groupService.getObservableGroup().subscribe(data => {
+           this.addLayerGroupToScope();
         });
     }
 
     addLayerGroupToScope() {
-        let map = this.mapService.getMap();
-        let layerGroup = L.layerGroup(this.groupService.getLayerGroup());
-        layerGroup.addTo(map);
         if (this.mapService.getLayerControl) {
             //add layerGroup to control
-            this.mapService.addOverlay(layerGroup, this.name);
+            this.mapService.addOverlay(this.groupService.getGroup(), this.name);
         }
     }
 }

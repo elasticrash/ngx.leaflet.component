@@ -48,7 +48,6 @@ export class PolylineElement {
       this.popupService.enablePopup(this.mouseover, this.onclick, this.polyline);
 
       if (this.LeafletGroup) {
-        this.groupService.addOLayersToGroup(this.polyline);
         this.groupService.increaseNumber();
       } else {
         this.polyline.addTo(map);
@@ -72,11 +71,10 @@ export class PolylineElement {
       this.originalObject = [...this.latlngs];
       //if the layer is part of a group
       if (this.groupService) {
-        map.removeLayer(this.polyline);
-        let PolylineElementforRemoval: any = (<any>Object).assign({}, this.polyline);
-        this.polyline = L.polyline(this.latlngs, this.inheritedOptions);
-        this.groupService.refreshGroup(PolylineElementforRemoval, this.polyline, map);
-        this.mapService.refreshOverlays(PolylineElementforRemoval, this.polyline);
+        // map.removeLayer(this.polyline);
+        // let PolylineElementforRemoval: any = (<any>Object).assign({}, this.polyline);
+        // this.polyline = L.polyline(this.latlngs, this.inheritedOptions);
+        // this.mapService.refreshOverlays(PolylineElementforRemoval, this.polyline);
       } else {
         map.removeLayer(this.polyline);
         this.polyline = L.polyline(this.latlngs, this.inheritedOptions);

@@ -42,7 +42,6 @@ var PolylineElement = (function () {
             this.polyline = L.polyline(this.latlngs, this.inheritedOptions);
             this.popupService.enablePopup(this.mouseover, this.onclick, this.polyline);
             if (this.LeafletGroup) {
-                this.groupService.addOLayersToGroup(this.polyline);
                 this.groupService.increaseNumber();
             }
             else {
@@ -65,11 +64,6 @@ var PolylineElement = (function () {
         if (!same) {
             this.originalObject = this.latlngs.slice();
             if (this.groupService) {
-                map.removeLayer(this.polyline);
-                var PolylineElementforRemoval = Object.assign({}, this.polyline);
-                this.polyline = L.polyline(this.latlngs, this.inheritedOptions);
-                this.groupService.refreshGroup(PolylineElementforRemoval, this.polyline, map);
-                this.mapService.refreshOverlays(PolylineElementforRemoval, this.polyline);
             }
             else {
                 map.removeLayer(this.polyline);

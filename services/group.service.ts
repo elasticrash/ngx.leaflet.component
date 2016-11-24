@@ -7,29 +7,29 @@ declare var L: any;
 export class GroupService {
     private layerGroup: Array<any> = [];
     private layerGroupNumber: number = 0;
-    private flag = true;
+    private group: any = {};
+
     constructor() { }
 
-    public addOLayersToGroup(overlay) {
+    public addOLayersToGroup(overlay, map) {
+        if (Object.keys(this.group).length !== 0) {
+            map.removeLayer(this.group);
+        }
         this.layerGroup.push(overlay);
-        this.flag = !this.flag;
-        return this.flag;
+        this.group = L.layerGroup(this.getLayerGroup());
+        this.group.addTo(map);
     }
 
-    public getObservableLayerGroup() {
+    public getObservableGroup() {
         return Observable.create(observer => {
-            var layerGroup = this.getLayerGroup();
-            observer.next(layerGroup);
+            var group = this.getGroup();
+            observer.next(group);
             observer.complete();
         });
     }
 
-    public getObservableFlag() {
-        return Observable.create(observer => {
-            var flag = this.flag;
-            observer.next(flag);
-            observer.complete();
-        });
+    public getGroup() {
+        return this.group;
     }
 
     public getLayerGroup() {
@@ -42,22 +42,5 @@ export class GroupService {
 
     public getLayerNumber() {
         return this.layerGroupNumber;
-    }
-
-    public refreshGroup(remove, add, map) {
-        map.removeLayer(this.getLayerGroup());
-
-        var rindex = -1;
-        this.layerGroup.forEach((element, index) => {
-            if (element._leaflet_id == remove._leaflet_id) {
-                rindex = index;
-            }
-        });
-
-        this.layerGroup.splice(rindex, 1);
-        this.flag = !this.flag;
-
-        this.addOLayersToGroup(add);
-        this.flag = !this.flag;
     }
 }

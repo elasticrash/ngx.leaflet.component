@@ -4,6 +4,7 @@ export declare class MapService {
     private overlays;
     private layerControlflag;
     private layersInControlNumber;
+    private layerControlObject;
     constructor();
     setMap(map: any): void;
     getMap(): any;
