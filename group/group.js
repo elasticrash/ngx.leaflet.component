@@ -23,7 +23,10 @@ var LeafletGroup = (function () {
     };
     LeafletGroup.prototype.ngAfterViewInit = function () {
         var _this = this;
-        this._subscription = this.groupService.getObservableLayerGroup().subscribe(function (data) {
+        this._subscriptionLG = this.groupService.getObservableLayerGroup().subscribe(function (data) {
+            _this.addLayerGroupToScope();
+        });
+        this._subscriptionF = this.groupService.getObservableFlag().subscribe(function (data) {
             _this.addLayerGroupToScope();
         });
     };

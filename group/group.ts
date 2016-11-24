@@ -16,7 +16,8 @@ declare var L: any;
 
 export class LeafletGroup {
     @Input() name: string = '';
-    _subscription;
+    _subscriptionLG;
+    _subscriptionF;
 
     constructor(
         private mapService: MapService,
@@ -28,7 +29,11 @@ export class LeafletGroup {
     }
 
     ngAfterViewInit() {
-        this._subscription = this.groupService.getObservableLayerGroup().subscribe(data => {
+        this._subscriptionLG = this.groupService.getObservableLayerGroup().subscribe(data => {
+            this.addLayerGroupToScope();
+        });
+
+        this._subscriptionF = this.groupService.getObservableFlag().subscribe(data => {
             this.addLayerGroupToScope();
         });
     }

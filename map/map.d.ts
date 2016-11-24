@@ -9,7 +9,8 @@ export declare class LeafletElement {
     maxZoom: number;
     layerControl: boolean;
     mapElement: ElementRef;
-    _subscription: any;
+    _subscriptionOL: any;
+    _subscriptionBS: any;
     layerControlObject: any;
     constructor(mapService: MapService);
     ngOnInit(): void;

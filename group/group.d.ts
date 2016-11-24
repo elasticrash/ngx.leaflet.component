@@ -4,7 +4,8 @@ export declare class LeafletGroup {
     private mapService;
     private groupService;
     name: string;
-    _subscription: any;
+    _subscriptionLG: any;
+    _subscriptionF: any;
     constructor(mapService: MapService, groupService: GroupService);
     ngOnInit(): void;
     ngAfterViewInit(): void;

@@ -14,14 +14,26 @@ var GroupService = (function () {
     function GroupService() {
         this.layerGroup = [];
         this.layerGroupNumber = 0;
+        this.flag = true;
     }
     GroupService.prototype.addOLayersToGroup = function (overlay) {
         this.layerGroup.push(overlay);
+        this.flag = !this.flag;
+        return this.flag;
     };
     GroupService.prototype.getObservableLayerGroup = function () {
         var _this = this;
         return Rx_1.Observable.create(function (observer) {
-            observer.next(_this.getLayerGroup.length);
+            var layerGroup = _this.getLayerGroup();
+            observer.next(layerGroup);
+            observer.complete();
+        });
+    };
+    GroupService.prototype.getObservableFlag = function () {
+        var _this = this;
+        return Rx_1.Observable.create(function (observer) {
+            var flag = _this.flag;
+            observer.next(flag);
             observer.complete();
         });
     };
@@ -43,8 +55,9 @@ var GroupService = (function () {
             }
         });
         this.layerGroup.splice(rindex, 1);
+        this.flag = !this.flag;
         this.addOLayersToGroup(add);
-        L.layerGroup(this.getLayerGroup()).addTo(map);
+        this.flag = !this.flag;
     };
     GroupService = __decorate([
         core_1.Injectable(), 

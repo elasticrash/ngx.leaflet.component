@@ -40,10 +40,10 @@ var LeafletElement = (function () {
     };
     LeafletElement.prototype.ngAfterViewInit = function () {
         var _this = this;
-        this._subscription = this.mapService.getObservableOverlays().subscribe(function (data) {
+        this._subscriptionOL = this.mapService.getObservableOverlays().subscribe(function (data) {
             _this.setLayerControl();
         });
-        this._subscription = this.mapService.getObservableBasemaps().subscribe(function (data) {
+        this._subscriptionBS = this.mapService.getObservableBasemaps().subscribe(function (data) {
             _this.setLayerControl();
         });
         this.setLayerControl();
