@@ -40,7 +40,7 @@ var CircleElement = (function () {
             var circle = L.circle([this.lat, this.lon], this.radius, inheritedOptions);
             this.popupService.enablePopup(this.mouseover, this.onclick, circle);
             if (this.LeafletGroup) {
-                this.groupService.addOLayersToGroup(circle, map);
+                this.groupService.addOLayersToGroup(circle, map, this.mapService, this.LeafletGroup);
             }
             else {
                 circle.addTo(map);

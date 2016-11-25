@@ -16,13 +16,14 @@ var GroupService = (function () {
         this.layerGroupNumber = 0;
         this.group = {};
     }
-    GroupService.prototype.addOLayersToGroup = function (overlay, map) {
+    GroupService.prototype.addOLayersToGroup = function (overlay, map, mapService, group) {
         if (Object.keys(this.group).length !== 0) {
             map.removeLayer(this.group);
         }
         this.layerGroup.push(overlay);
         this.group = L.layerGroup(this.getLayerGroup());
         this.group.addTo(map);
+        mapService.addOverlay(this.getGroup(), group.name, group.globalId);
     };
     GroupService.prototype.getObservableGroup = function () {
         var _this = this;

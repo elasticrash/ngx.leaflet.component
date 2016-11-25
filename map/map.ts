@@ -54,12 +54,12 @@ export class LeafletElement {
 
     //observe overlayes being added and refresh the layerControl
     this._subscriptionOL = this.mapService.getObservableOverlays().subscribe(data => {
-      this.setLayerControl();
+      //this.setLayerControl();
     });
 
     //observe overlayes being added and refresh the layerControl
     this._subscriptionBS = this.mapService.getObservableBasemaps().subscribe(data => {
-      this.setLayerControl();
+      //this.setLayerControl();
     });
   }
 

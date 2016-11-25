@@ -17,20 +17,17 @@ var LeafletGroup = (function () {
         this.mapService = mapService;
         this.groupService = groupService;
         this.name = '';
+        this.globalId = this.newGuid();
     }
     LeafletGroup.prototype.ngOnInit = function () {
-        this.mapService.increaseNumber();
     };
     LeafletGroup.prototype.ngAfterViewInit = function () {
-        var _this = this;
-        this._subscriptionLG = this.groupService.getObservableGroup().subscribe(function (data) {
-            _this.addLayerGroupToScope();
-        });
     };
-    LeafletGroup.prototype.addLayerGroupToScope = function () {
-        if (this.mapService.getLayerControl) {
-            this.mapService.addOverlay(this.groupService.getGroup(), this.name);
-        }
+    LeafletGroup.prototype.newGuid = function () {
+        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+            var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
+            return v.toString(16);
+        });
     };
     __decorate([
         core_1.Input(), 

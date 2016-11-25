@@ -11,6 +11,8 @@ export class MapService {
     private layerControlflag: Boolean = false;
     private layersInControlNumber: number = 0;
     private layerControlObject: any = {};
+    private groupIdentifiers: Array<string> = [];
+    private groupNames: Array<string> = [];
 
     constructor() { }
 
@@ -41,16 +43,26 @@ export class MapService {
     }
 
     public getUniqueName(name) {
-        let nameindex = 0;
+        let nameindex: number = 0;
+        let newName: string = name;
         if (name.indexOf('(') !== -1) {
-            nameindex = name.split('(')[1].split(')')[0];
+            nameindex = parseInt(name.split('(')[1].split(')')[0]);
+            nameindex += 1;
+            newName = name.split('(')[0];
         } else {
             nameindex = 1;
         }
-        return name = name + '(' + (nameindex += 1) + ')';
+        return name = newName + '(' + nameindex + ')';
     }
 
-    public addOverlay(overlay, name) {
+    public addOverlay(overlay, name: string, gId?: string) {
+        // if (this.groupIdentifiers.indexOf(gId) !== -1) {
+        //     let index = this.groupIdentifiers.indexOf(gId);
+        //     let existing_name: string = this.groupNames[index];
+        //     this.overlays[existing_name] = overlay;
+        // } else {
+        this.groupIdentifiers.push(gId);
+
         if (name === '') {
             name = 'unknown group';
         }
@@ -58,8 +70,12 @@ export class MapService {
             this.overlays[name] = overlay;
         } else {
             name = this.getUniqueName(name);
-            this.addOverlay(overlay, name)
+            this.groupNames.push(name);
+            this.addOverlay(overlay, name);
         }
+        // }
+
+        this.addControl();
     }
 
     public getBasemaps() {
@@ -72,16 +88,14 @@ export class MapService {
 
     public getObservableOverlays() {
         return Observable.create(observer => {
-            var overlays = this.getOverlays();
-            observer.next(overlays);
+            observer.next(this.overlays);
             observer.complete();
         });
     }
 
     public getObservableBasemaps() {
         return Observable.create(observer => {
-            var basemaps = this.getBasemaps();
-            observer.next(basemaps);
+            observer.next(this.basemaps);
             observer.complete();
         });
     }
@@ -105,5 +119,16 @@ export class MapService {
 
     public getLayerNumber() {
         return this.layersInControlNumber;
+    }
+
+    public addControl() {
+        if (this.layerControlflag) {
+            let map = this.getMap();
+            if (Object.keys(this.layerControlObject).length !== 0) {
+                this.layerControlObject.getContainer().innerHTML = '';
+                map.removeControl(this.layerControlObject);
+            }
+            this.layerControlObject = L.control.layers(this.getBasemaps(), this.getOverlays()).addTo(map);
+        }
     }
 }

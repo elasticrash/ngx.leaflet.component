@@ -17,6 +17,8 @@ var MapService = (function () {
         this.layerControlflag = false;
         this.layersInControlNumber = 0;
         this.layerControlObject = {};
+        this.groupIdentifiers = [];
+        this.groupNames = [];
     }
     MapService.prototype.setMap = function (map) {
         this.map = map;
@@ -44,25 +46,38 @@ var MapService = (function () {
     };
     MapService.prototype.getUniqueName = function (name) {
         var nameindex = 0;
+        var newName = name;
         if (name.indexOf('(') !== -1) {
-            nameindex = name.split('(')[1].split(')')[0];
+            nameindex = parseInt(name.split('(')[1].split(')')[0]);
+            nameindex += 1;
+            newName = name.split('(')[0];
         }
         else {
             nameindex = 1;
         }
-        return name = name + '(' + (nameindex += 1) + ')';
+        return name = newName + '(' + nameindex + ')';
     };
-    MapService.prototype.addOverlay = function (overlay, name) {
-        if (name === '') {
-            name = 'unknown group';
-        }
-        if (this.overlays[name] === undefined) {
-            this.overlays[name] = overlay;
+    MapService.prototype.addOverlay = function (overlay, name, gId) {
+        if (this.groupIdentifiers.indexOf(gId) !== -1) {
+            var index = this.groupIdentifiers.indexOf(gId);
+            var existing_name = this.groupNames[index];
+            this.overlays[existing_name] = overlay;
         }
         else {
-            name = this.getUniqueName(name);
-            this.addOverlay(overlay, name);
+            this.groupIdentifiers.push(gId);
+            if (name === '') {
+                name = 'unknown group';
+            }
+            if (this.overlays[name] === undefined) {
+                this.overlays[name] = overlay;
+            }
+            else {
+                name = this.getUniqueName(name);
+                this.groupNames.push(name);
+                this.addOverlay(overlay, name);
+            }
         }
+        this.addControl();
     };
     MapService.prototype.getBasemaps = function () {
         return this.basemaps;
@@ -73,16 +88,14 @@ var MapService = (function () {
     MapService.prototype.getObservableOverlays = function () {
         var _this = this;
         return Rx_1.Observable.create(function (observer) {
-            var overlays = _this.getOverlays();
-            observer.next(overlays);
+            observer.next(_this.overlays);
             observer.complete();
         });
     };
     MapService.prototype.getObservableBasemaps = function () {
         var _this = this;
         return Rx_1.Observable.create(function (observer) {
-            var basemaps = _this.getBasemaps();
-            observer.next(basemaps);
+            observer.next(_this.basemaps);
             observer.complete();
         });
     };
@@ -103,6 +116,16 @@ var MapService = (function () {
     };
     MapService.prototype.getLayerNumber = function () {
         return this.layersInControlNumber;
+    };
+    MapService.prototype.addControl = function () {
+        if (this.layerControlflag) {
+            var map = this.getMap();
+            if (Object.keys(this.layerControlObject).length !== 0) {
+                this.layerControlObject.getContainer().innerHTML = '';
+                map.removeControl(this.layerControlObject);
+            }
+            this.layerControlObject = L.control.layers(this.getBasemaps(), this.getOverlays()).addTo(map);
+        }
     };
     MapService = __decorate([
         core_1.Injectable(), 

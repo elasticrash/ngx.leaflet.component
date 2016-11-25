@@ -4,10 +4,9 @@ export declare class LeafletGroup {
     private mapService;
     private groupService;
     name: string;
-    _subscriptionLG: any;
-    _subscriptionF: any;
+    globalId: string;
     constructor(mapService: MapService, groupService: GroupService);
     ngOnInit(): void;
     ngAfterViewInit(): void;
-    addLayerGroupToScope(): void;
+    newGuid(): string;
 }
