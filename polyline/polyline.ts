@@ -4,6 +4,7 @@ import { LeafletGroup } from '../group/group';
 import { MapService } from '../services/map.service';
 import { GroupService } from '../services/group.service';
 import { PopupService } from '../services/popup.service';
+import { GuidService } from '../services/globalId.service';
 import { path } from '../models/path';
 import { Ipath } from '../interfaces/path';
 
@@ -26,11 +27,13 @@ export class PolylineElement {
   polyline: any = null;
   inheritedOptions: any = null;
   originalObject: Array<Array<number>> = [...this.latlngs];
+  globalId: string = this.guidService.newGuid();
 
   constructor(
     private mapService: MapService,
     private groupService: GroupService,
     private popupService: PopupService,
+    private guidService: GuidService,
     @Optional() private LeafletElement?: LeafletElement,
     @Optional() private LeafletGroup?: LeafletGroup) {
   }
@@ -71,10 +74,8 @@ export class PolylineElement {
       this.originalObject = [...this.latlngs];
       //if the layer is part of a group
       if (this.groupService) {
-        // map.removeLayer(this.polyline);
-        // let PolylineElementforRemoval: any = (<any>Object).assign({}, this.polyline);
-        // this.polyline = L.polyline(this.latlngs, this.inheritedOptions);
-        // this.mapService.refreshOverlays(PolylineElementforRemoval, this.polyline);
+        this.polyline = L.polyline(this.latlngs, this.inheritedOptions);
+        this.groupService.addOLayersToGroup(this.polyline, map, this.mapService, this.LeafletGroup, true, this.globalId);
       } else {
         map.removeLayer(this.polyline);
         this.polyline = L.polyline(this.latlngs, this.inheritedOptions);

@@ -64,17 +64,23 @@ var MapService = (function () {
             this.overlays[existing_name] = overlay;
         }
         else {
-            this.groupIdentifiers.push(gId);
             if (name === '') {
                 name = 'unknown group';
             }
             if (this.overlays[name] === undefined) {
+                this.groupNames.push(name);
+                this.groupIdentifiers.push(gId);
                 this.overlays[name] = overlay;
             }
             else {
                 name = this.getUniqueName(name);
-                this.groupNames.push(name);
-                this.addOverlay(overlay, name);
+                if (this.groupNames.indexOf(name) === -1) {
+                    this.groupNames.push(name);
+                    this.groupIdentifiers.push(gId);
+                }
+                else {
+                    this.addOverlay(overlay, name);
+                }
             }
         }
         this.addControl();

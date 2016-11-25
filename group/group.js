@@ -11,23 +11,19 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require('@angular/core');
 var map_service_1 = require('../services/map.service');
 var group_service_1 = require('../services/group.service');
+var globalId_service_1 = require('../services/globalId.service');
 var Lealflet = require('leaflet');
 var LeafletGroup = (function () {
-    function LeafletGroup(mapService, groupService) {
+    function LeafletGroup(mapService, groupService, guidService) {
         this.mapService = mapService;
         this.groupService = groupService;
+        this.guidService = guidService;
         this.name = '';
-        this.globalId = this.newGuid();
+        this.globalId = this.guidService.newGuid();
     }
     LeafletGroup.prototype.ngOnInit = function () {
     };
     LeafletGroup.prototype.ngAfterViewInit = function () {
-    };
-    LeafletGroup.prototype.newGuid = function () {
-        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-            var r = Math.random() * 16 | 0, v = c == 'x' ? r : (r & 0x3 | 0x8);
-            return v.toString(16);
-        });
     };
     __decorate([
         core_1.Input(), 
@@ -41,7 +37,7 @@ var LeafletGroup = (function () {
             styleUrls: ['group.css'],
             providers: [group_service_1.GroupService]
         }), 
-        __metadata('design:paramtypes', [map_service_1.MapService, group_service_1.GroupService])
+        __metadata('design:paramtypes', [map_service_1.MapService, group_service_1.GroupService, globalId_service_1.GuidService])
     ], LeafletGroup);
     return LeafletGroup;
 }());

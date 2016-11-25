@@ -10,17 +10,37 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require('@angular/core');
 var Rx_1 = require('rxjs/Rx');
+var globalId_service_1 = require('../services/globalId.service');
 var GroupService = (function () {
-    function GroupService() {
+    function GroupService(guidService) {
+        this.guidService = guidService;
         this.layerGroup = [];
+        this.layerId = [];
         this.layerGroupNumber = 0;
         this.group = {};
     }
-    GroupService.prototype.addOLayersToGroup = function (overlay, map, mapService, group) {
+    GroupService.prototype.addOLayersToGroup = function (overlay, map, mapService, group, replace, gId) {
+        if (replace === void 0) { replace = false; }
+        if (!gId) {
+            gId = this.guidService.newGuid();
+        }
+        if (this.layerId.indexOf(gId) === -1) {
+            this.layerId.push(gId);
+        }
         if (Object.keys(this.group).length !== 0) {
             map.removeLayer(this.group);
+            if (replace) {
+                if (this.layerId.indexOf(gId) !== -1) {
+                    this.layerGroup[this.layerId.indexOf(gId)] = overlay;
+                }
+                else {
+                    this.layerGroup.push(overlay);
+                }
+            }
         }
-        this.layerGroup.push(overlay);
+        if (!replace) {
+            this.layerGroup.push(overlay);
+        }
         this.group = L.layerGroup(this.getLayerGroup());
         this.group.addTo(map);
         mapService.addOverlay(this.getGroup(), group.name, group.globalId);
@@ -47,7 +67,7 @@ var GroupService = (function () {
     };
     GroupService = __decorate([
         core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
+        __metadata('design:paramtypes', [globalId_service_1.GuidService])
     ], GroupService);
     return GroupService;
 }());
