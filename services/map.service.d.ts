@@ -2,8 +2,11 @@ export declare class MapService {
     private map;
     private basemaps;
     private overlays;
-    private layerControl;
+    private layerControlflag;
     private layersInControlNumber;
+    private layerControlObject;
+    private groupIdentifiers;
+    private groupNames;
     constructor();
     setMap(map: any): void;
     getMap(): any;
@@ -11,9 +14,13 @@ export declare class MapService {
     getLayerControl(): Boolean;
     addBasemap(basemap: any, name: any): void;
     getUniqueName(name: any): string;
-    addOverlay(overlay: any, name: any): void;
+    addOverlay(overlay: any, name: string, gId?: string): void;
     getBasemaps(): Object;
     getOverlays(): Object;
+    getObservableOverlays(): any;
+    getObservableBasemaps(): any;
+    refreshOverlays(remove: any, add: any): void;
     increaseNumber(): void;
     getLayerNumber(): number;
+    addControl(): void;
 }

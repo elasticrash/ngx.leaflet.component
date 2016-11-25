@@ -30,9 +30,9 @@ var PopupElement = (function () {
     PopupElement.prototype.ngOnInit = function () {
         if (this.LeafletElement || this.LeafletGroup) {
             var map = this.mapService.getMap();
-            var popup = L.popup({ autoClose: false, keepInView: true, closeButton: false }).setLatLng([this.lat, this.lon]).setContent(this.content);
+            var popup = L.popup({ autoClose: false, keepInView: true }).setLatLng([this.lat, this.lon]).setContent(this.content);
             if (this.LeafletGroup) {
-                this.groupService.addOLayersToGroup(popup);
+                this.groupService.addOLayersToGroup(popup, map, this.mapService, this.LeafletGroup);
                 this.groupService.increaseNumber();
             }
             else {

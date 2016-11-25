@@ -43,8 +43,7 @@ export class PolygonElement {
       this.popupService.enablePopup(this.mouseover, this.onclick, polygon);
 
       if (this.LeafletGroup) {
-        this.groupService.addOLayersToGroup(polygon);
-        this.groupService.increaseNumber();
+        this.groupService.addOLayersToGroup(polygon, map, this.mapService, this.LeafletGroup);
       } else {
         polygon.addTo(map);
       }

@@ -79,7 +79,7 @@ var MarkerElement = (function () {
     MarkerElement.prototype.createMarkerlayer = function (marker, map) {
         this.popupService.enablePopup(this.mouseover, this.onclick, marker);
         if (this.LeafletGroup) {
-            this.groupService.addOLayersToGroup(marker);
+            this.groupService.addOLayersToGroup(marker, map, this.mapService, this.LeafletGroup);
         }
         else {
             marker.addTo(map);
