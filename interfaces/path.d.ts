@@ -1,5 +1,6 @@
 export interface Ipath {
     stroke: boolean;
+    color: string;
     weight: number;
     opacity: number;
     lineJoin: string;

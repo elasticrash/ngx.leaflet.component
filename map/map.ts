@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef, EventEmitter } from '@angular/core';
 import { MapService } from '../services/map.service';
 
 var Lealflet = require('leaflet');
@@ -21,6 +21,10 @@ export class LeafletElement {
   @Input() maxZoom: number = 19;
   @Input() layerControl: boolean = false;
   @ViewChild('map') mapElement: ElementRef;
+  _subscriptionOL;
+  _subscriptionBS;
+
+  layerControlObject = null;
 
   constructor(private mapService: MapService) {
   }
@@ -47,31 +51,25 @@ export class LeafletElement {
   }
 
   ngAfterViewInit() {
-    let model = this;
-    if (this.layerControl) {
-      let map = this.mapService.getMap();
 
-      if (Object.keys(this.mapService.getBasemaps()).length + Object.keys(this.mapService.getOverlays()).length !== this.mapService.getLayerNumber()) {
-        setTimeout(function () {
-          model.loop();
-        }, 200);
-      } else {
-        L.control.layers(this.mapService.getBasemaps(), this.mapService.getOverlays()).addTo(map);
-      }
-    }
+    //observe overlayes being added and refresh the layerControl
+    this._subscriptionOL = this.mapService.getObservableOverlays().subscribe(data => {
+      //this.setLayerControl();
+    });
+
+    //observe overlayes being added and refresh the layerControl
+    this._subscriptionBS = this.mapService.getObservableBasemaps().subscribe(data => {
+      //this.setLayerControl();
+    });
   }
 
-  loop() {
-    let model = this;
-    let map = this.mapService.getMap();
-
-    if (Object.keys(this.mapService.getBasemaps()).length + Object.keys(this.mapService.getOverlays()).length !== this.mapService.getLayerNumber()) {
-      setTimeout(function () {
-        model.loop();
-      }, 200);
+  setLayerControl() {
+    if (this.layerControl) {
+      let map = this.mapService.getMap();
+      if (this.layerControlObject !== null) {
+        this.layerControlObject.getContainer().innerHTML = '';
+      }
+      this.layerControlObject = L.control.layers(this.mapService.getBasemaps(), this.mapService.getOverlays()).addTo(map);
     }
-    else {
-      L.control.layers(this.mapService.getBasemaps(), this.mapService.getOverlays()).addTo(map);
-    };
   }
 }

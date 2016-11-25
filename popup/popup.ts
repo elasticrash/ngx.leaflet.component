@@ -32,10 +32,10 @@ export class PopupElement {
     if (this.LeafletElement || this.LeafletGroup) {
 
       let map = this.mapService.getMap();
-      let popup = L.popup({ autoClose: false, keepInView: true, closeButton: false }).setLatLng([this.lat, this.lon]).setContent(this.content);
+      let popup = L.popup({ autoClose: false, keepInView: true}).setLatLng([this.lat, this.lon]).setContent(this.content);
 
       if (this.LeafletGroup) {
-        this.groupService.addOLayersToGroup(popup);
+        this.groupService.addOLayersToGroup(popup, map, this.mapService, this.LeafletGroup);
         this.groupService.increaseNumber();
       } else {
         popup.addTo(map);

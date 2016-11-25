@@ -20,6 +20,7 @@ var LeafletElement = (function () {
         this.minZoom = 4;
         this.maxZoom = 19;
         this.layerControl = false;
+        this.layerControlObject = null;
     }
     LeafletElement.prototype.ngOnInit = function () {
         var map = L.map(this.mapElement.nativeElement, {
@@ -38,31 +39,19 @@ var LeafletElement = (function () {
         L.control.scale().addTo(map);
     };
     LeafletElement.prototype.ngAfterViewInit = function () {
-        var model = this;
+        this._subscriptionOL = this.mapService.getObservableOverlays().subscribe(function (data) {
+        });
+        this._subscriptionBS = this.mapService.getObservableBasemaps().subscribe(function (data) {
+        });
+    };
+    LeafletElement.prototype.setLayerControl = function () {
         if (this.layerControl) {
             var map = this.mapService.getMap();
-            if (Object.keys(this.mapService.getBasemaps()).length + Object.keys(this.mapService.getOverlays()).length !== this.mapService.getLayerNumber()) {
-                setTimeout(function () {
-                    model.loop();
-                }, 200);
+            if (this.layerControlObject !== null) {
+                this.layerControlObject.getContainer().innerHTML = '';
             }
-            else {
-                L.control.layers(this.mapService.getBasemaps(), this.mapService.getOverlays()).addTo(map);
-            }
+            this.layerControlObject = L.control.layers(this.mapService.getBasemaps(), this.mapService.getOverlays()).addTo(map);
         }
-    };
-    LeafletElement.prototype.loop = function () {
-        var model = this;
-        var map = this.mapService.getMap();
-        if (Object.keys(this.mapService.getBasemaps()).length + Object.keys(this.mapService.getOverlays()).length !== this.mapService.getLayerNumber()) {
-            setTimeout(function () {
-                model.loop();
-            }, 200);
-        }
-        else {
-            L.control.layers(this.mapService.getBasemaps(), this.mapService.getOverlays()).addTo(map);
-        }
-        ;
     };
     __decorate([
         core_1.Input(), 

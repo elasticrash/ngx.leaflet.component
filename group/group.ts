@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { MapService } from '../services/map.service';
 import { GroupService } from '../services/group.service';
+import { GuidService } from '../services/globalId.service';
 
 var Lealflet = require('leaflet');
 
@@ -16,44 +17,19 @@ declare var L: any;
 
 export class LeafletGroup {
     @Input() name: string = '';
-
+    globalId: string = this.guidService.newGuid();
+    
     constructor(
         private mapService: MapService,
-        private groupService: GroupService) {
+        private groupService: GroupService,
+        private guidService: GuidService) {
     }
 
     ngOnInit() {
-        this.mapService.increaseNumber();
     }
 
     ngAfterViewInit() {
-        let model = this;
-        if (this.groupService.getLayerGroup().length !== this.groupService.getLayerNumber()) {
-            setTimeout(function () {
-                model.loop();
-            }, 200);
-        } else {
-            this.addLayerGroupToScope();
-        }
     }
 
-    loop() {
-        let model = this;
-        if (this.groupService.getLayerGroup().length !== this.groupService.getLayerNumber()) {
-            setTimeout(function () {
-                model.loop();
-            }, 200);
-        }
-        else { this.addLayerGroupToScope() };
-    }
-
-    addLayerGroupToScope() {
-        let map = this.mapService.getMap();
-        let layerGroup = L.layerGroup(this.groupService.getLayerGroup());
-        layerGroup.addTo(map);
-        if (this.mapService.getLayerControl) {
-            //add layerGroup to control
-            this.mapService.addOverlay(layerGroup, this.name);
-        }
-    }
+   
 }
