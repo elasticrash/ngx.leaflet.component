@@ -33,16 +33,15 @@ var PolylineElement = (function () {
         this.mouseover = "";
         this.onclick = "";
         this.polyline = null;
-        this.inheritedOptions = null;
         this.originalObject = this.latlngs.slice();
         this.globalId = this.guidService.newGuid();
     }
     PolylineElement.prototype.ngOnInit = function () {
         if (this.LeafletElement || this.LeafletGroup) {
             this.Options.fill = false;
-            this.inheritedOptions = new path_1.path(this.Options);
+            var inheritedOptions = new path_1.path(this.Options);
             var map = this.mapService.getMap();
-            this.polyline = L.polyline(this.latlngs, this.inheritedOptions);
+            this.polyline = L.polyline(this.latlngs, inheritedOptions);
             this.popupService.enablePopup(this.mouseover, this.onclick, this.polyline);
             if (this.LeafletGroup) {
                 this.groupService.increaseNumber();
@@ -55,7 +54,7 @@ var PolylineElement = (function () {
             console.warn("This polyline-element will not be rendered \n the expected parent node of polyline-element should be either leaf-element or leaflet-group");
         }
     };
-    PolylineElement.prototype.ngDoCheck = function (inputChanges) {
+    PolylineElement.prototype.ngDoCheck = function () {
         var _this = this;
         var map = this.mapService.getMap();
         var same = true;
@@ -66,15 +65,15 @@ var PolylineElement = (function () {
         });
         if (!same) {
             this.originalObject = this.latlngs.slice();
+            this.Options.fill = false;
+            var inheritedOptions = new path_1.path(this.Options);
             if (this.groupService) {
-                this.Options.fill = false;
-                this.inheritedOptions = new path_1.path(this.Options);
-                this.polyline = L.polyline(this.latlngs, this.inheritedOptions);
+                this.polyline = L.polyline(this.latlngs, inheritedOptions);
                 this.groupService.addOLayersToGroup(this.polyline, map, this.mapService, this.LeafletGroup, true, this.globalId);
             }
             else {
                 map.removeLayer(this.polyline);
-                this.polyline = L.polyline(this.latlngs, this.inheritedOptions);
+                this.polyline = L.polyline(this.latlngs, inheritedOptions);
                 this.polyline.addTo(map);
             }
         }
