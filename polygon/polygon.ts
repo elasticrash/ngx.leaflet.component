@@ -4,7 +4,6 @@ import { LeafletGroup } from '../group/group';
 import { MapService } from '../services/map.service';
 import { GroupService } from '../services/group.service';
 import { PopupService } from '../services/popup.service';
-import { GuidService } from '../services/globalId.service';
 import { path } from '../models/path';
 import { Ipath } from '../interfaces/path';
 
@@ -24,15 +23,11 @@ export class PolygonElement {
   @Input() Options: Ipath = new path(null);
   @Input() mouseover: string = "";
   @Input() onclick: string = "";
-  polygon: any = null;
-  originalObject: Array<Array<number>> = [...this.latlngs];
-  globalId: string = this.guidService.newGuid();
 
   constructor(
     private mapService: MapService,
     private groupService: GroupService,
     private popupService: PopupService,
-    private guidService: GuidService,
     @Optional() private LeafletElement?: LeafletElement,
     @Optional() private LeafletGroup?: LeafletGroup) {
   }
@@ -42,45 +37,18 @@ export class PolygonElement {
     if (this.LeafletElement || this.LeafletGroup) {
       let inheritedOptions = new path(this.Options);
       let map = this.mapService.getMap();
-      this.polygon = L.polygon([this.latlngs], inheritedOptions);
+      let polygon = L.polygon([this.latlngs], inheritedOptions);
 
       //add popup methods on element
-      this.popupService.enablePopup(this.mouseover, this.onclick, this.polygon);
+      this.popupService.enablePopup(this.mouseover, this.onclick, polygon);
 
       if (this.LeafletGroup) {
-        this.groupService.addOLayersToGroup(this.polygon, map, this.mapService, this.LeafletGroup);
+        this.groupService.addOLayersToGroup(polygon, map, this.mapService, this.LeafletGroup);
       } else {
-        this.polygon.addTo(map);
+        polygon.addTo(map);
       }
     } else {
       console.warn("This polygon-element will not be rendered \n the expected parent node of polygon-element should be either leaf-element or leaflet-group");
-    }
-  }
-
-  ngDoCheck() {
-    let map = this.mapService.getMap();
-
-    var same: Boolean = true;
-    this.originalObject.forEach((element, index) => {
-      if (element[0] !== this.latlngs[index][0] || element[1] !== this.latlngs[index][1]) {
-        same = false;
-      }
-    });
-
-    if (!same) {
-      this.originalObject = [...this.latlngs];
-      //if the layer is part of a group
-      this.Options.fill = false;
-      let inheritedOptions = new path(this.Options);
-
-      if (this.groupService) {
-        this.polygon = L.polyline(this.latlngs, inheritedOptions);
-        this.groupService.addOLayersToGroup(this.polygon, map, this.mapService, this.LeafletGroup, true, this.globalId);
-      } else {
-        map.removeLayer(this.polygon);
-        this.polygon = L.polyline(this.latlngs, inheritedOptions);
-        this.polygon.addTo(map);
-      }
     }
   }
 }

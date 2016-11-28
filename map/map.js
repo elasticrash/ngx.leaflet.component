@@ -39,6 +39,10 @@ var LeafletElement = (function () {
         L.control.scale().addTo(map);
     };
     LeafletElement.prototype.ngAfterViewInit = function () {
+        this._subscriptionOL = this.mapService.getObservableOverlays().subscribe(function (data) {
+        });
+        this._subscriptionBS = this.mapService.getObservableBasemaps().subscribe(function (data) {
+        });
     };
     LeafletElement.prototype.setLayerControl = function () {
         if (this.layerControl) {
