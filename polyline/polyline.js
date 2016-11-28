@@ -39,8 +39,8 @@ var PolylineElement = (function () {
     }
     PolylineElement.prototype.ngOnInit = function () {
         if (this.LeafletElement || this.LeafletGroup) {
-            this.Options.fill = false;
             this.inheritedOptions = new path_1.path(this.Options);
+            this.inheritedOptions.fill = false;
             var map = this.mapService.getMap();
             this.polyline = L.polyline(this.latlngs, this.inheritedOptions);
             this.popupService.enablePopup(this.mouseover, this.onclick, this.polyline);
@@ -67,8 +67,6 @@ var PolylineElement = (function () {
         if (!same) {
             this.originalObject = this.latlngs.slice();
             if (this.groupService) {
-                this.Options.fill = false;
-                this.inheritedOptions = new path_1.path(this.Options);
                 this.polyline = L.polyline(this.latlngs, this.inheritedOptions);
                 this.groupService.addOLayersToGroup(this.polyline, map, this.mapService, this.LeafletGroup, true, this.globalId);
             }
