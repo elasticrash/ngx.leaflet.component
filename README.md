@@ -66,7 +66,7 @@ for usage check the wiki
 https://github.com/elasticrash/Angular2.leaflet.component/wiki
 
 you can see an example on the following repository
- https://github.com/elasticrash/Angular.io.MapViewer on develop branch
+https://github.com/elasticrash/Angular.io.MapViewer on develop branch
 
 
 If anyone wants to help in any way feel free to do a fork and a pull request
