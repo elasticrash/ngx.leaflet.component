@@ -20,12 +20,13 @@ declare var L: any;
 })
 
 export class PolygonElement {
-  @Input() latlngs: Array<Array<number>> = [[52.65, -1.2], [52.645, -1.15], [52.696, -1.155], [52.697, -1.189]];
+  @Input() latlngs: Array<Array<Array<number>>> = [[[52.65, -1.2], [52.645, -1.15], [52.696, -1.155], [52.697, -1.189]],
+                                                   [[52.66, -1.19], [52.665, -1.16], [52.686, -1.161], [52.687, -1.179]]];
   @Input() Options: Ipath = new path(null);
   @Input() mouseover: string = "";
   @Input() onclick: string = "";
   polygon: any = null;
-  originalObject: Array<Array<number>> = [...this.latlngs];
+  originalObject: Array<Array<Array<number>>> = [...this.latlngs];
   globalId: string = this.guidService.newGuid();
 
   constructor(
@@ -55,6 +56,10 @@ export class PolygonElement {
     } else {
       console.warn("This polygon-element will not be rendered \n the expected parent node of polygon-element should be either leaf-element or leaflet-group");
     }
+  }
+
+  createPolygon() {
+
   }
 
   ngDoCheck() {

@@ -28,7 +28,8 @@ var PolygonElement = (function () {
         this.guidService = guidService;
         this.LeafletElement = LeafletElement;
         this.LeafletGroup = LeafletGroup;
-        this.latlngs = [[52.65, -1.2], [52.645, -1.15], [52.696, -1.155], [52.697, -1.189]];
+        this.latlngs = [[[52.65, -1.2], [52.645, -1.15], [52.696, -1.155], [52.697, -1.189]],
+            [[52.66, -1.19], [52.665, -1.16], [52.686, -1.161], [52.687, -1.179]]];
         this.Options = new path_1.path(null);
         this.mouseover = "";
         this.onclick = "";
@@ -52,6 +53,8 @@ var PolygonElement = (function () {
         else {
             console.warn("This polygon-element will not be rendered \n the expected parent node of polygon-element should be either leaf-element or leaflet-group");
         }
+    };
+    PolygonElement.prototype.createPolygon = function () {
     };
     PolygonElement.prototype.ngDoCheck = function () {
         var _this = this;
