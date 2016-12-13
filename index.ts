@@ -11,6 +11,7 @@ import { MapService } from './services/map.service'
 import { GroupService } from './services/group.service'
 import { PopupService } from './services/popup.service';
 import { GuidService } from './services/globalId.service';
+import { HelperService } from './services/helper.service';
 
 export const CandTLeafletComponent = [
     LeafletElement,
@@ -24,6 +25,7 @@ export const CandTLeafletComponent = [
 ];
 
 export const CandTLeafletService = [MapService,
- GroupService,
-  PopupService,
-   GuidService];
+    GroupService,
+    PopupService,
+    GuidService,
+    HelperService];

@@ -10,5 +10,6 @@ import { MapService } from './services/map.service';
 import { GroupService } from './services/group.service';
 import { PopupService } from './services/popup.service';
 import { GuidService } from './services/globalId.service';
+import { HelperService } from './services/helper.service';
 export declare const CandTLeafletComponent: (typeof LeafletElement | typeof LeafletGroup | typeof CircleElement | typeof LayerElement | typeof MarkerElement | typeof PolygonElement | typeof PolylineElement | typeof PopupElement)[];
-export declare const CandTLeafletService: (typeof MapService | typeof GuidService | typeof GroupService | typeof PopupService)[];
+export declare const CandTLeafletService: (typeof MapService | typeof GuidService | typeof GroupService | typeof PopupService | typeof HelperService)[];

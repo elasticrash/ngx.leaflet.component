@@ -18,14 +18,16 @@ var map_service_1 = require('../services/map.service');
 var group_service_1 = require('../services/group.service');
 var popup_service_1 = require('../services/popup.service');
 var globalId_service_1 = require('../services/globalId.service');
+var helper_service_1 = require('../services/helper.service');
 var path_1 = require('../models/path');
 var Lealflet = require('leaflet');
 var PolylineElement = (function () {
-    function PolylineElement(mapService, groupService, popupService, guidService, LeafletElement, LeafletGroup) {
+    function PolylineElement(mapService, groupService, popupService, guidService, helperService, LeafletElement, LeafletGroup) {
         this.mapService = mapService;
         this.groupService = groupService;
         this.popupService = popupService;
         this.guidService = guidService;
+        this.helperService = helperService;
         this.LeafletElement = LeafletElement;
         this.LeafletGroup = LeafletGroup;
         this.latlngs = [[52.6, -1.1], [52.605, -1.1], [52.606, -1.105], [52.697, -1.109]];
@@ -33,16 +35,15 @@ var PolylineElement = (function () {
         this.mouseover = "";
         this.onclick = "";
         this.polyline = null;
-        this.inheritedOptions = null;
         this.originalObject = this.latlngs.slice();
         this.globalId = this.guidService.newGuid();
     }
     PolylineElement.prototype.ngOnInit = function () {
         if (this.LeafletElement || this.LeafletGroup) {
-            this.inheritedOptions = new path_1.path(this.Options);
-            this.inheritedOptions.fill = false;
+            this.Options.fill = false;
+            var inheritedOptions = new path_1.path(this.Options);
             var map = this.mapService.getMap();
-            this.polyline = L.polyline(this.latlngs, this.inheritedOptions);
+            this.polyline = L.polyline(this.latlngs, inheritedOptions);
             this.popupService.enablePopup(this.mouseover, this.onclick, this.polyline);
             if (this.LeafletGroup) {
                 this.groupService.increaseNumber();
@@ -55,24 +56,20 @@ var PolylineElement = (function () {
             console.warn("This polyline-element will not be rendered \n the expected parent node of polyline-element should be either leaf-element or leaflet-group");
         }
     };
-    PolylineElement.prototype.ngDoCheck = function (inputChanges) {
-        var _this = this;
+    PolylineElement.prototype.ngDoCheck = function () {
         var map = this.mapService.getMap();
-        var same = true;
-        this.originalObject.forEach(function (element, index) {
-            if (element[0] !== _this.latlngs[index][0] || element[1] !== _this.latlngs[index][1]) {
-                same = false;
-            }
-        });
+        var same = this.helperService.arrayCompare(this.originalObject, this.latlngs);
         if (!same) {
             this.originalObject = this.latlngs.slice();
+            this.Options.fill = false;
+            var inheritedOptions = new path_1.path(this.Options);
             if (this.groupService) {
-                this.polyline = L.polyline(this.latlngs, this.inheritedOptions);
+                this.polyline = L.polyline(this.latlngs, inheritedOptions);
                 this.groupService.addOLayersToGroup(this.polyline, map, this.mapService, this.LeafletGroup, true, this.globalId);
             }
             else {
                 map.removeLayer(this.polyline);
-                this.polyline = L.polyline(this.latlngs, this.inheritedOptions);
+                this.polyline = L.polyline(this.latlngs, inheritedOptions);
                 this.polyline.addTo(map);
             }
         }
@@ -100,9 +97,9 @@ var PolylineElement = (function () {
             templateUrl: 'polyline.html',
             styleUrls: ['polyline.css']
         }),
-        __param(4, core_1.Optional()),
-        __param(5, core_1.Optional()), 
-        __metadata('design:paramtypes', [map_service_1.MapService, group_service_1.GroupService, popup_service_1.PopupService, globalId_service_1.GuidService, map_1.LeafletElement, group_1.LeafletGroup])
+        __param(5, core_1.Optional()),
+        __param(6, core_1.Optional()), 
+        __metadata('design:paramtypes', [map_service_1.MapService, group_service_1.GroupService, popup_service_1.PopupService, globalId_service_1.GuidService, helper_service_1.HelperService, map_1.LeafletElement, group_1.LeafletGroup])
     ], PolylineElement);
     return PolylineElement;
 }());
