@@ -23,6 +23,5 @@ export declare class PolygonElement {
     globalId: string;
     constructor(mapService: MapService, groupService: GroupService, popupService: PopupService, guidService: GuidService, helperService: HelperService, LeafletElement?: LeafletElement, LeafletGroup?: LeafletGroup);
     ngOnInit(): void;
-    createPolygon(): void;
     ngDoCheck(): void;
 }

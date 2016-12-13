@@ -56,8 +56,6 @@ var PolygonElement = (function () {
             console.warn("This polygon-element will not be rendered \n the expected parent node of polygon-element should be either leaf-element or leaflet-group");
         }
     };
-    PolygonElement.prototype.createPolygon = function () {
-    };
     PolygonElement.prototype.ngDoCheck = function () {
         var map = this.mapService.getMap();
         var same = this.helperService.arrayCompare(this.originalObject, this.latlngs);
@@ -66,12 +64,12 @@ var PolygonElement = (function () {
             this.Options.fill = false;
             var inheritedOptions = new path_1.path(this.Options);
             if (this.groupService) {
-                this.polygon = L.polyline(this.latlngs, inheritedOptions);
+                this.polygon = L.polygon(this.latlngs, inheritedOptions);
                 this.groupService.addOLayersToGroup(this.polygon, map, this.mapService, this.LeafletGroup, true, this.globalId);
             }
             else {
                 map.removeLayer(this.polygon);
-                this.polygon = L.polyline(this.latlngs, inheritedOptions);
+                this.polygon = L.polygon(this.latlngs, inheritedOptions);
                 this.polygon.addTo(map);
             }
         }

@@ -26,7 +26,6 @@ export class PolylineElement {
   @Input() mouseover: string = "";
   @Input() onclick: string = "";
   polyline: any = null;
-  inheritedOptions: any = null;
   originalObject: Array<Array<number>> = [...this.latlngs];
   globalId: string = this.guidService.newGuid();
 
@@ -43,11 +42,11 @@ export class PolylineElement {
   ngOnInit() {
     //check if any of the two optional injections exist
     if (this.LeafletElement || this.LeafletGroup) {
-      this.inheritedOptions = new path(this.Options);
       //polyline shouldn't have a fill
-      this.inheritedOptions.fill = false;
+      this.Options.fill = false;
+      let inheritedOptions = new path(this.Options);
       let map = this.mapService.getMap();
-      this.polyline = L.polyline(this.latlngs, this.inheritedOptions);
+      this.polyline = L.polyline(this.latlngs, inheritedOptions);
 
       //add popup methods on element
       this.popupService.enablePopup(this.mouseover, this.onclick, this.polyline);
@@ -62,7 +61,7 @@ export class PolylineElement {
     }
   }
 
-  ngDoCheck(inputChanges) {
+  ngDoCheck() {
     let map = this.mapService.getMap();
 
     var same: Boolean = this.helperService.arrayCompare(this.originalObject, this.latlngs);
@@ -70,12 +69,15 @@ export class PolylineElement {
     if (!same) {
       this.originalObject = [...this.latlngs];
       //if the layer is part of a group
+      this.Options.fill = false;
+      let inheritedOptions = new path(this.Options);
+
       if (this.groupService) {
-        this.polyline = L.polyline(this.latlngs, this.inheritedOptions);
+        this.polyline = L.polyline(this.latlngs, inheritedOptions);
         this.groupService.addOLayersToGroup(this.polyline, map, this.mapService, this.LeafletGroup, true, this.globalId);
       } else {
         map.removeLayer(this.polyline);
-        this.polyline = L.polyline(this.latlngs, this.inheritedOptions);
+        this.polyline = L.polyline(this.latlngs, inheritedOptions);
         this.polyline.addTo(map);
       }
     }
