@@ -5,6 +5,7 @@ import { MapService } from '../services/map.service';
 import { GroupService } from '../services/group.service';
 import { PopupService } from '../services/popup.service';
 import { GuidService } from '../services/globalId.service';
+import { HelperService } from '../services/helper.service';
 import { path } from '../models/path';
 import { Ipath } from '../interfaces/path';
 
@@ -21,7 +22,7 @@ declare var L: any;
 
 export class PolygonElement {
   @Input() latlngs: Array<Array<Array<number>>> = [[[52.65, -1.2], [52.645, -1.15], [52.696, -1.155], [52.697, -1.189]],
-                                                   [[52.66, -1.19], [52.665, -1.16], [52.686, -1.161], [52.687, -1.179]]];
+  [[52.66, -1.19], [52.665, -1.16], [52.686, -1.161], [52.687, -1.179]]];
   @Input() Options: Ipath = new path(null);
   @Input() mouseover: string = "";
   @Input() onclick: string = "";
@@ -34,6 +35,7 @@ export class PolygonElement {
     private groupService: GroupService,
     private popupService: PopupService,
     private guidService: GuidService,
+    private helperService: HelperService,
     @Optional() private LeafletElement?: LeafletElement,
     @Optional() private LeafletGroup?: LeafletGroup) {
   }
@@ -65,12 +67,7 @@ export class PolygonElement {
   ngDoCheck() {
     let map = this.mapService.getMap();
 
-    var same: Boolean = true;
-    this.originalObject.forEach((element, index) => {
-      if (element[0] !== this.latlngs[index][0] || element[1] !== this.latlngs[index][1]) {
-        same = false;
-      }
-    });
+    var same: Boolean = this.helperService.arrayCompare(this.originalObject, this.latlngs);
 
     if (!same) {
       this.originalObject = [...this.latlngs];

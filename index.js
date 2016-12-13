@@ -11,6 +11,7 @@ var map_service_1 = require('./services/map.service');
 var group_service_1 = require('./services/group.service');
 var popup_service_1 = require('./services/popup.service');
 var globalId_service_1 = require('./services/globalId.service');
+var helper_service_1 = require('./services/helper.service');
 exports.CandTLeafletComponent = [
     map_1.LeafletElement,
     layer_1.LayerElement,
@@ -24,5 +25,6 @@ exports.CandTLeafletComponent = [
 exports.CandTLeafletService = [map_service_1.MapService,
     group_service_1.GroupService,
     popup_service_1.PopupService,
-    globalId_service_1.GuidService];
+    globalId_service_1.GuidService,
+    helper_service_1.HelperService];
 //# sourceMappingURL=index.js.map
