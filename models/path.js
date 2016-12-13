@@ -16,7 +16,7 @@ var path = (function () {
         this.className = null;
         if (pathInfo !== null) {
             for (var key in pathInfo) {
-                if (pathInfo[key]) {
+                if (pathInfo[key] !== undefined) {
                     this[key] = pathInfo[key];
                 }
             }
