@@ -5,6 +5,7 @@ import { MapService } from '../services/map.service';
 import { GroupService } from '../services/group.service';
 import { PopupService } from '../services/popup.service';
 import { GuidService } from '../services/globalId.service';
+import { HelperService } from '../services/helper.service';
 import { path } from '../models/path';
 import { Ipath } from '../interfaces/path';
 
@@ -33,6 +34,7 @@ export class PolylineElement {
     private groupService: GroupService,
     private popupService: PopupService,
     private guidService: GuidService,
+    private helperService: HelperService,
     @Optional() private LeafletElement?: LeafletElement,
     @Optional() private LeafletGroup?: LeafletGroup) {
   }
@@ -62,12 +64,7 @@ export class PolylineElement {
   ngDoCheck() {
     let map = this.mapService.getMap();
 
-    var same: Boolean = true;
-    this.originalObject.forEach((element, index) => {
-      if (element[0] !== this.latlngs[index][0] || element[1] !== this.latlngs[index][1]) {
-        same = false;
-      }
-    });
+    var same: Boolean = this.helperService.arrayCompare(this.originalObject, this.latlngs);
 
     if (!same) {
       this.originalObject = [...this.latlngs];

@@ -18,17 +18,20 @@ var map_service_1 = require('../services/map.service');
 var group_service_1 = require('../services/group.service');
 var popup_service_1 = require('../services/popup.service');
 var globalId_service_1 = require('../services/globalId.service');
+var helper_service_1 = require('../services/helper.service');
 var path_1 = require('../models/path');
 var Lealflet = require('leaflet');
 var PolygonElement = (function () {
-    function PolygonElement(mapService, groupService, popupService, guidService, LeafletElement, LeafletGroup) {
+    function PolygonElement(mapService, groupService, popupService, guidService, helperService, LeafletElement, LeafletGroup) {
         this.mapService = mapService;
         this.groupService = groupService;
         this.popupService = popupService;
         this.guidService = guidService;
+        this.helperService = helperService;
         this.LeafletElement = LeafletElement;
         this.LeafletGroup = LeafletGroup;
-        this.latlngs = [[52.65, -1.2], [52.645, -1.15], [52.696, -1.155], [52.697, -1.189]];
+        this.latlngs = [[[52.65, -1.2], [52.645, -1.15], [52.696, -1.155], [52.697, -1.189]],
+            [[52.66, -1.19], [52.665, -1.16], [52.686, -1.161], [52.687, -1.179]]];
         this.Options = new path_1.path(null);
         this.mouseover = "";
         this.onclick = "";
@@ -53,15 +56,11 @@ var PolygonElement = (function () {
             console.warn("This polygon-element will not be rendered \n the expected parent node of polygon-element should be either leaf-element or leaflet-group");
         }
     };
+    PolygonElement.prototype.createPolygon = function () {
+    };
     PolygonElement.prototype.ngDoCheck = function () {
-        var _this = this;
         var map = this.mapService.getMap();
-        var same = true;
-        this.originalObject.forEach(function (element, index) {
-            if (element[0] !== _this.latlngs[index][0] || element[1] !== _this.latlngs[index][1]) {
-                same = false;
-            }
-        });
+        var same = this.helperService.arrayCompare(this.originalObject, this.latlngs);
         if (!same) {
             this.originalObject = this.latlngs.slice();
             this.Options.fill = false;
@@ -100,9 +99,9 @@ var PolygonElement = (function () {
             templateUrl: 'polygon.html',
             styleUrls: ['polygon.css']
         }),
-        __param(4, core_1.Optional()),
-        __param(5, core_1.Optional()), 
-        __metadata('design:paramtypes', [map_service_1.MapService, group_service_1.GroupService, popup_service_1.PopupService, globalId_service_1.GuidService, map_1.LeafletElement, group_1.LeafletGroup])
+        __param(5, core_1.Optional()),
+        __param(6, core_1.Optional()), 
+        __metadata('design:paramtypes', [map_service_1.MapService, group_service_1.GroupService, popup_service_1.PopupService, globalId_service_1.GuidService, helper_service_1.HelperService, map_1.LeafletElement, group_1.LeafletGroup])
     ], PolygonElement);
     return PolygonElement;
 }());
