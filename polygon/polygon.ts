@@ -30,6 +30,7 @@ export class PolygonElement {
   originalObject: Array<Array<Array<number>>> = [...this.latlngs];
   globalId: string = this.guidService.newGuid();
 
+
   constructor(
     private mapService: MapService,
     private groupService: GroupService,
@@ -45,15 +46,15 @@ export class PolygonElement {
     if (this.LeafletElement || this.LeafletGroup) {
       let inheritedOptions = new path(this.Options);
       let map = this.mapService.getMap();
-      this.polygon = L.polygon([this.latlngs], inheritedOptions);
+      let polygon = L.polygon([this.latlngs], inheritedOptions);
 
       //add popup methods on element
-      this.popupService.enablePopup(this.mouseover, this.onclick, this.polygon);
+      this.popupService.enablePopup(this.mouseover, this.onclick, polygon);
 
       if (this.LeafletGroup) {
-        this.groupService.addOLayersToGroup(this.polygon, map, this.mapService, this.LeafletGroup);
+        this.groupService.addOLayersToGroup(polygon, map, this.mapService, this.LeafletGroup);
       } else {
-        this.polygon.addTo(map);
+        polygon.addTo(map);
       }
     } else {
       console.warn("This polygon-element will not be rendered \n the expected parent node of polygon-element should be either leaf-element or leaflet-group");

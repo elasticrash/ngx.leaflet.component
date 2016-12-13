@@ -2,7 +2,7 @@ export class path {
     constructor(pathInfo: any) {
         if (pathInfo !== null) {
             for (var key in pathInfo) {
-                if (pathInfo[key] !== undefined) {
+                if (pathInfo[key]) {
                     this[key] = pathInfo[key];
                 }
             }
