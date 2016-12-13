@@ -60,10 +60,6 @@ export class PolygonElement {
     }
   }
 
-  createPolygon() {
-
-  }
-
   ngDoCheck() {
     let map = this.mapService.getMap();
 
@@ -76,11 +72,11 @@ export class PolygonElement {
       let inheritedOptions = new path(this.Options);
 
       if (this.groupService) {
-        this.polygon = L.polyline(this.latlngs, inheritedOptions);
+        this.polygon = L.polygon(this.latlngs, inheritedOptions);
         this.groupService.addOLayersToGroup(this.polygon, map, this.mapService, this.LeafletGroup, true, this.globalId);
       } else {
         map.removeLayer(this.polygon);
-        this.polygon = L.polyline(this.latlngs, inheritedOptions);
+        this.polygon = L.polygon(this.latlngs, inheritedOptions);
         this.polygon.addTo(map);
       }
     }
