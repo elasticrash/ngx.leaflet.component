@@ -68,15 +68,14 @@ export class PolygonElement {
     if (!same) {
       this.originalObject = [...this.latlngs];
       //if the layer is part of a group
-      this.Options.fill = false;
       let inheritedOptions = new path(this.Options);
 
-      if (this.groupService) {
-        this.polygon = L.polygon(this.latlngs, inheritedOptions);
+      if (this.LeafletGroup) {
+        this.polygon = L.polygon([this.latlngs], inheritedOptions);
         this.groupService.addOLayersToGroup(this.polygon, map, this.mapService, this.LeafletGroup, true, this.globalId);
       } else {
         map.removeLayer(this.polygon);
-        this.polygon = L.polygon(this.latlngs, inheritedOptions);
+        this.polygon = L.polygon([this.latlngs], inheritedOptions);
         this.polygon.addTo(map);
       }
     }
