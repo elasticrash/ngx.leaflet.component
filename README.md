@@ -2,6 +2,12 @@
 
 my own attemp on creating an Angular 2 leaflet v1.x component
 
+13/12/2016
+Live examples
+* base example https://elasticrash.github.io/Angular.io.MapViewer/example/
+* multi-map example https://elasticrash.github.io/Angular.io.MapViewer/example/#/mm-map
+* a simple genetic algorithm trying to solve the Travelling salesman problem https://elasticrash.github.io/Angular.io.MapViewer/example/#/random
+
 22/10/2016
 
 Bare in mind that I just started developing this and I don't have much time to plan things ahead
