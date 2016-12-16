@@ -52,7 +52,7 @@ export class PolylineElement {
       this.popupService.enablePopup(this.mouseover, this.onclick, this.polyline);
 
       if (this.LeafletGroup) {
-        this.groupService.increaseNumber();
+        this.groupService.addOLayersToGroup(this.polyline, map, this.mapService, this.LeafletGroup);
       } else {
         this.polyline.addTo(map);
       }
@@ -72,7 +72,7 @@ export class PolylineElement {
       this.Options.fill = false;
       let inheritedOptions = new path(this.Options);
 
-      if (this.groupService) {
+      if (this.LeafletGroup) {
         this.polyline = L.polyline(this.latlngs, inheritedOptions);
         this.groupService.addOLayersToGroup(this.polyline, map, this.mapService, this.LeafletGroup, true, this.globalId);
       } else {

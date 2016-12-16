@@ -61,15 +61,14 @@ var PolygonElement = (function () {
         var same = this.helperService.arrayCompare(this.originalObject, this.latlngs);
         if (!same) {
             this.originalObject = this.latlngs.slice();
-            this.Options.fill = false;
             var inheritedOptions = new path_1.path(this.Options);
-            if (this.groupService) {
-                this.polygon = L.polygon(this.latlngs, inheritedOptions);
+            if (this.LeafletGroup) {
+                this.polygon = L.polygon([this.latlngs], inheritedOptions);
                 this.groupService.addOLayersToGroup(this.polygon, map, this.mapService, this.LeafletGroup, true, this.globalId);
             }
             else {
                 map.removeLayer(this.polygon);
-                this.polygon = L.polygon(this.latlngs, inheritedOptions);
+                this.polygon = L.polygon([this.latlngs], inheritedOptions);
                 this.polygon.addTo(map);
             }
         }
