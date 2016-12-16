@@ -62,8 +62,7 @@ var PolygonElement = (function () {
         if (!same) {
             this.originalObject = this.latlngs.slice();
             var inheritedOptions = new path_1.path(this.Options);
-
-          if (this.LeafletGroup) {
+            if (this.LeafletGroup) {
                 this.polygon = L.polygon([this.latlngs], inheritedOptions);
                 this.groupService.addOLayersToGroup(this.polygon, map, this.mapService, this.LeafletGroup, true, this.globalId);
             }
