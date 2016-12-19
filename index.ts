@@ -1,5 +1,6 @@
 import { LeafletElement } from './map/map';
 import { LayerElement } from './layer/layer';
+import { ImageOverlayElement } from './imageoverlay/image-overlay';
 import { MarkerElement } from './marker/marker';
 import { CircleElement } from './circle/circle';
 import { PolygonElement } from './polygon/polygon';

@@ -1,1 +1,1 @@
-export * from './imageoverlay';
+export * from './image-overlay';
