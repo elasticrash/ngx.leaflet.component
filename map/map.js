@@ -20,17 +20,20 @@ var LeafletElement = (function () {
         this.minZoom = 4;
         this.maxZoom = 19;
         this.layerControl = false;
+        this.crs = L.CRS.EPSG3857;
         this.layerControlObject = null;
     }
     LeafletElement.prototype.ngOnInit = function () {
         var map = L.map(this.mapElement.nativeElement, {
+            crs: this.crs,
             zoomControl: false,
             center: L.latLng(this.lat, this.lon),
             zoom: this.zoom,
             minZoom: this.minZoom,
             maxZoom: this.maxZoom,
             layers: [],
-            closePopupOnClick: false
+            closePopupOnClick: false,
+            continuousWorld: false,
         });
         this.mapElement.nativeElement.myMapProperty = map;
         this.mapService.setMap(map);
@@ -73,6 +76,10 @@ var LeafletElement = (function () {
         core_1.Input(), 
         __metadata('design:type', Boolean)
     ], LeafletElement.prototype, "layerControl", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Object)
+    ], LeafletElement.prototype, "crs", void 0);
     __decorate([
         core_1.ViewChild('map'), 
         __metadata('design:type', core_1.ElementRef)

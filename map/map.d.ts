@@ -8,6 +8,7 @@ export declare class LeafletElement {
     minZoom: number;
     maxZoom: number;
     layerControl: boolean;
+    crs: any;
     mapElement: ElementRef;
     layerControlObject: any;
     constructor(mapService: MapService);
