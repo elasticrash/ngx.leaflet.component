@@ -6,6 +6,7 @@ my own attemp on creating an Angular 2 leaflet v1.x component
 Live examples
 * base example https://elasticrash.github.io/Angular.io.MapViewer/example/
 * multi-map example https://elasticrash.github.io/Angular.io.MapViewer/example/#/mm-map
+* star map using L.CRS.Simple https://elasticrash.github.io/Angular.io.MapViewer/example/#/simple
 * a simple genetic algorithm trying to solve the Travelling salesman problem https://elasticrash.github.io/Angular.io.MapViewer/example/#/random
 
 22/10/2016
