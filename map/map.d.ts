@@ -4,6 +4,8 @@ export declare class LeafletElement {
     private mapService;
     lat: number;
     lon: number;
+    x: number;
+    y: number;
     zoom: number;
     minZoom: number;
     maxZoom: number;

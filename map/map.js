@@ -24,6 +24,22 @@ var LeafletElement = (function () {
         this.layerControlObject = null;
     }
     LeafletElement.prototype.ngOnInit = function () {
+        if (this.x !== undefined) {
+            this.lon = this.x;
+        }
+        if (this.y !== undefined) {
+            this.lat = this.y;
+        }
+        if (typeof (this.crs) === "string") {
+            var splitCrs = this.crs.split(".");
+            if (splitCrs[0] === "L") {
+                this.crs = L[splitCrs[1]][splitCrs[2]];
+            }
+            else {
+                console.warn("something is not right, reverting to default EPSG3857");
+                this.crs = L.CRS.EPSG3857;
+            }
+        }
         var map = L.map(this.mapElement.nativeElement, {
             crs: this.crs,
             zoomControl: false,
@@ -60,6 +76,14 @@ var LeafletElement = (function () {
         core_1.Input(), 
         __metadata('design:type', Number)
     ], LeafletElement.prototype, "lon", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], LeafletElement.prototype, "x", void 0);
+    __decorate([
+        core_1.Input(), 
+        __metadata('design:type', Number)
+    ], LeafletElement.prototype, "y", void 0);
     __decorate([
         core_1.Input(), 
         __metadata('design:type', Number)
