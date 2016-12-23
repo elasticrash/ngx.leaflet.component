@@ -19,6 +19,7 @@ import { HelperService } from './services/helper.service';
 export const CandTLeafletComponent = [
     LeafletElement,
     LayerElement,
+    ImageOverlayElement,
     MarkerElement,
     CircleElement,
     PolygonElement,
