@@ -18,7 +18,7 @@ declare var L: any;
   styleUrls: ['geojson.css']
 })
 
-export class PolylineElement {
+export class GeoJsonElement {
   @Input() geojson: Object = {};
   originalObject: any = Object.assign({}, this.geojson);
   globalId: string = this.guidService.newGuid();

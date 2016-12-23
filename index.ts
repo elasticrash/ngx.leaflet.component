@@ -5,6 +5,8 @@ import { MarkerElement } from './marker/marker';
 import { CircleElement } from './circle/circle';
 import { PolygonElement } from './polygon/polygon';
 import { PolylineElement } from './polyline/polyline';
+import { GeoJsonElement } from './geojson/geojson';
+
 import { PopupElement } from './popup/popup';
 import { LeafletGroup } from './group/group';
 
