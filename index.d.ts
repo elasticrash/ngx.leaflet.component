@@ -1,5 +1,6 @@
 import { LeafletElement } from './map/map';
 import { LayerElement } from './layer/layer';
+import { ImageOverlayElement } from './imageoverlay/image-overlay';
 import { MarkerElement } from './marker/marker';
 import { CircleElement } from './circle/circle';
 import { PolygonElement } from './polygon/polygon';
@@ -12,5 +13,5 @@ import { GroupService } from './services/group.service';
 import { PopupService } from './services/popup.service';
 import { GuidService } from './services/globalId.service';
 import { HelperService } from './services/helper.service';
-export declare const CandTLeafletComponent: (typeof LeafletElement | typeof LeafletGroup | typeof CircleElement | typeof GeoJsonElement | typeof LayerElement | typeof MarkerElement | typeof PolygonElement | typeof PolylineElement | typeof PopupElement)[];
+export declare const CandTLeafletComponent: (typeof LeafletElement | typeof LeafletGroup | typeof CircleElement | typeof GeoJsonElement | typeof ImageOverlayElement | typeof LayerElement | typeof MarkerElement | typeof PolygonElement | typeof PolylineElement | typeof PopupElement)[];
 export declare const CandTLeafletService: (typeof MapService | typeof GuidService | typeof GroupService | typeof PopupService | typeof HelperService)[];
