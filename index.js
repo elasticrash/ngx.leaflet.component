@@ -5,6 +5,7 @@ var marker_1 = require('./marker/marker');
 var circle_1 = require('./circle/circle');
 var polygon_1 = require('./polygon/polygon');
 var polyline_1 = require('./polyline/polyline');
+var geojson_1 = require('./geojson/geojson');
 var popup_1 = require('./popup/popup');
 var group_1 = require('./group/group');
 var map_service_1 = require('./services/map.service');
@@ -19,6 +20,7 @@ exports.CandTLeafletComponent = [
     circle_1.CircleElement,
     polygon_1.PolygonElement,
     polyline_1.PolylineElement,
+    geojson_1.GeoJsonElement,
     popup_1.PopupElement,
     group_1.LeafletGroup
 ];
