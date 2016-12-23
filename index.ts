@@ -23,6 +23,7 @@ export const CandTLeafletComponent = [
     CircleElement,
     PolygonElement,
     PolylineElement,
+    GeoJsonElement,
     PopupElement,
     LeafletGroup
 ];
