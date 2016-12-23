@@ -38,7 +38,7 @@ export class GeoJsonElement {
     if (this.LeafletElement || this.LeafletGroup) {
       //polyline shouldn't have a fill
       let map = this.mapService.getMap();
-      let gjson = L.geojson(this.geojson);
+      let gjson = L.geoJSON(this.geojson);
 
 
       if (this.LeafletGroup) {

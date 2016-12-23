@@ -36,7 +36,7 @@ var GeoJsonElement = (function () {
     GeoJsonElement.prototype.ngOnInit = function () {
         if (this.LeafletElement || this.LeafletGroup) {
             var map = this.mapService.getMap();
-            var gjson = L.geojson(this.geojson);
+            var gjson = L.geoJSON(this.geojson);
             if (this.LeafletGroup) {
                 this.groupService.addOLayersToGroup(gjson, map, this.mapService, this.LeafletGroup, false, this.globalId);
             }
