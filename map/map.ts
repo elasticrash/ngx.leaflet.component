@@ -1,7 +1,6 @@
 import { Component, Input, ViewChild, ElementRef, EventEmitter } from '@angular/core';
 import { MapService } from '../services/map.service';
-
-var Lealflet = require('leaflet');
+import { } from 'leaflet';
 
 declare var L: any;
 
