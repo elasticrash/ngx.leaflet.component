@@ -2,7 +2,7 @@
 var testing_1 = require('@angular/core/testing');
 var platform_browser_1 = require('@angular/platform-browser');
 var map_1 = require('./map');
-describe('BannerComponent (inline template)', function () {
+describe('LeafletElement', function () {
     var comp;
     var fixture;
     var de;
@@ -15,6 +15,15 @@ describe('BannerComponent (inline template)', function () {
         comp = fixture.componentInstance;
         de = fixture.debugElement.query(platform_browser_1.By.css('map-container'));
         el = de.nativeElement;
+    });
+    it('always top map fails', function () {
+        fixture.detectChanges();
+        expect(el.textContent).toContain("");
+    });
+});
+describe('sub map test', function () {
+    it('always fails', function () {
+        expect(1).toBe(1);
     });
 });
 //# sourceMappingURL=map.spec.js.map

@@ -2,13 +2,25 @@
     "compilerOptions": {
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
+        "noImplicitAny": false,
         "target": "es5",
         "module": "commonjs",
         "moduleResolution": "node",
         "removeComments": true,
         "sourceMap": true,
         "outDir": "",
-        "declaration": true
+        "declaration": true,
+        "lib": [
+            "es2015",
+            "dom"
+        ],
+        "types": [
+            "node",
+            "jasmine"
+        ]
+    },
+    "awesomeTypeScriptLoaderOptions": {
+        "useWebpackText": true
     },
     "exclude": [
         "node_modules"
