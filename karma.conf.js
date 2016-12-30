@@ -1,107 +1,66 @@
-// Karma configuration
-// Generated on Thu Jun 16 2016 11:08:35 GMT+0100 (GMT Summer Time)
+module.exports = function (config) {
+    config.set({
 
-module.exports = function(config) {
-  config.set({
+        basePath: '.',
 
-    // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '',
-    
-    // plugins needed for karma to work
-    plugins: ['karma-systemjs', 'karma-jasmine', 'karma-chrome-launcher', 'karma-spec-reporter'],
+        frameworks: ['jasmine'],
 
-    // frameworks to use
-    // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['systemjs', 'jasmine'],
-    proxies: {
-      '/': '/base',
-    },
-    // need to set up SystemJS config for Karma
-    systemjs : {
-      configFile: 'systemjs.config.js',
-      
-      includeFiles: [
-        'node_modules/reflect-metadata/Reflect.js',
-        'node_modules/zone.js/dist/zone.js'
-      ],
-      
-      serveFiles: [
-        'node_modules/@angular/**/*.js',
-        'node_modules/rxjs/**/*.js',
-        'map/**/*.js'
-      ],
-      
-      config: {
-        paths: {
-          'systemjs': '/node_modules/systemjs/dist/system.src.js',
-          'system-polyfills': '/node_modules/systemjs/dist/system-polyfills.src.js',
-          'typescript': '/node_modules/typescript/lib/typescript.js',
-          'rxjs' : '/node_modules/rxjs/index.js',
-          'traceur': '/node_modules/traceur/dist/commonjs/traceur.js',
-          'reflect-metadata' : '/node_modules/reflect-metadata/Reflect.js',
-          '@angular': '/node_modules/@angular/**/*.js',
-        }
-      },
-      
-    },
+        files: [
+            // paths loaded by Karma
+            { pattern: 'node_modules/angular2/bundles/angular2-polyfills.js', included: true, watched: true },
+            { pattern: 'node_modules/systemjs/dist/system.src.js', included: true, watched: true },
+            //{pattern: 'node_modules/rxjs/bundles/Rx.js', included: true, watched: true},
+            { pattern: 'node_modules/angular2/bundles/angular2.dev.js', included: true, watched: true },
+            { pattern: 'node_modules/angular2/bundles/testing.dev.js', included: true, watched: true },
+            { pattern: '**/*.ts', included: true, watched: true },
 
 
-    // list of files / patterns to load in the browser
-    files: [
-      'node_modules/reflect-metadata/Reflect.js',
-      'node_modules/zone.js/dist/zone.js',
-      'node_modules/@angular/**/*.js',
-      'node_modules/rxjs/**/*.js',
-      'map/**/*.spec.js'
-    ],
+            // paths loaded via module imports
+            { pattern: 'dist/**/*.js', included: false, watched: true },
 
+            // paths to support debugging with source maps in dev tools
+            { pattern: 'src/**/*.ts', included: false, watched: false },
+            { pattern: 'dist/**/*.js.map', included: false, watched: false }
+        ],
 
-    // list of files to exclude
-    exclude: [
-      'node_modules/rxjs/tools/*.js',
-    ],
+        // proxied base paths
+        proxies: {
+            // required for component assests fetched by Angular's compiler
+            '/src/': '/base/src/'
+        },
 
+        port: 9876,
 
-    // preprocess matching files before serving them to the browser
-    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {
-    },
+        logLevel: config.LOG_INFO,
 
+        colors: true,
 
-    // test results reporter to use
-    // possible values: 'dots', 'progress'
-    // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['spec'],
+        autoWatch: true,
 
+        browsers: ['Chrome'],
 
-    // web server port
-    port: 9876,
+        // Karma plugins loaded
+        plugins: [
+            'karma-jasmine',
+            'karma-coverage',
+            'karma-chrome-launcher'
+        ],
 
+        // Coverage reporter generates the coverage
+        reporters: ['progress', 'dots', 'coverage'],
 
-    // enable / disable colors in the output (reporters and logs)
-    colors: true,
+        // Source files that you wanna generate coverage for.
+        // Do not include tests or libraries (these files will be instrumented by Istanbul)
+        preprocessors: {
+            'dist/**/!(*spec).js': ['coverage']
+        },
 
+        coverageReporter: {
+            reporters: [
+                { type: 'json', subdir: '.', file: 'coverage-final.json' }
+            ]
+        },
 
-    // level of logging
-    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_INFO,
-
-
-    // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: true,
-
-
-    // start these browsers
-    // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
-
-
-    // Continuous Integration mode
-    // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false,
-
-    // Concurrency level
-    // how many browser should be started simultaneous
-    concurrency: Infinity
-  })
-}
+        singleRun: true
+    })
+};

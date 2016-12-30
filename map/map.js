@@ -111,7 +111,7 @@ __decorate([
 ], LeafletElement.prototype, "mapElement", void 0);
 LeafletElement = __decorate([
     core_1.Component({
-        moduleId: module.id,
+        moduleId: module.id.toString(),
         selector: 'leaf-element',
         templateUrl: 'map.html',
         styleUrls: ['map.css'],

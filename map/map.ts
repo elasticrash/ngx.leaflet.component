@@ -5,7 +5,7 @@ import { } from 'leaflet';
 declare var L: any;
 
 @Component({
-  moduleId: module.id,
+  moduleId: module.id.toString(),
   selector: 'leaf-element',
   templateUrl: 'map.html',
   styleUrls: ['map.css'],

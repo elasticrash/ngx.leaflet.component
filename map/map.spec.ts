@@ -1,36 +1,34 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 import { LeafletElement } from './map';
+import { MapService } from '../services/map.service';
 
 
 describe('LeafletElement', () => {
 
-  let comp: LeafletElement;
-  let fixture: ComponentFixture<LeafletElement>;
-  let de: DebugElement;
-  let el: HTMLElement;
-
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [LeafletElement], // declare the test component
+      providers: [{ provide: MapService }]
     });
 
-    fixture = TestBed.createComponent(LeafletElement);
-
-    comp = fixture.componentInstance; // BannerComponent test instance
-
-    de = fixture.debugElement.query(By.css('map-container'));
-    el = de.nativeElement;
+    beforeEach(async(() => {
+      TestBed.compileComponents();
+    }));
   });
-  it('always top map fails', () => {
-      fixture.detectChanges();
-      expect(el.textContent).toContain("");
-    });
+
+  it('works well', async(() => {
+    const fixture = TestBed.createComponent(LeafletElement);
+    fixture.componentInstance.lat = 52.6;
+    fixture.detectChanges();
+    const el = fixture.debugElement.nativeElement as HTMLElement;
+    expect(fixture.componentInstance.lat).toBe(52.6);
+  }))
 });
 
 describe('sub map test', () => {
-    it('always fails', () => {
-        expect(1).toBe(1);
-    });
+  it('always fails', () => {
+    expect(1).toBe(1);
+  });
 });

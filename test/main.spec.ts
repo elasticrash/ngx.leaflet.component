@@ -5,6 +5,7 @@ import 'zone.js/dist/proxy';
 import 'zone.js/dist/sync-test';
 import 'zone.js/dist/async-test';
 import 'zone.js/dist/jasmine-patch';
+import 'leaflet/dist/leaflet';
 
 // TestBed initialization
 import { TestBed } from '@angular/core/testing';
@@ -18,12 +19,8 @@ TestBed.initTestEnvironment(
     platformBrowserDynamicTesting()
 );
 
-// load all specs in ./src .
-// (require as any)('../map/map.spec.js');
-// (require as any)('../test/test.spec.js');
+// (require as any)('../map/map.spec.ts');
 
-const a = (require as any).context('./', true, /\.spec\.js$/);
-const b = (require as any).context('../map', true, /\.spec\.js$/);
+const b = (require as any).context('../map', true, /\.spec\.ts$/);
 
-a.keys().map(a)
 b.keys().map(b)
