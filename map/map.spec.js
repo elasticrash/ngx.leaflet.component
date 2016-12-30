@@ -21,7 +21,7 @@ describe('LeafletElement', function () {
     }));
 });
 describe('sub map test', function () {
-    it('always fails', function () {
+    it('never fails', function () {
         expect(1).toBe(1);
     });
 });

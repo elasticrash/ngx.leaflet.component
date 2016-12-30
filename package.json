@@ -7,7 +7,7 @@
     "start": "tsc",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
-    "pretest": "",
+    "pretest": "node node_modules/alpagegen/index.js",
     "test": "karma start karma.conf.js"
   },
   "repository": {
