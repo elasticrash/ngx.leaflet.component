@@ -7,10 +7,8 @@
     "start": "tsc",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
-    "pretest": "tsc",
-    "test": "karma start karma.conf.js",
-    "posttest": "node_modules/.bin/remap-istanbul -i coverage/coverage-final.json -o coverage -t html",
-    "coverage": "http-server -c-1 -o -p 9875 ./coverage"
+    "pretest": "",
+    "test": "karma start karma.conf.js"
   },
   "repository": {
     "type": "git",
@@ -39,9 +37,14 @@
   "devDependencies": {
     "@types/jasmine": "^2.5.39",
     "@types/node": "^6.0.54",
+    "alpagegen": "git+https://github.com/elasticrash/alpagegen.git",
+    "angular2-template-loader": "git+https://github.com/elasticrash/angular2-template-loader.git",
+    "awesome-typescript-loader": "^3.0.0-beta.17",
     "codelyzer": "~2.0.0-beta.1",
+    "css-loader": "^0.26.1",
     "es-module-loader": "^1.3.5",
     "es6-shim": "^0.35.2",
+    "html-loader": "^0.4.4",
     "jasmine": "^2.5.2",
     "jasmine-core": "^2.5.2",
     "jasmine-spec-reporter": "2.5.0",
@@ -50,18 +53,15 @@
     "karma-cli": "^1.0.1",
     "karma-coverage": "^1.1.1",
     "karma-jasmine": "^1.1.0",
-    "karma-remap-istanbul": "^0.2.1",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-spec-reporter": "0.0.26",
-    "karma-systemjs": "^0.16.0",
+    "karma-webpack": "^1.8.1",
     "node-static": "^0.7.9",
     "plugin-typescript": "^5.3.1",
     "protractor": "~4.0.13",
-    "raw-loader": "^0.5.1",
-    "systemjs": "^0.19.41",
-    "systemjs-plugin-babel": "0.0.17",
     "ts-node": "1.2.1",
     "tslint": "^4.0.2",
-    "typescript": "^2.0.10"
+    "typescript": "^2.1.4",
+    "webpack": "^2.1.0-beta.28"
   }
 }

@@ -1,5 +1,12 @@
 module.exports = () => {
     return {
+        entry: {
+            main: './map/map.ts'
+        },
+        output: {
+            path: './dist',
+            filename: '[name].bundle.js'
+        },
         resolve: {
             extensions: ['.js', '.ts', '.html']
         },
@@ -7,15 +14,19 @@ module.exports = () => {
             rules: [
                 {
                     test: /\.ts$/,
-                    loaders: [
+                    loaders:
+                    [
                         'awesome-typescript-loader',
-                        'angular2-template-loader',
-                        'css-loader'
+                        'angular2-template-loader'
                     ]
                 },
                 {
                     test: /\.html$/,
-                    loader: 'raw'
+                    loader: 'html-loader'
+                },
+                {
+                    test: /\.css$/,
+                    loader: 'css-loader'
                 }
             ]
         },

@@ -28,7 +28,7 @@ describe('LeafletElement', () => {
 });
 
 describe('sub map test', () => {
-  it('always fails', () => {
+  it('never fails', () => {
     expect(1).toBe(1);
   });
 });
