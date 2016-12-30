@@ -11,13 +11,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-var core_1 = require('@angular/core');
-var map_1 = require('../map/map');
-var group_1 = require('../group/group');
-var map_service_1 = require('../services/map.service');
-var group_service_1 = require('../services/group.service');
-var popup_service_1 = require('../services/popup.service');
-var path_1 = require('../models/path');
+var core_1 = require("@angular/core");
+var map_1 = require("../map/map");
+var group_1 = require("../group/group");
+var map_service_1 = require("../services/map.service");
+var group_service_1 = require("../services/group.service");
+var popup_service_1 = require("../services/popup.service");
+var path_1 = require("../models/path");
 var Lealflet = require('leaflet');
 var CircleElement = (function () {
     function CircleElement(mapService, groupService, popupService, LeafletElement, LeafletGroup) {
@@ -50,42 +50,46 @@ var CircleElement = (function () {
             console.warn("This circle-element will not be rendered \n the expected parent node of circle-element should be either leaf-element or leaflet-group");
         }
     };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Number)
-    ], CircleElement.prototype, "lat", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Number)
-    ], CircleElement.prototype, "lon", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Number)
-    ], CircleElement.prototype, "radius", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', String)
-    ], CircleElement.prototype, "mouseover", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', String)
-    ], CircleElement.prototype, "onclick", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Object)
-    ], CircleElement.prototype, "Options", void 0);
-    CircleElement = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'circle-element',
-            templateUrl: 'circle.html',
-            styleUrls: ['circle.css']
-        }),
-        __param(3, core_1.Optional()),
-        __param(4, core_1.Optional()), 
-        __metadata('design:paramtypes', [map_service_1.MapService, group_service_1.GroupService, popup_service_1.PopupService, map_1.LeafletElement, group_1.LeafletGroup])
-    ], CircleElement);
     return CircleElement;
 }());
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Number)
+], CircleElement.prototype, "lat", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Number)
+], CircleElement.prototype, "lon", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Number)
+], CircleElement.prototype, "radius", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], CircleElement.prototype, "mouseover", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], CircleElement.prototype, "onclick", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Object)
+], CircleElement.prototype, "Options", void 0);
+CircleElement = __decorate([
+    core_1.Component({
+        moduleId: module.id,
+        selector: 'circle-element',
+        templateUrl: 'circle.html',
+        styleUrls: ['circle.css']
+    }),
+    __param(3, core_1.Optional()),
+    __param(4, core_1.Optional()),
+    __metadata("design:paramtypes", [map_service_1.MapService,
+        group_service_1.GroupService,
+        popup_service_1.PopupService,
+        map_1.LeafletElement,
+        group_1.LeafletGroup])
+], CircleElement);
 exports.CircleElement = CircleElement;
 //# sourceMappingURL=circle.js.map

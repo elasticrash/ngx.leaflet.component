@@ -8,7 +8,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
+var core_1 = require("@angular/core");
 var GuidService = (function () {
     function GuidService() {
     }
@@ -18,11 +18,11 @@ var GuidService = (function () {
             return v.toString(16);
         });
     };
-    GuidService = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
-    ], GuidService);
     return GuidService;
 }());
+GuidService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [])
+], GuidService);
 exports.GuidService = GuidService;
 //# sourceMappingURL=globalId.service.js.map

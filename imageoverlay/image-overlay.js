@@ -8,8 +8,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var map_service_1 = require('../services/map.service');
+var core_1 = require("@angular/core");
+var map_service_1 = require("../services/map.service");
 var Lealflet = require('leaflet');
 var ImageOverlayElement = (function () {
     function ImageOverlayElement(mapService) {
@@ -35,36 +35,36 @@ var ImageOverlayElement = (function () {
             }
         }
     };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Array)
-    ], ImageOverlayElement.prototype, "bounds", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', String)
-    ], ImageOverlayElement.prototype, "imagepath", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', String)
-    ], ImageOverlayElement.prototype, "name", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Number)
-    ], ImageOverlayElement.prototype, "opacity", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', String)
-    ], ImageOverlayElement.prototype, "type", void 0);
-    ImageOverlayElement = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'image-overlay-element',
-            templateUrl: 'image-overlay.html',
-            styleUrls: ['image-overlay.css']
-        }), 
-        __metadata('design:paramtypes', [map_service_1.MapService])
-    ], ImageOverlayElement);
     return ImageOverlayElement;
 }());
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Array)
+], ImageOverlayElement.prototype, "bounds", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], ImageOverlayElement.prototype, "imagepath", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], ImageOverlayElement.prototype, "name", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Number)
+], ImageOverlayElement.prototype, "opacity", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], ImageOverlayElement.prototype, "type", void 0);
+ImageOverlayElement = __decorate([
+    core_1.Component({
+        moduleId: module.id,
+        selector: 'image-overlay-element',
+        templateUrl: 'image-overlay.html',
+        styleUrls: ['image-overlay.css']
+    }),
+    __metadata("design:paramtypes", [map_service_1.MapService])
+], ImageOverlayElement);
 exports.ImageOverlayElement = ImageOverlayElement;
 //# sourceMappingURL=image-overlay.js.map

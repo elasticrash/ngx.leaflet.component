@@ -1,12 +1,11 @@
 import { Component, Input, ViewChild, ElementRef, EventEmitter } from '@angular/core';
 import { MapService } from '../services/map.service';
-
-var Lealflet = require('leaflet');
+import { } from 'leaflet';
 
 declare var L: any;
 
 @Component({
-  moduleId: module.id,
+  moduleId: module.id.toString(),
   selector: 'leaf-element',
   templateUrl: 'map.html',
   styleUrls: ['map.css'],
