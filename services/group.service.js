@@ -8,9 +8,9 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var Rx_1 = require('rxjs/Rx');
-var globalId_service_1 = require('../services/globalId.service');
+var core_1 = require("@angular/core");
+var Rx_1 = require("rxjs/Rx");
+var globalId_service_1 = require("../services/globalId.service");
 var GroupService = (function () {
     function GroupService(guidService) {
         this.guidService = guidService;
@@ -65,11 +65,11 @@ var GroupService = (function () {
     GroupService.prototype.getLayerNumber = function () {
         return this.layerGroupNumber;
     };
-    GroupService = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [globalId_service_1.GuidService])
-    ], GroupService);
     return GroupService;
 }());
+GroupService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [globalId_service_1.GuidService])
+], GroupService);
 exports.GroupService = GroupService;
 //# sourceMappingURL=group.service.js.map

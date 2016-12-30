@@ -8,10 +8,10 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var map_service_1 = require('../services/map.service');
-var group_service_1 = require('../services/group.service');
-var globalId_service_1 = require('../services/globalId.service');
+var core_1 = require("@angular/core");
+var map_service_1 = require("../services/map.service");
+var group_service_1 = require("../services/group.service");
+var globalId_service_1 = require("../services/globalId.service");
 var Lealflet = require('leaflet');
 var LeafletGroup = (function () {
     function LeafletGroup(mapService, groupService, guidService) {
@@ -25,21 +25,23 @@ var LeafletGroup = (function () {
     };
     LeafletGroup.prototype.ngAfterViewInit = function () {
     };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', String)
-    ], LeafletGroup.prototype, "name", void 0);
-    LeafletGroup = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'leaflet-group',
-            templateUrl: 'group.html',
-            styleUrls: ['group.css'],
-            providers: [group_service_1.GroupService]
-        }), 
-        __metadata('design:paramtypes', [map_service_1.MapService, group_service_1.GroupService, globalId_service_1.GuidService])
-    ], LeafletGroup);
     return LeafletGroup;
 }());
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], LeafletGroup.prototype, "name", void 0);
+LeafletGroup = __decorate([
+    core_1.Component({
+        moduleId: module.id,
+        selector: 'leaflet-group',
+        templateUrl: 'group.html',
+        styleUrls: ['group.css'],
+        providers: [group_service_1.GroupService]
+    }),
+    __metadata("design:paramtypes", [map_service_1.MapService,
+        group_service_1.GroupService,
+        globalId_service_1.GuidService])
+], LeafletGroup);
 exports.LeafletGroup = LeafletGroup;
 //# sourceMappingURL=group.js.map

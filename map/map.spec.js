@@ -1,7 +1,7 @@
 "use strict";
-var testing_1 = require('@angular/core/testing');
-var platform_browser_1 = require('@angular/platform-browser');
-var map_1 = require('./map');
+var testing_1 = require("@angular/core/testing");
+var platform_browser_1 = require("@angular/platform-browser");
+var map_1 = require("./map");
 describe('LeafletElement', function () {
     var comp;
     var fixture;
