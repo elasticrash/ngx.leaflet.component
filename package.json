@@ -1,13 +1,14 @@
 {
   "name": "angular2.leaflet.components",
-  "version": "1.2.2",
+  "version": "1.2.3",
   "description": "an angular.io (2) component collection for leaflet",
   "main": "index.js",
   "scripts": {
     "start": "tsc",
     "tsc": "tsc",
     "tsc:w": "tsc -w",
-    "postinstall": "typings install"
+    "pretest": "node node_modules/alpagegen/index.js",
+    "test": "karma start karma.conf.js"
   },
   "repository": {
     "type": "git",
@@ -19,13 +20,48 @@
     "url": "https://github.com/elasticrash/Angular2.leaflet.component/issues"
   },
   "dependencies": {
-    "@angular/common": "^2.3.0",
-    "@angular/core": "^2.3.0",
-    "@angular/http": "^2.3.0",
-    "@angular/platform-browser": "^2.3.0",
+    "@angular/common": "^2.4.1",
+    "@angular/core": "^2.4.1",
+    "@angular/http": "^2.4.1",
+    "@angular/platform-browser": "^2.4.1",
+    "@angular/platform-browser-dynamic": "^2.4.1",
+    "@angular/compiler": "^2.4.1",
+    "@types/leaflet": "^1.0.41",
     "leaflet": "^1.0.1",
-    "rxjs": "5.0.0-rc.4",
-    "zone.js": "^0.7.2"
+    "reflect-metadata": "^0.1.9",
+    "rxjs": "5.0.1",
+    "ts-helpers": "^1.1.1",
+    "zone.js": "^0.7.4"
   },
-  "homepage": "https://github.com/elasticrash/Angular2.leaflet.component#readme"
+  "homepage": "https://github.com/elasticrash/Angular2.leaflet.component#readme",
+  "devDependencies": {
+    "@types/jasmine": "^2.5.39",
+    "@types/node": "^6.0.54",
+    "alpagegen": "git+https://github.com/elasticrash/alpagegen.git",
+    "angular2-template-loader": "git+https://github.com/elasticrash/angular2-template-loader.git",
+    "awesome-typescript-loader": "^3.0.0-beta.17",
+    "codelyzer": "~2.0.0-beta.1",
+    "css-loader": "^0.26.1",
+    "es-module-loader": "^1.3.5",
+    "es6-shim": "^0.35.2",
+    "html-loader": "^0.4.4",
+    "jasmine": "^2.5.2",
+    "jasmine-core": "^2.5.2",
+    "jasmine-spec-reporter": "2.5.0",
+    "karma": "1.2.0",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-cli": "^1.0.1",
+    "karma-coverage": "^1.1.1",
+    "karma-jasmine": "^1.1.0",
+    "karma-sourcemap-loader": "^0.3.7",
+    "karma-spec-reporter": "0.0.26",
+    "karma-webpack": "^1.8.1",
+    "node-static": "^0.7.9",
+    "plugin-typescript": "^5.3.1",
+    "protractor": "~4.0.13",
+    "ts-node": "1.2.1",
+    "tslint": "^4.0.2",
+    "typescript": "^2.1.4",
+    "webpack": "^2.1.0-beta.28"
+  }
 }

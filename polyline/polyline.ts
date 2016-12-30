@@ -52,7 +52,7 @@ export class PolylineElement {
       this.popupService.enablePopup(this.mouseover, this.onclick, this.polyline);
 
       if (this.LeafletGroup) {
-        this.groupService.addOLayersToGroup(this.polyline, map, this.mapService, this.LeafletGroup);
+        this.groupService.addOLayersToGroup(this.polyline, map, this.mapService, this.LeafletGroup, false, this.globalId);
       } else {
         this.polyline.addTo(map);
       }

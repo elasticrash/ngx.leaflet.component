@@ -1,9 +1,12 @@
 import { LeafletElement } from './map/map';
 import { LayerElement } from './layer/layer';
+import { ImageOverlayElement } from './imageoverlay/image-overlay';
 import { MarkerElement } from './marker/marker';
 import { CircleElement } from './circle/circle';
 import { PolygonElement } from './polygon/polygon';
 import { PolylineElement } from './polyline/polyline';
+import { GeoJsonElement } from './geojson/geojson';
+
 import { PopupElement } from './popup/popup';
 import { LeafletGroup } from './group/group';
 
@@ -16,10 +19,12 @@ import { HelperService } from './services/helper.service';
 export const CandTLeafletComponent = [
     LeafletElement,
     LayerElement,
+    ImageOverlayElement,
     MarkerElement,
     CircleElement,
     PolygonElement,
     PolylineElement,
+    GeoJsonElement,
     PopupElement,
     LeafletGroup
 ];
