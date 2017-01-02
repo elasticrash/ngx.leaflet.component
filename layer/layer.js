@@ -39,6 +39,7 @@ var LayerElement = (function () {
             }
             else if (this.type === "basemap") {
                 this.mapService.addBasemap(layer, this.name);
+                layer.addTo(map);
             }
         }
     };
