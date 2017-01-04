@@ -41,6 +41,7 @@ export class LayerElement {
         layer.addTo(map);
       } else if (this.type === "basemap") {
         this.mapService.addBasemap(layer, this.name);
+        layer.addTo(map);
       } 
     }
   }
