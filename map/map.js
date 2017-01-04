@@ -8,9 +8,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var map_service_1 = require('../services/map.service');
-var Lealflet = require('leaflet');
+var core_1 = require("@angular/core");
+var map_service_1 = require("../services/map.service");
 var LeafletElement = (function () {
     function LeafletElement(mapService) {
         this.mapService = mapService;
@@ -20,17 +19,36 @@ var LeafletElement = (function () {
         this.minZoom = 4;
         this.maxZoom = 19;
         this.layerControl = false;
+        this.crs = L.CRS.EPSG3857;
         this.layerControlObject = null;
     }
     LeafletElement.prototype.ngOnInit = function () {
+        if (this.x !== undefined) {
+            this.lon = this.x;
+        }
+        if (this.y !== undefined) {
+            this.lat = this.y;
+        }
+        if (typeof (this.crs) === "string") {
+            var splitCrs = this.crs.split(".");
+            if (splitCrs[0] === "L") {
+                this.crs = L[splitCrs[1]][splitCrs[2]];
+            }
+            else {
+                console.warn("something is not right, reverting to default EPSG3857");
+                this.crs = L.CRS.EPSG3857;
+            }
+        }
         var map = L.map(this.mapElement.nativeElement, {
+            crs: this.crs,
             zoomControl: false,
             center: L.latLng(this.lat, this.lon),
             zoom: this.zoom,
             minZoom: this.minZoom,
             maxZoom: this.maxZoom,
             layers: [],
-            closePopupOnClick: false
+            closePopupOnClick: false,
+            continuousWorld: false,
         });
         this.mapElement.nativeElement.myMapProperty = map;
         this.mapService.setMap(map);
@@ -49,45 +67,57 @@ var LeafletElement = (function () {
             this.layerControlObject = L.control.layers(this.mapService.getBasemaps(), this.mapService.getOverlays()).addTo(map);
         }
     };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Number)
-    ], LeafletElement.prototype, "lat", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Number)
-    ], LeafletElement.prototype, "lon", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Number)
-    ], LeafletElement.prototype, "zoom", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Number)
-    ], LeafletElement.prototype, "minZoom", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Number)
-    ], LeafletElement.prototype, "maxZoom", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Boolean)
-    ], LeafletElement.prototype, "layerControl", void 0);
-    __decorate([
-        core_1.ViewChild('map'), 
-        __metadata('design:type', core_1.ElementRef)
-    ], LeafletElement.prototype, "mapElement", void 0);
-    LeafletElement = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'leaf-element',
-            templateUrl: 'map.html',
-            styleUrls: ['map.css'],
-            providers: [map_service_1.MapService]
-        }), 
-        __metadata('design:paramtypes', [map_service_1.MapService])
-    ], LeafletElement);
     return LeafletElement;
 }());
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Number)
+], LeafletElement.prototype, "lat", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Number)
+], LeafletElement.prototype, "lon", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Number)
+], LeafletElement.prototype, "x", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Number)
+], LeafletElement.prototype, "y", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Number)
+], LeafletElement.prototype, "zoom", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Number)
+], LeafletElement.prototype, "minZoom", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Number)
+], LeafletElement.prototype, "maxZoom", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Boolean)
+], LeafletElement.prototype, "layerControl", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Object)
+], LeafletElement.prototype, "crs", void 0);
+__decorate([
+    core_1.ViewChild('map'),
+    __metadata("design:type", core_1.ElementRef)
+], LeafletElement.prototype, "mapElement", void 0);
+LeafletElement = __decorate([
+    core_1.Component({
+        moduleId: module.id.toString(),
+        selector: 'leaf-element',
+        templateUrl: 'map.html',
+        styleUrls: ['map.css'],
+        providers: [map_service_1.MapService]
+    }),
+    __metadata("design:paramtypes", [map_service_1.MapService])
+], LeafletElement);
 exports.LeafletElement = LeafletElement;
 //# sourceMappingURL=map.js.map

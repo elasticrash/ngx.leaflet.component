@@ -8,8 +8,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var map_service_1 = require('../services/map.service');
+var core_1 = require("@angular/core");
+var map_service_1 = require("../services/map.service");
 var Lealflet = require('leaflet');
 var LayerElement = (function () {
     function LayerElement(mapService) {
@@ -42,36 +42,36 @@ var LayerElement = (function () {
             }
         }
     };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', String)
-    ], LayerElement.prototype, "slippyLayer", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', String)
-    ], LayerElement.prototype, "wmsLayer", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', String)
-    ], LayerElement.prototype, "name", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Number)
-    ], LayerElement.prototype, "opacity", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', String)
-    ], LayerElement.prototype, "type", void 0);
-    LayerElement = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'layer-element',
-            templateUrl: 'layer.html',
-            styleUrls: ['layer.css']
-        }), 
-        __metadata('design:paramtypes', [map_service_1.MapService])
-    ], LayerElement);
     return LayerElement;
 }());
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], LayerElement.prototype, "slippyLayer", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], LayerElement.prototype, "wmsLayer", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], LayerElement.prototype, "name", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Number)
+], LayerElement.prototype, "opacity", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], LayerElement.prototype, "type", void 0);
+LayerElement = __decorate([
+    core_1.Component({
+        moduleId: module.id,
+        selector: 'layer-element',
+        templateUrl: 'layer.html',
+        styleUrls: ['layer.css']
+    }),
+    __metadata("design:paramtypes", [map_service_1.MapService])
+], LayerElement);
 exports.LayerElement = LayerElement;
 //# sourceMappingURL=layer.js.map

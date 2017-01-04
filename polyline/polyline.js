@@ -11,15 +11,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-var core_1 = require('@angular/core');
-var map_1 = require('../map/map');
-var group_1 = require('../group/group');
-var map_service_1 = require('../services/map.service');
-var group_service_1 = require('../services/group.service');
-var popup_service_1 = require('../services/popup.service');
-var globalId_service_1 = require('../services/globalId.service');
-var helper_service_1 = require('../services/helper.service');
-var path_1 = require('../models/path');
+var core_1 = require("@angular/core");
+var map_1 = require("../map/map");
+var group_1 = require("../group/group");
+var map_service_1 = require("../services/map.service");
+var group_service_1 = require("../services/group.service");
+var popup_service_1 = require("../services/popup.service");
+var globalId_service_1 = require("../services/globalId.service");
+var helper_service_1 = require("../services/helper.service");
+var path_1 = require("../models/path");
 var Lealflet = require('leaflet');
 var PolylineElement = (function () {
     function PolylineElement(mapService, groupService, popupService, guidService, helperService, LeafletElement, LeafletGroup) {
@@ -46,7 +46,7 @@ var PolylineElement = (function () {
             this.polyline = L.polyline(this.latlngs, inheritedOptions);
             this.popupService.enablePopup(this.mouseover, this.onclick, this.polyline);
             if (this.LeafletGroup) {
-                this.groupService.addOLayersToGroup(this.polyline, map, this.mapService, this.LeafletGroup);
+                this.groupService.addOLayersToGroup(this.polyline, map, this.mapService, this.LeafletGroup, false, this.globalId);
             }
             else {
                 this.polyline.addTo(map);
@@ -74,34 +74,40 @@ var PolylineElement = (function () {
             }
         }
     };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Array)
-    ], PolylineElement.prototype, "latlngs", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Object)
-    ], PolylineElement.prototype, "Options", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', String)
-    ], PolylineElement.prototype, "mouseover", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', String)
-    ], PolylineElement.prototype, "onclick", void 0);
-    PolylineElement = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'polyline-element',
-            templateUrl: 'polyline.html',
-            styleUrls: ['polyline.css']
-        }),
-        __param(5, core_1.Optional()),
-        __param(6, core_1.Optional()), 
-        __metadata('design:paramtypes', [map_service_1.MapService, group_service_1.GroupService, popup_service_1.PopupService, globalId_service_1.GuidService, helper_service_1.HelperService, map_1.LeafletElement, group_1.LeafletGroup])
-    ], PolylineElement);
     return PolylineElement;
 }());
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Array)
+], PolylineElement.prototype, "latlngs", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Object)
+], PolylineElement.prototype, "Options", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], PolylineElement.prototype, "mouseover", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], PolylineElement.prototype, "onclick", void 0);
+PolylineElement = __decorate([
+    core_1.Component({
+        moduleId: module.id,
+        selector: 'polyline-element',
+        templateUrl: 'polyline.html',
+        styleUrls: ['polyline.css']
+    }),
+    __param(5, core_1.Optional()),
+    __param(6, core_1.Optional()),
+    __metadata("design:paramtypes", [map_service_1.MapService,
+        group_service_1.GroupService,
+        popup_service_1.PopupService,
+        globalId_service_1.GuidService,
+        helper_service_1.HelperService,
+        map_1.LeafletElement,
+        group_1.LeafletGroup])
+], PolylineElement);
 exports.PolylineElement = PolylineElement;
 //# sourceMappingURL=polyline.js.map

@@ -8,8 +8,8 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
-var Rx_1 = require('rxjs/Rx');
+var core_1 = require("@angular/core");
+var Rx_1 = require("rxjs/Rx");
 var MapService = (function () {
     function MapService() {
         this.basemaps = {};
@@ -133,11 +133,11 @@ var MapService = (function () {
             this.layerControlObject = L.control.layers(this.getBasemaps(), this.getOverlays()).addTo(map);
         }
     };
-    MapService = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
-    ], MapService);
     return MapService;
 }());
+MapService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [])
+], MapService);
 exports.MapService = MapService;
 //# sourceMappingURL=map.service.js.map
