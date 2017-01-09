@@ -2,14 +2,14 @@
 
 my own attemp on creating an Angular 2 leaflet v1.x component
 
-13/12/2016
 Live examples
 * base example https://elasticrash.github.io/Angular.io.MapViewer/example/
 * multi-map example https://elasticrash.github.io/Angular.io.MapViewer/example/#/mm-map
 * star map using L.CRS.Simple https://elasticrash.github.io/Angular.io.MapViewer/example/#/simple
+* custom CRS using leaflet https://elasticrash.github.io/Angular.io.MapViewer/example/#/prj
 * a simple genetic algorithm trying to solve the Travelling salesman problem https://elasticrash.github.io/Angular.io.MapViewer/example/#/random
 
-22/10/2016
+all examples sources code can be found [here](https://github.com/elasticrash/Angular.io.MapViewer)
 
 Bare in mind that I just started developing this and I don't have much time to plan things ahead
 mainly due to not enough free time, so I am making changes as I go
@@ -71,9 +71,6 @@ Leaflet stylesheet is not included, so you need to add it yourself
 for usage check the wiki
 
 https://github.com/elasticrash/Angular2.leaflet.component/wiki
-
-you can see an example on the following repository
-https://github.com/elasticrash/Angular.io.MapViewer on develop branch
 
 
 If anyone wants to help in any way feel free to do a fork and a pull request
