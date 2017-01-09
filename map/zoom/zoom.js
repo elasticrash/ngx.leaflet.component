@@ -11,10 +11,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-var core_1 = require('@angular/core');
-var map_1 = require('../map/map');
-var map_service_1 = require('../services/map.service');
-var zoomModel_1 = require('../models/zoomModel');
+var core_1 = require("@angular/core");
+var map_1 = require("../map");
+var map_service_1 = require("../../services/map.service");
+var zoomModel_1 = require("../../models/zoomModel");
 var Lealflet = require('leaflet');
 var ZoomControl = (function () {
     function ZoomControl(mapService, LeafletElement) {
@@ -31,21 +31,22 @@ var ZoomControl = (function () {
             console.warn("This zoom-control will not be rendered \n the expected parent node of zoom-control should be leaf-element");
         }
     };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', zoomModel_1.zoomModel)
-    ], ZoomControl.prototype, "Options", void 0);
-    ZoomControl = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'zoom-control',
-            templateUrl: 'zoom.html',
-            styleUrls: ['zoom.css']
-        }),
-        __param(1, core_1.Optional()), 
-        __metadata('design:paramtypes', [map_service_1.MapService, map_1.LeafletElement])
-    ], ZoomControl);
     return ZoomControl;
 }());
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", zoomModel_1.zoomModel)
+], ZoomControl.prototype, "Options", void 0);
+ZoomControl = __decorate([
+    core_1.Component({
+        moduleId: module.id,
+        selector: 'zoom-control',
+        templateUrl: 'zoom.html',
+        styleUrls: ['zoom.css']
+    }),
+    __param(1, core_1.Optional()),
+    __metadata("design:paramtypes", [map_service_1.MapService,
+        map_1.LeafletElement])
+], ZoomControl);
 exports.ZoomControl = ZoomControl;
 //# sourceMappingURL=zoom.js.map

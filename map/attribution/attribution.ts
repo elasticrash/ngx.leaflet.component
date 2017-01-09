@@ -1,7 +1,7 @@
 import { Component, Input, Injector, Optional } from '@angular/core';
-import { LeafletElement } from '../map/map';
-import { MapService } from '../services/map.service';
-import { attributionModel } from '../models/attributionModel';
+import { LeafletElement } from '../map';
+import { MapService } from '../../services/map.service';
+import { attributionModel } from '../../models/attributionModel';
 
 var Lealflet = require('leaflet');
 declare var L: any;

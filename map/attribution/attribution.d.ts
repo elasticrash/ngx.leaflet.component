@@ -1,6 +1,6 @@
-import { LeafletElement } from '../map/map';
-import { MapService } from '../services/map.service';
-import { attributionModel } from '../models/attributionModel';
+import { LeafletElement } from '../map';
+import { MapService } from '../../services/map.service';
+import { attributionModel } from '../../models/attributionModel';
 export declare class AttributionControl {
     private mapService;
     private LeafletElement;

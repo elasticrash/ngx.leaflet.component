@@ -11,10 +11,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-var core_1 = require('@angular/core');
-var map_1 = require('../map/map');
-var map_service_1 = require('../services/map.service');
-var scaleModel_1 = require('../models/scaleModel');
+var core_1 = require("@angular/core");
+var map_1 = require("../map");
+var map_service_1 = require("../../services/map.service");
+var scaleModel_1 = require("../../models/scaleModel");
 var Lealflet = require('leaflet');
 var ScaleControl = (function () {
     function ScaleControl(mapService, LeafletElement) {
@@ -31,21 +31,22 @@ var ScaleControl = (function () {
             console.warn("This scale-control will not be rendered \n the expected parent node of scale-control should be leaf-element");
         }
     };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', scaleModel_1.scaleModel)
-    ], ScaleControl.prototype, "Options", void 0);
-    ScaleControl = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'scale-control',
-            templateUrl: 'scale.html',
-            styleUrls: ['scale.css']
-        }),
-        __param(1, core_1.Optional()), 
-        __metadata('design:paramtypes', [map_service_1.MapService, map_1.LeafletElement])
-    ], ScaleControl);
     return ScaleControl;
 }());
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", scaleModel_1.scaleModel)
+], ScaleControl.prototype, "Options", void 0);
+ScaleControl = __decorate([
+    core_1.Component({
+        moduleId: module.id,
+        selector: 'scale-control',
+        templateUrl: 'scale.html',
+        styleUrls: ['scale.css']
+    }),
+    __param(1, core_1.Optional()),
+    __metadata("design:paramtypes", [map_service_1.MapService,
+        map_1.LeafletElement])
+], ScaleControl);
 exports.ScaleControl = ScaleControl;
 //# sourceMappingURL=scale.js.map

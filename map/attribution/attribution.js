@@ -11,10 +11,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-var core_1 = require('@angular/core');
-var map_1 = require('../map/map');
-var map_service_1 = require('../services/map.service');
-var attributionModel_1 = require('../models/attributionModel');
+var core_1 = require("@angular/core");
+var map_1 = require("../map");
+var map_service_1 = require("../../services/map.service");
+var attributionModel_1 = require("../../models/attributionModel");
 var Lealflet = require('leaflet');
 var AttributionControl = (function () {
     function AttributionControl(mapService, LeafletElement) {
@@ -31,21 +31,22 @@ var AttributionControl = (function () {
             console.warn("This zoom-control will not be rendered \n the expected parent node of zoom-control should be leaf-element");
         }
     };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', attributionModel_1.attributionModel)
-    ], AttributionControl.prototype, "Options", void 0);
-    AttributionControl = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'attribution-control',
-            templateUrl: 'attribution.html',
-            styleUrls: ['attribution.css']
-        }),
-        __param(1, core_1.Optional()), 
-        __metadata('design:paramtypes', [map_service_1.MapService, map_1.LeafletElement])
-    ], AttributionControl);
     return AttributionControl;
 }());
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", attributionModel_1.attributionModel)
+], AttributionControl.prototype, "Options", void 0);
+AttributionControl = __decorate([
+    core_1.Component({
+        moduleId: module.id,
+        selector: 'attribution-control',
+        templateUrl: 'attribution.html',
+        styleUrls: ['attribution.css']
+    }),
+    __param(1, core_1.Optional()),
+    __metadata("design:paramtypes", [map_service_1.MapService,
+        map_1.LeafletElement])
+], AttributionControl);
 exports.AttributionControl = AttributionControl;
 //# sourceMappingURL=attribution.js.map
