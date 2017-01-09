@@ -1,9 +1,12 @@
 import { LeafletElement } from './map/map';
 import { LayerElement } from './layer/layer';
+import { ImageOverlayElement } from './imageoverlay/image-overlay';
 import { MarkerElement } from './marker/marker';
 import { CircleElement } from './circle/circle';
 import { PolygonElement } from './polygon/polygon';
 import { PolylineElement } from './polyline/polyline';
+import { GeoJsonElement } from './geojson/geojson';
+
 import { PopupElement } from './popup/popup';
 import { ZoomControl } from './zoom/zoom';
 import { ScaleControl } from './scale/scale';
@@ -13,14 +16,18 @@ import { LeafletGroup } from './group/group';
 import { MapService } from './services/map.service'
 import { GroupService } from './services/group.service'
 import { PopupService } from './services/popup.service';
+import { GuidService } from './services/globalId.service';
+import { HelperService } from './services/helper.service';
 
 export const CandTLeafletComponent = [
     LeafletElement,
     LayerElement,
+    ImageOverlayElement,
     MarkerElement,
     CircleElement,
     PolygonElement,
     PolylineElement,
+    GeoJsonElement,
     PopupElement,
     LeafletGroup,
     ZoomControl,
@@ -28,4 +35,8 @@ export const CandTLeafletComponent = [
     AttributionControl
 ];
 
-export const CandTLeafletService = [MapService, GroupService, PopupService];
+export const CandTLeafletService = [MapService,
+    GroupService,
+    PopupService,
+    GuidService,
+    HelperService];

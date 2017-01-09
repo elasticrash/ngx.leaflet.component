@@ -11,16 +11,16 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
-var core_1 = require('@angular/core');
-var map_service_1 = require('../services/map.service');
-var group_service_1 = require('../services/group.service');
-var popup_service_1 = require('../services/popup.service');
-var map_1 = require('../map/map');
-var group_1 = require('../group/group');
-var http_1 = require('@angular/http');
-var Rx_1 = require('rxjs/Rx');
-require('rxjs/add/operator/map');
-require('rxjs/add/operator/catch');
+var core_1 = require("@angular/core");
+var map_service_1 = require("../services/map.service");
+var group_service_1 = require("../services/group.service");
+var popup_service_1 = require("../services/popup.service");
+var map_1 = require("../map/map");
+var group_1 = require("../group/group");
+var http_1 = require("@angular/http");
+var Rx_1 = require("rxjs/Rx");
+require("rxjs/add/operator/map");
+require("rxjs/add/operator/catch");
 var Lealflet = require('leaflet');
 var MarkerElement = (function () {
     function MarkerElement(mapService, groupService, popupService, http, LeafletElement, LeafletGroup) {
@@ -79,7 +79,7 @@ var MarkerElement = (function () {
     MarkerElement.prototype.createMarkerlayer = function (marker, map) {
         this.popupService.enablePopup(this.mouseover, this.onclick, marker);
         if (this.LeafletGroup) {
-            this.groupService.addOLayersToGroup(marker);
+            this.groupService.addOLayersToGroup(marker, map, this.mapService, this.LeafletGroup);
         }
         else {
             marker.addTo(map);
@@ -101,39 +101,44 @@ var MarkerElement = (function () {
             .map(function (res) { return res; })
             .catch(function (error) { return Rx_1.Observable.throw('Server error'); });
     };
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Number)
-    ], MarkerElement.prototype, "lat", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', Number)
-    ], MarkerElement.prototype, "lon", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', String)
-    ], MarkerElement.prototype, "mouseover", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', String)
-    ], MarkerElement.prototype, "onclick", void 0);
-    __decorate([
-        core_1.Input(), 
-        __metadata('design:type', String)
-    ], MarkerElement.prototype, "iconUrl", void 0);
-    MarkerElement = __decorate([
-        core_1.Component({
-            moduleId: module.id,
-            selector: 'marker-element',
-            templateUrl: 'marker.html',
-            styleUrls: ['marker.css'],
-            providers: [popup_service_1.PopupService]
-        }),
-        __param(4, core_1.Optional()),
-        __param(5, core_1.Optional()), 
-        __metadata('design:paramtypes', [map_service_1.MapService, group_service_1.GroupService, popup_service_1.PopupService, http_1.Http, map_1.LeafletElement, group_1.LeafletGroup])
-    ], MarkerElement);
     return MarkerElement;
 }());
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Number)
+], MarkerElement.prototype, "lat", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", Number)
+], MarkerElement.prototype, "lon", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], MarkerElement.prototype, "mouseover", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], MarkerElement.prototype, "onclick", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], MarkerElement.prototype, "iconUrl", void 0);
+MarkerElement = __decorate([
+    core_1.Component({
+        moduleId: module.id,
+        selector: 'marker-element',
+        templateUrl: 'marker.html',
+        styleUrls: ['marker.css'],
+        providers: [popup_service_1.PopupService]
+    }),
+    __param(4, core_1.Optional()),
+    __param(5, core_1.Optional()),
+    __metadata("design:paramtypes", [map_service_1.MapService,
+        group_service_1.GroupService,
+        popup_service_1.PopupService,
+        http_1.Http,
+        map_1.LeafletElement,
+        group_1.LeafletGroup])
+], MarkerElement);
 exports.MarkerElement = MarkerElement;
 //# sourceMappingURL=marker.js.map

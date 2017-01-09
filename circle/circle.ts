@@ -45,8 +45,7 @@ export class CircleElement {
       this.popupService.enablePopup(this.mouseover, this.onclick, circle);
 
       if (this.LeafletGroup) {
-        this.groupService.addOLayersToGroup(circle);
-        this.groupService.increaseNumber();
+        this.groupService.addOLayersToGroup(circle, map, this.mapService, this.LeafletGroup);
       } else {
         circle.addTo(map);
       }

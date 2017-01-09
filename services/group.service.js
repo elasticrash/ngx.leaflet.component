@@ -8,14 +8,53 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
-var core_1 = require('@angular/core');
+var core_1 = require("@angular/core");
+var Rx_1 = require("rxjs/Rx");
+var globalId_service_1 = require("../services/globalId.service");
 var GroupService = (function () {
-    function GroupService() {
+    function GroupService(guidService) {
+        this.guidService = guidService;
         this.layerGroup = [];
+        this.layerId = [];
         this.layerGroupNumber = 0;
+        this.group = {};
     }
-    GroupService.prototype.addOLayersToGroup = function (overlay) {
-        this.layerGroup.push(overlay);
+    GroupService.prototype.addOLayersToGroup = function (overlay, map, mapService, group, replace, gId) {
+        if (replace === void 0) { replace = false; }
+        if (!gId) {
+            gId = this.guidService.newGuid();
+        }
+        if (this.layerId.indexOf(gId) === -1) {
+            this.layerId.push(gId);
+        }
+        if (Object.keys(this.group).length !== 0) {
+            map.removeLayer(this.group);
+            if (replace) {
+                if (this.layerId.indexOf(gId) !== -1) {
+                    this.layerGroup[this.layerId.indexOf(gId)] = overlay;
+                }
+                else {
+                    this.layerGroup.push(overlay);
+                }
+            }
+        }
+        if (!replace) {
+            this.layerGroup.push(overlay);
+        }
+        this.group = L.layerGroup(this.getLayerGroup());
+        this.group.addTo(map);
+        mapService.addOverlay(this.getGroup(), group.name, group.globalId);
+    };
+    GroupService.prototype.getObservableGroup = function () {
+        var _this = this;
+        return Rx_1.Observable.create(function (observer) {
+            var group = _this.getGroup();
+            observer.next(group);
+            observer.complete();
+        });
+    };
+    GroupService.prototype.getGroup = function () {
+        return this.group;
     };
     GroupService.prototype.getLayerGroup = function () {
         return this.layerGroup;
@@ -26,11 +65,11 @@ var GroupService = (function () {
     GroupService.prototype.getLayerNumber = function () {
         return this.layerGroupNumber;
     };
-    GroupService = __decorate([
-        core_1.Injectable(), 
-        __metadata('design:paramtypes', [])
-    ], GroupService);
     return GroupService;
 }());
+GroupService = __decorate([
+    core_1.Injectable(),
+    __metadata("design:paramtypes", [globalId_service_1.GuidService])
+], GroupService);
 exports.GroupService = GroupService;
 //# sourceMappingURL=group.service.js.map

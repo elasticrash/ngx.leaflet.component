@@ -1,12 +1,11 @@
-import { Component, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef, EventEmitter } from '@angular/core';
 import { MapService } from '../services/map.service';
-
-var Lealflet = require('leaflet');
+import { } from 'leaflet';
 
 declare var L: any;
 
 @Component({
-  moduleId: module.id,
+  moduleId: module.id.toString(),
   selector: 'leaf-element',
   templateUrl: 'map.html',
   styleUrls: ['map.css'],
@@ -16,24 +15,50 @@ declare var L: any;
 export class LeafletElement {
   @Input() lat: number = 52.6;
   @Input() lon: number = -1.1;
+  @Input() x: number;
+  @Input() y: number;
   @Input() zoom: number = 12;
   @Input() minZoom: number = 4;
   @Input() maxZoom: number = 19;
   @Input() layerControl: boolean = false;
+  @Input() crs: any = L.CRS.EPSG3857;
   @ViewChild('map') mapElement: ElementRef;
+
+  layerControlObject = null;
 
   constructor(private mapService: MapService) {
   }
 
   ngOnInit() {
+
+    if (this.x !== undefined) {
+      this.lon = this.x;
+    }
+
+    if (this.y !== undefined) {
+      this.lat = this.y;
+    }
+
+    if (typeof (this.crs) === "string") {
+      var splitCrs = this.crs.split(".");
+      if (splitCrs[0] === "L") {
+        this.crs = L[splitCrs[1]][splitCrs[2]];
+      } else {
+        console.warn("something is not right, reverting to default EPSG3857");
+        this.crs = L.CRS.EPSG3857;
+      }
+    }
+
     let map = L.map(this.mapElement.nativeElement, {
+      crs: this.crs,
       zoomControl: false,
       center: L.latLng(this.lat, this.lon),
       zoom: this.zoom,
       minZoom: this.minZoom,
       maxZoom: this.maxZoom,
       layers: [],
-      closePopupOnClick: false
+      closePopupOnClick: false,
+      continuousWorld: false,
     });
     this.mapElement.nativeElement.myMapProperty = map;
 
@@ -43,31 +68,15 @@ export class LeafletElement {
   }
 
   ngAfterViewInit() {
-    let model = this;
-    if (this.layerControl) {
-      let map = this.mapService.getMap();
-
-      if (Object.keys(this.mapService.getBasemaps()).length + Object.keys(this.mapService.getOverlays()).length !== this.mapService.getLayerNumber()) {
-        setTimeout(function () {
-          model.loop();
-        }, 200);
-      } else {
-        L.control.layers(this.mapService.getBasemaps(), this.mapService.getOverlays()).addTo(map);
-      }
-    }
   }
 
-  loop() {
-    let model = this;
-    let map = this.mapService.getMap();
-
-    if (Object.keys(this.mapService.getBasemaps()).length + Object.keys(this.mapService.getOverlays()).length !== this.mapService.getLayerNumber()) {
-      setTimeout(function () {
-        model.loop();
-      }, 200);
+  setLayerControl() {
+    if (this.layerControl) {
+      let map = this.mapService.getMap();
+      if (this.layerControlObject !== null) {
+        this.layerControlObject.getContainer().innerHTML = '';
+      }
+      this.layerControlObject = L.control.layers(this.mapService.getBasemaps(), this.mapService.getOverlays()).addTo(map);
     }
-    else {
-      L.control.layers(this.mapService.getBasemaps(), this.mapService.getOverlays()).addTo(map);
-    };
   }
 }
