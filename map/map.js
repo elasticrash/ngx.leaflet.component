@@ -53,8 +53,6 @@ var LeafletElement = (function () {
         this.mapElement.nativeElement.myMapProperty = map;
         this.mapService.setMap(map);
         this.mapService.setLayerControl(this.layerControl);
-        L.control.zoom({ position: "topright" }).addTo(map);
-        L.control.scale().addTo(map);
     };
     LeafletElement.prototype.ngAfterViewInit = function () {
     };

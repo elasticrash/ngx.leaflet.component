@@ -15,6 +15,12 @@
     "url": "git+https://github.com/elasticrash/Angular2.leaflet.component.git"
   },
   "author": "Stefanos Kouroupis",
+  "contributors": [
+    {
+      "name": "Giorgos Papapdakis",
+      "url" : "https://github.com/xalikoutis"
+    }
+  ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/elasticrash/Angular2.leaflet.component/issues"
