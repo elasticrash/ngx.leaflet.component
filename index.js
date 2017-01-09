@@ -1,4 +1,5 @@
 "use strict";
+
 var map_1 = require("./map/map");
 var layer_1 = require("./layer/layer");
 var image_overlay_1 = require("./imageoverlay/image-overlay");
@@ -14,6 +15,7 @@ var group_service_1 = require("./services/group.service");
 var popup_service_1 = require("./services/popup.service");
 var globalId_service_1 = require("./services/globalId.service");
 var helper_service_1 = require("./services/helper.service");
+
 exports.CandTLeafletComponent = [
     map_1.LeafletElement,
     layer_1.LayerElement,
@@ -24,7 +26,10 @@ exports.CandTLeafletComponent = [
     polyline_1.PolylineElement,
     geojson_1.GeoJsonElement,
     popup_1.PopupElement,
-    group_1.LeafletGroup
+    group_1.LeafletGroup,
+    zoom_1.ZoomControl,
+    scale_1.ScaleControl,
+    attribution_1.AttributionControl
 ];
 exports.CandTLeafletService = [map_service_1.MapService,
     group_service_1.GroupService,

@@ -5,7 +5,6 @@ import { MapService } from '../services/map.service';
 import { GroupService } from '../services/group.service';
 
 var Lealflet = require('leaflet');
-
 declare var L: any;
 
 @Component({

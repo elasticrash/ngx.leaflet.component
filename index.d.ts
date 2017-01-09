@@ -7,10 +7,14 @@ import { PolygonElement } from './polygon/polygon';
 import { PolylineElement } from './polyline/polyline';
 import { GeoJsonElement } from './geojson/geojson';
 import { PopupElement } from './popup/popup';
+import { ZoomControl } from './zoom/zoom';
+import { ScaleControl } from './scale/scale';
+import { AttributionControl } from './attribution/attribution';
 import { LeafletGroup } from './group/group';
 import { MapService } from './services/map.service';
 import { GroupService } from './services/group.service';
 import { PopupService } from './services/popup.service';
+
 import { GuidService } from './services/globalId.service';
 import { HelperService } from './services/helper.service';
 export declare const CandTLeafletComponent: (typeof LeafletElement | typeof LeafletGroup | typeof CircleElement | typeof GeoJsonElement | typeof ImageOverlayElement | typeof LayerElement | typeof MarkerElement | typeof PolygonElement | typeof PolylineElement | typeof PopupElement)[];
