@@ -15,7 +15,7 @@ var core_1 = require("@angular/core");
 var map_1 = require("../map");
 var map_service_1 = require("../../services/map.service");
 var scaleModel_1 = require("../../models/scaleModel");
-var Lealflet = require('leaflet');
+var L = require("leaflet");
 var ScaleControl = (function () {
     function ScaleControl(mapService, LeafletElement) {
         this.mapService = mapService;
@@ -35,7 +35,7 @@ var ScaleControl = (function () {
 }());
 __decorate([
     core_1.Input(),
-    __metadata("design:type", scaleModel_1.scaleModel)
+    __metadata("design:type", Object)
 ], ScaleControl.prototype, "Options", void 0);
 ScaleControl = __decorate([
     core_1.Component({

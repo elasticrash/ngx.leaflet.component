@@ -8,10 +8,8 @@ import { GuidService } from '../services/globalId.service';
 import { HelperService } from '../services/helper.service';
 import { path } from '../models/path';
 import { Ipath } from '../interfaces/path';
+import * as L from 'leaflet';
 
-var Lealflet = require('leaflet');
-
-declare var L: any;
 
 @Component({
   moduleId: module.id,
@@ -21,13 +19,13 @@ declare var L: any;
 })
 
 export class PolygonElement {
-  @Input() latlngs: Array<Array<Array<number>>> = [[[52.65, -1.2], [52.645, -1.15], [52.696, -1.155], [52.697, -1.189]],
+  @Input() latlngs: any = [[[52.65, -1.2], [52.645, -1.15], [52.696, -1.155], [52.697, -1.189]],
   [[52.66, -1.19], [52.665, -1.16], [52.686, -1.161], [52.687, -1.179]]];
   @Input() Options: Ipath = new path(null);
   @Input() mouseover: string = "";
   @Input() onclick: string = "";
   polygon: any = null;
-  originalObject: Array<Array<Array<number>>> = [...this.latlngs];
+  originalObject: any = [...this.latlngs];
   globalId: string = this.guidService.newGuid();
 
   constructor(
@@ -43,7 +41,7 @@ export class PolygonElement {
   ngOnInit() {
     //check if any of the two optional injections exist
     if (this.LeafletElement || this.LeafletGroup) {
-      let inheritedOptions = new path(this.Options);
+      let inheritedOptions: any = new path(this.Options);
       let map = this.mapService.getMap();
       this.polygon = L.polygon([this.latlngs], inheritedOptions);
 
@@ -68,7 +66,7 @@ export class PolygonElement {
     if (!same) {
       this.originalObject = [...this.latlngs];
       //if the layer is part of a group
-      let inheritedOptions = new path(this.Options);
+      let inheritedOptions: any = new path(this.Options);
 
       if (this.LeafletGroup) {
         this.polygon = L.polygon([this.latlngs], inheritedOptions);

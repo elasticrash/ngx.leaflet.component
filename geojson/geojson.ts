@@ -6,10 +6,7 @@ import { GroupService } from '../services/group.service';
 import { PopupService } from '../services/popup.service';
 import { GuidService } from '../services/globalId.service';
 import { HelperService } from '../services/helper.service';
-
-var Lealflet = require('leaflet');
-
-declare var L: any;
+import * as L from 'leaflet';
 
 @Component({
   moduleId: module.id,
@@ -19,7 +16,7 @@ declare var L: any;
 })
 
 export class GeoJsonElement {
-  @Input() geojson: Object = {};
+  @Input() geojson: any = {};
   originalObject: any = Object.assign({}, this.geojson);
   globalId: string = this.guidService.newGuid();
 

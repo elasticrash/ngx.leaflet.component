@@ -14,12 +14,12 @@ export declare class PolygonElement {
     private helperService;
     private LeafletElement;
     private LeafletGroup;
-    latlngs: Array<Array<Array<number>>>;
+    latlngs: any;
     Options: Ipath;
     mouseover: string;
     onclick: string;
     polygon: any;
-    originalObject: Array<Array<Array<number>>>;
+    originalObject: any;
     globalId: string;
     constructor(mapService: MapService, groupService: GroupService, popupService: PopupService, guidService: GuidService, helperService: HelperService, LeafletElement?: LeafletElement, LeafletGroup?: LeafletGroup);
     ngOnInit(): void;

@@ -15,7 +15,7 @@ var core_1 = require("@angular/core");
 var map_1 = require("../map");
 var map_service_1 = require("../../services/map.service");
 var zoomModel_1 = require("../../models/zoomModel");
-var Lealflet = require('leaflet');
+var L = require("leaflet");
 var ZoomControl = (function () {
     function ZoomControl(mapService, LeafletElement) {
         this.mapService = mapService;
@@ -35,7 +35,7 @@ var ZoomControl = (function () {
 }());
 __decorate([
     core_1.Input(),
-    __metadata("design:type", zoomModel_1.zoomModel)
+    __metadata("design:type", Object)
 ], ZoomControl.prototype, "Options", void 0);
 ZoomControl = __decorate([
     core_1.Component({

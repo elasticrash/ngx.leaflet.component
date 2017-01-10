@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var map_service_1 = require("../services/map.service");
-var Lealflet = require('leaflet');
+var L = require("leaflet");
 var LayerElement = (function () {
     function LayerElement(mapService) {
         this.mapService = mapService;

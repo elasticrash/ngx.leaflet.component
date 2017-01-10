@@ -1,12 +1,9 @@
-
 import { Component, Input, Injector, Optional } from '@angular/core';
 import { LeafletElement } from '../map';
 import { MapService } from '../../services/map.service';
 import { scaleModel } from '../../models/scaleModel';
+import * as L from 'leaflet';
 
-var Lealflet = require('leaflet');
-
-declare var L: any;
 
 @Component({
     moduleId: module.id,
@@ -15,7 +12,7 @@ declare var L: any;
     styleUrls: ['scale.css']
 })
 export class ScaleControl {
-    @Input() Options: scaleModel = new scaleModel(null);
+    @Input() Options: any = new scaleModel(null);
     constructor(
         private mapService: MapService,
         @Optional() private LeafletElement?: LeafletElement) {        

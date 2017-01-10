@@ -10,13 +10,17 @@
         "sourceMap": true,
         "outDir": "",
         "declaration": true,
+        "typeRoots": [
+            "node_modules/@types"
+        ],
         "lib": [
             "es2015",
             "dom"
         ],
         "types": [
             "node",
-            "jasmine"
+            "jasmine",
+            "leaflet"
         ]
     },
     "awesomeTypeScriptLoaderOptions": {

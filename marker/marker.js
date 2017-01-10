@@ -21,7 +21,7 @@ var http_1 = require("@angular/http");
 var Rx_1 = require("rxjs/Rx");
 require("rxjs/add/operator/map");
 require("rxjs/add/operator/catch");
-var Lealflet = require('leaflet');
+var L = require("leaflet");
 var MarkerElement = (function () {
     function MarkerElement(mapService, groupService, popupService, http, LeafletElement, LeafletGroup) {
         this.mapService = mapService;
