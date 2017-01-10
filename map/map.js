@@ -10,6 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var map_service_1 = require("../services/map.service");
+var L = require("leaflet");
 var LeafletElement = (function () {
     function LeafletElement(mapService) {
         this.mapService = mapService;
@@ -47,8 +48,7 @@ var LeafletElement = (function () {
             minZoom: this.minZoom,
             maxZoom: this.maxZoom,
             layers: [],
-            closePopupOnClick: false,
-            continuousWorld: false,
+            closePopupOnClick: false
         });
         this.mapElement.nativeElement.myMapProperty = map;
         this.mapService.setMap(map);

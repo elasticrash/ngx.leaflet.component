@@ -15,7 +15,7 @@ var core_1 = require("@angular/core");
 var map_1 = require("../map");
 var map_service_1 = require("../../services/map.service");
 var attributionModel_1 = require("../../models/attributionModel");
-var Lealflet = require('leaflet');
+var L = require("leaflet");
 var AttributionControl = (function () {
     function AttributionControl(mapService, LeafletElement) {
         this.mapService = mapService;
@@ -35,7 +35,7 @@ var AttributionControl = (function () {
 }());
 __decorate([
     core_1.Input(),
-    __metadata("design:type", attributionModel_1.attributionModel)
+    __metadata("design:type", Object)
 ], AttributionControl.prototype, "Options", void 0);
 AttributionControl = __decorate([
     core_1.Component({

@@ -18,7 +18,7 @@ var map_service_1 = require("../services/map.service");
 var group_service_1 = require("../services/group.service");
 var popup_service_1 = require("../services/popup.service");
 var path_1 = require("../models/path");
-var Lealflet = require('leaflet');
+var L = require("leaflet");
 var CircleElement = (function () {
     function CircleElement(mapService, groupService, popupService, LeafletElement, LeafletGroup) {
         this.mapService = mapService;

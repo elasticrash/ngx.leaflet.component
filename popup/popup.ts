@@ -3,9 +3,8 @@ import { LeafletElement } from '../map/map';
 import { LeafletGroup } from '../group/group';
 import { MapService } from '../services/map.service';
 import { GroupService } from '../services/group.service';
+import * as L from 'leaflet';
 
-var Lealflet = require('leaflet');
-declare var L: any;
 
 @Component({
   moduleId: module.id,

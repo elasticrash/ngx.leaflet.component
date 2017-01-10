@@ -1,8 +1,6 @@
 import { Component, Input, ViewChild, ElementRef, EventEmitter } from '@angular/core';
 import { MapService } from '../services/map.service';
-import { } from 'leaflet';
-
-declare var L: any;
+import * as L from 'leaflet';
 
 @Component({
   moduleId: module.id.toString(),
@@ -57,8 +55,7 @@ export class LeafletElement {
       minZoom: this.minZoom,
       maxZoom: this.maxZoom,
       layers: [],
-      closePopupOnClick: false,
-      continuousWorld: false,
+      closePopupOnClick: false
     });
     this.mapElement.nativeElement.myMapProperty = map;
 

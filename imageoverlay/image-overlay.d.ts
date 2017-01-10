@@ -1,7 +1,7 @@
 import { MapService } from '../services/map.service';
 export declare class ImageOverlayElement {
     private mapService;
-    bounds: Array<Array<number>>;
+    bounds: any;
     imagepath: string;
     name: string;
     opacity: number;

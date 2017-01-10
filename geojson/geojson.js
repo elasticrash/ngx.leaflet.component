@@ -19,7 +19,7 @@ var group_service_1 = require("../services/group.service");
 var popup_service_1 = require("../services/popup.service");
 var globalId_service_1 = require("../services/globalId.service");
 var helper_service_1 = require("../services/helper.service");
-var Lealflet = require('leaflet');
+var L = require("leaflet");
 var GeoJsonElement = (function () {
     function GeoJsonElement(mapService, groupService, popupService, guidService, helperService, LeafletElement, LeafletGroup) {
         this.mapService = mapService;
