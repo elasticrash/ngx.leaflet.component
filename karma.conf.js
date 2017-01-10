@@ -8,10 +8,10 @@ module.exports = function (config) {
         exclude: [
         ],
         preprocessors: {
-            'test/tsloader.js': ['webpack', 'sourcemap']
+            'test/tsloader.js': ['webpack', 'sourcemap', 'coverage']
         },
         webpack: require('./webpack.config')({ env: 'test' }),
-        reporters: ['spec'],
+        reporters: ['spec', 'coverage'],
         port: 9876,
         colors: true,
         logLevel: config.LOG_INFO,
