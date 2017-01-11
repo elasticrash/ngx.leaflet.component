@@ -11,4 +11,4 @@ var testing_2 = require("@angular/platform-browser-dynamic/testing");
 testing_1.TestBed.initTestEnvironment(testing_2.BrowserDynamicTestingModule, testing_2.platformBrowserDynamicTesting());
 var b = require.context('../map', true, /\.spec\.ts$/);
 b.keys().map(b);
-//# sourceMappingURL=main.spec.js.map
+//# sourceMappingURL=main.test.js.map
