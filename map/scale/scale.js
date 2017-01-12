@@ -39,7 +39,7 @@ __decorate([
 ], ScaleControl.prototype, "Options", void 0);
 ScaleControl = __decorate([
     core_1.Component({
-        moduleId: module.id,
+        moduleId: module.id.toString(),
         selector: 'scale-control',
         templateUrl: 'scale.html',
         styleUrls: ['scale.css']

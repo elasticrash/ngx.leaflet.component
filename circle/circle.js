@@ -78,7 +78,7 @@ __decorate([
 ], CircleElement.prototype, "Options", void 0);
 CircleElement = __decorate([
     core_1.Component({
-        moduleId: module.id,
+        moduleId: module.id.toString(),
         selector: 'circle-element',
         templateUrl: 'circle.html',
         styleUrls: ['circle.css']

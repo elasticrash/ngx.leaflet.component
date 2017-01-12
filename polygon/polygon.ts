@@ -12,7 +12,7 @@ import * as L from 'leaflet';
 
 
 @Component({
-  moduleId: module.id,
+  moduleId: module.id.toString(),
   selector: 'polygon-element',
   templateUrl: 'polygon.html',
   styleUrls: ['polygon.css']

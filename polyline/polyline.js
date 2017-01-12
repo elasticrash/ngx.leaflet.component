@@ -94,7 +94,7 @@ __decorate([
 ], PolylineElement.prototype, "onclick", void 0);
 PolylineElement = __decorate([
     core_1.Component({
-        moduleId: module.id,
+        moduleId: module.id.toString(),
         selector: 'polyline-element',
         templateUrl: 'polyline.html',
         styleUrls: ['polyline.css']

@@ -67,7 +67,7 @@ __decorate([
 ], LayerElement.prototype, "type", void 0);
 LayerElement = __decorate([
     core_1.Component({
-        moduleId: module.id,
+        moduleId: module.id.toString(),
         selector: 'layer-element',
         templateUrl: 'layer.html',
         styleUrls: ['layer.css']

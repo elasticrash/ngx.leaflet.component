@@ -32,7 +32,7 @@ __decorate([
 ], LeafletGroup.prototype, "name", void 0);
 LeafletGroup = __decorate([
     core_1.Component({
-        moduleId: module.id,
+        moduleId: module.id.toString(),
         selector: 'leaflet-group',
         templateUrl: 'group.html',
         styleUrls: ['group.css'],

@@ -11,7 +11,7 @@ import { Ipath } from '../interfaces/path';
 import * as L from 'leaflet';
 
 @Component({
-  moduleId: module.id,
+  moduleId: module.id.toString(),
   selector: 'polyline-element',
   templateUrl: 'polyline.html',
   styleUrls: ['polyline.css']

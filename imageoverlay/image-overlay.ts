@@ -4,7 +4,7 @@ import * as L from 'leaflet';
 
 
 @Component({
-  moduleId: module.id,
+  moduleId: module.id.toString(),
   selector: 'image-overlay-element',
   templateUrl: 'image-overlay.html',
   styleUrls: ['image-overlay.css']

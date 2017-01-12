@@ -10,7 +10,7 @@ import * as L from 'leaflet';
 
 
 @Component({
-  moduleId: module.id,
+  moduleId: module.id.toString(),
   selector: 'circle-element',
   templateUrl: 'circle.html',
   styleUrls: ['circle.css']

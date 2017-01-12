@@ -39,7 +39,7 @@ __decorate([
 ], ZoomControl.prototype, "Options", void 0);
 ZoomControl = __decorate([
     core_1.Component({
-        moduleId: module.id,
+        moduleId: module.id.toString(),
         selector: 'zoom-control',
         templateUrl: 'zoom.html',
         styleUrls: ['zoom.css']

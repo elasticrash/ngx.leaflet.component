@@ -93,7 +93,7 @@ __decorate([
 ], PolygonElement.prototype, "onclick", void 0);
 PolygonElement = __decorate([
     core_1.Component({
-        moduleId: module.id,
+        moduleId: module.id.toString(),
         selector: 'polygon-element',
         templateUrl: 'polygon.html',
         styleUrls: ['polygon.css']

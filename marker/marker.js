@@ -125,7 +125,7 @@ __decorate([
 ], MarkerElement.prototype, "iconUrl", void 0);
 MarkerElement = __decorate([
     core_1.Component({
-        moduleId: module.id,
+        moduleId: module.id.toString(),
         selector: 'marker-element',
         templateUrl: 'marker.html',
         styleUrls: ['marker.css'],
