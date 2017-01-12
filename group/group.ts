@@ -6,7 +6,7 @@ import * as L from 'leaflet';
 
 
 @Component({
-    moduleId: module.id,
+    moduleId: module.id.toString(),
     selector: 'leaflet-group',
     templateUrl: 'group.html',
     styleUrls: ['group.css'],

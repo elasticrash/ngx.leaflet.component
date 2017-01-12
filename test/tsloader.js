@@ -1,1 +1,2 @@
-require('./main.spec.ts');
+require('./main.test.ts');
+//# sourceMappingURL=tsloader.js.map

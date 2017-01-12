@@ -1,4 +1,7 @@
-import { LeafletElement } from './map/map';
+import { LeafletElement } from './map/map'
+import { AttributionControl } from './map/attribution/attribution'
+import { ScaleControl } from './map/scale/scale';
+import { ZoomControl } from './map/zoom/zoom';
 import { LayerElement } from './layer/layer';
 import { ImageOverlayElement } from './imageoverlay/image-overlay';
 import { MarkerElement } from './marker/marker';
@@ -17,7 +20,12 @@ import { GuidService } from './services/globalId.service';
 import { HelperService } from './services/helper.service';
 
 export const CandTLeafletComponent = [
+    //map and controls
     LeafletElement,
+    AttributionControl,
+    ScaleControl,
+    ZoomControl,
+    //layers and vectors
     LayerElement,
     ImageOverlayElement,
     MarkerElement,
@@ -26,6 +34,7 @@ export const CandTLeafletComponent = [
     PolylineElement,
     GeoJsonElement,
     PopupElement,
+    //rest
     LeafletGroup
 ];
 

@@ -7,7 +7,7 @@ import * as L from 'leaflet';
 
 
 @Component({
-  moduleId: module.id,
+  moduleId: module.id.toString(),
   selector: 'popup-element',
   templateUrl: 'popup.html',
   styleUrls: ['popup.css']

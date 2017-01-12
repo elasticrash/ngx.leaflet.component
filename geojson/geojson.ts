@@ -9,7 +9,7 @@ import { HelperService } from '../services/helper.service';
 import * as L from 'leaflet';
 
 @Component({
-  moduleId: module.id,
+  moduleId: module.id.toString(),
   selector: 'geojson-element',
   templateUrl: 'geojson.html',
   styleUrls: ['geojson.css']

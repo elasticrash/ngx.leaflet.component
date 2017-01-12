@@ -59,7 +59,7 @@ __decorate([
 ], GeoJsonElement.prototype, "geojson", void 0);
 GeoJsonElement = __decorate([
     core_1.Component({
-        moduleId: module.id,
+        moduleId: module.id.toString(),
         selector: 'geojson-element',
         templateUrl: 'geojson.html',
         styleUrls: ['geojson.css']

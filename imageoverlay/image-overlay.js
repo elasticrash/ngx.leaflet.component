@@ -59,7 +59,7 @@ __decorate([
 ], ImageOverlayElement.prototype, "type", void 0);
 ImageOverlayElement = __decorate([
     core_1.Component({
-        moduleId: module.id,
+        moduleId: module.id.toString(),
         selector: 'image-overlay-element',
         templateUrl: 'image-overlay.html',
         styleUrls: ['image-overlay.css']

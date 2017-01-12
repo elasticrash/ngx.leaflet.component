@@ -59,7 +59,7 @@ __decorate([
 ], PopupElement.prototype, "content", void 0);
 PopupElement = __decorate([
     core_1.Component({
-        moduleId: module.id,
+        moduleId: module.id.toString(),
         selector: 'popup-element',
         templateUrl: 'popup.html',
         styleUrls: ['popup.css']
