@@ -5,7 +5,7 @@ var scaleModel = (function () {
         this.metric = true;
         this.imperial = true;
         this.updateWhenIdle = true;
-        this.position = "topright";
+        this.position = "bottomleft";
         if (options !== null) {
             for (var key in options) {
                 if (options[key]) {
