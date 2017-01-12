@@ -6,6 +6,7 @@ export declare class LayerElement {
     name: string;
     opacity: number;
     type: string;
+    attribution: string;
     constructor(mapService: MapService);
     ngOnInit(): void;
 }

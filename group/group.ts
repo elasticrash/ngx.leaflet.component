@@ -16,7 +16,7 @@ import * as L from 'leaflet';
 export class LeafletGroup {
     @Input() name: string = '';
     globalId: string = this.guidService.newGuid();
-    
+
     constructor(
         private mapService: MapService,
         private groupService: GroupService,
@@ -29,5 +29,5 @@ export class LeafletGroup {
     ngAfterViewInit() {
     }
 
-   
+
 }

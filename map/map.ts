@@ -3,7 +3,7 @@ import { MapService } from '../services/map.service';
 import * as L from 'leaflet';
 
 @Component({
-  moduleId: module.id.toString(),
+  // moduleId: module.id.toString(),
   selector: 'leaf-element',
   templateUrl: 'map.html',
   styleUrls: ['map.css'],
