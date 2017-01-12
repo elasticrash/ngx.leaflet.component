@@ -18,7 +18,7 @@ var map_service_1 = require("../services/map.service");
 var group_service_1 = require("../services/group.service");
 var popup_service_1 = require("../services/popup.service");
 var path_1 = require("../models/path");
-var Lealflet = require('leaflet');
+var L = require("leaflet");
 var CircleElement = (function () {
     function CircleElement(mapService, groupService, popupService, LeafletElement, LeafletGroup) {
         this.mapService = mapService;
@@ -78,7 +78,7 @@ __decorate([
 ], CircleElement.prototype, "Options", void 0);
 CircleElement = __decorate([
     core_1.Component({
-        moduleId: module.id,
+        moduleId: module.id.toString(),
         selector: 'circle-element',
         templateUrl: 'circle.html',
         styleUrls: ['circle.css']

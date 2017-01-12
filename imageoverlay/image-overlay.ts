@@ -1,19 +1,17 @@
 import { Component, Input } from '@angular/core';
 import { MapService } from '../services/map.service';
+import * as L from 'leaflet';
 
-var Lealflet = require('leaflet');
-
-declare var L: any;
 
 @Component({
-  moduleId: module.id,
+  moduleId: module.id.toString(),
   selector: 'image-overlay-element',
   templateUrl: 'image-overlay.html',
   styleUrls: ['image-overlay.css']
 })
 
 export class ImageOverlayElement {
-  @Input() bounds: Array<Array<number>> = [[-26.5, -25], [1021.5, 1023]];
+  @Input() bounds: any = [[-26.5, -25], [1021.5, 1023]];
   @Input() imagepath: string = '';
   @Input() name: string = '';
   @Input() opacity: number = 1;

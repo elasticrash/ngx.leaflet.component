@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var core_1 = require("@angular/core");
 var Rx_1 = require("rxjs/Rx");
 var globalId_service_1 = require("../services/globalId.service");
+var L = require("leaflet");
 var GroupService = (function () {
     function GroupService(guidService) {
         this.guidService = guidService;

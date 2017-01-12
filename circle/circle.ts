@@ -6,13 +6,11 @@ import { GroupService } from '../services/group.service';
 import { PopupService } from '../services/popup.service';
 import { path } from '../models/path';
 import { Ipath } from '../interfaces/path';
+import * as L from 'leaflet';
 
-var Lealflet = require('leaflet');
-
-declare var L: any;
 
 @Component({
-  moduleId: module.id,
+  moduleId: module.id.toString(),
   selector: 'circle-element',
   templateUrl: 'circle.html',
   styleUrls: ['circle.css']
@@ -24,7 +22,7 @@ export class CircleElement {
   @Input() radius: number = 20;
   @Input() mouseover: string = "";
   @Input() onclick: string = "";
-  @Input() Options: Ipath = new path(null);
+  @Input() Options: any = new path(null);
 
   constructor(
     private mapService: MapService,
@@ -37,7 +35,7 @@ export class CircleElement {
   ngOnInit() {
     //check if any of the two optional injections exist
     if (this.LeafletElement || this.LeafletGroup) {
-      let inheritedOptions = new path(this.Options);
+      let inheritedOptions:any = new path(this.Options);
       let map = this.mapService.getMap();
       let circle = L.circle([this.lat, this.lon], this.radius, inheritedOptions);
 

@@ -1,12 +1,10 @@
 import { Component, Input } from '@angular/core';
 import { MapService } from '../services/map.service';
+import * as L from 'leaflet';
 
-var Lealflet = require('leaflet');
-
-declare var L: any;
 
 @Component({
-  moduleId: module.id,
+  moduleId: module.id.toString(),
   selector: 'layer-element',
   templateUrl: 'layer.html',
   styleUrls: ['layer.css']

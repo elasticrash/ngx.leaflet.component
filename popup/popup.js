@@ -16,7 +16,7 @@ var map_1 = require("../map/map");
 var group_1 = require("../group/group");
 var map_service_1 = require("../services/map.service");
 var group_service_1 = require("../services/group.service");
-var Lealflet = require('leaflet');
+var L = require("leaflet");
 var PopupElement = (function () {
     function PopupElement(mapService, groupService, LeafletElement, LeafletGroup) {
         this.mapService = mapService;
@@ -59,7 +59,7 @@ __decorate([
 ], PopupElement.prototype, "content", void 0);
 PopupElement = __decorate([
     core_1.Component({
-        moduleId: module.id,
+        moduleId: module.id.toString(),
         selector: 'popup-element',
         templateUrl: 'popup.html',
         styleUrls: ['popup.css']

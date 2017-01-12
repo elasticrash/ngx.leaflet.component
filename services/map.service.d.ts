@@ -15,8 +15,8 @@ export declare class MapService {
     addBasemap(basemap: any, name: any): void;
     getUniqueName(name: any): string;
     addOverlay(overlay: any, name: string, gId?: string): void;
-    getBasemaps(): Object;
-    getOverlays(): Object;
+    getBasemaps(): any;
+    getOverlays(): any;
     getObservableOverlays(): any;
     getObservableBasemaps(): any;
     refreshOverlays(remove: any, add: any): void;

@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var map_service_1 = require("../services/map.service");
-var Lealflet = require('leaflet');
+var L = require("leaflet");
 var LayerElement = (function () {
     function LayerElement(mapService) {
         this.mapService = mapService;
@@ -67,7 +67,7 @@ __decorate([
 ], LayerElement.prototype, "type", void 0);
 LayerElement = __decorate([
     core_1.Component({
-        moduleId: module.id,
+        moduleId: module.id.toString(),
         selector: 'layer-element',
         templateUrl: 'layer.html',
         styleUrls: ['layer.css']

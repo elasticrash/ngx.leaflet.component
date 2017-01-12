@@ -20,7 +20,7 @@ var popup_service_1 = require("../services/popup.service");
 var globalId_service_1 = require("../services/globalId.service");
 var helper_service_1 = require("../services/helper.service");
 var path_1 = require("../models/path");
-var Lealflet = require('leaflet');
+var L = require("leaflet");
 var PolylineElement = (function () {
     function PolylineElement(mapService, groupService, popupService, guidService, helperService, LeafletElement, LeafletGroup) {
         this.mapService = mapService;
@@ -78,7 +78,7 @@ var PolylineElement = (function () {
 }());
 __decorate([
     core_1.Input(),
-    __metadata("design:type", Array)
+    __metadata("design:type", Object)
 ], PolylineElement.prototype, "latlngs", void 0);
 __decorate([
     core_1.Input(),
@@ -94,7 +94,7 @@ __decorate([
 ], PolylineElement.prototype, "onclick", void 0);
 PolylineElement = __decorate([
     core_1.Component({
-        moduleId: module.id,
+        moduleId: module.id.toString(),
         selector: 'polyline-element',
         templateUrl: 'polyline.html',
         styleUrls: ['polyline.css']
