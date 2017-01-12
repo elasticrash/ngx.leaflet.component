@@ -6,7 +6,7 @@ var Lealflet = require('leaflet');
 declare var L: any;
 
 @Component({
-  moduleId: module.id,
+  // moduleId: module.id,
   selector: 'layer-element',
   templateUrl: 'layer.html',
   styleUrls: ['layer.css']
@@ -17,7 +17,8 @@ export class LayerElement {
   @Input() wmsLayer: string = '';
   @Input() name: string = '';
   @Input() opacity: number = 1;
-  @Input() type: string = 'overlay'
+  @Input() type: string = 'overlay';
+  @Input() attribution: string;
 
   constructor(private mapService: MapService) {
   }
@@ -27,7 +28,9 @@ export class LayerElement {
     let map = this.mapService.getMap();
     let layer = null;
     if (this.slippyLayer !== "") {
-      layer = L.tileLayer(this.slippyLayer);
+      layer = L.tileLayer(this.slippyLayer, {
+          attribution: this.attribution,
+      });
     }
     if (this.wmsLayer !== "" && this.name !== "") {
       layer = L.tileLayer.wms(this.wmsLayer, {
@@ -42,7 +45,7 @@ export class LayerElement {
       } else if (this.type === "basemap") {
         this.mapService.addBasemap(layer, this.name);
         layer.addTo(map);
-      } 
+      }
     }
   }
 }

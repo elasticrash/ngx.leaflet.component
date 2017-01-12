@@ -14,7 +14,7 @@ var Lealflet = require('leaflet');
 declare var L: any;
 
 @Component({
-  moduleId: module.id,
+  // moduleId: module.id,
   selector: 'polyline-element',
   templateUrl: 'polyline.html',
   styleUrls: ['polyline.css']

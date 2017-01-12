@@ -12,7 +12,7 @@ var Lealflet = require('leaflet');
 declare var L: any;
 
 @Component({
-  moduleId: module.id,
+  // moduleId: module.id,
   selector: 'circle-element',
   templateUrl: 'circle.html',
   styleUrls: ['circle.css']

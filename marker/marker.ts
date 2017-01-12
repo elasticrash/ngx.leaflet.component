@@ -15,7 +15,7 @@ var Lealflet = require('leaflet');
 declare var L: any;
 
 @Component({
-  moduleId: module.id,
+  // moduleId: module.id,
   selector: 'marker-element',
   templateUrl: 'marker.html',
   styleUrls: ['marker.css'],
@@ -67,8 +67,8 @@ export class MarkerElement {
                 img.src = reader.result;
                 var myIcon = L.icon({
                   iconUrl: model.iconUrl,
-                  iconSize: [img.height, img.height],
-                  iconAnchor: [img.height / 2, img.height - 1],
+                  iconSize: [img.width, img.height],
+                  iconAnchor: [img.width / 2, img.height - 1],
                   popupAnchor: [0, -img.height]
                 });
                 marker = L.marker([model.lat, model.lon], { icon: myIcon });

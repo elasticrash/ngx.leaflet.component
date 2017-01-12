@@ -12,7 +12,7 @@ var Lealflet = require('leaflet');
 declare var L: any;
 
 @Component({
-  moduleId: module.id,
+  // moduleId: module.id,
   selector: 'geojson-element',
   templateUrl: 'geojson.html',
   styleUrls: ['geojson.css']

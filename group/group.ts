@@ -8,7 +8,7 @@ var Lealflet = require('leaflet');
 declare var L: any;
 
 @Component({
-    moduleId: module.id,
+    // moduleId: module.id,
     selector: 'leaflet-group',
     templateUrl: 'group.html',
     styleUrls: ['group.css'],
@@ -18,7 +18,7 @@ declare var L: any;
 export class LeafletGroup {
     @Input() name: string = '';
     globalId: string = this.guidService.newGuid();
-    
+
     constructor(
         private mapService: MapService,
         private groupService: GroupService,
@@ -31,5 +31,5 @@ export class LeafletGroup {
     ngAfterViewInit() {
     }
 
-   
+
 }

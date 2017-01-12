@@ -9,7 +9,7 @@ var Lealflet = require('leaflet');
 declare var L: any;
 
 @Component({
-  moduleId: module.id,
+  // moduleId: module.id,
   selector: 'popup-element',
   templateUrl: 'popup.html',
   styleUrls: ['popup.css']

@@ -6,7 +6,7 @@ var Lealflet = require('leaflet');
 declare var L: any;
 
 @Component({
-  moduleId: module.id,
+  // moduleId: module.id,
   selector: 'image-overlay-element',
   templateUrl: 'image-overlay.html',
   styleUrls: ['image-overlay.css']
