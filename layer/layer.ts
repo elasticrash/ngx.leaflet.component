@@ -25,7 +25,7 @@ export class LayerElement {
     let map = this.mapService.getMap();
     let layer = null;
     if (this.slippyLayer !== "") {
-      layer = L.tileLayer(this.slippyLayer).addTo(map);
+      layer = L.tileLayer(this.slippyLayer);
     }
     if (this.wmsLayer !== "" && this.name !== "") {
       layer = L.tileLayer.wms(this.wmsLayer, {
