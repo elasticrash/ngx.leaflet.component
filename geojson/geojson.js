@@ -19,7 +19,7 @@ var group_service_1 = require("../services/group.service");
 var popup_service_1 = require("../services/popup.service");
 var globalId_service_1 = require("../services/globalId.service");
 var helper_service_1 = require("../services/helper.service");
-var Lealflet = require('leaflet');
+var L = require("leaflet");
 var GeoJsonElement = (function () {
     function GeoJsonElement(mapService, groupService, popupService, guidService, helperService, LeafletElement, LeafletGroup) {
         this.mapService = mapService;
@@ -59,7 +59,7 @@ __decorate([
 ], GeoJsonElement.prototype, "geojson", void 0);
 GeoJsonElement = __decorate([
     core_1.Component({
-        moduleId: module.id,
+        moduleId: module.id.toString(),
         selector: 'geojson-element',
         templateUrl: 'geojson.html',
         styleUrls: ['geojson.css']

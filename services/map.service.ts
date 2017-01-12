@@ -1,13 +1,13 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
+import * as L from 'leaflet';
 
-declare var L: any;
 
 @Injectable()
 export class MapService {
     private map;
-    private basemaps: Object = {};
-    private overlays: Object = {};
+    private basemaps: any = {};
+    private overlays: any = {};
     private layerControlflag: Boolean = false;
     private layersInControlNumber: number = 0;
     private layerControlObject: any = {};

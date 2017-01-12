@@ -16,7 +16,10 @@ module.exports = () => {
                     test: /\.ts$/,
                     loaders:
                     [
-                        'awesome-typescript-loader',
+                        'awesome-typescript-loader?' + JSON.stringify({
+                            sourceMap: false,
+                            inlineSourceMap: true
+                        }),
                         'angular2-template-loader'
                     ]
                 },
@@ -27,6 +30,16 @@ module.exports = () => {
                 {
                     test: /\.css$/,
                     loader: 'css-loader'
+                },
+                {
+                    test: /\.ts$/,
+                    loader: 'istanbul-instrumenter-loader',
+                    exclude: [
+                        'node_modules',
+                        'test',
+                        /\.(e2e|spec)\.ts$/
+                    ],
+                    enforce: 'post'
                 }
             ]
         },

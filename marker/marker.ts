@@ -9,13 +9,10 @@ import { Observable } from 'rxjs/Rx';
 
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-
-var Lealflet = require('leaflet');
-
-declare var L: any;
+import * as L from 'leaflet';
 
 @Component({
-  // moduleId: module.id,
+  moduleId: module.id.toString(),
   selector: 'marker-element',
   templateUrl: 'marker.html',
   styleUrls: ['marker.css'],

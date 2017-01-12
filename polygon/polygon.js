@@ -20,7 +20,7 @@ var popup_service_1 = require("../services/popup.service");
 var globalId_service_1 = require("../services/globalId.service");
 var helper_service_1 = require("../services/helper.service");
 var path_1 = require("../models/path");
-var Lealflet = require('leaflet');
+var L = require("leaflet");
 var PolygonElement = (function () {
     function PolygonElement(mapService, groupService, popupService, guidService, helperService, LeafletElement, LeafletGroup) {
         this.mapService = mapService;
@@ -77,7 +77,7 @@ var PolygonElement = (function () {
 }());
 __decorate([
     core_1.Input(),
-    __metadata("design:type", Array)
+    __metadata("design:type", Object)
 ], PolygonElement.prototype, "latlngs", void 0);
 __decorate([
     core_1.Input(),
@@ -93,7 +93,7 @@ __decorate([
 ], PolygonElement.prototype, "onclick", void 0);
 PolygonElement = __decorate([
     core_1.Component({
-        moduleId: module.id,
+        moduleId: module.id.toString(),
         selector: 'polygon-element',
         templateUrl: 'polygon.html',
         styleUrls: ['polygon.css']

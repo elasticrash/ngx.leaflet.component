@@ -1,8 +1,6 @@
 import { Component, Input, ViewChild, ElementRef, EventEmitter } from '@angular/core';
 import { MapService } from '../services/map.service';
-import { } from 'leaflet';
-
-declare var L: any;
+import * as L from 'leaflet';
 
 @Component({
   // moduleId: module.id.toString(),
@@ -57,18 +55,13 @@ export class LeafletElement {
       minZoom: this.minZoom,
       maxZoom: this.maxZoom,
       layers: [],
-      closePopupOnClick: false,
-      continuousWorld: false,
+      closePopupOnClick: false
     });
     this.mapElement.nativeElement.myMapProperty = map;
 
     //set variables for childrent components
     this.mapService.setMap(map);
-    this.mapService.setLayerControl(this.layerControl);
-
-    //at some point they need to be optional and configurable
-    L.control.zoom({ position: "topright" }).addTo(map);
-    L.control.scale().addTo(map);
+    this.mapService.setLayerControl(this.layerControl);    
   }
 
   ngAfterViewInit() {

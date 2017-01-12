@@ -8,25 +8,22 @@ import { GuidService } from '../services/globalId.service';
 import { HelperService } from '../services/helper.service';
 import { path } from '../models/path';
 import { Ipath } from '../interfaces/path';
-
-var Lealflet = require('leaflet');
-
-declare var L: any;
+import * as L from 'leaflet';
 
 @Component({
-  // moduleId: module.id,
+  moduleId: module.id.toString(),
   selector: 'polyline-element',
   templateUrl: 'polyline.html',
   styleUrls: ['polyline.css']
 })
 
 export class PolylineElement {
-  @Input() latlngs: Array<Array<number>> = [[52.6, -1.1], [52.605, -1.1], [52.606, -1.105], [52.697, -1.109]];
-  @Input() Options: Ipath = new path(null);
+  @Input() latlngs: any = [[52.6, -1.1], [52.605, -1.1], [52.606, -1.105], [52.697, -1.109]];
+  @Input() Options: any = new path(null);
   @Input() mouseover: string = "";
   @Input() onclick: string = "";
   polyline: any = null;
-  originalObject: Array<Array<number>> = [...this.latlngs];
+  originalObject: any = [...this.latlngs];
   globalId: string = this.guidService.newGuid();
 
   constructor(
@@ -44,7 +41,7 @@ export class PolylineElement {
     if (this.LeafletElement || this.LeafletGroup) {
       //polyline shouldn't have a fill
       this.Options.fill = false;
-      let inheritedOptions = new path(this.Options);
+      let inheritedOptions: any = new path(this.Options);
       let map = this.mapService.getMap();
       this.polyline = L.polyline(this.latlngs, inheritedOptions);
 
@@ -70,7 +67,7 @@ export class PolylineElement {
       this.originalObject = [...this.latlngs];
       //if the layer is part of a group
       this.Options.fill = false;
-      let inheritedOptions = new path(this.Options);
+      let inheritedOptions: any = new path(this.Options);
 
       if (this.LeafletGroup) {
         this.polyline = L.polyline(this.latlngs, inheritedOptions);

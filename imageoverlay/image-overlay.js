@@ -10,7 +10,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 var core_1 = require("@angular/core");
 var map_service_1 = require("../services/map.service");
-var Lealflet = require('leaflet');
+var L = require("leaflet");
 var ImageOverlayElement = (function () {
     function ImageOverlayElement(mapService) {
         this.mapService = mapService;
@@ -39,7 +39,7 @@ var ImageOverlayElement = (function () {
 }());
 __decorate([
     core_1.Input(),
-    __metadata("design:type", Array)
+    __metadata("design:type", Object)
 ], ImageOverlayElement.prototype, "bounds", void 0);
 __decorate([
     core_1.Input(),
@@ -59,7 +59,7 @@ __decorate([
 ], ImageOverlayElement.prototype, "type", void 0);
 ImageOverlayElement = __decorate([
     core_1.Component({
-        moduleId: module.id,
+        moduleId: module.id.toString(),
         selector: 'image-overlay-element',
         templateUrl: 'image-overlay.html',
         styleUrls: ['image-overlay.css']

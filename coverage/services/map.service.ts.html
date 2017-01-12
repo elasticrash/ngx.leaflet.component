@@ -1,0 +1,476 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for services/map.service.ts</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">all files</a> / <a href="index.html">services/</a> map.service.ts
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">35.63% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>31/87</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">0% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>0/22</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">20% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>4/20</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">34.94% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>29/83</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138</td><td class="line-coverage quiet"><span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1×</span></td><td class="text"><pre class="prettyprint lang-js">import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Rx';
+import * as L from 'leaflet';
+&nbsp;
+&nbsp;
+@Injectable()
+export class MapService {
+    private map;
+    private basemaps: any = {};
+    private overlays: any = {};
+    private layerControlflag: Boolean = false;
+    private layersInControlNumber: number = 0;
+    private layerControlObject: any = {};
+    private groupIdentifiers: Array&lt;string&gt; = [];
+    private groupNames: Array&lt;string&gt; = [];
+&nbsp;
+    constructor() { }
+&nbsp;
+    public setMap(map) {
+        this.map = map;
+    }
+<span class="fstat-no" title="function not covered" >    public getMap() {</span>
+<span class="cstat-no" title="statement not covered" >        return this.map;</span>
+    }
+&nbsp;
+    public setLayerControl(state) {
+        this.layerControlflag = state;
+    }
+<span class="fstat-no" title="function not covered" >    public getLayerControl() {</span>
+<span class="cstat-no" title="statement not covered" >        return this.layerControlflag;</span>
+    }
+&nbsp;
+    public addBasemap(basemap, name<span class="fstat-no" title="function not covered" >) {</span>
+<span class="cstat-no" title="statement not covered" >        if (name === '') {</span>
+<span class="cstat-no" title="statement not covered" >            name = 'unknown layer';</span>
+        }
+<span class="cstat-no" title="statement not covered" >        if (this.basemaps[name] === undefined) {</span>
+<span class="cstat-no" title="statement not covered" >            this.basemaps[name] = basemap;</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >            name = this.getUniqueName(name);</span>
+<span class="cstat-no" title="statement not covered" >            this.addBasemap(basemap, name)</span>
+        }
+    }
+&nbsp;
+    public getUniqueName(name<span class="fstat-no" title="function not covered" >) {</span>
+        let nameindex: number = <span class="cstat-no" title="statement not covered" >0;</span>
+        let newName: string = <span class="cstat-no" title="statement not covered" >name;</span>
+<span class="cstat-no" title="statement not covered" >        if (name.indexOf('(') !== -1) {</span>
+<span class="cstat-no" title="statement not covered" >            nameindex = parseInt(name.split('(')[1].split(')')[0]);</span>
+<span class="cstat-no" title="statement not covered" >            nameindex += 1;</span>
+<span class="cstat-no" title="statement not covered" >            newName = name.split('(')[0];</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >            nameindex = 1;</span>
+        }
+<span class="cstat-no" title="statement not covered" >        return name = newName + '(' + nameindex + ')';</span>
+    }
+&nbsp;
+    public addOverlay(overlay, name: string, gId?: string<span class="fstat-no" title="function not covered" >) {</span>
+<span class="cstat-no" title="statement not covered" >        if (this.groupIdentifiers.indexOf(gId) !== -1) {</span>
+            let index = <span class="cstat-no" title="statement not covered" >this.groupIdentifiers.indexOf(gId);</span>
+            let existing_name: string = <span class="cstat-no" title="statement not covered" >this.groupNames[index];</span>
+<span class="cstat-no" title="statement not covered" >            this.overlays[existing_name] = overlay;</span>
+        } else {
+<span class="cstat-no" title="statement not covered" >            if (name === '') {</span>
+<span class="cstat-no" title="statement not covered" >                name = 'unknown group';</span>
+            }
+<span class="cstat-no" title="statement not covered" >            if (this.overlays[name] === undefined) {</span>
+<span class="cstat-no" title="statement not covered" >                this.groupNames.push(name);</span>
+<span class="cstat-no" title="statement not covered" >                this.groupIdentifiers.push(gId);</span>
+<span class="cstat-no" title="statement not covered" >                this.overlays[name] = overlay;</span>
+            } else {
+<span class="cstat-no" title="statement not covered" >                name = this.getUniqueName(name);</span>
+<span class="cstat-no" title="statement not covered" >                if (this.groupNames.indexOf(name) === -1) {</span>
+<span class="cstat-no" title="statement not covered" >                    this.groupNames.push(name);</span>
+<span class="cstat-no" title="statement not covered" >                    this.groupIdentifiers.push(gId);</span>
+                } else {
+<span class="cstat-no" title="statement not covered" >                    this.addOverlay(overlay, name);</span>
+                }
+            }
+        }
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        this.addControl();</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    public getBasemaps() {</span>
+<span class="cstat-no" title="statement not covered" >        return this.basemaps;</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    public getOverlays() {</span>
+<span class="cstat-no" title="statement not covered" >        return this.overlays;</span>
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >    public getObservableOverlays() {</span></span>
+<span class="cstat-no" title="statement not covered" >        return Observable.create(observer<span class="fstat-no" title="function not covered" > =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >            observer.next(this.overlays);</span>
+<span class="cstat-no" title="statement not covered" >            observer.complete();</span>
+        });
+    }
+&nbsp;
+<span class="cstat-no" title="statement not covered" ><span class="fstat-no" title="function not covered" >    public getObservableBasemaps() {</span></span>
+<span class="cstat-no" title="statement not covered" >        return Observable.create(observer<span class="fstat-no" title="function not covered" > =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >            observer.next(this.basemaps);</span>
+<span class="cstat-no" title="statement not covered" >            observer.complete();</span>
+        });
+    }
+&nbsp;
+    public refreshOverlays(remove, add<span class="fstat-no" title="function not covered" >) {</span>
+        let overlays = <span class="cstat-no" title="statement not covered" >this.getOverlays();</span>
+<span class="cstat-no" title="statement not covered" >        for (var key in overlays) {</span>
+<span class="cstat-no" title="statement not covered" >            if (overlays[key] instanceof Array) {</span>
+<span class="cstat-no" title="statement not covered" >                overlays[key].forEach((element, index, arr<span class="fstat-no" title="function not covered" >) =&gt; {</span></span>
+<span class="cstat-no" title="statement not covered" >                    if (element._leaflet_id == remove._leaflet_id) {</span>
+<span class="cstat-no" title="statement not covered" >                        arr[index] = add;</span>
+                    }
+                });
+            }
+        }
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    public increaseNumber() {</span>
+<span class="cstat-no" title="statement not covered" >        this.layersInControlNumber += 1;</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    public getLayerNumber() {</span>
+<span class="cstat-no" title="statement not covered" >        return this.layersInControlNumber;</span>
+    }
+&nbsp;
+<span class="fstat-no" title="function not covered" >    public addControl() {</span>
+<span class="cstat-no" title="statement not covered" >        if (this.layerControlflag) {</span>
+            let map = <span class="cstat-no" title="statement not covered" >this.getMap();</span>
+<span class="cstat-no" title="statement not covered" >            if (Object.keys(this.layerControlObject).length !== 0) {</span>
+<span class="cstat-no" title="statement not covered" >                this.layerControlObject.getContainer().innerHTML = '';</span>
+<span class="cstat-no" title="statement not covered" >                map.removeControl(this.layerControlObject);</span>
+            }
+<span class="cstat-no" title="statement not covered" >            this.layerControlObject = L.control.layers(this.getBasemaps(), this.getOverlays()).addTo(map);</span>
+        }
+    }
+}</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="http://istanbul-js.org/" target="_blank">istanbul</a> at Thu Jan 12 2017 00:03:02 GMT+0000 (GMT)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>

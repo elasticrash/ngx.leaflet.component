@@ -8,13 +8,21 @@
     "tsc": "tsc",
     "tsc:w": "tsc -w",
     "pretest": "node node_modules/alpagegen/index.js",
-    "test": "karma start karma.conf.js"
+    "test": "karma start karma.conf.js",
+    "coverage": "http-server -c-1 -o -p 9875 ./coverage",
+    "posttest": "node_modules/.bin/remap-istanbul -i coverage/coverage.json -o coverage -t html"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/elasticrash/Angular2.leaflet.component.git"
   },
   "author": "Stefanos Kouroupis",
+  "contributors": [
+    {
+      "name": "Giorgos Papapdakis",
+      "url": "https://github.com/xalikoutis"
+    }
+  ],
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/elasticrash/Angular2.leaflet.component/issues"
@@ -45,6 +53,8 @@
     "es-module-loader": "^1.3.5",
     "es6-shim": "^0.35.2",
     "html-loader": "^0.4.4",
+    "http-server": "^0.9.0",
+    "istanbul-instrumenter-loader": "^1.2.0",
     "jasmine": "^2.5.2",
     "jasmine-core": "^2.5.2",
     "jasmine-spec-reporter": "2.5.0",
@@ -53,12 +63,17 @@
     "karma-cli": "^1.0.1",
     "karma-coverage": "^1.1.1",
     "karma-jasmine": "^1.1.0",
+    "karma-phantomjs-launcher": "^1.0.2",
+    "karma-remap-coverage": "^0.1.4",
     "karma-sourcemap-loader": "^0.3.7",
     "karma-spec-reporter": "0.0.26",
     "karma-webpack": "^1.8.1",
     "node-static": "^0.7.9",
+    "phantomjs-prebuilt": "2.1.13",
     "plugin-typescript": "^5.3.1",
     "protractor": "~4.0.13",
+    "remap-istanbul": "^0.8.4",
+    "source-map-support": "^0.4.8",
     "ts-node": "1.2.1",
     "tslint": "^4.0.2",
     "typescript": "^2.1.4",

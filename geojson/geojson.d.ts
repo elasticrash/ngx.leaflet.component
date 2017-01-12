@@ -13,7 +13,7 @@ export declare class GeoJsonElement {
     private helperService;
     private LeafletElement;
     private LeafletGroup;
-    geojson: Object;
+    geojson: any;
     originalObject: any;
     globalId: string;
     constructor(mapService: MapService, groupService: GroupService, popupService: PopupService, guidService: GuidService, helperService: HelperService, LeafletElement?: LeafletElement, LeafletGroup?: LeafletGroup);

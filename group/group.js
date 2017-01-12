@@ -12,7 +12,6 @@ var core_1 = require("@angular/core");
 var map_service_1 = require("../services/map.service");
 var group_service_1 = require("../services/group.service");
 var globalId_service_1 = require("../services/globalId.service");
-var Lealflet = require('leaflet');
 var LeafletGroup = (function () {
     function LeafletGroup(mapService, groupService, guidService) {
         this.mapService = mapService;
@@ -33,7 +32,7 @@ __decorate([
 ], LeafletGroup.prototype, "name", void 0);
 LeafletGroup = __decorate([
     core_1.Component({
-        moduleId: module.id,
+        moduleId: module.id.toString(),
         selector: 'leaflet-group',
         templateUrl: 'group.html',
         styleUrls: ['group.css'],

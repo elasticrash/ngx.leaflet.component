@@ -5,7 +5,6 @@ import { GroupService } from '../services/group.service';
 import { PopupService } from '../services/popup.service';
 import { GuidService } from '../services/globalId.service';
 import { HelperService } from '../services/helper.service';
-import { Ipath } from '../interfaces/path';
 export declare class PolylineElement {
     private mapService;
     private groupService;
@@ -14,12 +13,12 @@ export declare class PolylineElement {
     private helperService;
     private LeafletElement;
     private LeafletGroup;
-    latlngs: Array<Array<number>>;
-    Options: Ipath;
+    latlngs: any;
+    Options: any;
     mouseover: string;
     onclick: string;
     polyline: any;
-    originalObject: Array<Array<number>>;
+    originalObject: any;
     globalId: string;
     constructor(mapService: MapService, groupService: GroupService, popupService: PopupService, guidService: GuidService, helperService: HelperService, LeafletElement?: LeafletElement, LeafletGroup?: LeafletGroup);
     ngOnInit(): void;
