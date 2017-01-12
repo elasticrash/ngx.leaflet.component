@@ -9,7 +9,8 @@
     "tsc:w": "tsc -w",
     "pretest": "node node_modules/alpagegen/index.js",
     "test": "karma start karma.conf.js",
-    "coverage": "http-server -c-1 -o -p 9875 ./coverage"
+    "coverage": "http-server -c-1 -o -p 9875 ./coverage",
+    "posttest": "node_modules/.bin/remap-istanbul -i coverage/coverage.json -o coverage -t html"
   },
   "repository": {
     "type": "git",
@@ -72,6 +73,7 @@
     "plugin-typescript": "^5.3.1",
     "protractor": "~4.0.13",
     "remap-istanbul": "^0.8.4",
+    "source-map-support": "^0.4.8",
     "ts-node": "1.2.1",
     "tslint": "^4.0.2",
     "typescript": "^2.1.4",
