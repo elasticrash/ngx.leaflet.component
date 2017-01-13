@@ -21,6 +21,7 @@ export class LeafletElement {
   @Input() layerControl: boolean = false;
   @Input() crs: any = L.CRS.EPSG3857;
   @Input() zoomControl: boolean;
+  @Input() maxBounds: L.LatLngBounds;
   @ViewChild('map') mapElement: ElementRef;
 
   layerControlObject = null;
@@ -55,6 +56,7 @@ export class LeafletElement {
       zoom: this.zoom,
       minZoom: this.minZoom,
       maxZoom: this.maxZoom,
+      maxBounds: this.maxBounds,
       layers: [],
       closePopupOnClick: false
     });
