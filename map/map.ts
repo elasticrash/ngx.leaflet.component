@@ -3,7 +3,7 @@ import { MapService } from '../services/map.service';
 import * as L from 'leaflet';
 
 @Component({
-  // moduleId: module.id.toString(),
+  moduleId: module.id.toString(),
   selector: 'leaf-element',
   templateUrl: 'map.html',
   styleUrls: ['map.css'],
@@ -20,6 +20,8 @@ export class LeafletElement {
   @Input() maxZoom: number = 19;
   @Input() layerControl: boolean = false;
   @Input() crs: any = L.CRS.EPSG3857;
+  @Input() zoomControl: boolean;
+  @Input() maxBounds: L.LatLngBounds;
   @ViewChild('map') mapElement: ElementRef;
 
   layerControlObject = null;
@@ -49,11 +51,12 @@ export class LeafletElement {
 
     let map = L.map(this.mapElement.nativeElement, {
       crs: this.crs,
-      zoomControl: false,
+      zoomControl: this.zoomControl,
       center: L.latLng(this.lat, this.lon),
       zoom: this.zoom,
       minZoom: this.minZoom,
       maxZoom: this.maxZoom,
+      maxBounds: this.maxBounds,
       layers: [],
       closePopupOnClick: false
     });
@@ -61,7 +64,7 @@ export class LeafletElement {
 
     //set variables for childrent components
     this.mapService.setMap(map);
-    this.mapService.setLayerControl(this.layerControl);    
+    this.mapService.setLayerControl(this.layerControl);
   }
 
   ngAfterViewInit() {
