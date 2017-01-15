@@ -20,6 +20,8 @@ export class LeafletElement {
   @Input() maxZoom: number = 19;
   @Input() layerControl: boolean = false;
   @Input() crs: any = L.CRS.EPSG3857;
+  @Input() zoomControl: boolean;
+  @Input() maxBounds: L.LatLngBounds = null;
   @ViewChild('map') mapElement: ElementRef;
 
   layerControlObject = null;
@@ -49,19 +51,21 @@ export class LeafletElement {
 
     let map = L.map(this.mapElement.nativeElement, {
       crs: this.crs,
-      zoomControl: false,
+      zoomControl: this.zoomControl,
       center: L.latLng(this.lat, this.lon),
       zoom: this.zoom,
       minZoom: this.minZoom,
       maxZoom: this.maxZoom,
+      maxBounds: this.maxBounds,
       layers: [],
-      closePopupOnClick: false
+      closePopupOnClick: false,
+      attributionControl: false
     });
     this.mapElement.nativeElement.myMapProperty = map;
 
     //set variables for childrent components
     this.mapService.setMap(map);
-    this.mapService.setLayerControl(this.layerControl);    
+    this.mapService.setLayerControl(this.layerControl);
   }
 
   ngAfterViewInit() {

@@ -8,7 +8,7 @@ var scaleModel = (function () {
         this.position = "bottomleft";
         if (options !== null) {
             for (var key in options) {
-                if (options[key]) {
+                if (options[key] !== undefined) {
                     this[key] = options[key];
                 }
             }
