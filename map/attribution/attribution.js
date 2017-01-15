@@ -28,7 +28,7 @@ var AttributionControl = (function () {
             L.control.attribution(this.Options).addTo(map);
         }
         else {
-            console.warn("This zoom-control will not be rendered \n the expected parent node of zoom-control should be leaf-element");
+            console.warn("This attribution-control will not be rendered \n the expected parent node of attribution-control should be either leaf-element or layer-element");
         }
     };
     return AttributionControl;
