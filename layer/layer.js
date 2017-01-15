@@ -19,17 +19,21 @@ var LayerElement = (function () {
         this.name = '';
         this.opacity = 1;
         this.type = 'overlay';
+        this.attribution = null;
     }
     LayerElement.prototype.ngOnInit = function () {
         this.mapService.increaseNumber();
         var map = this.mapService.getMap();
         var layer = null;
         if (this.slippyLayer !== "") {
-            layer = L.tileLayer(this.slippyLayer);
+            layer = L.tileLayer(this.slippyLayer, {
+                attribution: this.attribution,
+            });
         }
         if (this.wmsLayer !== "" && this.name !== "") {
             layer = L.tileLayer.wms(this.wmsLayer, {
-                layers: this.name
+                layers: this.name,
+                attribution: this.attribution
             }).setOpacity(this.opacity);
         }
         if (layer !== {}) {
@@ -65,6 +69,10 @@ __decorate([
     core_1.Input(),
     __metadata("design:type", String)
 ], LayerElement.prototype, "type", void 0);
+__decorate([
+    core_1.Input(),
+    __metadata("design:type", String)
+], LayerElement.prototype, "attribution", void 0);
 LayerElement = __decorate([
     core_1.Component({
         moduleId: module.id.toString(),

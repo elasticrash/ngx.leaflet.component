@@ -16,7 +16,7 @@ export class LayerElement {
   @Input() name: string = '';
   @Input() opacity: number = 1;
   @Input() type: string = 'overlay';
-  @Input() attribution: string;
+  @Input() attribution: string = null;
 
   constructor(private mapService: MapService) {
   }
@@ -27,12 +27,13 @@ export class LayerElement {
     let layer = null;
     if (this.slippyLayer !== "") {
       layer = L.tileLayer(this.slippyLayer, {
-          attribution: this.attribution,
+        attribution: this.attribution,
       });
     }
     if (this.wmsLayer !== "" && this.name !== "") {
       layer = L.tileLayer.wms(this.wmsLayer, {
-        layers: this.name
+        layers: this.name,
+        attribution: this.attribution
       }).setOpacity(this.opacity);
     }
 
