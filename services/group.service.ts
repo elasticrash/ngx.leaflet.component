@@ -21,20 +21,26 @@ export class GroupService {
             this.layerId.push(gId);
         }
         if (Object.keys(this.group).length !== 0) {
-            map.removeLayer(this.group);
             if (replace) {
+                map.removeLayer(this.group);
                 if (this.layerId.indexOf(gId) !== -1) {
                     this.layerGroup[this.layerId.indexOf(gId)] = overlay;
                 } else {
                     this.layerGroup.push(overlay);
                 }
+                this.group = L.layerGroup(this.getLayerGroup());
+                this.group.addTo(map);
+            } else {
+                this.layerGroup.push(overlay);
+                this.group.addLayer(overlay);
             }
         }
         if (!replace) {
             this.layerGroup.push(overlay);
+            this.group = L.layerGroup(this.getLayerGroup());
+            this.group.addTo(map);
         }
-        this.group = L.layerGroup(this.getLayerGroup());
-        this.group.addTo(map);
+
         mapService.addOverlay(this.getGroup(), group.name, group.globalId);
     }
 
@@ -52,10 +58,6 @@ export class GroupService {
 
     public getLayerGroup() {
         return this.layerGroup;
-    }
-
-    public increaseNumber() {
-        this.layerGroupNumber += 1;
     }
 
     public getLayerNumber() {

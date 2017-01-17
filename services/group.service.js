@@ -29,21 +29,27 @@ var GroupService = (function () {
             this.layerId.push(gId);
         }
         if (Object.keys(this.group).length !== 0) {
-            map.removeLayer(this.group);
             if (replace) {
+                map.removeLayer(this.group);
                 if (this.layerId.indexOf(gId) !== -1) {
                     this.layerGroup[this.layerId.indexOf(gId)] = overlay;
                 }
                 else {
                     this.layerGroup.push(overlay);
                 }
+                this.group = L.layerGroup(this.getLayerGroup());
+                this.group.addTo(map);
+            }
+            else {
+                this.layerGroup.push(overlay);
+                this.group.addLayer(overlay);
             }
         }
         if (!replace) {
             this.layerGroup.push(overlay);
+            this.group = L.layerGroup(this.getLayerGroup());
+            this.group.addTo(map);
         }
-        this.group = L.layerGroup(this.getLayerGroup());
-        this.group.addTo(map);
         mapService.addOverlay(this.getGroup(), group.name, group.globalId);
     };
     GroupService.prototype.getObservableGroup = function () {
@@ -59,9 +65,6 @@ var GroupService = (function () {
     };
     GroupService.prototype.getLayerGroup = function () {
         return this.layerGroup;
-    };
-    GroupService.prototype.increaseNumber = function () {
-        this.layerGroupNumber += 1;
     };
     GroupService.prototype.getLayerNumber = function () {
         return this.layerGroupNumber;

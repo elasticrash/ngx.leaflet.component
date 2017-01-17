@@ -41,13 +41,7 @@ export class MarkerElement {
 
       let map = this.mapService.getMap();
 
-
       var marker = null;
-
-      //trick to match the number of layers
-      if (this.LeafletGroup) {
-        this.groupService.increaseNumber();
-      }
 
       if (this.iconUrl === "") {
         marker = L.marker([this.lat, this.lon]);
