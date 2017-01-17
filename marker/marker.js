@@ -41,9 +41,6 @@ var MarkerElement = (function () {
         if (this.LeafletElement || this.LeafletGroup) {
             var map_2 = this.mapService.getMap();
             var marker = null;
-            if (this.LeafletGroup) {
-                this.groupService.increaseNumber();
-            }
             if (this.iconUrl === "") {
                 marker = L.marker([this.lat, this.lon]);
                 this.createMarkerlayer(marker, map_2);

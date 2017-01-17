@@ -10,6 +10,5 @@ export declare class GroupService {
     getObservableGroup(): any;
     getGroup(): any;
     getLayerGroup(): any[];
-    increaseNumber(): void;
     getLayerNumber(): number;
 }
