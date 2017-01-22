@@ -1,3 +1,4 @@
+import { ElementRef } from '@angular/core';
 import { MapService } from '../services/map.service';
 import { GroupService } from '../services/group.service';
 import { PopupService } from '../services/popup.service';
@@ -12,6 +13,7 @@ export declare class MarkerElement {
     private groupService;
     private popupService;
     private http;
+    private elementText;
     private LeafletElement;
     private LeafletGroup;
     lat: number;
@@ -19,7 +21,8 @@ export declare class MarkerElement {
     mouseover: string;
     onclick: string;
     iconUrl: string;
-    constructor(mapService: MapService, groupService: GroupService, popupService: PopupService, http: Http, LeafletElement?: LeafletElement, LeafletGroup?: LeafletGroup);
+    marker: any;
+    constructor(mapService: MapService, groupService: GroupService, popupService: PopupService, http: Http, elementText: ElementRef, LeafletElement?: LeafletElement, LeafletGroup?: LeafletGroup);
     ngOnInit(): void;
     createMarkerlayer(marker: any, map: any): void;
     imageExists(url: any, callback: any): void;

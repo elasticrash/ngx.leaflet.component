@@ -22,19 +22,20 @@ var helper_service_1 = require("../services/helper.service");
 var path_1 = require("../models/path");
 var L = require("leaflet");
 var PolygonElement = (function () {
-    function PolygonElement(mapService, groupService, popupService, guidService, helperService, LeafletElement, LeafletGroup) {
+    function PolygonElement(mapService, groupService, popupService, guidService, helperService, elementText, LeafletElement, LeafletGroup) {
         this.mapService = mapService;
         this.groupService = groupService;
         this.popupService = popupService;
         this.guidService = guidService;
         this.helperService = helperService;
+        this.elementText = elementText;
         this.LeafletElement = LeafletElement;
         this.LeafletGroup = LeafletGroup;
         this.latlngs = [[[52.65, -1.2], [52.645, -1.15], [52.696, -1.155], [52.697, -1.189]],
             [[52.66, -1.19], [52.665, -1.16], [52.686, -1.161], [52.687, -1.179]]];
         this.Options = new path_1.path(null);
-        this.mouseover = "";
-        this.onclick = "";
+        this.mouseover = undefined;
+        this.onclick = undefined;
         this.polygon = null;
         this.originalObject = this.latlngs.slice();
         this.globalId = this.guidService.newGuid();
@@ -44,7 +45,6 @@ var PolygonElement = (function () {
             var inheritedOptions = new path_1.path(this.Options);
             var map = this.mapService.getMap();
             this.polygon = L.polygon([this.latlngs], inheritedOptions);
-            this.popupService.enablePopup(this.mouseover, this.onclick, this.polygon);
             if (this.LeafletGroup) {
                 this.groupService.addOLayersToGroup(this.polygon, map, this.mapService, this.LeafletGroup, false, this.globalId);
             }
@@ -55,6 +55,14 @@ var PolygonElement = (function () {
         else {
             console.warn("This polygon-element will not be rendered \n the expected parent node of polygon-element should be either leaf-element or leaflet-group");
         }
+    };
+    PolygonElement.prototype.ngAfterViewInit = function () {
+        var textInput = undefined;
+        if (this.elementText.nativeElement.childNodes.length > 0) {
+            var textNode = this.elementText.nativeElement.childNodes[0];
+            textInput = textNode.nodeValue;
+        }
+        this.popupService.enablePopup(this.mouseover, this.onclick, this.polygon, textInput);
     };
     PolygonElement.prototype.ngDoCheck = function () {
         var map = this.mapService.getMap();
@@ -98,13 +106,14 @@ PolygonElement = __decorate([
         templateUrl: 'polygon.html',
         styleUrls: ['polygon.css']
     }),
-    __param(5, core_1.Optional()),
     __param(6, core_1.Optional()),
+    __param(7, core_1.Optional()),
     __metadata("design:paramtypes", [map_service_1.MapService,
         group_service_1.GroupService,
         popup_service_1.PopupService,
         globalId_service_1.GuidService,
         helper_service_1.HelperService,
+        core_1.ElementRef,
         map_1.LeafletElement,
         group_1.LeafletGroup])
 ], PolygonElement);

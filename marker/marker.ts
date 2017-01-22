@@ -1,4 +1,4 @@
-import { Component, Input, Injector, Optional } from '@angular/core';
+import { Component, Input, Injector, Optional, ElementRef } from '@angular/core';
 import { MapService } from '../services/map.service';
 import { GroupService } from '../services/group.service';
 import { PopupService } from '../services/popup.service';
@@ -22,15 +22,17 @@ import * as L from 'leaflet';
 export class MarkerElement {
   @Input() lat: number = 52.6;
   @Input() lon: number = -1.1;
-  @Input() mouseover: string = "";
-  @Input() onclick: string = "";
+  @Input() mouseover: string = undefined;
+  @Input() onclick: string = undefined;
   @Input() iconUrl: string = "";
+  marker: any = null;
 
   constructor(
     private mapService: MapService,
     private groupService: GroupService,
     private popupService: PopupService,
     private http: Http,
+    private elementText: ElementRef,
     @Optional() private LeafletElement?: LeafletElement,
     @Optional() private LeafletGroup?: LeafletGroup) {
   }
@@ -41,11 +43,9 @@ export class MarkerElement {
 
       let map = this.mapService.getMap();
 
-      var marker = null;
-
       if (this.iconUrl === "") {
-        marker = L.marker([this.lat, this.lon]);
-        this.createMarkerlayer(marker, map);
+        this.marker = L.marker([this.lat, this.lon]);
+        this.createMarkerlayer(this.marker, map);
       } else {
         this.imageExists(this.iconUrl, function (exists) {
 
@@ -62,8 +62,8 @@ export class MarkerElement {
                   iconAnchor: [img.width / 2, img.height - 1],
                   popupAnchor: [0, -img.height]
                 });
-                marker = L.marker([model.lat, model.lon], { icon: myIcon });
-                model.createMarkerlayer(marker, map);
+                model.marker = L.marker([model.lat, model.lon], { icon: myIcon });
+                model.createMarkerlayer(model.marker, map);
               }
               reader.readAsDataURL(image.blob());
             },
@@ -78,8 +78,14 @@ export class MarkerElement {
   }
 
   createMarkerlayer(marker, map) {
+    var textInput = undefined;
+    if (this.elementText.nativeElement.childNodes.length > 0) {
+      var textNode = this.elementText.nativeElement.childNodes[0];
+      textInput = textNode.nodeValue;
+    }
+
     //add popup methods on element
-    this.popupService.enablePopup(this.mouseover, this.onclick, marker);
+    this.popupService.enablePopup(this.mouseover, this.onclick, this.marker, textInput);
 
     //only if the parent is map should the marker-element should be directly added to the map
     if (this.LeafletGroup) {

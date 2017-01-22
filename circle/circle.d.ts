@@ -1,3 +1,4 @@
+import { ElementRef } from '@angular/core';
 import { LeafletElement } from '../map/map';
 import { LeafletGroup } from '../group/group';
 import { MapService } from '../services/map.service';
@@ -7,6 +8,7 @@ export declare class CircleElement {
     private mapService;
     private groupService;
     private popupService;
+    private elementText;
     private LeafletElement;
     private LeafletGroup;
     lat: number;
@@ -15,6 +17,8 @@ export declare class CircleElement {
     mouseover: string;
     onclick: string;
     Options: any;
-    constructor(mapService: MapService, groupService: GroupService, popupService: PopupService, LeafletElement?: LeafletElement, LeafletGroup?: LeafletGroup);
+    circle: any;
+    constructor(mapService: MapService, groupService: GroupService, popupService: PopupService, elementText: ElementRef, LeafletElement?: LeafletElement, LeafletGroup?: LeafletGroup);
     ngOnInit(): void;
+    ngAfterViewInit(): void;
 }
