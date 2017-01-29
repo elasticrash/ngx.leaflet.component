@@ -23,30 +23,28 @@ require("rxjs/add/operator/map");
 require("rxjs/add/operator/catch");
 var L = require("leaflet");
 var MarkerElement = (function () {
-    function MarkerElement(mapService, groupService, popupService, http, LeafletElement, LeafletGroup) {
+    function MarkerElement(mapService, groupService, popupService, http, elementText, LeafletElement, LeafletGroup) {
         this.mapService = mapService;
         this.groupService = groupService;
         this.popupService = popupService;
         this.http = http;
+        this.elementText = elementText;
         this.LeafletElement = LeafletElement;
         this.LeafletGroup = LeafletGroup;
         this.lat = 52.6;
         this.lon = -1.1;
-        this.mouseover = "";
-        this.onclick = "";
+        this.mouseover = undefined;
+        this.onclick = undefined;
         this.iconUrl = "";
+        this.marker = null;
     }
     MarkerElement.prototype.ngOnInit = function () {
         var model = this;
         if (this.LeafletElement || this.LeafletGroup) {
             var map_2 = this.mapService.getMap();
-            var marker = null;
-            if (this.LeafletGroup) {
-                this.groupService.increaseNumber();
-            }
             if (this.iconUrl === "") {
-                marker = L.marker([this.lat, this.lon]);
-                this.createMarkerlayer(marker, map_2);
+                this.marker = L.marker([this.lat, this.lon]);
+                this.createMarkerlayer(this.marker, map_2);
             }
             else {
                 this.imageExists(this.iconUrl, function (exists) {
@@ -62,8 +60,8 @@ var MarkerElement = (function () {
                                 iconAnchor: [img.width / 2, img.height - 1],
                                 popupAnchor: [0, -img.height]
                             });
-                            marker = L.marker([model.lat, model.lon], { icon: myIcon });
-                            model.createMarkerlayer(marker, map_2);
+                            model.marker = L.marker([model.lat, model.lon], { icon: myIcon });
+                            model.createMarkerlayer(model.marker, map_2);
                         };
                         reader.readAsDataURL(image.blob());
                     }, function (err) {
@@ -77,7 +75,12 @@ var MarkerElement = (function () {
         }
     };
     MarkerElement.prototype.createMarkerlayer = function (marker, map) {
-        this.popupService.enablePopup(this.mouseover, this.onclick, marker);
+        var textInput = undefined;
+        if (this.elementText.nativeElement.childNodes.length > 0) {
+            var textNode = this.elementText.nativeElement.childNodes[0];
+            textInput = textNode.nodeValue;
+        }
+        this.popupService.enablePopup(this.mouseover, this.onclick, this.marker, textInput);
         if (this.LeafletGroup) {
             this.groupService.addOLayersToGroup(marker, map, this.mapService, this.LeafletGroup);
         }
@@ -131,12 +134,13 @@ MarkerElement = __decorate([
         styleUrls: ['marker.css'],
         providers: [popup_service_1.PopupService]
     }),
-    __param(4, core_1.Optional()),
     __param(5, core_1.Optional()),
+    __param(6, core_1.Optional()),
     __metadata("design:paramtypes", [map_service_1.MapService,
         group_service_1.GroupService,
         popup_service_1.PopupService,
         http_1.Http,
+        core_1.ElementRef,
         map_1.LeafletElement,
         group_1.LeafletGroup])
 ], MarkerElement);

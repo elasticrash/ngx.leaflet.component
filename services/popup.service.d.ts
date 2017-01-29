@@ -1,4 +1,4 @@
 export declare class PopupService {
     constructor();
-    enablePopup(mouseover: any, onclick: any, element: any): void;
+    enablePopup(mouseover: any, onclick: any, element: any, text: any): void;
 }

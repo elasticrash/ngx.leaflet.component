@@ -1,3 +1,4 @@
+import { ElementRef } from '@angular/core';
 import { LeafletElement } from '../map/map';
 import { LeafletGroup } from '../group/group';
 import { MapService } from '../services/map.service';
@@ -11,16 +12,19 @@ export declare class PolylineElement {
     private popupService;
     private guidService;
     private helperService;
+    private elementText;
     private LeafletElement;
     private LeafletGroup;
     latlngs: any;
     Options: any;
     mouseover: string;
     onclick: string;
+    Î: any;
     polyline: any;
     originalObject: any;
     globalId: string;
-    constructor(mapService: MapService, groupService: GroupService, popupService: PopupService, guidService: GuidService, helperService: HelperService, LeafletElement?: LeafletElement, LeafletGroup?: LeafletGroup);
+    constructor(mapService: MapService, groupService: GroupService, popupService: PopupService, guidService: GuidService, helperService: HelperService, elementText: ElementRef, LeafletElement?: LeafletElement, LeafletGroup?: LeafletGroup);
     ngOnInit(): void;
+    ngAfterViewInit(): void;
     ngDoCheck(): void;
 }

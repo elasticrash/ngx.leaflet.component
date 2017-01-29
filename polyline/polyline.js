@@ -22,18 +22,19 @@ var helper_service_1 = require("../services/helper.service");
 var path_1 = require("../models/path");
 var L = require("leaflet");
 var PolylineElement = (function () {
-    function PolylineElement(mapService, groupService, popupService, guidService, helperService, LeafletElement, LeafletGroup) {
+    function PolylineElement(mapService, groupService, popupService, guidService, helperService, elementText, LeafletElement, LeafletGroup) {
         this.mapService = mapService;
         this.groupService = groupService;
         this.popupService = popupService;
         this.guidService = guidService;
         this.helperService = helperService;
+        this.elementText = elementText;
         this.LeafletElement = LeafletElement;
         this.LeafletGroup = LeafletGroup;
         this.latlngs = [[52.6, -1.1], [52.605, -1.1], [52.606, -1.105], [52.697, -1.109]];
         this.Options = new path_1.path(null);
-        this.mouseover = "";
-        this.onclick = "";
+        this.mouseover = undefined;
+        this.onclick = undefined;
         this.polyline = null;
         this.originalObject = this.latlngs.slice();
         this.globalId = this.guidService.newGuid();
@@ -44,7 +45,6 @@ var PolylineElement = (function () {
             var inheritedOptions = new path_1.path(this.Options);
             var map = this.mapService.getMap();
             this.polyline = L.polyline(this.latlngs, inheritedOptions);
-            this.popupService.enablePopup(this.mouseover, this.onclick, this.polyline);
             if (this.LeafletGroup) {
                 this.groupService.addOLayersToGroup(this.polyline, map, this.mapService, this.LeafletGroup, false, this.globalId);
             }
@@ -55,6 +55,14 @@ var PolylineElement = (function () {
         else {
             console.warn("This polyline-element will not be rendered \n the expected parent node of polyline-element should be either leaf-element or leaflet-group");
         }
+    };
+    PolylineElement.prototype.ngAfterViewInit = function () {
+        var textInput = undefined;
+        if (this.elementText.nativeElement.childNodes.length > 0) {
+            var textNode = this.elementText.nativeElement.childNodes[0];
+            textInput = textNode.nodeValue;
+        }
+        this.popupService.enablePopup(this.mouseover, this.onclick, this.polyline, textInput);
     };
     PolylineElement.prototype.ngDoCheck = function () {
         var map = this.mapService.getMap();
@@ -99,13 +107,14 @@ PolylineElement = __decorate([
         templateUrl: 'polyline.html',
         styleUrls: ['polyline.css']
     }),
-    __param(5, core_1.Optional()),
     __param(6, core_1.Optional()),
+    __param(7, core_1.Optional()),
     __metadata("design:paramtypes", [map_service_1.MapService,
         group_service_1.GroupService,
         popup_service_1.PopupService,
         globalId_service_1.GuidService,
         helper_service_1.HelperService,
+        core_1.ElementRef,
         map_1.LeafletElement,
         group_1.LeafletGroup])
 ], PolylineElement);

@@ -1,4 +1,4 @@
-import { Component, Input, Injector, Optional } from '@angular/core';
+import { Component, Input, Injector, Optional, ElementRef } from '@angular/core';
 import { LeafletElement } from '../map/map';
 import { LeafletGroup } from '../group/group';
 import { MapService } from '../services/map.service';
@@ -20,8 +20,8 @@ import * as L from 'leaflet';
 export class PolylineElement {
   @Input() latlngs: any = [[52.6, -1.1], [52.605, -1.1], [52.606, -1.105], [52.697, -1.109]];
   @Input() Options: any = new path(null);
-  @Input() mouseover: string = "";
-  @Input() onclick: string = "";
+  @Input() mouseover: string = undefined;
+  @Input() onclick: string = undefined;Î
   polyline: any = null;
   originalObject: any = [...this.latlngs];
   globalId: string = this.guidService.newGuid();
@@ -32,6 +32,7 @@ export class PolylineElement {
     private popupService: PopupService,
     private guidService: GuidService,
     private helperService: HelperService,
+    private elementText: ElementRef,
     @Optional() private LeafletElement?: LeafletElement,
     @Optional() private LeafletGroup?: LeafletGroup) {
   }
@@ -45,9 +46,6 @@ export class PolylineElement {
       let map = this.mapService.getMap();
       this.polyline = L.polyline(this.latlngs, inheritedOptions);
 
-      //add popup methods on element
-      this.popupService.enablePopup(this.mouseover, this.onclick, this.polyline);
-
       if (this.LeafletGroup) {
         this.groupService.addOLayersToGroup(this.polyline, map, this.mapService, this.LeafletGroup, false, this.globalId);
       } else {
@@ -56,6 +54,17 @@ export class PolylineElement {
     } else {
       console.warn("This polyline-element will not be rendered \n the expected parent node of polyline-element should be either leaf-element or leaflet-group");
     }
+  }
+
+  ngAfterViewInit() {
+    var textInput = undefined;
+    if (this.elementText.nativeElement.childNodes.length > 0) {
+      var textNode = this.elementText.nativeElement.childNodes[0];
+      textInput = textNode.nodeValue;
+    }
+
+    //add popup methods on element
+    this.popupService.enablePopup(this.mouseover, this.onclick, this.polyline, textInput);
   }
 
   ngDoCheck() {

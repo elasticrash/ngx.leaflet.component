@@ -1,4 +1,4 @@
-import { Component, Input, Injector, Optional } from '@angular/core';
+import { Component, Input, Injector, Optional, ElementRef } from '@angular/core';
 import { LeafletElement } from '../map/map';
 import { LeafletGroup } from '../group/group';
 import { MapService } from '../services/map.service';
@@ -22,8 +22,8 @@ export class PolygonElement {
   @Input() latlngs: any = [[[52.65, -1.2], [52.645, -1.15], [52.696, -1.155], [52.697, -1.189]],
   [[52.66, -1.19], [52.665, -1.16], [52.686, -1.161], [52.687, -1.179]]];
   @Input() Options: Ipath = new path(null);
-  @Input() mouseover: string = "";
-  @Input() onclick: string = "";
+  @Input() mouseover: string = undefined;
+  @Input() onclick: string = undefined;
   polygon: any = null;
   originalObject: any = [...this.latlngs];
   globalId: string = this.guidService.newGuid();
@@ -34,6 +34,7 @@ export class PolygonElement {
     private popupService: PopupService,
     private guidService: GuidService,
     private helperService: HelperService,
+    private elementText: ElementRef,
     @Optional() private LeafletElement?: LeafletElement,
     @Optional() private LeafletGroup?: LeafletGroup) {
   }
@@ -45,9 +46,6 @@ export class PolygonElement {
       let map = this.mapService.getMap();
       this.polygon = L.polygon([this.latlngs], inheritedOptions);
 
-      //add popup methods on element
-      this.popupService.enablePopup(this.mouseover, this.onclick, this.polygon);
-
       if (this.LeafletGroup) {
         this.groupService.addOLayersToGroup(this.polygon, map, this.mapService, this.LeafletGroup, false, this.globalId);
       } else {
@@ -56,6 +54,17 @@ export class PolygonElement {
     } else {
       console.warn("This polygon-element will not be rendered \n the expected parent node of polygon-element should be either leaf-element or leaflet-group");
     }
+  }
+
+  ngAfterViewInit() {
+    var textInput = undefined;
+    if (this.elementText.nativeElement.childNodes.length > 0) {
+      var textNode = this.elementText.nativeElement.childNodes[0];
+      textInput = textNode.nodeValue;
+    }
+
+    //add popup methods on element
+    this.popupService.enablePopup(this.mouseover, this.onclick, this.polygon, textInput);
   }
 
   ngDoCheck() {
