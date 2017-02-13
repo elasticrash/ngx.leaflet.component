@@ -6,6 +6,7 @@ import { LayerElement } from './layer/layer';
 import { ImageOverlayElement } from './imageoverlay/image-overlay';
 import { MarkerElement } from './marker/marker';
 import { CircleElement } from './circle/circle';
+import { CircleMarkerElement } from './circlemarker/circlemarker';
 import { PolygonElement } from './polygon/polygon';
 import { PolylineElement } from './polyline/polyline';
 import { GeoJsonElement } from './geojson/geojson';
@@ -30,6 +31,7 @@ export const CandTLeafletComponent = [
     ImageOverlayElement,
     MarkerElement,
     CircleElement,
+    CircleMarkerElement,
     PolygonElement,
     PolylineElement,
     GeoJsonElement,
