@@ -5,7 +5,6 @@ import { PopupService } from '../services/popup.service';
 import { LeafletElement } from '../map/map';
 import { LeafletGroup } from '../group/group';
 import { Http } from '@angular/http';
-import { Observable } from 'rxjs/Rx';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 export declare class MarkerElement {
@@ -26,5 +25,5 @@ export declare class MarkerElement {
     ngOnInit(): void;
     createMarkerlayer(marker: any, map: any): void;
     imageExists(url: any, callback: any): void;
-    getImage(): Observable<any>;
+    getImage(): any;
 }

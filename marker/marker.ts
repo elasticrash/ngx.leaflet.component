@@ -52,7 +52,7 @@ export class MarkerElement {
           model.getImage().subscribe(
             image => {
               var img = document.createElement("img");
-              window.URL.createObjectURL(image.blob())
+              window.URL.createObjectURL(image.blob());
               var reader = new FileReader();
               reader.onload = function () {
                 img.src = reader.result;
@@ -62,7 +62,7 @@ export class MarkerElement {
                   iconAnchor: [img.width / 2, img.height - 1],
                   popupAnchor: [0, -img.height]
                 });
-                model.marker = L.marker([model.lat, model.lon], { icon: myIcon });
+                model.marker = L.marker([model.lat, model.lon], { icon: myIcon, options: null });
                 model.createMarkerlayer(model.marker, map);
               }
               reader.readAsDataURL(image.blob());
@@ -102,7 +102,7 @@ export class MarkerElement {
     img.src = url;
   }
 
-  getImage(): Observable<any> {
+  getImage(): any {
     let headers = new Headers({ 'Content-Type': 'application/x-www-form-urlencoded' });
     let options = new RequestOptions({
       responseType: ResponseContentType.Blob,
