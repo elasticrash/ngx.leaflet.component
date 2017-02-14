@@ -28,18 +28,18 @@
     "url": "https://github.com/elasticrash/Angular2.leaflet.component/issues"
   },
   "dependencies": {
-    "@angular/common": "^2.4.1",
-    "@angular/core": "^2.4.1",
-    "@angular/http": "^2.4.1",
-    "@angular/platform-browser": "^2.4.1",
-    "@angular/platform-browser-dynamic": "^2.4.1",
-    "@angular/compiler": "^2.4.1",
-    "@types/leaflet": "^1.0.41",
-    "leaflet": "^1.0.1",
+    "@angular/common": "^2.4.7",
+    "@angular/core": "^2.4.7",
+    "@angular/http": "^2.4.7",
+    "@angular/platform-browser": "^2.4.7",
+    "@angular/platform-browser-dynamic": "^2.4.7",
+    "@angular/compiler": "^2.4.7",
+    "@types/leaflet": "^1.0.52",
+    "leaflet": "^1.0.3",
     "reflect-metadata": "^0.1.9",
-    "rxjs": "5.0.1",
-    "ts-helpers": "^1.1.1",
-    "zone.js": "^0.7.4"
+    "rxjs": "5.1.0",
+    "ts-helpers": "^1.1.2",
+    "zone.js": "^0.7.6"
   },
   "homepage": "https://github.com/elasticrash/Angular2.leaflet.component#readme",
   "devDependencies": {
@@ -76,7 +76,7 @@
     "source-map-support": "^0.4.8",
     "ts-node": "1.2.1",
     "tslint": "^4.0.2",
-    "typescript": "^2.1.4",
+    "typescript": "^2.1.5",
     "webpack": "^2.1.0-beta.28"
   }
 }
