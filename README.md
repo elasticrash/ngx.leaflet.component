@@ -1,4 +1,4 @@
-# Angular2.leaflet.component
+# Angular2.leaflet.component  ![alt text](https://circleci.com/gh/elasticrash/Angular2.leaflet.component.png?circle-token=8ce7131b0ea08b0ce9299e456bd9291dd3cf1ba4 "Build Status") 
 
 my own attemp on creating an Angular 2 leaflet v1.x component
 
