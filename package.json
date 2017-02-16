@@ -1,6 +1,6 @@
 {
   "name": "angular2.leaflet.components",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "an angular.io (2) component collection for leaflet",
   "main": "index.js",
   "scripts": {
@@ -10,7 +10,7 @@
     "pretest": "node node_modules/alpagegen/index.js",
     "test": "karma start karma.conf.js",
     "coverage": "http-server -c-1 -o -p 9875 ./coverage",
-    "posttest": "node_modules/.bin/remap-istanbul -i coverage/coverage.json -o coverage -t html"
+    "remap": "node_modules/.bin/remap-istanbul -i coverage/coverage.json -o coverage -t html"
   },
   "repository": {
     "type": "git",
@@ -49,6 +49,7 @@
     "angular2-template-loader": "git+https://github.com/elasticrash/angular2-template-loader.git",
     "awesome-typescript-loader": "^3.0.0-beta.17",
     "codelyzer": "~2.0.0-beta.1",
+    "core-js": "^2.4.1",
     "css-loader": "^0.26.1",
     "es-module-loader": "^1.3.5",
     "es6-shim": "^0.35.2",
