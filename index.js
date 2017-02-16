@@ -7,6 +7,7 @@ var layer_1 = require("./layer/layer");
 var image_overlay_1 = require("./imageoverlay/image-overlay");
 var marker_1 = require("./marker/marker");
 var circle_1 = require("./circle/circle");
+var circlemarker_1 = require("./circlemarker/circlemarker");
 var polygon_1 = require("./polygon/polygon");
 var polyline_1 = require("./polyline/polyline");
 var geojson_1 = require("./geojson/geojson");
@@ -26,6 +27,7 @@ exports.CandTLeafletComponent = [
     image_overlay_1.ImageOverlayElement,
     marker_1.MarkerElement,
     circle_1.CircleElement,
+    circlemarker_1.CircleMarkerElement,
     polygon_1.PolygonElement,
     polyline_1.PolylineElement,
     geojson_1.GeoJsonElement,

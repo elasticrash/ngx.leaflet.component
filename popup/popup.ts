@@ -30,7 +30,7 @@ export class PopupElement {
     if (this.LeafletElement || this.LeafletGroup) {
 
       let map = this.mapService.getMap();
-      let popup = L.popup({ autoClose: false, keepInView: true}).setLatLng([this.lat, this.lon]).setContent(this.content);
+      let popup = L.popup({ autoClose: false, keepInView: true}).setLatLng([this.lat, this.lon]).setContent(<any>this.content);
 
       if (this.LeafletGroup) {
         this.groupService.addOLayersToGroup(popup, map, this.mapService, this.LeafletGroup);
