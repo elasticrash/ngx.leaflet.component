@@ -23,7 +23,7 @@ export class CircleElement {
   @Input() mouseover: string = undefined;
   @Input() onclick: string = undefined;
   @Input() Options: any = new path(null);
-  circle: any = null; 
+  circle: any = null;
 
   constructor(
     private mapService: MapService,
@@ -39,7 +39,15 @@ export class CircleElement {
     if (this.LeafletElement || this.LeafletGroup) {
       let inheritedOptions: any = new path(this.Options);
       let map = this.mapService.getMap();
-      this.circle = L.circle([this.lat, this.lon], this.radius, inheritedOptions);
+
+      let elementPosition: any = { lat: this.lat, lng: this.lon };
+      //this is because leaflet default CRS is 3857 (so it can render wms properly)
+      //but uses 4326 everywhere else so if CRS is 3857 don't reproject coordinates
+      if (this.LeafletElement.crs.code !== "EPSG:3857") {
+        elementPosition = this.LeafletElement.crs.unproject({ y: this.lat, x: this.lon });
+      }
+
+      this.circle = L.circle(elementPosition, this.radius, inheritedOptions);
 
       if (this.LeafletGroup) {
         this.groupService.addOLayersToGroup(this.circle, map, this.mapService, this.LeafletGroup);

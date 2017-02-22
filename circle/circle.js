@@ -39,7 +39,11 @@ var CircleElement = (function () {
         if (this.LeafletElement || this.LeafletGroup) {
             var inheritedOptions = new path_1.path(this.Options);
             var map = this.mapService.getMap();
-            this.circle = L.circle([this.lat, this.lon], this.radius, inheritedOptions);
+            var elementPosition = { lat: this.lat, lng: this.lon };
+            if (this.LeafletElement.crs.code !== "EPSG:3857") {
+                elementPosition = this.LeafletElement.crs.unproject({ y: this.lat, x: this.lon });
+            }
+            this.circle = L.circle(elementPosition, this.radius, inheritedOptions);
             if (this.LeafletGroup) {
                 this.groupService.addOLayersToGroup(this.circle, map, this.mapService, this.LeafletGroup);
             }
