@@ -1,13 +1,12 @@
 /// <reference types="leaflet" />
 import { ElementRef } from '@angular/core';
 import { MapService } from '../services/map.service';
+import { CoordinateHandler } from '../helpers/coodinateHandler';
 import * as L from 'leaflet';
-export declare class LeafletElement {
+export declare class LeafletElement extends CoordinateHandler {
     private mapService;
     lat: number;
     lon: number;
-    x: number;
-    y: number;
     zoom: number;
     minZoom: number;
     maxZoom: number;

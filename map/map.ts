@@ -1,5 +1,6 @@
 import { Component, Input, ViewChild, ElementRef, EventEmitter } from '@angular/core';
 import { MapService } from '../services/map.service';
+import { CoordinateHandler } from '../helpers/coodinateHandler';
 import * as L from 'leaflet';
 
 @Component({
@@ -10,11 +11,9 @@ import * as L from 'leaflet';
   providers: [MapService]
 })
 
-export class LeafletElement {
+export class LeafletElement extends CoordinateHandler {
   @Input() lat: number = 52.6;
   @Input() lon: number = -1.1;
-  @Input() x: number;
-  @Input() y: number;
   @Input() zoom: number = 12;
   @Input() minZoom: number = 4;
   @Input() maxZoom: number = 19;
@@ -27,17 +26,11 @@ export class LeafletElement {
   layerControlObject = null;
 
   constructor(private mapService: MapService) {
+    super();
   }
 
   ngOnInit() {
-
-    if (this.x !== undefined) {
-      this.lon = this.x;
-    }
-
-    if (this.y !== undefined) {
-      this.lat = this.y;
-    }
+    super.copyCoordinates();
 
     if (typeof (this.crs) === "string") {
       var splitCrs = this.crs.split(".");

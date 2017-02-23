@@ -4,6 +4,7 @@ import { LeafletGroup } from '../group/group';
 import { MapService } from '../services/map.service';
 import { GroupService } from '../services/group.service';
 import { PopupService } from '../services/popup.service';
+import { CoordinateHandler } from '../helpers/coodinateHandler';
 import { path } from '../models/path';
 import { Ipath } from '../interfaces/path';
 import * as L from 'leaflet';
@@ -16,7 +17,7 @@ import * as L from 'leaflet';
   styleUrls: ['circle.css']
 })
 
-export class CircleElement {
+export class CircleElement extends CoordinateHandler {
   @Input() lat: number = 52.6;
   @Input() lon: number = -1.1;
   @Input() radius: number = 20;
@@ -32,20 +33,18 @@ export class CircleElement {
     private elementText: ElementRef,
     @Optional() private LeafletElement?: LeafletElement,
     @Optional() private LeafletGroup?: LeafletGroup) {
+    super();
   }
 
   ngOnInit() {
+    super.copyCoordinates();
+    
     //check if any of the two optional injections exist
     if (this.LeafletElement || this.LeafletGroup) {
       let inheritedOptions: any = new path(this.Options);
       let map = this.mapService.getMap();
 
-      let elementPosition: any = { lat: this.lat, lng: this.lon };
-      //this is because leaflet default CRS is 3857 (so it can render wms properly)
-      //but uses 4326 everywhere else so if CRS is 3857 don't reproject coordinates
-      if (this.LeafletElement.crs.code !== "EPSG:3857") {
-        elementPosition = this.LeafletElement.crs.unproject({ y: this.lat, x: this.lon });
-      }
+      let elementPosition: any =  super.transformCoordinates(this.LeafletElement.crs);
 
       this.circle = L.circle(elementPosition, this.radius, inheritedOptions);
 
