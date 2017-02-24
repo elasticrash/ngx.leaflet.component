@@ -42,6 +42,8 @@ export class LeafletElement extends CoordinateHandler {
       }
     }
 
+    super.transformPointCoordinates(this.crs);
+
     let map = L.map(this.mapElement.nativeElement, {
       crs: this.crs,
       zoomControl: this.zoomControl,

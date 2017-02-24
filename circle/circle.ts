@@ -38,15 +38,15 @@ export class CircleElement extends CoordinateHandler {
 
   ngOnInit() {
     super.copyCoordinates();
-    
+
     //check if any of the two optional injections exist
     if (this.LeafletElement || this.LeafletGroup) {
       let inheritedOptions: any = new path(this.Options);
       let map = this.mapService.getMap();
 
-      let elementPosition: any =  super.transformCoordinates(this.LeafletElement.crs);
+      super.transformPointCoordinates(this.LeafletElement.crs);
 
-      this.circle = L.circle(elementPosition, this.radius, inheritedOptions);
+      this.circle = L.circle([this.lat, this.lon], this.radius, inheritedOptions);
 
       if (this.LeafletGroup) {
         this.groupService.addOLayersToGroup(this.circle, map, this.mapService, this.LeafletGroup);

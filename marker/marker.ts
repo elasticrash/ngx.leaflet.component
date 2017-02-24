@@ -1,10 +1,11 @@
 import { Component, Input, Injector, Optional, ElementRef } from '@angular/core';
+import { Http, Response, Headers, RequestOptions, Request, RequestMethod, ResponseContentType } from '@angular/http';
 import { MapService } from '../services/map.service';
 import { GroupService } from '../services/group.service';
 import { PopupService } from '../services/popup.service';
 import { LeafletElement } from '../map/map';
 import { LeafletGroup } from '../group/group';
-import { Http, Response, Headers, RequestOptions, Request, RequestMethod, ResponseContentType } from '@angular/http';
+import { CoordinateHandler } from '../helpers/coodinateHandler';
 import { Observable } from 'rxjs/Rx';
 
 import 'rxjs/add/operator/map';
@@ -19,7 +20,7 @@ import * as L from 'leaflet';
   providers: [PopupService]
 })
 
-export class MarkerElement {
+export class MarkerElement extends CoordinateHandler {
   @Input() lat: number = 52.6;
   @Input() lon: number = -1.1;
   @Input() mouseover: string = undefined;
@@ -35,13 +36,17 @@ export class MarkerElement {
     private elementText: ElementRef,
     @Optional() private LeafletElement?: LeafletElement,
     @Optional() private LeafletGroup?: LeafletGroup) {
+    super();
   }
 
   ngOnInit() {
+    super.copyCoordinates();
     var model = this;
     if (this.LeafletElement || this.LeafletGroup) {
-
+      
       let map = this.mapService.getMap();
+
+      super.transformPointCoordinates(this.LeafletElement.crs);
 
       if (this.iconUrl === "") {
         this.marker = L.marker([this.lat, this.lon]);

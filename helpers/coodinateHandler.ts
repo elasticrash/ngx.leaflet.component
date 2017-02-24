@@ -19,7 +19,7 @@ export class CoordinateHandler {
         }
     }
 
-    transformCoordinates(crs) {
+    transformPointCoordinates(crs) {
         /**
          * this is because leaflet default CRS is 3857 (so it can render wms properly)
          * but uses 4326 everywhere else so if CRS is 3857 don't reproject coordinates
@@ -28,9 +28,20 @@ export class CoordinateHandler {
          * how leaflet doesn't handle projections on a global state
          */
         if (crs.code && crs.code !== "EPSG:3857") {
-            return crs.unproject({ y: this.lat, x: this.lon });
+            let newlatlng = crs.unproject({ y: this.lat, x: this.lon });
+            this.setNewLatLng(newlatlng);
         } else {
-            return { lat: this.lat, lon: this.lon };
+            let newlatlng = { lat: this.lat, lng: this.lon };
+            this.setNewLatLng(newlatlng);
         }
+    }
+
+    setNewLatLng(newlatlng) {
+        this.lat = newlatlng.lat;
+        this.lon = newlatlng.lng;
+    }
+
+    transformArrayCoordinates(crs) {
+
     }
 }

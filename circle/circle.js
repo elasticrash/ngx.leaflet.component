@@ -49,8 +49,8 @@ var CircleElement = (function (_super) {
         if (this.LeafletElement || this.LeafletGroup) {
             var inheritedOptions = new path_1.path(this.Options);
             var map = this.mapService.getMap();
-            var elementPosition = _super.prototype.transformCoordinates.call(this, this.LeafletElement.crs);
-            this.circle = L.circle(elementPosition, this.radius, inheritedOptions);
+            _super.prototype.transformPointCoordinates.call(this, this.LeafletElement.crs);
+            this.circle = L.circle([this.lat, this.lon], this.radius, inheritedOptions);
             if (this.LeafletGroup) {
                 this.groupService.addOLayersToGroup(this.circle, map, this.mapService, this.LeafletGroup);
             }

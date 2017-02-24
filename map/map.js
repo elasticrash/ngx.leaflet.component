@@ -45,6 +45,7 @@ var LeafletElement = (function (_super) {
                 this.crs = L.CRS.EPSG3857;
             }
         }
+        _super.prototype.transformPointCoordinates.call(this, this.crs);
         var map = L.map(this.mapElement.nativeElement, {
             crs: this.crs,
             zoomControl: this.zoomControl,
@@ -108,7 +109,7 @@ __decorate([
 ], LeafletElement.prototype, "zoomControl", void 0);
 __decorate([
     core_1.Input(),
-    __metadata("design:type", Object)
+    __metadata("design:type", L.LatLngBounds)
 ], LeafletElement.prototype, "maxBounds", void 0);
 __decorate([
     core_1.ViewChild('map'),

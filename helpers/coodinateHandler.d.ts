@@ -5,5 +5,7 @@ export declare class CoordinateHandler {
     y: number;
     constructor();
     copyCoordinates(): void;
-    transformCoordinates(crs: any): any;
+    transformPointCoordinates(crs: any): void;
+    setNewLatLng(newlatlng: any): void;
+    transformArrayCoordinates(crs: any): void;
 }

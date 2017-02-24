@@ -20,13 +20,21 @@ var CoordinateHandler = (function () {
             this.lat = this.y;
         }
     };
-    CoordinateHandler.prototype.transformCoordinates = function (crs) {
+    CoordinateHandler.prototype.transformPointCoordinates = function (crs) {
         if (crs.code && crs.code !== "EPSG:3857") {
-            return crs.unproject({ y: this.lat, x: this.lon });
+            var newlatlng = crs.unproject({ y: this.lat, x: this.lon });
+            this.setNewLatLng(newlatlng);
         }
         else {
-            return { lat: this.lat, lon: this.lon };
+            var newlatlng = { lat: this.lat, lng: this.lon };
+            this.setNewLatLng(newlatlng);
         }
+    };
+    CoordinateHandler.prototype.setNewLatLng = function (newlatlng) {
+        this.lat = newlatlng.lat;
+        this.lon = newlatlng.lng;
+    };
+    CoordinateHandler.prototype.transformArrayCoordinates = function (crs) {
     };
     return CoordinateHandler;
 }());
