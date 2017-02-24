@@ -3,9 +3,12 @@ export declare class CoordinateHandler {
     lon: number;
     x: number;
     y: number;
+    latlngs: any;
+    xys: number;
     constructor();
-    copyCoordinates(): void;
+    assignCartesianPointToLeafletsLatLngSchema(): void;
+    assignCartesianArrayToLeafletsLatLngSchema(arr?: any): void;
     transformPointCoordinates(crs: any): void;
     setNewLatLng(newlatlng: any): void;
-    transformArrayCoordinates(crs: any): void;
+    transformArrayCoordinates(crs: any, arr?: any): any;
 }

@@ -34,7 +34,7 @@ var LeafletElement = (function (_super) {
         return _this;
     }
     LeafletElement.prototype.ngOnInit = function () {
-        _super.prototype.copyCoordinates.call(this);
+        _super.prototype.assignCartesianPointToLeafletsLatLngSchema.call(this);
         if (typeof (this.crs) === "string") {
             var splitCrs = this.crs.split(".");
             if (splitCrs[0] === "L") {

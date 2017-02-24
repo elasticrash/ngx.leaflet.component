@@ -37,7 +37,7 @@ export class CircleElement extends CoordinateHandler {
   }
 
   ngOnInit() {
-    super.copyCoordinates();
+    super.assignCartesianPointToLeafletsLatLngSchema();
 
     //check if any of the two optional injections exist
     if (this.LeafletElement || this.LeafletGroup) {

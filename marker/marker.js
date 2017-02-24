@@ -48,7 +48,7 @@ var MarkerElement = (function (_super) {
         return _this;
     }
     MarkerElement.prototype.ngOnInit = function () {
-        _super.prototype.copyCoordinates.call(this);
+        _super.prototype.assignCartesianPointToLeafletsLatLngSchema.call(this);
         var model = this;
         if (this.LeafletElement || this.LeafletGroup) {
             var map_2 = this.mapService.getMap();

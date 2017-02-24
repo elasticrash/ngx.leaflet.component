@@ -5,17 +5,36 @@ export class CoordinateHandler {
     @Input() lon: number;
     @Input() x: number;
     @Input() y: number;
+    @Input() latlngs: any;
+    @Input() xys: number;
 
     constructor() {
     }
 
-    copyCoordinates() {
+    assignCartesianPointToLeafletsLatLngSchema() {
         if (this.x !== undefined) {
             this.lon = this.x;
         }
 
         if (this.y !== undefined) {
             this.lat = this.y;
+        }
+    }
+
+    assignCartesianArrayToLeafletsLatLngSchema(arr?) {
+        if (this.xys !== undefined) {
+            if (!arr) {
+                arr = this.xys;
+            }
+
+            for (var i = 0; i < arr.length; i++) {
+                if (typeof (arr[0]) !== "number") {
+                    this.assignCartesianArrayToLeafletsLatLngSchema(arr[i]);
+                } else {
+                    arr.reverse();
+                }
+            }
+            this.latlngs = this.xys;
         }
     }
 
@@ -41,7 +60,22 @@ export class CoordinateHandler {
         this.lon = newlatlng.lng;
     }
 
-    transformArrayCoordinates(crs) {
-
+    transformArrayCoordinates(crs, arr?) {
+        if (!arr) {
+            arr = this.latlngs;
+        }
+        for (var i = 0; i < arr.length; i++) {
+            if (typeof (arr[0]) !== "number") {
+                arr[i] = this.transformArrayCoordinates(crs, arr[i]);
+            } else {
+                if (crs.code && crs.code !== "EPSG:3857") {
+                    let trasformed = crs.unproject({ x: arr[0], y: arr[1] });
+                    arr = { lat: trasformed.lat, lng: trasformed.lng }
+                } else {
+                    arr = { lat: arr[0], lng: arr[1] };
+                }
+            }
+        }
+        return arr;
     }
 }

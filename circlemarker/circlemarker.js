@@ -44,7 +44,7 @@ var CircleMarkerElement = (function (_super) {
         return _this;
     }
     CircleMarkerElement.prototype.ngOnInit = function () {
-        _super.prototype.copyCoordinates.call(this);
+        _super.prototype.assignCartesianPointToLeafletsLatLngSchema.call(this);
         if (this.LeafletElement || this.LeafletGroup) {
             var inheritedOptions = new path_1.path(this.Options);
             var map = this.mapService.getMap();

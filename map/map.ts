@@ -30,7 +30,7 @@ export class LeafletElement extends CoordinateHandler {
   }
 
   ngOnInit() {
-    super.copyCoordinates();
+    super.assignCartesianPointToLeafletsLatLngSchema();
 
     if (typeof (this.crs) === "string") {
       var splitCrs = this.crs.split(".");

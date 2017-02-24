@@ -1,4 +1,9 @@
 "use strict";
+var __extends = (this && this.__extends) || function (d, b) {
+    for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p];
+    function __() { this.constructor = d; }
+    d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+};
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -19,31 +24,37 @@ var group_service_1 = require("../services/group.service");
 var popup_service_1 = require("../services/popup.service");
 var globalId_service_1 = require("../services/globalId.service");
 var helper_service_1 = require("../services/helper.service");
+var coodinateHandler_1 = require("../helpers/coodinateHandler");
 var path_1 = require("../models/path");
 var L = require("leaflet");
-var PolygonElement = (function () {
+var PolygonElement = (function (_super) {
+    __extends(PolygonElement, _super);
     function PolygonElement(mapService, groupService, popupService, guidService, helperService, elementText, LeafletElement, LeafletGroup) {
-        this.mapService = mapService;
-        this.groupService = groupService;
-        this.popupService = popupService;
-        this.guidService = guidService;
-        this.helperService = helperService;
-        this.elementText = elementText;
-        this.LeafletElement = LeafletElement;
-        this.LeafletGroup = LeafletGroup;
-        this.latlngs = [[[52.65, -1.2], [52.645, -1.15], [52.696, -1.155], [52.697, -1.189]],
+        var _this = _super.call(this) || this;
+        _this.mapService = mapService;
+        _this.groupService = groupService;
+        _this.popupService = popupService;
+        _this.guidService = guidService;
+        _this.helperService = helperService;
+        _this.elementText = elementText;
+        _this.LeafletElement = LeafletElement;
+        _this.LeafletGroup = LeafletGroup;
+        _this.latlngs = [[[52.65, -1.2], [52.645, -1.15], [52.696, -1.155], [52.697, -1.189]],
             [[52.66, -1.19], [52.665, -1.16], [52.686, -1.161], [52.687, -1.179]]];
-        this.Options = new path_1.path(null);
-        this.mouseover = undefined;
-        this.onclick = undefined;
-        this.polygon = null;
-        this.originalObject = this.latlngs.slice();
-        this.globalId = this.guidService.newGuid();
+        _this.Options = new path_1.path(null);
+        _this.mouseover = undefined;
+        _this.onclick = undefined;
+        _this.polygon = null;
+        _this.originalObject = _this.latlngs.slice();
+        _this.globalId = _this.guidService.newGuid();
+        return _this;
     }
     PolygonElement.prototype.ngOnInit = function () {
+        _super.prototype.assignCartesianArrayToLeafletsLatLngSchema.call(this);
         if (this.LeafletElement || this.LeafletGroup) {
             var inheritedOptions = new path_1.path(this.Options);
             var map = this.mapService.getMap();
+            _super.prototype.transformArrayCoordinates.call(this, this.LeafletElement.crs);
             this.polygon = L.polygon([this.latlngs], inheritedOptions);
             if (this.LeafletGroup) {
                 this.groupService.addOLayersToGroup(this.polygon, map, this.mapService, this.LeafletGroup, false, this.globalId);
@@ -82,7 +93,7 @@ var PolygonElement = (function () {
         }
     };
     return PolygonElement;
-}());
+}(coodinateHandler_1.CoordinateHandler));
 __decorate([
     core_1.Input(),
     __metadata("design:type", Object)

@@ -40,7 +40,7 @@ export class MarkerElement extends CoordinateHandler {
   }
 
   ngOnInit() {
-    super.copyCoordinates();
+    super.assignCartesianPointToLeafletsLatLngSchema();
     var model = this;
     if (this.LeafletElement || this.LeafletGroup) {
       
