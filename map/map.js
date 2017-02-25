@@ -109,7 +109,7 @@ __decorate([
 ], LeafletElement.prototype, "zoomControl", void 0);
 __decorate([
     core_1.Input(),
-    __metadata("design:type", L.LatLngBounds)
+    __metadata("design:type", Object)
 ], LeafletElement.prototype, "maxBounds", void 0);
 __decorate([
     core_1.ViewChild('map'),
