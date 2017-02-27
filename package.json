@@ -34,6 +34,7 @@
     "@angular/http": "^2.4.7",
     "@angular/platform-browser": "^2.4.7",
     "@angular/platform-browser-dynamic": "^2.4.7",
+    "@types/geojson": "^1.0.0",
     "@types/leaflet": "^1.0.52",
     "leaflet": "^1.0.3",
     "reflect-metadata": "^0.1.9",
