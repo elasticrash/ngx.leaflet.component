@@ -63,12 +63,14 @@ var CircleElement = (function (_super) {
         }
     };
     CircleElement.prototype.ngAfterViewInit = function () {
-        var textInput = undefined;
-        if (this.elementText.nativeElement.childNodes.length > 0) {
-            var textNode = this.elementText.nativeElement.childNodes[0];
-            textInput = textNode.nodeValue;
+        if (this.LeafletElement || this.LeafletGroup) {
+            var textInput = undefined;
+            if (this.elementText.nativeElement.childNodes.length > 0) {
+                var textNode = this.elementText.nativeElement.childNodes[0];
+                textInput = textNode.nodeValue;
+            }
+            this.popupService.enablePopup(this.mouseover, this.onclick, this.circle, textInput);
         }
-        this.popupService.enablePopup(this.mouseover, this.onclick, this.circle, textInput);
     };
     return CircleElement;
 }(coodinateHandler_1.CoordinateHandler));

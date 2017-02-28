@@ -7,10 +7,7 @@ describe('LeafletElement', function () {
         testing_1.TestBed.configureTestingModule({
             declarations: [map_1.LeafletElement],
             providers: [{ provide: map_service_1.MapService }]
-        });
-        beforeEach(testing_1.async(function () {
-            testing_1.TestBed.compileComponents();
-        }));
+        }).compileComponents();
     });
     it('works well', testing_1.async(function () {
         var fixture = testing_1.TestBed.createComponent(map_1.LeafletElement);

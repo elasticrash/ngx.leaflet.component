@@ -7,28 +7,29 @@ import { GroupService } from '../services/group.service';
 import { PopupService } from '../services/popup.service';
 import { GuidService } from '../services/globalId.service';
 import { HelperService } from '../services/helper.service';
-
+import { LeafletElement } from '../map/map';
+import { LeafletGroup } from '../group/group';
+import { MockComponent } from '../test/mock.component';
 
 describe('GeoJsonElement', () => {
 
+let mock = MockComponent({selector:"app-element", template: "<leaf-element><geojson-element></geojson-element></leaf-element>" });
+
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [GeoJsonElement],
-            providers: [
-                { provide: MapService },
-                { provide: GroupService },
-                { provide: PopupService },
-                { provide: GuidService },
-                { provide: HelperService }]
-        });
-
-        beforeEach(async(() => {
-            TestBed.compileComponents();
-        }));
+            declarations: [mock, LeafletElement, GeoJsonElement],
+             providers: [
+             MapService,
+             GroupService,
+             PopupService,
+             GuidService,
+             HelperService 
+            ]
+        }).compileComponents();
     });
 
     it('geojson parsed', async(() => {
-        const fixture = TestBed.createComponent(GeoJsonElement);
+        const fixture = TestBed.createComponent(mock);
         fixture.componentInstance.geojson = {
             "type": "FeatureCollection",
             "features": [{

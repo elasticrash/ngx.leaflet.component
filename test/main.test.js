@@ -19,5 +19,7 @@ Promise.all([
 })
     .then(function () { return require.context('../map', true, /\.spec\.ts/); })
     .then(function (context) { return context.keys().map(context); })
+    .then(function () { return require.context('../circle', true, /\.spec\.ts/); })
+    .then(function (context) { return context.keys().map(context); })
     .then(__karma__.start, __karma__.error);
 //# sourceMappingURL=main.test.js.map

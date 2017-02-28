@@ -59,6 +59,7 @@ export class CircleElement extends CoordinateHandler {
   }
 
   ngAfterViewInit() {
+    if (this.LeafletElement || this.LeafletGroup) {
     var textInput = undefined;
     if (this.elementText.nativeElement.childNodes.length > 0) {
       var textNode = this.elementText.nativeElement.childNodes[0];
@@ -67,5 +68,6 @@ export class CircleElement extends CoordinateHandler {
 
     //add popup methods on element
     this.popupService.enablePopup(this.mouseover, this.onclick, this.circle, textInput);
+    }
   }
 }

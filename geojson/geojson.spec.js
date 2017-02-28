@@ -6,24 +6,24 @@ var group_service_1 = require("../services/group.service");
 var popup_service_1 = require("../services/popup.service");
 var globalId_service_1 = require("../services/globalId.service");
 var helper_service_1 = require("../services/helper.service");
+var map_1 = require("../map/map");
+var mock_component_1 = require("../test/mock.component");
 describe('GeoJsonElement', function () {
+    var mock = mock_component_1.MockComponent({ selector: "app-element", template: "<leaf-element><geojson-element></geojson-element></leaf-element>" });
     beforeEach(function () {
         testing_1.TestBed.configureTestingModule({
-            declarations: [geojson_1.GeoJsonElement],
+            declarations: [mock, map_1.LeafletElement, geojson_1.GeoJsonElement],
             providers: [
-                { provide: map_service_1.MapService },
-                { provide: group_service_1.GroupService },
-                { provide: popup_service_1.PopupService },
-                { provide: globalId_service_1.GuidService },
-                { provide: helper_service_1.HelperService }
+                map_service_1.MapService,
+                group_service_1.GroupService,
+                popup_service_1.PopupService,
+                globalId_service_1.GuidService,
+                helper_service_1.HelperService
             ]
-        });
-        beforeEach(testing_1.async(function () {
-            testing_1.TestBed.compileComponents();
-        }));
+        }).compileComponents();
     });
     it('geojson parsed', testing_1.async(function () {
-        var fixture = testing_1.TestBed.createComponent(geojson_1.GeoJsonElement);
+        var fixture = testing_1.TestBed.createComponent(mock);
         fixture.componentInstance.geojson = {
             "type": "FeatureCollection",
             "features": [{
