@@ -1,5 +1,6 @@
 "use strict";
 var testing_1 = require("@angular/core/testing");
+var platform_browser_1 = require("@angular/platform-browser");
 var geojson_1 = require("./geojson");
 var map_service_1 = require("../services/map.service");
 var group_service_1 = require("../services/group.service");
@@ -9,13 +10,13 @@ var helper_service_1 = require("../services/helper.service");
 var map_1 = require("../map/map");
 var mock_component_1 = require("../test/mock.component");
 describe('GeoJsonElement', function () {
-    var geojson = {
+    var g = {
         "type": "FeatureCollection",
         "features": [{
                 "type": "Feature",
                 "geometry": {
                     "type": "Point",
-                    "coordinates": [102.0, 0.5]
+                    "coordinates": [375000, 4202000]
                 },
                 "properties": {
                     "prop0": "value0"
@@ -24,40 +25,14 @@ describe('GeoJsonElement', function () {
                 "type": "Feature",
                 "geometry": {
                     "type": "LineString",
-                    "coordinates": [
-                        [102.0, 0.0],
-                        [103.0, 1.0],
-                        [104.0, 0.0],
-                        [105.0, 1.0]
-                    ]
+                    "coordinates": [[376000, 4202500], [377000, 4203500]]
                 },
                 "properties": {
-                    "prop0": "value0",
-                    "prop1": 0.0
-                }
-            }, {
-                "type": "Feature",
-                "geometry": {
-                    "type": "Polygon",
-                    "coordinates": [
-                        [
-                            [100.0, 0.0],
-                            [101.0, 0.0],
-                            [101.0, 1.0],
-                            [100.0, 1.0],
-                            [100.0, 0.0]
-                        ]
-                    ]
-                },
-                "properties": {
-                    "prop0": "value0",
-                    "prop1": {
-                        "this": "that"
-                    }
+                    "prop0": "value1"
                 }
             }]
     };
-    var mock = mock_component_1.MockComponent({ selector: "app-element", template: "<leaf-element><geojson-element [geojson]='" + JSON.stringify(geojson) + "'></geojson-element></leaf-element>" });
+    var mock = mock_component_1.MockComponent({ selector: "app-element", template: "<leaf-element [crs]=\"'L.CRS.EPSG3395'\" ><geojson-element [geojson]='" + JSON.stringify(g) + "'></geojson-element></leaf-element>" });
     beforeEach(function () {
         testing_1.TestBed.configureTestingModule({
             declarations: [mock, map_1.LeafletElement, geojson_1.GeoJsonElement],
@@ -70,11 +45,26 @@ describe('GeoJsonElement', function () {
             ]
         }).compileComponents();
     });
-    it('geojson parsed', testing_1.async(function () {
-        var fixture = testing_1.TestBed.createComponent(mock);
-        fixture.detectChanges();
-        var el = fixture.debugElement.nativeElement;
+    it('geojson component test', testing_1.async(function () {
+        var appMock = testing_1.TestBed.createComponent(mock);
+        appMock.detectChanges();
+        var el = appMock.debugElement.nativeElement;
         expect(el.tagName).toEqual("DIV");
+    }));
+    it('geojson read', testing_1.async(function () {
+        var appMock = testing_1.TestBed.createComponent(mock);
+        appMock.detectChanges();
+        var GeoJsonDomElement = appMock.debugElement.queryAll(platform_browser_1.By.directive(geojson_1.GeoJsonElement));
+        console.log(GeoJsonDomElement);
+        expect(1).toEqual(1);
+    }));
+    it('geojson extended properly', testing_1.async(function () {
+        var geojson = testing_1.TestBed.createComponent(geojson_1.GeoJsonElement);
+        var instance = geojson.componentInstance;
+        instance.geojson = g;
+        var appMock = testing_1.TestBed.createComponent(mock);
+        appMock.detectChanges();
+        expect(instance.geojson.features[0].geometry.coordinates).toEqual([375000, 4202000]);
     }));
 });
 //# sourceMappingURL=geojson.spec.js.map
