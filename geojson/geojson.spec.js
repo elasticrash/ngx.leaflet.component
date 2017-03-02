@@ -9,7 +9,55 @@ var helper_service_1 = require("../services/helper.service");
 var map_1 = require("../map/map");
 var mock_component_1 = require("../test/mock.component");
 describe('GeoJsonElement', function () {
-    var mock = mock_component_1.MockComponent({ selector: "app-element", template: "<leaf-element><geojson-element></geojson-element></leaf-element>" });
+    var geojson = {
+        "type": "FeatureCollection",
+        "features": [{
+                "type": "Feature",
+                "geometry": {
+                    "type": "Point",
+                    "coordinates": [102.0, 0.5]
+                },
+                "properties": {
+                    "prop0": "value0"
+                }
+            }, {
+                "type": "Feature",
+                "geometry": {
+                    "type": "LineString",
+                    "coordinates": [
+                        [102.0, 0.0],
+                        [103.0, 1.0],
+                        [104.0, 0.0],
+                        [105.0, 1.0]
+                    ]
+                },
+                "properties": {
+                    "prop0": "value0",
+                    "prop1": 0.0
+                }
+            }, {
+                "type": "Feature",
+                "geometry": {
+                    "type": "Polygon",
+                    "coordinates": [
+                        [
+                            [100.0, 0.0],
+                            [101.0, 0.0],
+                            [101.0, 1.0],
+                            [100.0, 1.0],
+                            [100.0, 0.0]
+                        ]
+                    ]
+                },
+                "properties": {
+                    "prop0": "value0",
+                    "prop1": {
+                        "this": "that"
+                    }
+                }
+            }]
+    };
+    var mock = mock_component_1.MockComponent({ selector: "app-element", template: "<leaf-element><geojson-element [geojson]='" + JSON.stringify(geojson) + "'></geojson-element></leaf-element>" });
     beforeEach(function () {
         testing_1.TestBed.configureTestingModule({
             declarations: [mock, map_1.LeafletElement, geojson_1.GeoJsonElement],
@@ -24,57 +72,9 @@ describe('GeoJsonElement', function () {
     });
     it('geojson parsed', testing_1.async(function () {
         var fixture = testing_1.TestBed.createComponent(mock);
-        fixture.componentInstance.geojson = {
-            "type": "FeatureCollection",
-            "features": [{
-                    "type": "Feature",
-                    "geometry": {
-                        "type": "Point",
-                        "coordinates": [102.0, 0.5]
-                    },
-                    "properties": {
-                        "prop0": "value0"
-                    }
-                }, {
-                    "type": "Feature",
-                    "geometry": {
-                        "type": "LineString",
-                        "coordinates": [
-                            [102.0, 0.0],
-                            [103.0, 1.0],
-                            [104.0, 0.0],
-                            [105.0, 1.0]
-                        ]
-                    },
-                    "properties": {
-                        "prop0": "value0",
-                        "prop1": 0.0
-                    }
-                }, {
-                    "type": "Feature",
-                    "geometry": {
-                        "type": "Polygon",
-                        "coordinates": [
-                            [
-                                [100.0, 0.0],
-                                [101.0, 0.0],
-                                [101.0, 1.0],
-                                [100.0, 1.0],
-                                [100.0, 0.0]
-                            ]
-                        ]
-                    },
-                    "properties": {
-                        "prop0": "value0",
-                        "prop1": {
-                            "this": "that"
-                        }
-                    }
-                }]
-        };
         fixture.detectChanges();
         var el = fixture.debugElement.nativeElement;
-        expect(fixture.componentInstance.geojson.features[0].geometry.type).toBe("Point");
+        expect(el.tagName).toEqual("DIV");
     }));
 });
 //# sourceMappingURL=geojson.spec.js.map

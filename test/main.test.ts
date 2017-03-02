@@ -30,8 +30,8 @@ Promise.all([
     })
     .then(() => require.context('../map', true, /\.spec\.ts/))
     .then(context => context.keys().map(context))
-    // .then(() => require.context('../geojson', true, /\.spec\.ts/))
-    // .then(context => context.keys().map(context))
+    .then(() => require.context('../geojson', true, /\.spec\.ts/))
+    .then(context => context.keys().map(context))
     .then(() => require.context('../circle', true, /\.spec\.ts/))
     .then(context => context.keys().map(context))
     // Finally, start Karma to run the tests.

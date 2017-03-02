@@ -13,24 +13,7 @@ import { MockComponent } from '../test/mock.component';
 
 describe('GeoJsonElement', () => {
 
-let mock = MockComponent({selector:"app-element", template: "<leaf-element><geojson-element></geojson-element></leaf-element>" });
-
-    beforeEach(() => {
-        TestBed.configureTestingModule({
-            declarations: [mock, LeafletElement, GeoJsonElement],
-             providers: [
-             MapService,
-             GroupService,
-             PopupService,
-             GuidService,
-             HelperService 
-            ]
-        }).compileComponents();
-    });
-
-    it('geojson parsed', async(() => {
-        const fixture = TestBed.createComponent(mock);
-        fixture.componentInstance.geojson = {
+let geojson = {
             "type": "FeatureCollection",
             "features": [{
                 "type": "Feature",
@@ -78,8 +61,26 @@ let mock = MockComponent({selector:"app-element", template: "<leaf-element><geoj
                 }
             }]
         };
+let mock:any = MockComponent({selector:"app-element", template: "<leaf-element><geojson-element [geojson]='"+JSON.stringify(geojson)+"'></geojson-element></leaf-element>" });
+
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            declarations: [mock, LeafletElement, GeoJsonElement],
+             providers: [
+             MapService,
+             GroupService,
+             PopupService,
+             GuidService,
+             HelperService 
+            ]
+        }).compileComponents();
+    });
+
+    it('geojson parsed', async(() => {
+        const fixture = TestBed.createComponent(mock);
+        
         fixture.detectChanges();
         const el = fixture.debugElement.nativeElement as HTMLElement;
-        expect(fixture.componentInstance.geojson.features[0].geometry.type).toBe("Point");
+        expect(el.tagName).toEqual("DIV");
     }))
 });

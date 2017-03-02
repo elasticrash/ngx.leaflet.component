@@ -7,11 +7,12 @@ function MockComponent(options) {
         inputs: options.inputs,
         outputs: options.outputs
     };
-    return core_1.Component(metadata)((function () {
-        function _() {
+    var Mock = (function () {
+        function Mock() {
         }
-        return _;
-    }()));
+        return Mock;
+    }());
+    return core_1.Component(metadata)(Mock);
 }
 exports.MockComponent = MockComponent;
 //# sourceMappingURL=mock.component.js.map
