@@ -12,7 +12,7 @@ import { GuidService } from '../services/globalId.service';
 
 describe('CircleElement', () => {
 
-let mock:any = MockComponent({selector:"app-element", template: "<leaf-element><circle-element [mouseover]='test'></circle-element></leaf-element>" });
+const mock:any = MockComponent({selector:"app-element", template: "<leaf-element><circle-element [mouseover]='test'></circle-element></leaf-element>" });
 
   beforeEach(() => {
     TestBed.configureTestingModule({

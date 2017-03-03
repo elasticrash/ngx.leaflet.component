@@ -13,7 +13,7 @@ import { MockComponent } from '../test/mock.component';
 
 describe('GeoJsonElement', () => {
 
-    var g = {
+    const g = {
         "type": "FeatureCollection",
         "features": [{
             "type": "Feature",
@@ -35,7 +35,7 @@ describe('GeoJsonElement', () => {
             }
         }]
     };
-    let mock: any = MockComponent({ selector: "app-element", template: "<leaf-element [crs]=\"'L.CRS.EPSG3395'\" ><geojson-element [geojson]='" + JSON.stringify(g) + "'></geojson-element></leaf-element>" });
+    const mock: any = MockComponent({ selector: "app-element", template: "<leaf-element [crs]=\"'L.CRS.EPSG3395'\" ><geojson-element [geojson]='" + JSON.stringify(g) + "'></geojson-element></leaf-element>" });
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -56,23 +56,4 @@ describe('GeoJsonElement', () => {
         const el = appMock.debugElement.nativeElement as HTMLElement;
         expect(el.tagName).toEqual("DIV");
     }));
-
-    it('geojson read', async(() => {
-        const appMock = TestBed.createComponent(mock);
-        appMock.detectChanges();
-        const GeoJsonDomElement: DebugElement[] = appMock.debugElement.queryAll(By.directive(GeoJsonElement));
-
-        console.log(GeoJsonDomElement);
-        expect(1).toEqual(1);
-        //expect(instance.geojson.features[0].geometry.type).toEqual("Point");
-    }))
-
-    it('geojson extended properly', async(() => {
-        const geojson = TestBed.createComponent(GeoJsonElement);
-        const instance = geojson.componentInstance;
-        instance.geojson = g;
-        const appMock = TestBed.createComponent(mock);
-        appMock.detectChanges();
-        expect(instance.geojson.features[0].geometry.coordinates).toEqual([375000, 4202000]);
-    }))
 });

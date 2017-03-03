@@ -1,6 +1,5 @@
 "use strict";
 var testing_1 = require("@angular/core/testing");
-var platform_browser_1 = require("@angular/platform-browser");
 var geojson_1 = require("./geojson");
 var map_service_1 = require("../services/map.service");
 var group_service_1 = require("../services/group.service");
@@ -50,21 +49,6 @@ describe('GeoJsonElement', function () {
         appMock.detectChanges();
         var el = appMock.debugElement.nativeElement;
         expect(el.tagName).toEqual("DIV");
-    }));
-    it('geojson read', testing_1.async(function () {
-        var appMock = testing_1.TestBed.createComponent(mock);
-        appMock.detectChanges();
-        var GeoJsonDomElement = appMock.debugElement.queryAll(platform_browser_1.By.directive(geojson_1.GeoJsonElement));
-        console.log(GeoJsonDomElement);
-        expect(1).toEqual(1);
-    }));
-    it('geojson extended properly', testing_1.async(function () {
-        var geojson = testing_1.TestBed.createComponent(geojson_1.GeoJsonElement);
-        var instance = geojson.componentInstance;
-        instance.geojson = g;
-        var appMock = testing_1.TestBed.createComponent(mock);
-        appMock.detectChanges();
-        expect(instance.geojson.features[0].geometry.coordinates).toEqual([375000, 4202000]);
     }));
 });
 //# sourceMappingURL=geojson.spec.js.map
