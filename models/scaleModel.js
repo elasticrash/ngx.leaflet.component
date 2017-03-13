@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var scaleModel = (function () {
     function scaleModel(options) {
         this.maxWidth = 100;

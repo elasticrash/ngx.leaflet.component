@@ -38,20 +38,23 @@ export class GeoJsonElement extends GeoJSONCoordinateHandler {
       //polyline shouldn't have a fill
       let map = this.mapService.getMap();
 
-      super.transformJSONCoordinates(this.geojson, this.LeafletElement.crs);
+      if (this.geojson) {
+        super.transformJSONCoordinates(this.geojson, this.LeafletElement.crs);
 
-      let gjson = L.geoJSON(this.geojson);
+        let gjson = L.geoJSON(this.geojson);
 
-
-
-      if (this.LeafletGroup) {
-        this.groupService.addOLayersToGroup(gjson, map, this.mapService, this.LeafletGroup, false, this.globalId);
+        if (this.LeafletGroup) {
+          this.groupService.addOLayersToGroup(gjson, map, this.mapService, this.LeafletGroup, false, this.globalId);
+        } else {
+          gjson.addTo(map);
+        }
       } else {
-        gjson.addTo(map);
+        console.warn("geojson object seems to be undefined");
       }
     } else {
       console.warn("This polyline-element will not be rendered \n the expected parent node of polyline-element should be either leaf-element or leaflet-group");
     }
+
   }
 
   ngDoCheck() {

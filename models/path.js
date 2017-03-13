@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var path = (function () {
     function path(pathInfo) {
         this.stroke = true;

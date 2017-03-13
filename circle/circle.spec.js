@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var testing_1 = require("@angular/core/testing");
 var circle_1 = require("./circle");
 var map_service_1 = require("../services/map.service");
