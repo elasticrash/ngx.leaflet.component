@@ -83,7 +83,9 @@ export class GeoJSONCoordinateHandler {
          */
         if (crs.code && crs.code !== "EPSG:3857") {
             let newlatlng = crs.unproject({ x: point[0], y: point[1] });
-            return newlatlng;
+            point[1] = newlatlng.lat;
+            point[0] = newlatlng.lng;
+            return point;
         } else {
             return point;
         }
