@@ -2,7 +2,8 @@ import { LeafletElement } from '../map/map';
 import { LeafletGroup } from '../group/group';
 import { MapService } from '../services/map.service';
 import { GroupService } from '../services/group.service';
-export declare class PopupElement {
+import { CoordinateHandler } from '../helpers/coodinateHandler';
+export declare class PopupElement extends CoordinateHandler {
     private mapService;
     private groupService;
     private LeafletElement;

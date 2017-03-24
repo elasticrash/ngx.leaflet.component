@@ -1,4 +1,14 @@
 "use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,28 +28,34 @@ var group_1 = require("../group/group");
 var map_service_1 = require("../services/map.service");
 var group_service_1 = require("../services/group.service");
 var popup_service_1 = require("../services/popup.service");
+var coodinateHandler_1 = require("../helpers/coodinateHandler");
 var path_1 = require("../models/path");
 var L = require("leaflet");
-var CircleElement = (function () {
+var CircleElement = (function (_super) {
+    __extends(CircleElement, _super);
     function CircleElement(mapService, groupService, popupService, elementText, LeafletElement, LeafletGroup) {
-        this.mapService = mapService;
-        this.groupService = groupService;
-        this.popupService = popupService;
-        this.elementText = elementText;
-        this.LeafletElement = LeafletElement;
-        this.LeafletGroup = LeafletGroup;
-        this.lat = 52.6;
-        this.lon = -1.1;
-        this.radius = 20;
-        this.mouseover = undefined;
-        this.onclick = undefined;
-        this.Options = new path_1.path(null);
-        this.circle = null;
+        var _this = _super.call(this) || this;
+        _this.mapService = mapService;
+        _this.groupService = groupService;
+        _this.popupService = popupService;
+        _this.elementText = elementText;
+        _this.LeafletElement = LeafletElement;
+        _this.LeafletGroup = LeafletGroup;
+        _this.lat = 52.6;
+        _this.lon = -1.1;
+        _this.radius = 20;
+        _this.mouseover = undefined;
+        _this.onclick = undefined;
+        _this.Options = new path_1.path(null);
+        _this.circle = null;
+        return _this;
     }
     CircleElement.prototype.ngOnInit = function () {
+        _super.prototype.assignCartesianPointToLeafletsLatLngSchema.call(this);
         if (this.LeafletElement || this.LeafletGroup) {
             var inheritedOptions = new path_1.path(this.Options);
             var map = this.mapService.getMap();
+            _super.prototype.transformPointCoordinates.call(this, this.LeafletElement.crs);
             this.circle = L.circle([this.lat, this.lon], this.radius, inheritedOptions);
             if (this.LeafletGroup) {
                 this.groupService.addOLayersToGroup(this.circle, map, this.mapService, this.LeafletGroup);
@@ -53,15 +69,17 @@ var CircleElement = (function () {
         }
     };
     CircleElement.prototype.ngAfterViewInit = function () {
-        var textInput = undefined;
-        if (this.elementText.nativeElement.childNodes.length > 0) {
-            var textNode = this.elementText.nativeElement.childNodes[0];
-            textInput = textNode.nodeValue;
+        if (this.LeafletElement || this.LeafletGroup) {
+            var textInput = undefined;
+            if (this.elementText.nativeElement.childNodes.length > 0) {
+                var textNode = this.elementText.nativeElement.childNodes[0];
+                textInput = textNode.nodeValue;
+            }
+            this.popupService.enablePopup(this.mouseover, this.onclick, this.circle, textInput);
         }
-        this.popupService.enablePopup(this.mouseover, this.onclick, this.circle, textInput);
     };
     return CircleElement;
-}());
+}(coodinateHandler_1.CoordinateHandler));
 __decorate([
     core_1.Input(),
     __metadata("design:type", Number)

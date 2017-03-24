@@ -3,6 +3,7 @@ import { LeafletElement } from '../map/map';
 import { LeafletGroup } from '../group/group';
 import { MapService } from '../services/map.service';
 import { GroupService } from '../services/group.service';
+import { CoordinateHandler } from '../helpers/coodinateHandler';
 import * as L from 'leaflet';
 
 
@@ -13,7 +14,7 @@ import * as L from 'leaflet';
   styleUrls: ['popup.css']
 })
 
-export class PopupElement {
+export class PopupElement extends CoordinateHandler {
   @Input() lat: number = 52.6;
   @Input() lon: number = -1.9;
   @Input() content: string = "nice popup";
@@ -23,14 +24,19 @@ export class PopupElement {
     private groupService: GroupService,
     @Optional() private LeafletElement?: LeafletElement,
     @Optional() private LeafletGroup?: LeafletGroup) {
+    super();
   }
 
   ngOnInit() {
+    super.assignCartesianPointToLeafletsLatLngSchema();
     //check if any of the two optional injections exist
     if (this.LeafletElement || this.LeafletGroup) {
 
       let map = this.mapService.getMap();
-      let popup = L.popup({ autoClose: false, keepInView: true}).setLatLng([this.lat, this.lon]).setContent(<any>this.content);
+
+      super.transformPointCoordinates(this.LeafletElement.crs);
+
+      let popup = L.popup({ autoClose: false, keepInView: true }).setLatLng([this.lat, this.lon]).setContent(<any>this.content);
 
       if (this.LeafletGroup) {
         this.groupService.addOLayersToGroup(popup, map, this.mapService, this.LeafletGroup);

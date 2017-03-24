@@ -4,6 +4,7 @@ import { LeafletGroup } from '../group/group';
 import { MapService } from '../services/map.service';
 import { GroupService } from '../services/group.service';
 import { PopupService } from '../services/popup.service';
+import { CoordinateHandler } from '../helpers/coodinateHandler';
 import { path } from '../models/path';
 import { Ipath } from '../interfaces/path';
 import * as L from 'leaflet';
@@ -16,13 +17,13 @@ import * as L from 'leaflet';
   styleUrls: ['circlemarker.css']
 })
 
-export class CircleMarkerElement {
+export class CircleMarkerElement extends CoordinateHandler {
   @Input() lat: number = 52.6;
   @Input() lon: number = -1.1;
   @Input() mouseover: string = undefined;
   @Input() onclick: string = undefined;
   @Input() Options: any = new path(null);
-  circle: any = null; 
+  circle: any = null;
 
   constructor(
     private mapService: MapService,
@@ -31,13 +32,18 @@ export class CircleMarkerElement {
     private elementText: ElementRef,
     @Optional() private LeafletElement?: LeafletElement,
     @Optional() private LeafletGroup?: LeafletGroup) {
+    super();
   }
 
   ngOnInit() {
+    super.assignCartesianPointToLeafletsLatLngSchema();
     //check if any of the two optional injections exist
     if (this.LeafletElement || this.LeafletGroup) {
       let inheritedOptions: any = new path(this.Options);
       let map = this.mapService.getMap();
+
+      let elementPosition: any = super.transformPointCoordinates(this.LeafletElement.crs);
+      
       this.circle = L.circleMarker([this.lat, this.lon], inheritedOptions);
 
       if (this.LeafletGroup) {

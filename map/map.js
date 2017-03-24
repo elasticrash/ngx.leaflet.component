@@ -1,4 +1,14 @@
 "use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -11,27 +21,26 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var map_service_1 = require("../services/map.service");
+var coodinateHandler_1 = require("../helpers/coodinateHandler");
 var L = require("leaflet");
-var LeafletElement = (function () {
+var LeafletElement = (function (_super) {
+    __extends(LeafletElement, _super);
     function LeafletElement(mapService) {
-        this.mapService = mapService;
-        this.lat = 52.6;
-        this.lon = -1.1;
-        this.zoom = 12;
-        this.minZoom = 4;
-        this.maxZoom = 19;
-        this.layerControl = false;
-        this.crs = L.CRS.EPSG3857;
-        this.maxBounds = null;
-        this.layerControlObject = null;
+        var _this = _super.call(this) || this;
+        _this.mapService = mapService;
+        _this.lat = 52.6;
+        _this.lon = -1.1;
+        _this.zoom = 12;
+        _this.minZoom = 4;
+        _this.maxZoom = 19;
+        _this.layerControl = false;
+        _this.crs = L.CRS.EPSG3857;
+        _this.maxBounds = null;
+        _this.layerControlObject = null;
+        return _this;
     }
     LeafletElement.prototype.ngOnInit = function () {
-        if (this.x !== undefined) {
-            this.lon = this.x;
-        }
-        if (this.y !== undefined) {
-            this.lat = this.y;
-        }
+        _super.prototype.assignCartesianPointToLeafletsLatLngSchema.call(this);
         if (typeof (this.crs) === "string") {
             var splitCrs = this.crs.split(".");
             if (splitCrs[0] === "L") {
@@ -42,6 +51,7 @@ var LeafletElement = (function () {
                 this.crs = L.CRS.EPSG3857;
             }
         }
+        _super.prototype.transformPointCoordinates.call(this, this.crs);
         var map = L.map(this.mapElement.nativeElement, {
             crs: this.crs,
             zoomControl: this.zoomControl,
@@ -70,7 +80,7 @@ var LeafletElement = (function () {
         }
     };
     return LeafletElement;
-}());
+}(coodinateHandler_1.CoordinateHandler));
 __decorate([
     core_1.Input(),
     __metadata("design:type", Number)
@@ -79,14 +89,6 @@ __decorate([
     core_1.Input(),
     __metadata("design:type", Number)
 ], LeafletElement.prototype, "lon", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], LeafletElement.prototype, "x", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], LeafletElement.prototype, "y", void 0);
 __decorate([
     core_1.Input(),
     __metadata("design:type", Number)

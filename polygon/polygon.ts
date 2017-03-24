@@ -6,6 +6,7 @@ import { GroupService } from '../services/group.service';
 import { PopupService } from '../services/popup.service';
 import { GuidService } from '../services/globalId.service';
 import { HelperService } from '../services/helper.service';
+import { CoordinateHandler } from '../helpers/coodinateHandler';
 import { path } from '../models/path';
 import { Ipath } from '../interfaces/path';
 import * as L from 'leaflet';
@@ -18,7 +19,7 @@ import * as L from 'leaflet';
   styleUrls: ['polygon.css']
 })
 
-export class PolygonElement {
+export class PolygonElement extends CoordinateHandler {
   @Input() latlngs: any = [[[52.65, -1.2], [52.645, -1.15], [52.696, -1.155], [52.697, -1.189]],
   [[52.66, -1.19], [52.665, -1.16], [52.686, -1.161], [52.687, -1.179]]];
   @Input() Options: Ipath = new path(null);
@@ -37,13 +38,18 @@ export class PolygonElement {
     private elementText: ElementRef,
     @Optional() private LeafletElement?: LeafletElement,
     @Optional() private LeafletGroup?: LeafletGroup) {
+    super();
   }
 
   ngOnInit() {
+    super.assignCartesianArrayToLeafletsLatLngSchema();
     //check if any of the two optional injections exist
     if (this.LeafletElement || this.LeafletGroup) {
       let inheritedOptions: any = new path(this.Options);
       let map = this.mapService.getMap();
+
+      super.transformArrayCoordinates(this.LeafletElement.crs);
+
       this.polygon = L.polygon([this.latlngs], inheritedOptions);
 
       if (this.LeafletGroup) {

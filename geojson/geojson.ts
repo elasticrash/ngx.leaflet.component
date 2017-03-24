@@ -6,6 +6,8 @@ import { GroupService } from '../services/group.service';
 import { PopupService } from '../services/popup.service';
 import { GuidService } from '../services/globalId.service';
 import { HelperService } from '../services/helper.service';
+import { GeoJSONCoordinateHandler } from '../helpers/geoJsonReader';
+
 import * as L from 'leaflet';
 
 @Component({
@@ -15,8 +17,7 @@ import * as L from 'leaflet';
   styleUrls: ['geojson.css']
 })
 
-export class GeoJsonElement {
-  @Input() geojson: any = {};
+export class GeoJsonElement extends GeoJSONCoordinateHandler {
   originalObject: any = Object.assign({}, this.geojson);
   globalId: string = this.guidService.newGuid();
 
@@ -28,6 +29,7 @@ export class GeoJsonElement {
     private helperService: HelperService,
     @Optional() private LeafletElement?: LeafletElement,
     @Optional() private LeafletGroup?: LeafletGroup) {
+    super();
   }
 
   ngOnInit() {
@@ -35,17 +37,24 @@ export class GeoJsonElement {
     if (this.LeafletElement || this.LeafletGroup) {
       //polyline shouldn't have a fill
       let map = this.mapService.getMap();
-      let gjson = L.geoJSON(this.geojson);
 
+      if (this.geojson) {
+        super.transformJSONCoordinates(this.geojson, this.LeafletElement.crs);
 
-      if (this.LeafletGroup) {
-        this.groupService.addOLayersToGroup(gjson, map, this.mapService, this.LeafletGroup, false, this.globalId);
+        let gjson = L.geoJSON(this.geojson);
+
+        if (this.LeafletGroup) {
+          this.groupService.addOLayersToGroup(gjson, map, this.mapService, this.LeafletGroup, false, this.globalId);
+        } else {
+          gjson.addTo(map);
+        }
       } else {
-        gjson.addTo(map);
+        console.warn("geojson object seems to be undefined");
       }
     } else {
       console.warn("This polyline-element will not be rendered \n the expected parent node of polyline-element should be either leaf-element or leaflet-group");
     }
+
   }
 
   ngDoCheck() {
