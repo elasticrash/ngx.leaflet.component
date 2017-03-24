@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var zoomModel = (function () {
     function zoomModel(options) {
         this.zoomInText = "+";

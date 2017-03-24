@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var polygon = (function () {
     function polygon(_outerRing, _hole) {
         if (_outerRing) {

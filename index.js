@@ -1,4 +1,5 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
 var map_1 = require("./map/map");
 var attribution_1 = require("./map/attribution/attribution");
 var scale_1 = require("./map/scale/scale");
