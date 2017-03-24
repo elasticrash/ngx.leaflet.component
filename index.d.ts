@@ -17,5 +17,5 @@ import { GroupService } from './services/group.service';
 import { PopupService } from './services/popup.service';
 import { GuidService } from './services/globalId.service';
 import { HelperService } from './services/helper.service';
-export declare const CandTLeafletComponent: (typeof LeafletElement | typeof LeafletGroup | typeof CircleElement | typeof CircleMarkerElement | typeof GeoJsonElement | typeof ImageOverlayElement | typeof AttributionControl | typeof ScaleControl | typeof ZoomControl | typeof LayerElement | typeof MarkerElement | typeof PolygonElement | typeof PolylineElement | typeof PopupElement)[];
+export declare const CandTLeafletComponent: (typeof LeafletElement | typeof AttributionControl | typeof ScaleControl | typeof ZoomControl | typeof LayerElement | typeof ImageOverlayElement | typeof LeafletGroup | typeof MarkerElement | typeof CircleElement | typeof CircleMarkerElement | typeof PolygonElement | typeof PolylineElement | typeof GeoJsonElement | typeof PopupElement)[];
 export declare const CandTLeafletService: (typeof MapService | typeof GuidService | typeof GroupService | typeof PopupService | typeof HelperService)[];

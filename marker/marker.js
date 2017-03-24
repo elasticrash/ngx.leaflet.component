@@ -11,6 +11,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var __param = (this && this.__param) || function (paramIndex, decorator) {
     return function (target, key) { decorator(target, key, paramIndex); }
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var map_service_1 = require("../services/map.service");
 var group_service_1 = require("../services/group.service");
@@ -60,7 +61,8 @@ var MarkerElement = (function () {
                                 iconAnchor: [img.width / 2, img.height - 1],
                                 popupAnchor: [0, -img.height]
                             });
-                            model.marker = L.marker([model.lat, model.lon], { icon: myIcon, options: null });
+                            var obj = { icon: myIcon, options: null };
+                            model.marker = L.marker([model.lat, model.lon], obj);
                             model.createMarkerlayer(model.marker, map_2);
                         };
                         reader.readAsDataURL(image.blob());
