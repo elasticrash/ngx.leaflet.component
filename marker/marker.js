@@ -77,7 +77,6 @@ var MarkerElement = (function (_super) {
                                 iconAnchor: [img.width / 2, img.height - 1],
                                 popupAnchor: [0, -img.height]
                             });
-
                             var obj = { icon: myIcon, options: null };
                             model.marker = L.marker([model.lat, model.lon], obj);
                             model.createMarkerlayer(model.marker, map_2);
