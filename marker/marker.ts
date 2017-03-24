@@ -67,7 +67,9 @@ export class MarkerElement extends CoordinateHandler {
                   iconAnchor: [img.width / 2, img.height - 1],
                   popupAnchor: [0, -img.height]
                 });
-                model.marker = L.marker([model.lat, model.lon], { icon: myIcon });
+
+                var obj =  { icon: myIcon, options: null };
+                model.marker = L.marker([model.lat, model.lon], obj);             
                 model.createMarkerlayer(model.marker, map);
               }
               reader.readAsDataURL(image.blob());
