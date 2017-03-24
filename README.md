@@ -1,4 +1,4 @@
-# ngx.leaflet.component  ![alt text](https://circleci.com/gh/elasticrash/angular2.leaflet.component.png?circle-token=8ce7131b0ea08b0ce9299e456bd9291dd3cf1ba4 "Build Status") 
+# ngx.leaflet.component  ![alt text](https://circleci.com/gh/elasticrash/ngx.leaflet.component.png?circle-token=8ce7131b0ea08b0ce9299e456bd9291dd3cf1ba4 "Build Status") 
 
 my own attemp on creating an Angular io leaflet v1.x component
 
