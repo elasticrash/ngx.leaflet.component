@@ -20,7 +20,8 @@
         "types": [
             "node",
             "jasmine",
-            "leaflet"
+            "leaflet",
+            "geojson"
         ]
     },
     "awesomeTypeScriptLoaderOptions": {

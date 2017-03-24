@@ -1,13 +1,14 @@
 import { ElementRef } from '@angular/core';
+import { Http } from '@angular/http';
 import { MapService } from '../services/map.service';
 import { GroupService } from '../services/group.service';
 import { PopupService } from '../services/popup.service';
 import { LeafletElement } from '../map/map';
 import { LeafletGroup } from '../group/group';
-import { Http } from '@angular/http';
+import { CoordinateHandler } from '../helpers/coodinateHandler';
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
-export declare class MarkerElement {
+export declare class MarkerElement extends CoordinateHandler {
     private mapService;
     private groupService;
     private popupService;

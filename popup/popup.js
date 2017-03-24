@@ -1,4 +1,14 @@
 "use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -17,20 +27,26 @@ var map_1 = require("../map/map");
 var group_1 = require("../group/group");
 var map_service_1 = require("../services/map.service");
 var group_service_1 = require("../services/group.service");
+var coodinateHandler_1 = require("../helpers/coodinateHandler");
 var L = require("leaflet");
-var PopupElement = (function () {
+var PopupElement = (function (_super) {
+    __extends(PopupElement, _super);
     function PopupElement(mapService, groupService, LeafletElement, LeafletGroup) {
-        this.mapService = mapService;
-        this.groupService = groupService;
-        this.LeafletElement = LeafletElement;
-        this.LeafletGroup = LeafletGroup;
-        this.lat = 52.6;
-        this.lon = -1.9;
-        this.content = "nice popup";
+        var _this = _super.call(this) || this;
+        _this.mapService = mapService;
+        _this.groupService = groupService;
+        _this.LeafletElement = LeafletElement;
+        _this.LeafletGroup = LeafletGroup;
+        _this.lat = 52.6;
+        _this.lon = -1.9;
+        _this.content = "nice popup";
+        return _this;
     }
     PopupElement.prototype.ngOnInit = function () {
+        _super.prototype.assignCartesianPointToLeafletsLatLngSchema.call(this);
         if (this.LeafletElement || this.LeafletGroup) {
             var map = this.mapService.getMap();
+            _super.prototype.transformPointCoordinates.call(this, this.LeafletElement.crs);
             var popup = L.popup({ autoClose: false, keepInView: true }).setLatLng([this.lat, this.lon]).setContent(this.content);
             if (this.LeafletGroup) {
                 this.groupService.addOLayersToGroup(popup, map, this.mapService, this.LeafletGroup);
@@ -44,7 +60,7 @@ var PopupElement = (function () {
         }
     };
     return PopupElement;
-}());
+}(coodinateHandler_1.CoordinateHandler));
 __decorate([
     core_1.Input(),
     __metadata("design:type", Number)

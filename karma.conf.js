@@ -14,12 +14,13 @@ module.exports = function (config) {
         reporters: ['spec', 'coverage', 'remap-coverage'],
         port: 9876,
         colors: true,
-        logLevel: config.LOG_INFO,
-        autoWatch: false,
+        logLevel: config.LOG_DEBUG,
+        autoWatch: true,
         browsers: ['PhantomJS'],
         coverageReporter: {
             reporters: [
-                { type: 'json', subdir: '.', file: 'coverage.json' }
+                { type: 'json', subdir: '.', file: 'coverage.json' },
+                { type : 'text-summary'},
             ]
         },
         singleRun: true,

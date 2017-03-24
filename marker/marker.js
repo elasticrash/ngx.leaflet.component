@@ -1,4 +1,14 @@
 "use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -13,36 +23,42 @@ var __param = (this && this.__param) || function (paramIndex, decorator) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
+var http_1 = require("@angular/http");
 var map_service_1 = require("../services/map.service");
 var group_service_1 = require("../services/group.service");
 var popup_service_1 = require("../services/popup.service");
 var map_1 = require("../map/map");
 var group_1 = require("../group/group");
-var http_1 = require("@angular/http");
+var coodinateHandler_1 = require("../helpers/coodinateHandler");
 var Rx_1 = require("rxjs/Rx");
 require("rxjs/add/operator/map");
 require("rxjs/add/operator/catch");
 var L = require("leaflet");
-var MarkerElement = (function () {
+var MarkerElement = (function (_super) {
+    __extends(MarkerElement, _super);
     function MarkerElement(mapService, groupService, popupService, http, elementText, LeafletElement, LeafletGroup) {
-        this.mapService = mapService;
-        this.groupService = groupService;
-        this.popupService = popupService;
-        this.http = http;
-        this.elementText = elementText;
-        this.LeafletElement = LeafletElement;
-        this.LeafletGroup = LeafletGroup;
-        this.lat = 52.6;
-        this.lon = -1.1;
-        this.mouseover = undefined;
-        this.onclick = undefined;
-        this.iconUrl = "";
-        this.marker = null;
+        var _this = _super.call(this) || this;
+        _this.mapService = mapService;
+        _this.groupService = groupService;
+        _this.popupService = popupService;
+        _this.http = http;
+        _this.elementText = elementText;
+        _this.LeafletElement = LeafletElement;
+        _this.LeafletGroup = LeafletGroup;
+        _this.lat = 52.6;
+        _this.lon = -1.1;
+        _this.mouseover = undefined;
+        _this.onclick = undefined;
+        _this.iconUrl = "";
+        _this.marker = null;
+        return _this;
     }
     MarkerElement.prototype.ngOnInit = function () {
+        _super.prototype.assignCartesianPointToLeafletsLatLngSchema.call(this);
         var model = this;
         if (this.LeafletElement || this.LeafletGroup) {
             var map_2 = this.mapService.getMap();
+            _super.prototype.transformPointCoordinates.call(this, this.LeafletElement.crs);
             if (this.iconUrl === "") {
                 this.marker = L.marker([this.lat, this.lon]);
                 this.createMarkerlayer(this.marker, map_2);
@@ -61,6 +77,7 @@ var MarkerElement = (function () {
                                 iconAnchor: [img.width / 2, img.height - 1],
                                 popupAnchor: [0, -img.height]
                             });
+
                             var obj = { icon: myIcon, options: null };
                             model.marker = L.marker([model.lat, model.lon], obj);
                             model.createMarkerlayer(model.marker, map_2);
@@ -107,7 +124,7 @@ var MarkerElement = (function () {
             .catch(function (error) { return Rx_1.Observable.throw('Server error'); });
     };
     return MarkerElement;
-}());
+}(coodinateHandler_1.CoordinateHandler));
 __decorate([
     core_1.Input(),
     __metadata("design:type", Number)

@@ -6,8 +6,9 @@ import { GroupService } from '../services/group.service';
 import { PopupService } from '../services/popup.service';
 import { GuidService } from '../services/globalId.service';
 import { HelperService } from '../services/helper.service';
+import { CoordinateHandler } from '../helpers/coodinateHandler';
 import { Ipath } from '../interfaces/path';
-export declare class PolygonElement {
+export declare class PolygonElement extends CoordinateHandler {
     private mapService;
     private groupService;
     private popupService;

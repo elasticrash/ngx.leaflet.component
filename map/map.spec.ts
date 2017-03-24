@@ -11,11 +11,7 @@ describe('LeafletElement', () => {
     TestBed.configureTestingModule({
       declarations: [LeafletElement], // declare the test component
       providers: [{ provide: MapService }]
-    });
-
-    beforeEach(async(() => {
-      TestBed.compileComponents();
-    }));
+    }).compileComponents();
   });
 
   it('works well', async(() => {

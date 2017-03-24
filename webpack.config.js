@@ -1,7 +1,7 @@
 module.exports = () => {
     return {
         entry: {
-            main: './map/map.ts'
+            main: './index.ts'
         },
         output: {
             path: './dist',

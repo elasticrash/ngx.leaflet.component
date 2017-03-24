@@ -1,7 +1,7 @@
 {
-  "name": "angular2.leaflet.components",
-  "version": "1.3.0",
-  "description": "an angular.io (2) component collection for leaflet",
+  "name": "ngx.leaflet.components",
+  "version": "1.3.2",
+  "description": "an angular.io component collection for leaflet",
   "main": "index.js",
   "scripts": {
     "start": "tsc",
@@ -10,11 +10,11 @@
     "pretest": "node node_modules/alpagegen/index.js",
     "test": "karma start karma.conf.js",
     "coverage": "http-server -c-1 -o -p 9875 ./coverage",
-    "posttest": "node_modules/.bin/remap-istanbul -i coverage/coverage.json -o coverage -t html"
+    "remap": "node_modules/.bin/remap-istanbul -i coverage/coverage.json -o coverage -t html"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/elasticrash/Angular2.leaflet.component.git"
+    "url": "git+https://github.com/elasticrash/ngx.leaflet.component.git"
   },
   "author": "Stefanos Kouroupis",
   "contributors": [
@@ -25,23 +25,24 @@
   ],
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/elasticrash/Angular2.leaflet.component/issues"
+    "url": "https://github.com/elasticrash/ngx.leaflet.component/issues"
   },
   "dependencies": {
-    "@angular/common": "^2.4.7",
-    "@angular/core": "^2.4.7",
-    "@angular/http": "^2.4.7",
-    "@angular/platform-browser": "^2.4.7",
-    "@angular/platform-browser-dynamic": "^2.4.7",
-    "@angular/compiler": "^2.4.7",
-    "@types/leaflet": "^1.0.52",
+    "@angular/common": "4.0.0",
+    "@angular/compiler": "4.0.0",
+    "@angular/core": "4.0.0",
+    "@angular/http": "4.0.0",
+    "@angular/platform-browser": "4.0.0",
+    "@angular/platform-browser-dynamic": "4.0.0",
+    "@types/geojson": "^1.0.0",
+    "@types/leaflet": "^1.0.56",
     "leaflet": "^1.0.3",
-    "reflect-metadata": "^0.1.9",
-    "rxjs": "5.1.0",
+    "reflect-metadata": "0.1.10",
+    "rxjs": "5.2.0",
     "ts-helpers": "^1.1.2",
-    "zone.js": "^0.7.6"
+    "zone.js": "0.8.5"
   },
-  "homepage": "https://github.com/elasticrash/Angular2.leaflet.component#readme",
+  "homepage": "https://github.com/elasticrash/ngx.leaflet.component#readme",
   "devDependencies": {
     "@types/jasmine": "^2.5.39",
     "@types/node": "^6.0.54",
@@ -49,6 +50,7 @@
     "angular2-template-loader": "git+https://github.com/elasticrash/angular2-template-loader.git",
     "awesome-typescript-loader": "^3.0.0-beta.17",
     "codelyzer": "~2.0.0-beta.1",
+    "core-js": "^2.4.1",
     "css-loader": "^0.26.1",
     "es-module-loader": "^1.3.5",
     "es6-shim": "^0.35.2",
@@ -76,6 +78,7 @@
     "source-map-support": "^0.4.8",
     "ts-node": "1.2.1",
     "tslint": "^4.0.2",
+    "typedoc": "^0.5.6",
     "typescript": "^2.1.5",
     "webpack": "^2.1.0-beta.28"
   }

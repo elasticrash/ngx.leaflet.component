@@ -1,6 +1,6 @@
-# Angular2.leaflet.component
+# ngx.leaflet.component  ![alt text](https://circleci.com/gh/elasticrash/ngx.leaflet.component.png?circle-token=8ce7131b0ea08b0ce9299e456bd9291dd3cf1ba4 "Build Status") 
 
-my own attemp on creating an Angular 2 leaflet v1.x component
+my own attemp on creating an Angular io leaflet v1.x component
 
 Live examples
 * base example https://elasticrash.github.io/Angular.io.MapViewer/example/
@@ -17,7 +17,7 @@ mainly due to not enough free time, so I am making changes as I go
 
 Install
 ```terminal
-npm install angular2.leaflet.components
+npm install ngx.leaflet.components
 ```
 
 in SystemJs use the following configuration
@@ -25,10 +25,10 @@ in SystemJs use the following configuration
 ```javascript
     transpiler: 'typescript',
     map: {
-        'angular2.leaflet.components': 'npm:angular2.leaflet.components',
+        'ngx.leaflet.components': 'npm:ngx.leaflet.components',
     },
     packages: {
-              'angular2.leaflet.components': {
+              'ngx.leaflet.components': {
         main: './index',
         defaultExtension: 'js',
         meta: {
@@ -54,8 +54,8 @@ I haven't tested it with other transpilers save for typescript, thats why I am i
 then on you app module include this
 
 ```javascript
-import { CandTLeafletComponent  } from 'angular2.leaflet.components';
-import { CandTLeafletService } from 'angular2.leaflet.components';
+import { CandTLeafletComponent  } from 'ngx.leaflet.components';
+import { CandTLeafletService } from 'ngx.leaflet.components';
 import { AppComponent } from './components/app.component';
 
 @NgModule({
@@ -70,7 +70,7 @@ Leaflet stylesheet is not included, so you need to add it yourself
 
 for usage check the wiki
 
-https://github.com/elasticrash/Angular2.leaflet.component/wiki
+https://github.com/elasticrash/ngx.leaflet.component/wiki
 
 
 If anyone wants to help in any way feel free to do a fork and a pull request

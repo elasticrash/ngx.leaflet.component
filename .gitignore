@@ -3,3 +3,4 @@ typings/
 dist/
 test/mock/
 .vscode/
+documentation/

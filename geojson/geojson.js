@@ -1,4 +1,14 @@
 "use strict";
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -20,29 +30,38 @@ var group_service_1 = require("../services/group.service");
 var popup_service_1 = require("../services/popup.service");
 var globalId_service_1 = require("../services/globalId.service");
 var helper_service_1 = require("../services/helper.service");
+var geoJsonReader_1 = require("../helpers/geoJsonReader");
 var L = require("leaflet");
-var GeoJsonElement = (function () {
+var GeoJsonElement = (function (_super) {
+    __extends(GeoJsonElement, _super);
     function GeoJsonElement(mapService, groupService, popupService, guidService, helperService, LeafletElement, LeafletGroup) {
-        this.mapService = mapService;
-        this.groupService = groupService;
-        this.popupService = popupService;
-        this.guidService = guidService;
-        this.helperService = helperService;
-        this.LeafletElement = LeafletElement;
-        this.LeafletGroup = LeafletGroup;
-        this.geojson = {};
-        this.originalObject = Object.assign({}, this.geojson);
-        this.globalId = this.guidService.newGuid();
+        var _this = _super.call(this) || this;
+        _this.mapService = mapService;
+        _this.groupService = groupService;
+        _this.popupService = popupService;
+        _this.guidService = guidService;
+        _this.helperService = helperService;
+        _this.LeafletElement = LeafletElement;
+        _this.LeafletGroup = LeafletGroup;
+        _this.originalObject = Object.assign({}, _this.geojson);
+        _this.globalId = _this.guidService.newGuid();
+        return _this;
     }
     GeoJsonElement.prototype.ngOnInit = function () {
         if (this.LeafletElement || this.LeafletGroup) {
             var map = this.mapService.getMap();
-            var gjson = L.geoJSON(this.geojson);
-            if (this.LeafletGroup) {
-                this.groupService.addOLayersToGroup(gjson, map, this.mapService, this.LeafletGroup, false, this.globalId);
+            if (this.geojson) {
+                _super.prototype.transformJSONCoordinates.call(this, this.geojson, this.LeafletElement.crs);
+                var gjson = L.geoJSON(this.geojson);
+                if (this.LeafletGroup) {
+                    this.groupService.addOLayersToGroup(gjson, map, this.mapService, this.LeafletGroup, false, this.globalId);
+                }
+                else {
+                    gjson.addTo(map);
+                }
             }
             else {
-                gjson.addTo(map);
+                console.warn("geojson object seems to be undefined");
             }
         }
         else {
@@ -53,11 +72,7 @@ var GeoJsonElement = (function () {
         var map = this.mapService.getMap();
     };
     return GeoJsonElement;
-}());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Object)
-], GeoJsonElement.prototype, "geojson", void 0);
+}(geoJsonReader_1.GeoJSONCoordinateHandler));
 GeoJsonElement = __decorate([
     core_1.Component({
         moduleId: module.id.toString(),
