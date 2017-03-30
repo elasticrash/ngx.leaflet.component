@@ -1,11 +1,15 @@
+import { LeafletElement } from '../map/map';
 import { MapService } from '../services/map.service';
-export declare class ImageOverlayElement {
+import { CoordinateHandler } from '../helpers/coodinateHandler';
+export declare class ImageOverlayElement extends CoordinateHandler {
     private mapService;
+    private LeafletElement;
     bounds: any;
     imagepath: string;
     name: string;
     opacity: number;
     type: string;
-    constructor(mapService: MapService);
+    latlngs: any;
+    constructor(mapService: MapService, LeafletElement?: LeafletElement);
     ngOnInit(): void;
 }
