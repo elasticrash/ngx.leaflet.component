@@ -38,10 +38,10 @@ var ImageOverlayElement = (function (_super) {
         _this.name = '';
         _this.opacity = 1;
         _this.type = 'overlay';
-        _this.latlngs = _this.bounds;
         return _this;
     }
     ImageOverlayElement.prototype.ngOnInit = function () {
+        this.latlngs = this.bounds;
         if (this.LeafletElement) {
             var map = this.mapService.getMap();
             _super.prototype.transformArrayCoordinates.call(this, this.LeafletElement.crs);

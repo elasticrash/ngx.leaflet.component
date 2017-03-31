@@ -18,7 +18,7 @@ export class ImageOverlayElement extends CoordinateHandler {
   @Input() name: string = '';
   @Input() opacity: number = 1;
   @Input() type: string = 'overlay'
-  latlngs = this.bounds;
+  latlngs: any;
 
   constructor(private mapService: MapService,
     @Optional() private LeafletElement?: LeafletElement) {
@@ -26,6 +26,8 @@ export class ImageOverlayElement extends CoordinateHandler {
   }
 
   ngOnInit() {
+    this.latlngs = this.bounds;
+    
     if (this.LeafletElement) {
       let map = this.mapService.getMap();
       super.transformArrayCoordinates(this.LeafletElement.crs);
