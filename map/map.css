@@ -18,3 +18,7 @@ leaf-element{
 .leaflet-pane {
     z-index: 0 !important;
 }
+
+.leaflet-bottom.leaflet-left {
+    z-index: 1 !important;
+}

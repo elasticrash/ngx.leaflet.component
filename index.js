@@ -4,6 +4,7 @@ var map_1 = require("./map/map");
 var attribution_1 = require("./map/attribution/attribution");
 var scale_1 = require("./map/scale/scale");
 var zoom_1 = require("./map/zoom/zoom");
+var watermark_1 = require("./map/watermark/watermark");
 var layer_1 = require("./layer/layer");
 var image_overlay_1 = require("./imageoverlay/image-overlay");
 var marker_1 = require("./marker/marker");
@@ -24,6 +25,7 @@ exports.CandTLeafletComponent = [
     attribution_1.AttributionControl,
     scale_1.ScaleControl,
     zoom_1.ZoomControl,
+    watermark_1.WatermarkControl,
     layer_1.LayerElement,
     image_overlay_1.ImageOverlayElement,
     marker_1.MarkerElement,

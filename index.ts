@@ -2,6 +2,8 @@ import { LeafletElement } from './map/map'
 import { AttributionControl } from './map/attribution/attribution'
 import { ScaleControl } from './map/scale/scale';
 import { ZoomControl } from './map/zoom/zoom';
+import { WatermarkControl } from './map/watermark/watermark';
+
 import { LayerElement } from './layer/layer';
 import { ImageOverlayElement } from './imageoverlay/image-overlay';
 import { MarkerElement } from './marker/marker';
@@ -26,6 +28,7 @@ export const CandTLeafletComponent = [
     AttributionControl,
     ScaleControl,
     ZoomControl,
+    WatermarkControl,
     //layers and vectors
     LayerElement,
     ImageOverlayElement,
