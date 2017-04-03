@@ -10,7 +10,8 @@
     "pretest": "node node_modules/alpagegen/index.js",
     "test": "karma start karma.conf.js",
     "coverage": "http-server -c-1 -o -p 9875 ./coverage",
-    "remap": "node_modules/.bin/remap-istanbul -i coverage/coverage.json -o coverage -t html"
+    "remap": "node_modules/.bin/remap-istanbul -i coverage/coverage.json -o coverage -t html",
+    "documentation": "./node_modules/.bin/compodoc -p tsconfig.json"
   },
   "repository": {
     "type": "git",
@@ -44,6 +45,7 @@
   },
   "homepage": "https://github.com/elasticrash/ngx.leaflet.component#readme",
   "devDependencies": {
+    "@compodoc/compodoc": "^1.0.0-beta.1",
     "@types/jasmine": "^2.5.39",
     "@types/node": "^6.0.54",
     "alpagegen": "git+https://github.com/elasticrash/alpagegen.git",
