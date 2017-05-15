@@ -3,7 +3,8 @@ import { CandTLeafletComponent, CandTLeafletService } from "./index";
 
 @NgModule({
     declarations: [...CandTLeafletComponent],
-    providers: [...CandTLeafletService]
+    providers: [...CandTLeafletService],
+    exports: [...CandTLeafletComponent]
 })
 
 export class ngxLeafletModule { }

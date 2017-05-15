@@ -1,4 +1,3 @@
-/// <reference types="leaflet" />
 import { ElementRef } from '@angular/core';
 import { MapService } from '../services/map.service';
 import { CoordinateHandler } from '../helpers/coodinateHandler';

@@ -16,7 +16,8 @@ var ngxLeafletModule = (function () {
 ngxLeafletModule = __decorate([
     core_1.NgModule({
         declarations: index_1.CandTLeafletComponent.slice(),
-        providers: index_1.CandTLeafletService.slice()
+        providers: index_1.CandTLeafletService.slice(),
+        exports: index_1.CandTLeafletComponent.slice()
     })
 ], ngxLeafletModule);
 exports.ngxLeafletModule = ngxLeafletModule;

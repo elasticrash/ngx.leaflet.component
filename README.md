@@ -66,6 +66,17 @@ import { AppComponent } from './components/app.component';
 })
 ```
 
+OR experimentally (for some setups)
+
+```javascript
+import { ngxLeafletModule } from 'ngx.leaflet.components/ngx.leaflet.module';
+
+@NgModule({
+  imports: [ngxLeafletModule],
+})
+```
+
+
 Leaflet stylesheet is not included, so you need to add it yourself
 
 for usage check the wiki

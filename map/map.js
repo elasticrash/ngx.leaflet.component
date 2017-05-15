@@ -115,7 +115,7 @@ __decorate([
 ], LeafletElement.prototype, "zoomControl", void 0);
 __decorate([
     core_1.Input(),
-    __metadata("design:type", L.LatLngBounds)
+    __metadata("design:type", typeof (_a = (typeof L !== "undefined" && L).LatLngBounds) === "function" && _a || Object)
 ], LeafletElement.prototype, "maxBounds", void 0);
 __decorate([
     core_1.ViewChild('map'),
@@ -132,4 +132,5 @@ LeafletElement = __decorate([
     __metadata("design:paramtypes", [map_service_1.MapService])
 ], LeafletElement);
 exports.LeafletElement = LeafletElement;
+var _a;
 //# sourceMappingURL=map.js.map

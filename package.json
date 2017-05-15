@@ -1,6 +1,6 @@
 {
   "name": "ngx.leaflet.components",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "description": "an angular.io component collection for leaflet",
   "main": "index.js",
   "scripts": {
@@ -29,25 +29,25 @@
     "url": "https://github.com/elasticrash/ngx.leaflet.component/issues"
   },
   "dependencies": {
-    "@angular/common": "4.0.0",
-    "@angular/compiler": "4.0.0",
-    "@angular/core": "4.0.0",
-    "@angular/http": "4.0.0",
-    "@angular/platform-browser": "4.0.0",
-    "@angular/platform-browser-dynamic": "4.0.0",
+    "@angular/common": "4.1.0",
+    "@angular/compiler": "4.1.0",
+    "@angular/core": "4.1.0",
+    "@angular/http": "4.1.0",
+    "@angular/platform-browser": "4.1.0",
+    "@angular/platform-browser-dynamic": "4.1.0",
     "@types/geojson": "^1.0.0",
     "@types/leaflet": "^1.0.58",
     "leaflet": "^1.0.3",
     "reflect-metadata": "0.1.10",
-    "rxjs": "5.2.0",
+    "rxjs": "5.4.0",
     "ts-helpers": "^1.1.2",
-    "zone.js": "0.8.5"
+    "zone.js": "0.8.10"
   },
   "homepage": "https://github.com/elasticrash/ngx.leaflet.component#readme",
   "devDependencies": {
     "@compodoc/compodoc": "^1.0.0-beta.1",
     "@types/jasmine": "^2.5.39",
-    "@types/node": "^6.0.54",
+    "@types/node": "^7.0.18",
     "alpagegen": "git+https://github.com/elasticrash/alpagegen.git",
     "angular2-template-loader": "git+https://github.com/elasticrash/angular2-template-loader.git",
     "awesome-typescript-loader": "^3.0.0-beta.17",
@@ -81,7 +81,7 @@
     "ts-node": "1.2.1",
     "tslint": "^4.0.2",
     "typedoc": "^0.5.6",
-    "typescript": "^2.1.5",
+    "typescript": "^2.2.3",
     "webpack": "^2.1.0-beta.28"
   }
 }
