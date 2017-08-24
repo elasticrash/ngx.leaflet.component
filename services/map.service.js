@@ -135,11 +135,11 @@ var MapService = (function () {
             this.layerControlObject = L.control.layers(this.getBasemaps(), this.getOverlays()).addTo(map);
         }
     };
+    MapService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [])
+    ], MapService);
     return MapService;
 }());
-MapService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [])
-], MapService);
 exports.MapService = MapService;
 //# sourceMappingURL=map.service.js.map

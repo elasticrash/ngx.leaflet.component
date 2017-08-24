@@ -32,22 +32,22 @@ var ScaleControl = (function () {
             console.warn("This scale-control will not be rendered \n the expected parent node of scale-control should be leaf-element");
         }
     };
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Object)
+    ], ScaleControl.prototype, "Options", void 0);
+    ScaleControl = __decorate([
+        core_1.Component({
+            moduleId: module.id.toString(),
+            selector: 'scale-control',
+            templateUrl: 'scale.html',
+            styleUrls: ['scale.css']
+        }),
+        __param(1, core_1.Optional()),
+        __metadata("design:paramtypes", [map_service_1.MapService,
+            map_1.LeafletElement])
+    ], ScaleControl);
     return ScaleControl;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Object)
-], ScaleControl.prototype, "Options", void 0);
-ScaleControl = __decorate([
-    core_1.Component({
-        moduleId: module.id.toString(),
-        selector: 'scale-control',
-        templateUrl: 'scale.html',
-        styleUrls: ['scale.css']
-    }),
-    __param(1, core_1.Optional()),
-    __metadata("design:paramtypes", [map_service_1.MapService,
-        map_1.LeafletElement])
-], ScaleControl);
 exports.ScaleControl = ScaleControl;
 //# sourceMappingURL=scale.js.map

@@ -71,24 +71,24 @@ var GeoJsonElement = (function (_super) {
     GeoJsonElement.prototype.ngDoCheck = function () {
         var map = this.mapService.getMap();
     };
+    GeoJsonElement = __decorate([
+        core_1.Component({
+            moduleId: module.id.toString(),
+            selector: 'geojson-element',
+            templateUrl: 'geojson.html',
+            styleUrls: ['geojson.css']
+        }),
+        __param(5, core_1.Optional()),
+        __param(6, core_1.Optional()),
+        __metadata("design:paramtypes", [map_service_1.MapService,
+            group_service_1.GroupService,
+            popup_service_1.PopupService,
+            globalId_service_1.GuidService,
+            helper_service_1.HelperService,
+            map_1.LeafletElement,
+            group_1.LeafletGroup])
+    ], GeoJsonElement);
     return GeoJsonElement;
 }(geoJsonReader_1.GeoJSONCoordinateHandler));
-GeoJsonElement = __decorate([
-    core_1.Component({
-        moduleId: module.id.toString(),
-        selector: 'geojson-element',
-        templateUrl: 'geojson.html',
-        styleUrls: ['geojson.css']
-    }),
-    __param(5, core_1.Optional()),
-    __param(6, core_1.Optional()),
-    __metadata("design:paramtypes", [map_service_1.MapService,
-        group_service_1.GroupService,
-        popup_service_1.PopupService,
-        globalId_service_1.GuidService,
-        helper_service_1.HelperService,
-        map_1.LeafletElement,
-        group_1.LeafletGroup])
-], GeoJsonElement);
 exports.GeoJsonElement = GeoJsonElement;
 //# sourceMappingURL=geojson.js.map

@@ -58,38 +58,38 @@ var ImageOverlayElement = (function (_super) {
             }
         }
     };
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Object)
+    ], ImageOverlayElement.prototype, "bounds", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", String)
+    ], ImageOverlayElement.prototype, "imagepath", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", String)
+    ], ImageOverlayElement.prototype, "name", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Number)
+    ], ImageOverlayElement.prototype, "opacity", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", String)
+    ], ImageOverlayElement.prototype, "type", void 0);
+    ImageOverlayElement = __decorate([
+        core_1.Component({
+            moduleId: module.id.toString(),
+            selector: 'image-overlay-element',
+            templateUrl: 'image-overlay.html',
+            styleUrls: ['image-overlay.css']
+        }),
+        __param(1, core_1.Optional()),
+        __metadata("design:paramtypes", [map_service_1.MapService,
+            map_1.LeafletElement])
+    ], ImageOverlayElement);
     return ImageOverlayElement;
 }(coodinateHandler_1.CoordinateHandler));
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Object)
-], ImageOverlayElement.prototype, "bounds", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], ImageOverlayElement.prototype, "imagepath", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], ImageOverlayElement.prototype, "name", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], ImageOverlayElement.prototype, "opacity", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], ImageOverlayElement.prototype, "type", void 0);
-ImageOverlayElement = __decorate([
-    core_1.Component({
-        moduleId: module.id.toString(),
-        selector: 'image-overlay-element',
-        templateUrl: 'image-overlay.html',
-        styleUrls: ['image-overlay.css']
-    }),
-    __param(1, core_1.Optional()),
-    __metadata("design:paramtypes", [map_service_1.MapService,
-        map_1.LeafletElement])
-], ImageOverlayElement);
 exports.ImageOverlayElement = ImageOverlayElement;
 //# sourceMappingURL=image-overlay.js.map

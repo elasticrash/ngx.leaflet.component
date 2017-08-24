@@ -48,40 +48,40 @@ var LayerElement = (function () {
             }
         }
     };
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", String)
+    ], LayerElement.prototype, "slippyLayer", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", String)
+    ], LayerElement.prototype, "wmsLayer", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", String)
+    ], LayerElement.prototype, "name", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Number)
+    ], LayerElement.prototype, "opacity", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", String)
+    ], LayerElement.prototype, "type", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", String)
+    ], LayerElement.prototype, "attribution", void 0);
+    LayerElement = __decorate([
+        core_1.Component({
+            moduleId: module.id.toString(),
+            selector: 'layer-element',
+            templateUrl: 'layer.html',
+            styleUrls: ['layer.css']
+        }),
+        __metadata("design:paramtypes", [map_service_1.MapService])
+    ], LayerElement);
     return LayerElement;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], LayerElement.prototype, "slippyLayer", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], LayerElement.prototype, "wmsLayer", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], LayerElement.prototype, "name", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], LayerElement.prototype, "opacity", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], LayerElement.prototype, "type", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], LayerElement.prototype, "attribution", void 0);
-LayerElement = __decorate([
-    core_1.Component({
-        moduleId: module.id.toString(),
-        selector: 'layer-element',
-        templateUrl: 'layer.html',
-        styleUrls: ['layer.css']
-    }),
-    __metadata("design:paramtypes", [map_service_1.MapService])
-], LayerElement);
 exports.LayerElement = LayerElement;
 //# sourceMappingURL=layer.js.map

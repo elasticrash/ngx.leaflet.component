@@ -71,31 +71,31 @@ var CoordinateHandler = (function () {
         }
         return arr;
     };
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Number)
+    ], CoordinateHandler.prototype, "lat", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Number)
+    ], CoordinateHandler.prototype, "lon", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Number)
+    ], CoordinateHandler.prototype, "x", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Number)
+    ], CoordinateHandler.prototype, "y", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Object)
+    ], CoordinateHandler.prototype, "latlngs", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Number)
+    ], CoordinateHandler.prototype, "xys", void 0);
     return CoordinateHandler;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], CoordinateHandler.prototype, "lat", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], CoordinateHandler.prototype, "lon", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], CoordinateHandler.prototype, "x", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], CoordinateHandler.prototype, "y", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Object)
-], CoordinateHandler.prototype, "latlngs", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], CoordinateHandler.prototype, "xys", void 0);
 exports.CoordinateHandler = CoordinateHandler;
 //# sourceMappingURL=coodinateHandler.js.map

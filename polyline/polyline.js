@@ -99,41 +99,40 @@ var PolylineElement = (function (_super) {
             }
         }
     };
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Object)
+    ], PolylineElement.prototype, "latlngs", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Object)
+    ], PolylineElement.prototype, "Options", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", String)
+    ], PolylineElement.prototype, "mouseover", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", String)
+    ], PolylineElement.prototype, "onclick", void 0);
+    PolylineElement = __decorate([
+        core_1.Component({
+            moduleId: module.id.toString(),
+            selector: 'polyline-element',
+            templateUrl: 'polyline.html',
+            styleUrls: ['polyline.css']
+        }),
+        __param(6, core_1.Optional()),
+        __param(7, core_1.Optional()),
+        __metadata("design:paramtypes", [map_service_1.MapService,
+            group_service_1.GroupService,
+            popup_service_1.PopupService,
+            globalId_service_1.GuidService,
+            helper_service_1.HelperService, typeof (_a = typeof core_1.ElementRef !== "undefined" && core_1.ElementRef) === "function" && _a || Object, map_1.LeafletElement,
+            group_1.LeafletGroup])
+    ], PolylineElement);
     return PolylineElement;
+    var _a;
 }(coodinateHandler_1.CoordinateHandler));
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Object)
-], PolylineElement.prototype, "latlngs", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Object)
-], PolylineElement.prototype, "Options", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], PolylineElement.prototype, "mouseover", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], PolylineElement.prototype, "onclick", void 0);
-PolylineElement = __decorate([
-    core_1.Component({
-        moduleId: module.id.toString(),
-        selector: 'polyline-element',
-        templateUrl: 'polyline.html',
-        styleUrls: ['polyline.css']
-    }),
-    __param(6, core_1.Optional()),
-    __param(7, core_1.Optional()),
-    __metadata("design:paramtypes", [map_service_1.MapService,
-        group_service_1.GroupService,
-        popup_service_1.PopupService,
-        globalId_service_1.GuidService,
-        helper_service_1.HelperService,
-        core_1.ElementRef,
-        map_1.LeafletElement,
-        group_1.LeafletGroup])
-], PolylineElement);
 exports.PolylineElement = PolylineElement;
 //# sourceMappingURL=polyline.js.map

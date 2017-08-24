@@ -53,11 +53,11 @@ var PopupService = (function () {
             });
         }
     };
+    PopupService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [])
+    ], PopupService);
     return PopupService;
 }());
-PopupService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [])
-], PopupService);
 exports.PopupService = PopupService;
 //# sourceMappingURL=popup.service.js.map
