@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter } from '@angular/core';
 
 export function MockComponent(options: Component): Component {
   let metadata: Component = {
@@ -9,6 +9,10 @@ export function MockComponent(options: Component): Component {
   };
 
   class Mock {}
-
-  return Component(metadata)(Mock);
+  
+    metadata.outputs.forEach(method => {
+      Mock.prototype[method] = new EventEmitter<any>();
+    });
+  
+    return Component(metadata)(Mock as any);
 }

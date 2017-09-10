@@ -13,6 +13,9 @@ function MockComponent(options) {
         }
         return Mock;
     }());
+    metadata.outputs.forEach(function (method) {
+        Mock.prototype[method] = new core_1.EventEmitter();
+    });
     return core_1.Component(metadata)(Mock);
 }
 exports.MockComponent = MockComponent;

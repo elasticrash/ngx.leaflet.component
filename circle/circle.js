@@ -113,11 +113,12 @@ var CircleElement = (function (_super) {
         __param(5, core_1.Optional()),
         __metadata("design:paramtypes", [map_service_1.MapService,
             group_service_1.GroupService,
-            popup_service_1.PopupService, typeof (_a = typeof core_1.ElementRef !== "undefined" && core_1.ElementRef) === "function" && _a || Object, map_1.LeafletElement,
+            popup_service_1.PopupService,
+            core_1.ElementRef,
+            map_1.LeafletElement,
             group_1.LeafletGroup])
     ], CircleElement);
     return CircleElement;
-    var _a;
 }(coodinateHandler_1.CoordinateHandler));
 exports.CircleElement = CircleElement;
 //# sourceMappingURL=circle.js.map

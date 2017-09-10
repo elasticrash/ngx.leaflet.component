@@ -154,11 +154,13 @@ var MarkerElement = (function (_super) {
         __param(6, core_1.Optional()),
         __metadata("design:paramtypes", [map_service_1.MapService,
             group_service_1.GroupService,
-            popup_service_1.PopupService, typeof (_a = typeof http_1.Http !== "undefined" && http_1.Http) === "function" && _a || Object, typeof (_b = typeof core_1.ElementRef !== "undefined" && core_1.ElementRef) === "function" && _b || Object, map_1.LeafletElement,
+            popup_service_1.PopupService,
+            http_1.Http,
+            core_1.ElementRef,
+            map_1.LeafletElement,
             group_1.LeafletGroup])
     ], MarkerElement);
     return MarkerElement;
-    var _a, _b;
 }(coodinateHandler_1.CoordinateHandler));
 exports.MarkerElement = MarkerElement;
 //# sourceMappingURL=marker.js.map
