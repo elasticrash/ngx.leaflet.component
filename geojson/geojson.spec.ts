@@ -28,14 +28,14 @@ describe('GeoJsonElement', () => {
             "type": "Feature",
             "geometry": {
                 "type": "LineString",
-                "coordinates": [[376000, 4202500],[377000, 4203500]]
+                "coordinates": [[376000, 4202500], [377000, 4203500]]
             },
             "properties": {
                 "prop0": "value1"
             }
         }]
     };
-    const mock: any = MockComponent({ selector: "app-element", template: "<leaf-element [crs]=\"'L.CRS.EPSG3395'\" ><geojson-element [geojson]='" + JSON.stringify(g) + "'></geojson-element></leaf-element>" });
+    const mock: any = MockComponent({ selector: "app-element", outputs: [], template: "<leaf-element [crs]=\"'L.CRS.EPSG3395'\" ><geojson-element [geojson]='" + JSON.stringify(g) + "'></geojson-element></leaf-element>" });
 
     beforeEach(() => {
         TestBed.configureTestingModule({
