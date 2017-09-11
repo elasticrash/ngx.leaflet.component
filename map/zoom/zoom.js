@@ -32,22 +32,22 @@ var ZoomControl = (function () {
             console.warn("This zoom-control will not be rendered \n the expected parent node of zoom-control should be leaf-element");
         }
     };
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Object)
+    ], ZoomControl.prototype, "Options", void 0);
+    ZoomControl = __decorate([
+        core_1.Component({
+            moduleId: module.id.toString(),
+            selector: 'zoom-control',
+            templateUrl: 'zoom.html',
+            styleUrls: ['zoom.css']
+        }),
+        __param(1, core_1.Optional()),
+        __metadata("design:paramtypes", [map_service_1.MapService,
+            map_1.LeafletElement])
+    ], ZoomControl);
     return ZoomControl;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Object)
-], ZoomControl.prototype, "Options", void 0);
-ZoomControl = __decorate([
-    core_1.Component({
-        moduleId: module.id.toString(),
-        selector: 'zoom-control',
-        templateUrl: 'zoom.html',
-        styleUrls: ['zoom.css']
-    }),
-    __param(1, core_1.Optional()),
-    __metadata("design:paramtypes", [map_service_1.MapService,
-        map_1.LeafletElement])
-], ZoomControl);
 exports.ZoomControl = ZoomControl;
 //# sourceMappingURL=zoom.js.map

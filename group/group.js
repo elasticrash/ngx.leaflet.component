@@ -25,23 +25,23 @@ var LeafletGroup = (function () {
     };
     LeafletGroup.prototype.ngAfterViewInit = function () {
     };
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", String)
+    ], LeafletGroup.prototype, "name", void 0);
+    LeafletGroup = __decorate([
+        core_1.Component({
+            moduleId: module.id.toString(),
+            selector: 'leaflet-group',
+            templateUrl: 'group.html',
+            styleUrls: ['group.css'],
+            providers: [group_service_1.GroupService]
+        }),
+        __metadata("design:paramtypes", [map_service_1.MapService,
+            group_service_1.GroupService,
+            globalId_service_1.GuidService])
+    ], LeafletGroup);
     return LeafletGroup;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], LeafletGroup.prototype, "name", void 0);
-LeafletGroup = __decorate([
-    core_1.Component({
-        moduleId: module.id.toString(),
-        selector: 'leaflet-group',
-        templateUrl: 'group.html',
-        styleUrls: ['group.css'],
-        providers: [group_service_1.GroupService]
-    }),
-    __metadata("design:paramtypes", [map_service_1.MapService,
-        group_service_1.GroupService,
-        globalId_service_1.GuidService])
-], LeafletGroup);
 exports.LeafletGroup = LeafletGroup;
 //# sourceMappingURL=group.js.map

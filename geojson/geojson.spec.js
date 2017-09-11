@@ -32,7 +32,7 @@ describe('GeoJsonElement', function () {
                 }
             }]
     };
-    var mock = mock_component_1.MockComponent({ selector: "app-element", template: "<leaf-element [crs]=\"'L.CRS.EPSG3395'\" ><geojson-element [geojson]='" + JSON.stringify(g) + "'></geojson-element></leaf-element>" });
+    var mock = mock_component_1.MockComponent({ selector: "app-element", outputs: [], template: "<leaf-element [crs]=\"'L.CRS.EPSG3395'\" ><geojson-element [geojson]='" + JSON.stringify(g) + "'></geojson-element></leaf-element>" });
     beforeEach(function () {
         testing_1.TestBed.configureTestingModule({
             declarations: [mock, map_1.LeafletElement, geojson_1.GeoJsonElement],

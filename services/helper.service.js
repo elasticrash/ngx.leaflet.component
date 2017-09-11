@@ -29,11 +29,11 @@ var HelperService = (function () {
         }
         return true;
     };
+    HelperService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [])
+    ], HelperService);
     return HelperService;
 }());
-HelperService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [])
-], HelperService);
 exports.HelperService = HelperService;
 //# sourceMappingURL=helper.service.js.map

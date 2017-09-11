@@ -59,33 +59,33 @@ var PopupElement = (function (_super) {
             console.warn("This popup-element will not be rendered \n the expected parent node of popup-element should be either leaf-element or leaflet-group");
         }
     };
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Number)
+    ], PopupElement.prototype, "lat", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Number)
+    ], PopupElement.prototype, "lon", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", String)
+    ], PopupElement.prototype, "content", void 0);
+    PopupElement = __decorate([
+        core_1.Component({
+            moduleId: module.id.toString(),
+            selector: 'popup-element',
+            templateUrl: 'popup.html',
+            styleUrls: ['popup.css']
+        }),
+        __param(2, core_1.Optional()),
+        __param(3, core_1.Optional()),
+        __metadata("design:paramtypes", [map_service_1.MapService,
+            group_service_1.GroupService,
+            map_1.LeafletElement,
+            group_1.LeafletGroup])
+    ], PopupElement);
     return PopupElement;
 }(coodinateHandler_1.CoordinateHandler));
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], PopupElement.prototype, "lat", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], PopupElement.prototype, "lon", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], PopupElement.prototype, "content", void 0);
-PopupElement = __decorate([
-    core_1.Component({
-        moduleId: module.id.toString(),
-        selector: 'popup-element',
-        templateUrl: 'popup.html',
-        styleUrls: ['popup.css']
-    }),
-    __param(2, core_1.Optional()),
-    __param(3, core_1.Optional()),
-    __metadata("design:paramtypes", [map_service_1.MapService,
-        group_service_1.GroupService,
-        map_1.LeafletElement,
-        group_1.LeafletGroup])
-], PopupElement);
 exports.PopupElement = PopupElement;
 //# sourceMappingURL=popup.js.map

@@ -122,45 +122,45 @@ var MarkerElement = (function (_super) {
             .map(function (res) { return res; })
             .catch(function (error) { return Rx_1.Observable.throw('Server error'); });
     };
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Number)
+    ], MarkerElement.prototype, "lat", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Number)
+    ], MarkerElement.prototype, "lon", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", String)
+    ], MarkerElement.prototype, "mouseover", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", String)
+    ], MarkerElement.prototype, "onclick", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", String)
+    ], MarkerElement.prototype, "iconUrl", void 0);
+    MarkerElement = __decorate([
+        core_1.Component({
+            moduleId: module.id.toString(),
+            selector: 'marker-element',
+            templateUrl: 'marker.html',
+            styleUrls: ['marker.css'],
+            providers: [popup_service_1.PopupService]
+        }),
+        __param(5, core_1.Optional()),
+        __param(6, core_1.Optional()),
+        __metadata("design:paramtypes", [map_service_1.MapService,
+            group_service_1.GroupService,
+            popup_service_1.PopupService,
+            http_1.Http,
+            core_1.ElementRef,
+            map_1.LeafletElement,
+            group_1.LeafletGroup])
+    ], MarkerElement);
     return MarkerElement;
 }(coodinateHandler_1.CoordinateHandler));
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], MarkerElement.prototype, "lat", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], MarkerElement.prototype, "lon", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], MarkerElement.prototype, "mouseover", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], MarkerElement.prototype, "onclick", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], MarkerElement.prototype, "iconUrl", void 0);
-MarkerElement = __decorate([
-    core_1.Component({
-        moduleId: module.id.toString(),
-        selector: 'marker-element',
-        templateUrl: 'marker.html',
-        styleUrls: ['marker.css'],
-        providers: [popup_service_1.PopupService]
-    }),
-    __param(5, core_1.Optional()),
-    __param(6, core_1.Optional()),
-    __metadata("design:paramtypes", [map_service_1.MapService,
-        group_service_1.GroupService,
-        popup_service_1.PopupService,
-        http_1.Http,
-        core_1.ElementRef,
-        map_1.LeafletElement,
-        group_1.LeafletGroup])
-], MarkerElement);
 exports.MarkerElement = MarkerElement;
 //# sourceMappingURL=marker.js.map

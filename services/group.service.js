@@ -70,11 +70,11 @@ var GroupService = (function () {
     GroupService.prototype.getLayerNumber = function () {
         return this.layerGroupNumber;
     };
+    GroupService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [globalId_service_1.GuidService])
+    ], GroupService);
     return GroupService;
 }());
-GroupService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [globalId_service_1.GuidService])
-], GroupService);
 exports.GroupService = GroupService;
 //# sourceMappingURL=group.service.js.map

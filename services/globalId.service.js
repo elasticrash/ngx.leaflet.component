@@ -19,11 +19,11 @@ var GuidService = (function () {
             return v.toString(16);
         });
     };
+    GuidService = __decorate([
+        core_1.Injectable(),
+        __metadata("design:paramtypes", [])
+    ], GuidService);
     return GuidService;
 }());
-GuidService = __decorate([
-    core_1.Injectable(),
-    __metadata("design:paramtypes", [])
-], GuidService);
 exports.GuidService = GuidService;
 //# sourceMappingURL=globalId.service.js.map

@@ -52,30 +52,30 @@ var WatermarkControl = (function () {
             L.control['watermark']({ position: "bottomleft" }).addTo(map);
         }
     };
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", String)
+    ], WatermarkControl.prototype, "url", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Number)
+    ], WatermarkControl.prototype, "imagewidth", void 0);
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Number)
+    ], WatermarkControl.prototype, "imageheight", void 0);
+    WatermarkControl = __decorate([
+        core_1.Component({
+            moduleId: module.id.toString(),
+            selector: 'watermark-element',
+            templateUrl: 'watermark.html',
+            styleUrls: ['watermark.css']
+        }),
+        __param(1, core_1.Optional()),
+        __metadata("design:paramtypes", [map_service_1.MapService,
+            map_1.LeafletElement])
+    ], WatermarkControl);
     return WatermarkControl;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", String)
-], WatermarkControl.prototype, "url", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], WatermarkControl.prototype, "imagewidth", void 0);
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Number)
-], WatermarkControl.prototype, "imageheight", void 0);
-WatermarkControl = __decorate([
-    core_1.Component({
-        moduleId: module.id.toString(),
-        selector: 'watermark-element',
-        templateUrl: 'watermark.html',
-        styleUrls: ['watermark.css']
-    }),
-    __param(1, core_1.Optional()),
-    __metadata("design:paramtypes", [map_service_1.MapService,
-        map_1.LeafletElement])
-], WatermarkControl);
 exports.WatermarkControl = WatermarkControl;
 //# sourceMappingURL=watermark.js.map

@@ -86,11 +86,11 @@ var GeoJSONCoordinateHandler = (function () {
             return point;
         }
     };
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Object)
+    ], GeoJSONCoordinateHandler.prototype, "geojson", void 0);
     return GeoJSONCoordinateHandler;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Object)
-], GeoJSONCoordinateHandler.prototype, "geojson", void 0);
 exports.GeoJSONCoordinateHandler = GeoJSONCoordinateHandler;
 //# sourceMappingURL=geoJsonReader.js.map

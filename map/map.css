@@ -1,9 +1,10 @@
-.leaflet-container{
+:host {
     width: 100%;
     height:100%;
 }
 
-.map-container {
+:host .map-container {
+    position: absolute;    
     display: block;
 	top: 0px;
 	left: 0px;

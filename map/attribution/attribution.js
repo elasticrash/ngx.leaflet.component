@@ -32,22 +32,22 @@ var AttributionControl = (function () {
             console.warn("This attribution-control will not be rendered \n the expected parent node of attribution-control should be either leaf-element or layer-element");
         }
     };
+    __decorate([
+        core_1.Input(),
+        __metadata("design:type", Object)
+    ], AttributionControl.prototype, "Options", void 0);
+    AttributionControl = __decorate([
+        core_1.Component({
+            moduleId: module.id.toString(),
+            selector: 'attribution-control',
+            templateUrl: 'attribution.html',
+            styleUrls: ['attribution.css']
+        }),
+        __param(1, core_1.Optional()),
+        __metadata("design:paramtypes", [map_service_1.MapService,
+            map_1.LeafletElement])
+    ], AttributionControl);
     return AttributionControl;
 }());
-__decorate([
-    core_1.Input(),
-    __metadata("design:type", Object)
-], AttributionControl.prototype, "Options", void 0);
-AttributionControl = __decorate([
-    core_1.Component({
-        moduleId: module.id.toString(),
-        selector: 'attribution-control',
-        templateUrl: 'attribution.html',
-        styleUrls: ['attribution.css']
-    }),
-    __param(1, core_1.Optional()),
-    __metadata("design:paramtypes", [map_service_1.MapService,
-        map_1.LeafletElement])
-], AttributionControl);
 exports.AttributionControl = AttributionControl;
 //# sourceMappingURL=attribution.js.map
