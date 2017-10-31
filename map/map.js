@@ -113,11 +113,11 @@ var LeafletElement = (function (_super) {
     ], LeafletElement.prototype, "zoomControl", void 0);
     __decorate([
         core_1.Input(),
-        __metadata("design:type", L.LatLngBounds)
+        __metadata("design:type", typeof (_a = (typeof L !== "undefined" && L).LatLngBounds) === "function" && _a || Object)
     ], LeafletElement.prototype, "maxBounds", void 0);
     __decorate([
         core_1.ViewChild('map'),
-        __metadata("design:type", core_1.ElementRef)
+        __metadata("design:type", typeof (_b = typeof core_1.ElementRef !== "undefined" && core_1.ElementRef) === "function" && _b || Object)
     ], LeafletElement.prototype, "mapElement", void 0);
     LeafletElement = __decorate([
         core_1.Component({
@@ -130,6 +130,7 @@ var LeafletElement = (function (_super) {
         __metadata("design:paramtypes", [map_service_1.MapService])
     ], LeafletElement);
     return LeafletElement;
+    var _a, _b;
 }(coodinateHandler_1.CoordinateHandler));
 exports.LeafletElement = LeafletElement;
 //# sourceMappingURL=map.js.map

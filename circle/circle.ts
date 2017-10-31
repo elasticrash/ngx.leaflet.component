@@ -60,14 +60,16 @@ export class CircleElement extends CoordinateHandler {
 
   ngAfterViewInit() {
     if (this.LeafletElement || this.LeafletGroup) {
-    var textInput = undefined;
-    if (this.elementText.nativeElement.childNodes.length > 0) {
-      var textNode = this.elementText.nativeElement.childNodes[0];
-      textInput = textNode.nodeValue;
-    }
+      var textInput = undefined;
+      if (this.elementText.nativeElement.childNodes.length > 0) {
+        var textNode = this.elementText.nativeElement.childNodes[0];
+        textInput = textNode.nodeValue;
+      }
 
-    //add popup methods on element
-    this.popupService.enablePopup(this.mouseover, this.onclick, this.circle, textInput);
+      //add popup methods on element only if any of the tests are not undefined
+      if (this.mouseover !== undefined || this.onclick !== undefined || textInput !== undefined) {
+        this.popupService.enablePopup(this.mouseover, this.onclick, this.circle, textInput);
+      }
     }
   }
 }

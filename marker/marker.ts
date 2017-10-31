@@ -43,7 +43,7 @@ export class MarkerElement extends CoordinateHandler {
     super.assignCartesianPointToLeafletsLatLngSchema();
     var model = this;
     if (this.LeafletElement || this.LeafletGroup) {
-      
+
       let map = this.mapService.getMap();
 
       super.transformPointCoordinates(this.LeafletElement.crs);
@@ -68,8 +68,8 @@ export class MarkerElement extends CoordinateHandler {
                   popupAnchor: [0, -img.height]
                 });
 
-                var obj =  { icon: myIcon, options: null };
-                model.marker = L.marker([model.lat, model.lon], obj);             
+                var obj = { icon: myIcon, options: null };
+                model.marker = L.marker([model.lat, model.lon], obj);
                 model.createMarkerlayer(model.marker, map);
               }
               reader.readAsDataURL(image.blob());
@@ -91,8 +91,10 @@ export class MarkerElement extends CoordinateHandler {
       textInput = textNode.nodeValue;
     }
 
-    //add popup methods on element
-    this.popupService.enablePopup(this.mouseover, this.onclick, this.marker, textInput);
+    //add popup methods on element only if any of the tests are not undefined
+    if (this.mouseover !== undefined || this.onclick !== undefined || textInput !== undefined) {
+      this.popupService.enablePopup(this.mouseover, this.onclick, this.marker, textInput);
+    }
 
     //only if the parent is map should the marker-element should be directly added to the map
     if (this.LeafletGroup) {

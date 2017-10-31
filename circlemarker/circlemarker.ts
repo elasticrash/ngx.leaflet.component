@@ -43,7 +43,7 @@ export class CircleMarkerElement extends CoordinateHandler {
       let map = this.mapService.getMap();
 
       let elementPosition: any = super.transformPointCoordinates(this.LeafletElement.crs);
-      
+
       this.circle = L.circleMarker([this.lat, this.lon], inheritedOptions);
 
       if (this.LeafletGroup) {
@@ -63,7 +63,9 @@ export class CircleMarkerElement extends CoordinateHandler {
       textInput = textNode.nodeValue;
     }
 
-    //add popup methods on element
-    this.popupService.enablePopup(this.mouseover, this.onclick, this.circle, textInput);
+    //add popup methods on element only if any of the tests are not undefined
+    if (this.mouseover !== undefined || this.onclick !== undefined || textInput !== undefined) {
+      this.popupService.enablePopup(this.mouseover, this.onclick, this.circle, textInput);
+    }
   }
 }

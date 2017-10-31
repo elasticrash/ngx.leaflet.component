@@ -79,7 +79,9 @@ var PolylineElement = (function (_super) {
             var textNode = this.elementText.nativeElement.childNodes[0];
             textInput = textNode.nodeValue;
         }
-        this.popupService.enablePopup(this.mouseover, this.onclick, this.polyline, textInput);
+        if (this.mouseover !== undefined || this.onclick !== undefined || textInput !== undefined) {
+            this.popupService.enablePopup(this.mouseover, this.onclick, this.polyline, textInput);
+        }
     };
     PolylineElement.prototype.ngDoCheck = function () {
         var map = this.mapService.getMap();
@@ -128,12 +130,11 @@ var PolylineElement = (function (_super) {
             group_service_1.GroupService,
             popup_service_1.PopupService,
             globalId_service_1.GuidService,
-            helper_service_1.HelperService,
-            core_1.ElementRef,
-            map_1.LeafletElement,
+            helper_service_1.HelperService, typeof (_a = typeof core_1.ElementRef !== "undefined" && core_1.ElementRef) === "function" && _a || Object, map_1.LeafletElement,
             group_1.LeafletGroup])
     ], PolylineElement);
     return PolylineElement;
+    var _a;
 }(coodinateHandler_1.CoordinateHandler));
 exports.PolylineElement = PolylineElement;
 //# sourceMappingURL=polyline.js.map

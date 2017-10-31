@@ -69,8 +69,10 @@ export class PolylineElement extends CoordinateHandler {
       textInput = textNode.nodeValue;
     }
 
-    //add popup methods on element
-    this.popupService.enablePopup(this.mouseover, this.onclick, this.polyline, textInput);
+    //add popup methods on element only if any of the tests are not undefined
+    if (this.mouseover !== undefined || this.onclick !== undefined || textInput !== undefined) {
+      this.popupService.enablePopup(this.mouseover, this.onclick, this.polyline, textInput);
+    }
   }
 
   ngDoCheck() {
