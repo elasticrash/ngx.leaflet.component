@@ -28,7 +28,13 @@
   "bugs": {
     "url": "https://github.com/elasticrash/ngx.leaflet.component/issues"
   },
-  "dependencies": {
+  "peerDependencies": {
+    "@angular/core": ">=2.0.0",
+    "@angular/common": ">=2.0.0",
+    "@angular/http": ">=2.0.0"
+  },
+  "homepage": "https://github.com/elasticrash/ngx.leaflet.component#readme",
+  "devDependencies": {
     "@angular/common": "4.4.0-RC.0",
     "@angular/compiler": "4.4.0-RC.0",
     "@angular/core": "4.4.0-RC.0",
@@ -40,10 +46,7 @@
     "leaflet": "^1.2.0",
     "reflect-metadata": "0.1.10",
     "rxjs": "^5.4.3",
-    "zone.js": "^0.8.17"
-  },
-  "homepage": "https://github.com/elasticrash/ngx.leaflet.component#readme",
-  "devDependencies": {
+    "zone.js": "^0.8.17",
     "@compodoc/compodoc": "^1.0.0-beta.1",
     "@types/jasmine": "^2.5.53",
     "@types/node": "^8.0.28",
