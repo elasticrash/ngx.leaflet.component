@@ -6,7 +6,7 @@ import { GroupService } from '../services/group.service';
 import { PopupService } from '../services/popup.service';
 import { GuidService } from '../services/globalId.service';
 import { HelperService } from '../services/helper.service';
-import { CoordinateHandler } from '../helpers/coodinateHandler';
+import { CoordinateHandler } from '../helpers/coordinateHandler';
 import { path } from '../models/path';
 import { Ipath } from '../interfaces/path';
 import * as L from 'leaflet';

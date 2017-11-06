@@ -27,13 +27,6 @@
     "awesomeTypeScriptLoaderOptions": {
         "useWebpackText": true
     },
-    "files": [
-        "./ngx.leaflet.components.ts"
-    ],
-    "include": [
-        "./ngx.leaflet.components.ts",
-        "src/**/*"
-    ],
     "exclude": [
         "node_modules"
     ]

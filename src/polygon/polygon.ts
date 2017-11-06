@@ -6,9 +6,8 @@ import { GroupService } from '../services/group.service';
 import { PopupService } from '../services/popup.service';
 import { GuidService } from '../services/globalId.service';
 import { HelperService } from '../services/helper.service';
-import { CoordinateHandler } from '../helpers/coodinateHandler';
+import { CoordinateHandler } from '../helpers/coordinateHandler';
 import { path } from '../models/path';
-import { Ipath } from '../interfaces/path';
 import * as L from 'leaflet';
 
 
@@ -22,7 +21,7 @@ import * as L from 'leaflet';
 export class PolygonElement extends CoordinateHandler {
   @Input() latlngs: any = [[[52.65, -1.2], [52.645, -1.15], [52.696, -1.155], [52.697, -1.189]],
   [[52.66, -1.19], [52.665, -1.16], [52.686, -1.161], [52.687, -1.179]]];
-  @Input() Options: Ipath = new path(null);
+  @Input() Options: path = new path(null);
   @Input() mouseover: string = undefined;
   @Input() onclick: string = undefined;
   polygon: any = null;

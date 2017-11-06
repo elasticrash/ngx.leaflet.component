@@ -5,7 +5,7 @@ import { GroupService } from '../services/group.service';
 import { PopupService } from '../services/popup.service';
 import { LeafletElement } from '../map/map';
 import { LeafletGroup } from '../group/group';
-import { CoordinateHandler } from '../helpers/coodinateHandler';
+import { CoordinateHandler } from '../helpers/coordinateHandler';
 import { Observable } from 'rxjs/Observable';
 
 import 'rxjs/add/operator/map';

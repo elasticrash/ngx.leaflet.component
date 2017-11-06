@@ -1,6 +1,6 @@
 import { Component, Input, ViewChild, ElementRef, EventEmitter } from '@angular/core';
 import { MapService } from '../services/map.service';
-import { CoordinateHandler } from '../helpers/coodinateHandler';
+import { CoordinateHandler } from '../helpers/coordinateHandler';
 import * as L from 'leaflet';
 
 @Component({
