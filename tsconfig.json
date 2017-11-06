@@ -8,6 +8,7 @@
         "moduleResolution": "node",
         "removeComments": true,
         "sourceMap": true,
+        "outDir": "dist",
         "declaration": true,
         "typeRoots": [
             "node_modules/@types"
@@ -26,8 +27,11 @@
     "awesomeTypeScriptLoaderOptions": {
         "useWebpackText": true
     },
+    "files": [
+        "./ngx.leaflet.components.ts"
+    ],
     "include": [
-        "./ngx.leaflet.module.ts",
+        "./ngx.leaflet.components.ts",
         "src/**/*"
     ],
     "exclude": [
