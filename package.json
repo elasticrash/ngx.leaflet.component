@@ -1,6 +1,6 @@
 {
   "name": "ngx.leaflet.components",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "an angular.io component collection for leaflet",
   "main": "index.js",
   "scripts": {
