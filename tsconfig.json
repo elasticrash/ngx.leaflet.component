@@ -3,12 +3,11 @@
         "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "noImplicitAny": false,
-        "target": "es5",
-        "module": "commonjs",
+        "target": "es2015",
+        "module": "es2015",
         "moduleResolution": "node",
         "removeComments": true,
         "sourceMap": true,
-        "outDir": "",
         "declaration": true,
         "typeRoots": [
             "node_modules/@types"
@@ -27,6 +26,10 @@
     "awesomeTypeScriptLoaderOptions": {
         "useWebpackText": true
     },
+    "include": [
+        "./ngx.leaflet.module.ts",
+        "src/**/*"
+    ],
     "exclude": [
         "node_modules"
     ]

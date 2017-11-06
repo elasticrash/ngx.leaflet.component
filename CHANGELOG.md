@@ -5,6 +5,7 @@ Change Log
 * Fixed empty popups on all elements
 * Changlelog was moved here
 * Changes on package.json to avoid certain webpack error
+* Change structure to be more compatible with a stricter tsconfig
 * Live website with some examples [here](https://elasticrash.github.io/Angular.io.MapViewer/app/)
 
 ## 1.4.0
