@@ -11,7 +11,8 @@ export default {
     external: [
         '@angular/core',
         '@angular/http',
-        'rxjs/Observable'
+        'rxjs/js',
+        'leaflet'
     ],
     output: {
         file: PATH_DIST+nameLibrary+".umd.js",
