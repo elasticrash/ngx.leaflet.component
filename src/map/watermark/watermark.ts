@@ -4,7 +4,6 @@ import { LeafletElement } from '../map';
 import * as L from 'leaflet';
 
 @Component({
-    moduleId: module.id.toString(),
     selector: 'watermark-element',
     templateUrl: 'watermark.html',
     styleUrls: ['watermark.css']

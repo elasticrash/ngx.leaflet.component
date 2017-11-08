@@ -1,4 +1,4 @@
-import { Component, Input, Injector, Optional, ElementRef } from '@angular/core';
+import { Component, Input, Optional, ElementRef } from '@angular/core';
 import { LeafletElement } from '../map/map';
 import { LeafletGroup } from '../group/group';
 import { MapService } from '../services/map.service';
@@ -11,7 +11,6 @@ import * as L from 'leaflet';
 
 
 @Component({
-  moduleId: module.id.toString(),
   selector: 'circle-element',
   templateUrl: 'circle.html',
   styleUrls: ['circle.css']
@@ -21,10 +20,10 @@ export class CircleElement extends CoordinateHandler {
   @Input() lat: number = 52.6;
   @Input() lon: number = -1.1;
   @Input() radius: number = 20;
-  @Input() mouseover: string = undefined;
-  @Input() onclick: string = undefined;
+  @Input() mouseover: string | undefined = undefined;
+  @Input() onclick: string | undefined = undefined;
   @Input() Options: any = new path(null);
-  circle: any = null;
+  public circle: any = null;
 
   constructor(
     private mapService: MapService,

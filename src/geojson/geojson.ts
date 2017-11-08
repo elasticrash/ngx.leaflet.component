@@ -1,4 +1,4 @@
-import { Component, Input, Injector, Optional } from '@angular/core';
+import { Component, Input, Optional } from '@angular/core';
 import { LeafletElement } from '../map/map';
 import { LeafletGroup } from '../group/group';
 import { MapService } from '../services/map.service';
@@ -11,15 +11,14 @@ import { GeoJSONCoordinateHandler } from '../helpers/geoJsonReader';
 import * as L from 'leaflet';
 
 @Component({
-  moduleId: module.id.toString(),
   selector: 'geojson-element',
   templateUrl: 'geojson.html',
   styleUrls: ['geojson.css']
 })
 
 export class GeoJsonElement extends GeoJSONCoordinateHandler {
-  originalObject: any = Object.assign({}, this.geojson);
-  globalId: string = this.guidService.newGuid();
+  public originalObject: any = Object.assign({}, this.geojson);
+  public globalId: string = this.guidService.newGuid();
 
   constructor(
     private mapService: MapService,

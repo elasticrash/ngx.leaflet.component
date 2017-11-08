@@ -1,9 +1,11 @@
 export class path {
     constructor(pathInfo: any) {
-        if (pathInfo !== null) {
-            for (var key in pathInfo) {
-                if (pathInfo[key] !== undefined) {
-                    this[key] = pathInfo[key];
+        let source: any = pathInfo;
+        let copy: any = this;
+        if (source !== null) {
+            for (var key in source) {
+                if (source[key] !== undefined) {
+                    copy[key] = source[key];
                 }
             }
         }

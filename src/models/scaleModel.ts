@@ -1,9 +1,12 @@
 export class scaleModel {
     constructor(options: any) {
-        if (options !== null) {
-            for (var key in options) {
-                if (options[key] !== undefined) {
-                    this[key] = options[key];
+        let source: any = options;
+        let copy: any = this;
+
+        if (source !== null) {
+            for (var key in source) {
+                if (source[key] !== undefined) {
+                    copy[key] = source[key];
                 }
             }
         }

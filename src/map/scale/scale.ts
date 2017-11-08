@@ -1,4 +1,4 @@
-import { Component, Input, Injector, Optional } from '@angular/core';
+import { Component, Input, Optional } from '@angular/core';
 import { LeafletElement } from '../map';
 import { MapService } from '../../services/map.service';
 import { scaleModel } from '../../models/scaleModel';
@@ -6,7 +6,6 @@ import * as L from 'leaflet';
 
 
 @Component({
-    moduleId: module.id.toString(),
     selector: 'scale-control',
     templateUrl: 'scale.html',
     styleUrls: ['scale.css']

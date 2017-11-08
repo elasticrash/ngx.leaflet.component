@@ -1,4 +1,4 @@
-import { Component, Input, Injector, Optional, ElementRef } from '@angular/core';
+import { Component, Input, Optional, ElementRef } from '@angular/core';
 import { LeafletElement } from '../map/map';
 import { LeafletGroup } from '../group/group';
 import { MapService } from '../services/map.service';
@@ -12,7 +12,6 @@ import { Ipath } from '../interfaces/path';
 import * as L from 'leaflet';
 
 @Component({
-  moduleId: module.id.toString(),
   selector: 'polyline-element',
   templateUrl: 'polyline.html',
   styleUrls: ['polyline.css']
@@ -21,11 +20,11 @@ import * as L from 'leaflet';
 export class PolylineElement extends CoordinateHandler {
   @Input() latlngs: any = [[52.6, -1.1], [52.605, -1.1], [52.606, -1.105], [52.697, -1.109]];
   @Input() Options: any = new path(null);
-  @Input() mouseover: string = undefined;
-  @Input() onclick: string = undefined; Î
-  polyline: any = null;
-  originalObject: any = [...this.latlngs];
-  globalId: string = this.guidService.newGuid();
+  @Input() mouseover: string | undefined = undefined;
+  @Input() onclick: string | undefined = undefined;
+  public polyline: any = null;
+  public originalObject: any = [...this.latlngs];
+  public globalId: string = this.guidService.newGuid();
 
   constructor(
     private mapService: MapService,

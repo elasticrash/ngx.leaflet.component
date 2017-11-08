@@ -1,10 +1,9 @@
-import { Component, Input, ViewChild, ElementRef, EventEmitter } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef } from '@angular/core';
 import { MapService } from '../services/map.service';
 import { CoordinateHandler } from '../helpers/coordinateHandler';
 import * as L from 'leaflet';
 
 @Component({
-  moduleId: module.id.toString(),
   selector: 'leaf-element',
   templateUrl: 'map.html',
   styleUrls: ['map.css'],
@@ -23,7 +22,7 @@ export class LeafletElement extends CoordinateHandler {
   @Input() maxBounds: L.LatLngBounds = null;
   @ViewChild('map') mapElement: ElementRef;
 
-  layerControlObject = null;
+  public layerControlObject = null;
 
   constructor(private mapService: MapService) {
     super();

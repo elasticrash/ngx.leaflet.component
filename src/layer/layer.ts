@@ -4,7 +4,6 @@ import * as L from 'leaflet';
 
 
 @Component({
-  moduleId: module.id.toString(),
   selector: 'layer-element',
   templateUrl: 'layer.html',
   styleUrls: ['layer.css']

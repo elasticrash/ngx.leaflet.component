@@ -1,4 +1,4 @@
-import { Component, Input, Injector, Optional } from '@angular/core';
+import { Component, Input, Optional } from '@angular/core';
 import { LeafletElement } from '../map';
 import { MapService } from '../../services/map.service';
 import { attributionModel } from '../../models/attributionModel';
@@ -6,7 +6,6 @@ import * as L from 'leaflet';
 
 
 @Component({
-    moduleId: module.id.toString(),
     selector: 'attribution-control',
     templateUrl: 'attribution.html',
     styleUrls: ['attribution.css']

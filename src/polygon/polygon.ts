@@ -1,4 +1,4 @@
-import { Component, Input, Injector, Optional, ElementRef } from '@angular/core';
+import { Component, Input, Optional, ElementRef } from '@angular/core';
 import { LeafletElement } from '../map/map';
 import { LeafletGroup } from '../group/group';
 import { MapService } from '../services/map.service';
@@ -12,7 +12,6 @@ import * as L from 'leaflet';
 
 
 @Component({
-  moduleId: module.id.toString(),
   selector: 'polygon-element',
   templateUrl: 'polygon.html',
   styleUrls: ['polygon.css']
@@ -22,11 +21,11 @@ export class PolygonElement extends CoordinateHandler {
   @Input() latlngs: any = [[[52.65, -1.2], [52.645, -1.15], [52.696, -1.155], [52.697, -1.189]],
   [[52.66, -1.19], [52.665, -1.16], [52.686, -1.161], [52.687, -1.179]]];
   @Input() Options: path = new path(null);
-  @Input() mouseover: string = undefined;
-  @Input() onclick: string = undefined;
-  polygon: any = null;
-  originalObject: any = [...this.latlngs];
-  globalId: string = this.guidService.newGuid();
+  @Input() mouseover: string | undefined = undefined;
+  @Input() onclick: string | undefined = undefined;
+  public polygon: any = null;
+  public originalObject: any = [...this.latlngs];
+  public globalId: string = this.guidService.newGuid();
 
   constructor(
     private mapService: MapService,

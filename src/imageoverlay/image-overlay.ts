@@ -6,7 +6,6 @@ import * as L from 'leaflet';
 
 
 @Component({
-  moduleId: module.id.toString(),
   selector: 'image-overlay-element',
   templateUrl: 'image-overlay.html',
   styleUrls: ['image-overlay.css']
@@ -18,7 +17,7 @@ export class ImageOverlayElement extends CoordinateHandler {
   @Input() name: string = '';
   @Input() opacity: number = 1;
   @Input() type: string = 'overlay'
-  latlngs: any;
+  public latlngs: any;
 
   constructor(private mapService: MapService,
     @Optional() private LeafletElement?: LeafletElement) {

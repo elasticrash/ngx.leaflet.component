@@ -1,4 +1,4 @@
-import { Component, Input, Injector, Optional, ElementRef } from '@angular/core';
+import { Component, Input, Optional, ElementRef } from '@angular/core';
 import { Http, Response, Headers, RequestOptions, Request, RequestMethod, ResponseContentType } from '@angular/http';
 import { MapService } from '../services/map.service';
 import { GroupService } from '../services/group.service';
@@ -7,13 +7,11 @@ import { LeafletElement } from '../map/map';
 import { LeafletGroup } from '../group/group';
 import { CoordinateHandler } from '../helpers/coordinateHandler';
 import { Observable } from 'rxjs/Observable';
-
 import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import * as L from 'leaflet';
 
 @Component({
-  moduleId: module.id.toString(),
   selector: 'marker-element',
   templateUrl: 'marker.html',
   styleUrls: ['marker.css'],
@@ -23,10 +21,10 @@ import * as L from 'leaflet';
 export class MarkerElement extends CoordinateHandler {
   @Input() lat: number = 52.6;
   @Input() lon: number = -1.1;
-  @Input() mouseover: string = undefined;
-  @Input() onclick: string = undefined;
+  @Input() mouseover: string | undefined = undefined;
+  @Input() onclick: string | undefined = undefined;
   @Input() iconUrl: string = "";
-  marker: any = null;
+  public marker: any = null;
 
   constructor(
     private mapService: MapService,
@@ -120,8 +118,7 @@ export class MarkerElement extends CoordinateHandler {
 
 
     return this.http.get(this.iconUrl, options)
-      .map((res: Response) => res)
-      .catch((error: any) => Observable.throw('Server error'));
-
+    .map((res: Response) => res)
+    .catch((error: any) => Observable.throw('Server error'));
   }
 }

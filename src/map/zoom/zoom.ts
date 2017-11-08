@@ -1,4 +1,4 @@
-import { Component, Input, Injector, Optional } from '@angular/core';
+import { Component, Input, Optional } from '@angular/core';
 import { LeafletElement } from '../map';
 import { MapService } from '../../services/map.service';
 import { zoomModel } from '../../models/zoomModel';
@@ -6,7 +6,6 @@ import * as L from 'leaflet';
 
 
 @Component({
-    moduleId: module.id.toString(),
     selector: 'zoom-control',
     templateUrl: 'zoom.html',
     styleUrls: ['zoom.css']

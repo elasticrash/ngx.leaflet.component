@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Popup } from 'leaflet';
 
 
 @Injectable()
@@ -18,10 +19,10 @@ export class PopupService {
                 mouseover = "true";
             }
             element.bindPopup(mouseover);
-            element.on('mouseover', function () {
-                this.openPopup();
-            }).on('mouseout', function () {
-                this.closePopup();
+            element.on('mouseover', function (popup: Popup) {
+                popup.openPopup();
+            }).on('mouseout', function (popup: Popup) {
+                popup.closePopup();
             });
         }
         if (onclick) {
@@ -31,16 +32,16 @@ export class PopupService {
                 onclick = "true";
             }
             element.bindPopup(onclick);
-            element.on('click', function () {
-                this.openPopup();
+            element.on('click', function (popup: Popup) {
+                popup.openPopup();
             })
         }
         if (!mouseover && !onclick && text) {
             element.bindPopup(text);
-            element.on('mouseover', function () {
-                this.openPopup();
-            }).on('mouseout', function () {
-                this.closePopup();
+            element.on('mouseover', function (popup: Popup) {
+                popup.openPopup();
+            }).on('mouseout', function (popup: Popup) {
+                popup.closePopup();
             });
         }
     }

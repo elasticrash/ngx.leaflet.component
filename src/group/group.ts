@@ -6,7 +6,6 @@ import * as L from 'leaflet';
 
 
 @Component({
-    moduleId: module.id.toString(),
     selector: 'leaflet-group',
     templateUrl: 'group.html',
     styleUrls: ['group.css'],
@@ -15,7 +14,7 @@ import * as L from 'leaflet';
 
 export class LeafletGroup {
     @Input() name: string = '';
-    globalId: string = this.guidService.newGuid();
+    public globalId: string = this.guidService.newGuid();
 
     constructor(
         private mapService: MapService,

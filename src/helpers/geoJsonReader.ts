@@ -1,5 +1,4 @@
 import { Input } from '@angular/core';
-import * as g from 'geojson';
 
 export class GeoJSONCoordinateHandler {
     @Input() geojson: any = {};
@@ -15,33 +14,33 @@ export class GeoJSONCoordinateHandler {
          * MultiLineString, MultiPolygon, and GeometryCollection.
          */
         if (geoJSON.type === "FeatureCollection") {
-            var featureCollection = geoJSON as g.FeatureCollection<any>;
+            var featureCollection = geoJSON;
             featureCollection.features.forEach(feature => {
                 this.transformJSONCoordinates(feature, crs);
             });
         }
         if (geoJSON.type === "Feature") {
-            var feature = geoJSON as g.Feature<any>;
+            var feature = geoJSON;
             this.transformJSONCoordinates(feature.geometry, crs);
         }
         if (geoJSON.type === "Point") {
-            var point = geoJSON as g.Point;
+            var point = geoJSON;
             point = this.transformPointCoordinates(point.coordinates, crs);
         }
         if (geoJSON.type === "LineString") {
-            var lineString = geoJSON as g.LineString;
+            var lineString = geoJSON;
             lineString.coordinates.forEach(point => {
                 this.transformPointCoordinates(point, crs);
             });
         }
         if (geoJSON.type === "MultiPoint") {
-            var multiPoint = geoJSON as g.MultiPoint;
+            var multiPoint = geoJSON;
             multiPoint.coordinates.forEach(point => {
                 this.transformPointCoordinates(point, crs);
             });
         }
         if (geoJSON.type === "Polygon") {
-            var polygon = geoJSON as g.Polygon;
+            var polygon = geoJSON;
             polygon.coordinates.forEach(polygonElement => {
                 polygonElement.forEach(point => {
                     this.transformPointCoordinates(point, crs);
@@ -49,7 +48,7 @@ export class GeoJSONCoordinateHandler {
             });
         }
         if (geoJSON.type === "MultiLineString") {
-            var multiLineString = geoJSON as g.MultiLineString;
+            var multiLineString = geoJSON;
             multiLineString.coordinates.forEach(lineString => {
                 lineString.forEach(point => {
                     this.transformPointCoordinates(point, crs);
@@ -57,7 +56,7 @@ export class GeoJSONCoordinateHandler {
             });
         }
         if (geoJSON.type === "MultiPolygon") {
-            var multiPolygon = geoJSON as g.MultiPolygon;
+            var multiPolygon = geoJSON;
             multiPolygon.coordinates.forEach(polygon => {
                 polygon.forEach(polygonElement => {
                     polygonElement.forEach(point => {
@@ -67,7 +66,7 @@ export class GeoJSONCoordinateHandler {
             });
         }
         if (geoJSON.type === "GeometryCollection") {
-            var geometryCollection = geoJSON as g.GeometryCollection;
+            var geometryCollection = geoJSON;
             geometryCollection.geometries.forEach(geometry => {
                 this.transformJSONCoordinates(geometry, crs);
             });

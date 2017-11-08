@@ -21,6 +21,7 @@ import { GroupService } from './services/group.service'
 import { PopupService } from './services/popup.service';
 import { GuidService } from './services/globalId.service';
 import { HelperService } from './services/helper.service';
+
 /**
  * Module
  */
@@ -46,8 +47,7 @@ const CandTLeafletService = [MapService,
     GroupService,
     PopupService,
     GuidService,
-    HelperService
-];
+    HelperService];
 
 
 import { NgModule } from "@angular/core";

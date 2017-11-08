@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Rx';
+import { Observable } from 'rxjs/Observable';
 import * as L from 'leaflet';
 
 
@@ -56,7 +56,7 @@ export class MapService {
     }
 
     public addOverlay(overlay, name: string, gId?: string) {
-        if (this.groupIdentifiers.indexOf(gId) !== -1) {
+        if (gId !== undefined && this.groupIdentifiers.indexOf(gId) !== -1) {
             let index = this.groupIdentifiers.indexOf(gId);
             let existing_name: string = this.groupNames[index];
             this.overlays[existing_name] = overlay;
@@ -64,13 +64,13 @@ export class MapService {
             if (name === '') {
                 name = 'unknown group';
             }
-            if (this.overlays[name] === undefined) {
+            if (gId !== undefined && this.overlays[name] === undefined) {
                 this.groupNames.push(name);
                 this.groupIdentifiers.push(gId);
                 this.overlays[name] = overlay;
             } else {
                 name = this.getUniqueName(name);
-                if (this.groupNames.indexOf(name) === -1) {
+                if (gId !== undefined && this.groupNames.indexOf(name) === -1) {
                     this.groupNames.push(name);
                     this.groupIdentifiers.push(gId);
                 } else {

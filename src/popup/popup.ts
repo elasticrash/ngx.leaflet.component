@@ -1,4 +1,4 @@
-import { Component, Input, Injector, Optional } from '@angular/core';
+import { Component, Input, Optional } from '@angular/core';
 import { LeafletElement } from '../map/map';
 import { LeafletGroup } from '../group/group';
 import { MapService } from '../services/map.service';
@@ -8,7 +8,6 @@ import * as L from 'leaflet';
 
 
 @Component({
-  moduleId: module.id.toString(),
   selector: 'popup-element',
   templateUrl: 'popup.html',
   styleUrls: ['popup.css']
