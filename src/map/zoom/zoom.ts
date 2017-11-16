@@ -7,8 +7,8 @@ import * as L from 'leaflet';
 
 @Component({
     selector: 'zoom-control',
-    templateUrl: 'zoom.html',
-    styleUrls: ['zoom.css']
+    template: ``,
+    styles: ['']
 })
 export class ZoomControl {
     @Input() Options: any = new zoomModel(null);

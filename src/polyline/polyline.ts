@@ -13,8 +13,8 @@ import * as L from 'leaflet';
 
 @Component({
   selector: 'polyline-element',
-  templateUrl: 'polyline.html',
-  styleUrls: ['polyline.css']
+  template: `<ng-content></ng-content>`,
+  styles: ['']
 })
 
 export class PolylineElement extends CoordinateHandler {

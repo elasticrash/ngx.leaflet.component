@@ -12,8 +12,8 @@ import * as L from 'leaflet';
 
 @Component({
   selector: 'circle-marker-element',
-  templateUrl: 'circlemarker.html',
-  styleUrls: ['circlemarker.css']
+  template: `<ng-content></ng-content>`,
+  styles: ['']
 })
 
 export class CircleMarkerElement extends CoordinateHandler {

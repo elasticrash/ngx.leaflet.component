@@ -13,8 +13,8 @@ import * as L from 'leaflet';
 
 @Component({
   selector: 'marker-element',
-  templateUrl: 'marker.html',
-  styleUrls: ['marker.css'],
+  template: `<ng-content></ng-content>`,
+  styles: [''],
   providers: [PopupService]
 })
 

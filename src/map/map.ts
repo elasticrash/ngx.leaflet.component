@@ -5,8 +5,16 @@ import * as L from 'leaflet';
 
 @Component({
   selector: 'leaf-element',
-  templateUrl: 'map.html',
-  styleUrls: ['map.css'],
+  template: `
+  <div class="page-background map-container" layout-padding>
+	  <div #map></div>
+  </div>`,
+  styles: [
+    ':host {width: 100%;height:100%;}' +
+    ':host .map-container {position: absolute;display: block;top: 0px;left: 0px;right: 0px;bottom: 0px;}' +
+    'leaf-element{width:100%;}' +
+    '.leaflet-pane {z-index: 0 !important;}' +
+    '.leaflet-bottom.leaflet-left {z-index: 1 !important;}'],
   providers: [MapService]
 })
 

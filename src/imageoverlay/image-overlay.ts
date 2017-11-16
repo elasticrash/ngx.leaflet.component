@@ -7,8 +7,8 @@ import * as L from 'leaflet';
 
 @Component({
   selector: 'image-overlay-element',
-  templateUrl: 'image-overlay.html',
-  styleUrls: ['image-overlay.css']
+  template: ``,
+  styles: ['']
 })
 
 export class ImageOverlayElement extends CoordinateHandler {

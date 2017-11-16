@@ -5,8 +5,8 @@ import * as L from 'leaflet';
 
 @Component({
   selector: 'layer-element',
-  templateUrl: 'layer.html',
-  styleUrls: ['layer.css']
+  template: ``,
+  styles: ['']
 })
 
 export class LayerElement {

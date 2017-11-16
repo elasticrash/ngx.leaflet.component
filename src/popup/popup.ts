@@ -9,8 +9,8 @@ import * as L from 'leaflet';
 
 @Component({
   selector: 'popup-element',
-  templateUrl: 'popup.html',
-  styleUrls: ['popup.css']
+  template: ``,
+  styles: ['']
 })
 
 export class PopupElement extends CoordinateHandler {

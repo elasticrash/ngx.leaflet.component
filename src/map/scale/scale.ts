@@ -7,8 +7,8 @@ import * as L from 'leaflet';
 
 @Component({
     selector: 'scale-control',
-    templateUrl: 'scale.html',
-    styleUrls: ['scale.css']
+    template: ``,
+    styles: ['']
 })
 export class ScaleControl {
     @Input() Options: any = new scaleModel(null);

@@ -7,8 +7,8 @@ import * as L from 'leaflet';
 
 @Component({
     selector: 'attribution-control',
-    templateUrl: 'attribution.html',
-    styleUrls: ['attribution.css']
+    template: ``,
+    styles: ['']
 })
 export class AttributionControl {
     @Input() Options: any = new attributionModel(null);

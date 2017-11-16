@@ -12,8 +12,8 @@ import * as L from 'leaflet';
 
 @Component({
   selector: 'geojson-element',
-  templateUrl: 'geojson.html',
-  styleUrls: ['geojson.css']
+  template: ``,
+  styles: ['']
 })
 
 export class GeoJsonElement extends GeoJSONCoordinateHandler {

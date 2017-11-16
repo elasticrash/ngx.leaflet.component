@@ -5,8 +5,8 @@ import * as L from 'leaflet';
 
 @Component({
     selector: 'watermark-element',
-    templateUrl: 'watermark.html',
-    styleUrls: ['watermark.css']
+    template: ``,
+    styles: ['']
 })
 
 export class WatermarkControl {

@@ -7,9 +7,8 @@ import * as L from 'leaflet';
 
 @Component({
     selector: 'leaflet-group',
-    templateUrl: 'group.html',
-    styleUrls: ['group.css'],
-    providers: [GroupService]
+    template: ``,
+    styles: ['']
 })
 
 export class LeafletGroup {

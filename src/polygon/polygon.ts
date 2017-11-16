@@ -13,8 +13,8 @@ import * as L from 'leaflet';
 
 @Component({
   selector: 'polygon-element',
-  templateUrl: 'polygon.html',
-  styleUrls: ['polygon.css']
+  template: `<ng-content></ng-content>`,
+  styles: ['']
 })
 
 export class PolygonElement extends CoordinateHandler {
