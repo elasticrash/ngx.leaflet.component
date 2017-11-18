@@ -1,7 +1,7 @@
 module.exports = () => {
     return {
         entry: {
-            main: './index.ts'
+            main: './ngx.leaflet.components.ts'
         },
         output: {
             path: './dist',
