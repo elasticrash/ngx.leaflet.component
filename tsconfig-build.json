@@ -16,8 +16,8 @@
         "outDir": "dist",
         "declaration": true,
         "strict": true,
-        "strictNullChecks": false,    
-        "noImplicitAny" : false,  
+        "strictNullChecks": false,
+        "noImplicitAny": false,
         "moduleResolution": "node",
         "module": "es2015",
         "target": "es2015",
@@ -45,11 +45,10 @@
         "node_modules/zone.js/dist/zone.js.d.ts"
     ],
     "angularCompilerOptions": {
-        "genDir": "dist",
         "skipTemplateCodegen": false,
         "annotateForClosureCompiler": true,
         "strictMetadataEmit": true,
-        "skipMetadataEmit" : true,        
+        "skipMetadataEmit": true,
         "flatModuleOutFile": "ngx.leaflet.components.js",
         "flatModuleId": "ngx.leaflet.components"
     }
