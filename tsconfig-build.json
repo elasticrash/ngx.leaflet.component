@@ -41,7 +41,7 @@
         "inlineSources": true
     },
     "files": [
-        "public_api.ts",
+        "src/public_api.ts",
         "node_modules/zone.js/dist/zone.js.d.ts"
     ],
     "angularCompilerOptions": {

@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
-import { LeafletElement } from '../../src/map';
-import { MapService } from '../../src/services/map.service';
+import { LeafletElement } from './map';
+import { MapService } from '../services/map.service';
 
 
 describe('LeafletElement', () => {

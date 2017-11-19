@@ -3,12 +3,12 @@ module.exports = function (config) {
         basePath: '',
         frameworks: ['jasmine'],
         files: [
-            { pattern: 'test/tsloader.js', watched: false },
+            { pattern: 'src/test/tsloader.js', watched: false },
         ],
         exclude: [
         ],
         preprocessors: {
-            'test/tsloader.js': ['webpack', 'sourcemap','coverage'],
+            'src/test/tsloader.js': ['webpack', 'sourcemap','coverage'],
         },
         webpack: require('./webpack.config')({ env: 'test' }),
         reporters: ['spec', 'coverage', 'remap-coverage'],
@@ -16,7 +16,7 @@ module.exports = function (config) {
         colors: true,
         logLevel: config.LOG_DEBUG,
         autoWatch: true,
-        browsers: ['PhantomJS'],
+        browsers: ['ChromeHeadless'],
         coverageReporter: {
             reporters: [
                 { type: 'json', subdir: '.', file: 'coverage.json' },

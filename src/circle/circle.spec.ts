@@ -1,13 +1,13 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
-import { CircleElement } from '../../src/circle/circle';
-import { MapService } from '../../src/services/map.service';
-import { GroupService } from '../../src/services/group.service';
-import { PopupService } from '../../src/services/popup.service';
-import { MockComponent } from '../../test/mock.component';
-import { LeafletElement } from '../../src/map/map';
-import { GuidService } from '../../src/services/globalId.service';
+import { CircleElement } from '../circle/circle';
+import { MapService } from '../services/map.service';
+import { GroupService } from '../services/group.service';
+import { PopupService } from '../services/popup.service';
+import { MockComponent } from '../test/mock.component';
+import { LeafletElement } from '../map/map';
+import { GuidService } from '../services/globalId.service';
 
 
 describe('CircleElement', () => {

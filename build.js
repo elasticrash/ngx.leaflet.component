@@ -3,7 +3,7 @@
 const shell = require('shelljs');
 const chalk = require('chalk');
 
-const PACKAGE = `ngx.leaflet.components`;
+const PACKAGE = `src/ngx.leaflet.components`;
 const NPM_DIR = `dist`;
 const ESM2015_DIR = `${NPM_DIR}/esm2015`;
 const ESM5_DIR = `${NPM_DIR}/esm5`;

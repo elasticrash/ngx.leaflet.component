@@ -1,15 +1,15 @@
 import { ComponentFixture, TestBed, async } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
-import { GeoJsonElement } from '../../src/geojson';
-import { MapService } from '../../src//services/map.service';
-import { GroupService } from '../../src//services/group.service';
-import { PopupService } from '../../src//services/popup.service';
-import { GuidService } from '../../src//services/globalId.service';
-import { HelperService } from '../../src//services/helper.service';
-import { LeafletElement } from '../../src/map/map';
-import { LeafletGroup } from '../../src/group/group';
-import { MockComponent } from '../../test/mock.component';
+import { GeoJsonElement } from './geojson';
+import { MapService } from '../services/map.service';
+import { GroupService } from '../services/group.service';
+import { PopupService } from '../services/popup.service';
+import { GuidService } from '../services/globalId.service';
+import { HelperService } from '../services/helper.service';
+import { LeafletElement } from '../map/map';
+import { LeafletGroup } from '../group/group';
+import { MockComponent } from '../test/mock.component';
 
 describe('GeoJsonElement', () => {
 
