@@ -1,4 +1,4 @@
-import { Component, Input, Optional, ElementRef } from '@angular/core';
+import { Component, Input, Optional, ElementRef, ViewChild } from '@angular/core';
 import { Http, Response, Headers, RequestOptions, Request, RequestMethod, ResponseContentType } from '@angular/http';
 import { MapService } from '../services/map.service';
 import { GroupService } from '../services/group.service';
@@ -13,7 +13,7 @@ import * as L from 'leaflet';
 
 @Component({
   selector: 'marker-element',
-  template: `<ng-content></ng-content>`,
+  template: `<div #ngel> <ng-content></ng-content></div>`,
   styles: [''],
   providers: [PopupService]
 })
@@ -24,6 +24,7 @@ export class MarkerElement extends CoordinateHandler {
   @Input() mouseover: string | undefined = undefined;
   @Input() onclick: string | undefined = undefined;
   @Input() iconUrl: string = "";
+  @ViewChild('ngel') ngEl: ElementRef;  
   public marker: any = null;
 
   constructor(
@@ -31,7 +32,6 @@ export class MarkerElement extends CoordinateHandler {
     private groupService: GroupService,
     private popupService: PopupService,
     private http: Http,
-    private elementText: ElementRef,
     @Optional() private LeafletElement?: LeafletElement,
     @Optional() private LeafletGroup?: LeafletGroup) {
     super();
@@ -84,8 +84,8 @@ export class MarkerElement extends CoordinateHandler {
 
   createMarkerlayer(marker, map) {
     var textInput = undefined;
-    if (this.elementText.nativeElement.childNodes.length > 0) {
-      var textNode = this.elementText.nativeElement.childNodes[0];
+    if (this.ngEl.nativeElement.childNodes.length > 0) {
+      var textNode = this.ngEl.nativeElement.childNodes[0];
       textInput = textNode.nodeValue;
     }
 

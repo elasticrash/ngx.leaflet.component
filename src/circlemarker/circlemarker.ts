@@ -1,4 +1,4 @@
-import { Component, Input, Optional, ElementRef } from '@angular/core';
+import { Component, Input, Optional, ElementRef, ViewChild } from '@angular/core';
 import { LeafletElement } from '../map/map';
 import { LeafletGroup } from '../group/group';
 import { MapService } from '../services/map.service';
@@ -12,7 +12,7 @@ import * as L from 'leaflet';
 
 @Component({
   selector: 'circle-marker-element',
-  template: `<ng-content></ng-content>`,
+  template: `<div #ngel> <ng-content></ng-content></div>`,
   styles: ['']
 })
 
@@ -22,13 +22,13 @@ export class CircleMarkerElement extends CoordinateHandler {
   @Input() mouseover: string | undefined = undefined;
   @Input() onclick: string | undefined = undefined;
   @Input() Options: any = new path(null);
+  @ViewChild('ngel') ngEl: ElementRef;  
   public circle: any = null;
 
   constructor(
     private mapService: MapService,
     private groupService: GroupService,
     private popupService: PopupService,
-    private elementText: ElementRef,
     @Optional() private LeafletElement?: LeafletElement,
     @Optional() private LeafletGroup?: LeafletGroup) {
     super();
@@ -57,8 +57,8 @@ export class CircleMarkerElement extends CoordinateHandler {
 
   ngAfterViewInit() {
     var textInput = undefined;
-    if (this.elementText.nativeElement.childNodes.length > 0) {
-      var textNode = this.elementText.nativeElement.childNodes[0];
+    if (this.ngEl.nativeElement.childNodes.length > 0) {
+      var textNode = this.ngEl.nativeElement.childNodes[0];
       textInput = textNode.nodeValue;
     }
 

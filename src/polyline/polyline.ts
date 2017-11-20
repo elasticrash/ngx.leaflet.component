@@ -1,4 +1,4 @@
-import { Component, Input, Optional, ElementRef } from '@angular/core';
+import { Component, Input, Optional, ElementRef, ViewChild } from '@angular/core';
 import { LeafletElement } from '../map/map';
 import { LeafletGroup } from '../group/group';
 import { MapService } from '../services/map.service';
@@ -13,7 +13,7 @@ import * as L from 'leaflet';
 
 @Component({
   selector: 'polyline-element',
-  template: `<ng-content></ng-content>`,
+  template: `<div #ngel> <ng-content></ng-content></div>`,
   styles: ['']
 })
 
@@ -22,6 +22,7 @@ export class PolylineElement extends CoordinateHandler {
   @Input() Options: any = new path(null);
   @Input() mouseover: string | undefined = undefined;
   @Input() onclick: string | undefined = undefined;
+  @ViewChild('ngel') ngEl: ElementRef;  
   public polyline: any = null;
   public originalObject: any = [...this.latlngs];
   public globalId: string = this.guidService.newGuid();
@@ -32,7 +33,6 @@ export class PolylineElement extends CoordinateHandler {
     private popupService: PopupService,
     private guidService: GuidService,
     private helperService: HelperService,
-    private elementText: ElementRef,
     @Optional() private LeafletElement?: LeafletElement,
     @Optional() private LeafletGroup?: LeafletGroup) {
     super();
@@ -63,8 +63,8 @@ export class PolylineElement extends CoordinateHandler {
 
   ngAfterViewInit() {
     var textInput = undefined;
-    if (this.elementText.nativeElement.childNodes.length > 0) {
-      var textNode = this.elementText.nativeElement.childNodes[0];
+    if (this.ngEl.nativeElement.childNodes.length > 0) {
+      var textNode = this.ngEl.nativeElement.childNodes[0];
       textInput = textNode.nodeValue;
     }
 
