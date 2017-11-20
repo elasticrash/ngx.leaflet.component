@@ -49,8 +49,6 @@ import { CommonModule } from "@angular/common";
         LeafletGroup
     ],
     providers: [
-        MapService,
-        GroupService,
         PopupService,
         GuidService,
         HelperService

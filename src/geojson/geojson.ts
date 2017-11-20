@@ -22,10 +22,10 @@ export class GeoJsonElement extends GeoJSONCoordinateHandler {
 
   constructor(
     private mapService: MapService,
-    private groupService: GroupService,
     private popupService: PopupService,
     private guidService: GuidService,
     private helperService: HelperService,
+    @Optional() private groupService?: GroupService,        
     @Optional() private LeafletElement?: LeafletElement,
     @Optional() private LeafletGroup?: LeafletGroup) {
     super();

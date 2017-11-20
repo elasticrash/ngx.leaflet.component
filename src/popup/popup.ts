@@ -20,7 +20,7 @@ export class PopupElement extends CoordinateHandler {
 
   constructor(
     private mapService: MapService,
-    private groupService: GroupService,
+    @Optional() private groupService?: GroupService,        
     @Optional() private LeafletElement?: LeafletElement,
     @Optional() private LeafletGroup?: LeafletGroup) {
     super();

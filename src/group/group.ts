@@ -8,7 +8,8 @@ import * as L from 'leaflet';
 @Component({
     selector: 'leaflet-group',
     template: ``,
-    styles: ['']
+    styles: [''],
+    providers: [GroupService]    
 })
 
 export class LeafletGroup {

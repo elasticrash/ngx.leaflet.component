@@ -13,7 +13,7 @@ import * as L from 'leaflet';
 
 @Component({
   selector: 'polygon-element',
-  template: `<div #ngel> <ng-content></ng-content></div>`,
+  template: `<div #ngel><ng-content></ng-content></div>`,
   styles: ['']
 })
 
@@ -30,10 +30,10 @@ export class PolygonElement extends CoordinateHandler {
 
   constructor(
     private mapService: MapService,
-    private groupService: GroupService,
     private popupService: PopupService,
     private guidService: GuidService,
     private helperService: HelperService,
+    @Optional() private groupService?: GroupService,    
     @Optional() private LeafletElement?: LeafletElement,
     @Optional() private LeafletGroup?: LeafletGroup) {
     super();

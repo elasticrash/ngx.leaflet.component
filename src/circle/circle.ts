@@ -12,7 +12,7 @@ import * as L from 'leaflet';
 
 @Component({
   selector: 'circle-element',
-  template: `<div #ngel> <ng-content></ng-content></div>`,
+  template: `<div #ngel><ng-content></ng-content></div>`,
   styles: ['']
 })
 
@@ -29,8 +29,8 @@ export class CircleElement extends CoordinateHandler {
 
   constructor(
     private mapService: MapService,
-    private groupService: GroupService,
     private popupService: PopupService,
+    @Optional() private groupService?: GroupService,        
     @Optional() private LeafletElement?: LeafletElement,
     @Optional() private LeafletGroup?: LeafletGroup) {
     super();

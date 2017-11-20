@@ -19,10 +19,10 @@ export class PopupService {
                 mouseover = "true";
             }
             element.bindPopup(mouseover);
-            element.on('mouseover', function (popup: Popup) {
-                popup.openPopup();
-            }).on('mouseout', function (popup: Popup) {
-                popup.closePopup();
+            element.on('mouseover', function (this: { openPopup: any, closePopup: any }) {
+                this.openPopup();
+            }).on('mouseout', function (this: { openPopup: any, closePopup: any }) {
+                this.closePopup();
             });
         }
         if (onclick) {
@@ -32,16 +32,16 @@ export class PopupService {
                 onclick = "true";
             }
             element.bindPopup(onclick);
-            element.on('click', function (popup: Popup) {
-                popup.openPopup();
+            element.on('click', function (this: { openPopup: any, closePopup: any }) {
+                this.openPopup();
             })
         }
         if (!mouseover && !onclick && text) {
             element.bindPopup(text);
-            element.on('mouseover', function (popup: Popup) {
-                popup.openPopup();
-            }).on('mouseout', function (popup: Popup) {
-                popup.closePopup();
+            element.on('mouseover', function (this: { openPopup: any, closePopup: any }) {
+                this.openPopup();
+            }).on('mouseout', function (this: { openPopup: any, closePopup: any }) {
+                this.closePopup();
             });
         }
     }
