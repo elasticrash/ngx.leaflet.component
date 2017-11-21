@@ -22,7 +22,7 @@ npm install ngx.leaflet.components
 USE
 
 ```javascript
-import { ngxLeafletModule } from 'ngx.leaflet.components/ngx.leaflet.module';
+import { ngxLeafletModule } from 'ngx.leaflet.components';
 
 @NgModule({
   imports: [ngxLeafletModule],

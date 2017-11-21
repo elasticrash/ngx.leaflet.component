@@ -1,6 +1,6 @@
 {
   "name": "ngx.leaflet.components",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "description": "an angular.io component collection for leaflet",
   "main": "./bundles/src/ngx.leaflet.components.umd.js",
   "jsnext:main": "./esm5/src/ngx.leaflet.components.esm.js",
