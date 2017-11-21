@@ -1,0 +1,55 @@
+{
+    "compilerOptions": {
+        "rootDir": ".",
+        "baseUrl": ".",
+        "paths": {
+            "@angular/*": [
+                "node_modules/@angular/*"
+            ],
+            "leaflet/*": [
+                "node_modules/leaflet/*"
+            ],
+            "rxjs/*": [
+                "node_modules/rxjs/*"
+            ]
+        },
+        "outDir": "dist",
+        "declaration": true,
+        "strict": true,
+        "strictNullChecks": false,
+        "noImplicitAny": false,
+        "moduleResolution": "node",
+        "module": "es2015",
+        "target": "es2015",
+        "typeRoots": [
+            "node_modules/@types"
+        ],
+        "lib": [
+            "es2015",
+            "dom"
+        ],
+        "types": [
+            "node",
+            "jasmine",
+            "leaflet",
+            "geojson"
+        ],
+        "skipLibCheck": true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata": true,
+        "sourceMap": true,
+        "inlineSources": true
+    },
+    "files": [
+        "public_api.ts",
+        "node_modules/zone.js/dist/zone.js.d.ts"
+    ],
+    "angularCompilerOptions": {
+        "skipTemplateCodegen": false,
+        "annotateForClosureCompiler": true,
+        "strictMetadataEmit": true,
+        "skipMetadataEmit": true,
+        "flatModuleOutFile": "ngx.leaflet.components.js",
+        "flatModuleId": "ngx.leaflet.components"
+    }
+}

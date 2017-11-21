@@ -8,8 +8,8 @@
         "moduleResolution": "node",
         "removeComments": true,
         "sourceMap": true,
-        "outDir": "",
         "declaration": true,
+        "outDir": "./dist",        
         "typeRoots": [
             "node_modules/@types"
         ],
