@@ -15,5 +15,5 @@ export class scaleModel {
     metric: boolean = true;	//Whether to show the metric scale line (m/km).
     imperial: boolean = true;	//Whether to show the imperial scale line (mi/ft).
     updateWhenIdle: boolean = true;	//If true, the control is updated on moveend, otherwise it's always up-to-date (updated on move).
-    position: string = "bottomleft"  //The position of the control (one of the map corners). Possible values are 'topleft', 'topright', 'bottomleft' or 'bottomright'
+    position: string = "bottomleft";  //The position of the control (one of the map corners). Possible values are 'topleft', 'topright', 'bottomleft' or 'bottomright'
 }

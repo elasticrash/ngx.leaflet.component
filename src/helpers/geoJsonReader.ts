@@ -1,7 +1,7 @@
 import { Input } from '@angular/core';
 
 export class GeoJSONCoordinateHandler {
-    @Input() geojson: any = {};
+    @Input() public geojson: any = {};
 
     constructor() {
     }
@@ -14,60 +14,60 @@ export class GeoJSONCoordinateHandler {
          * MultiLineString, MultiPolygon, and GeometryCollection.
          */
         if (geoJSON.type === "FeatureCollection") {
-            var featureCollection = geoJSON;
-            featureCollection.features.forEach(feature => {
+            const featureCollection = geoJSON;
+            featureCollection.features.forEach((feature) => {
                 this.transformJSONCoordinates(feature, crs);
             });
         }
         if (geoJSON.type === "Feature") {
-            var feature = geoJSON;
+            const feature = geoJSON;
             this.transformJSONCoordinates(feature.geometry, crs);
         }
         if (geoJSON.type === "Point") {
-            var point = geoJSON;
+            let point = geoJSON;
             point = this.transformPointCoordinates(point.coordinates, crs);
         }
         if (geoJSON.type === "LineString") {
-            var lineString = geoJSON;
-            lineString.coordinates.forEach(point => {
+            const lineString = geoJSON;
+            lineString.coordinates.forEach((point) => {
                 this.transformPointCoordinates(point, crs);
             });
         }
         if (geoJSON.type === "MultiPoint") {
-            var multiPoint = geoJSON;
-            multiPoint.coordinates.forEach(point => {
+            const multiPoint = geoJSON;
+            multiPoint.coordinates.forEach((point) => {
                 this.transformPointCoordinates(point, crs);
             });
         }
         if (geoJSON.type === "Polygon") {
-            var polygon = geoJSON;
+            const polygon = geoJSON;
             polygon.coordinates.forEach(polygonElement => {
-                polygonElement.forEach(point => {
+                polygonElement.forEach((point) => {
                     this.transformPointCoordinates(point, crs);
                 });
             });
         }
         if (geoJSON.type === "MultiLineString") {
-            var multiLineString = geoJSON;
+            const multiLineString = geoJSON;
             multiLineString.coordinates.forEach(lineString => {
-                lineString.forEach(point => {
+                lineString.forEach((point) => {
                     this.transformPointCoordinates(point, crs);
                 });
             });
         }
         if (geoJSON.type === "MultiPolygon") {
-            var multiPolygon = geoJSON;
+            const multiPolygon = geoJSON;
             multiPolygon.coordinates.forEach(polygon => {
                 polygon.forEach(polygonElement => {
-                    polygonElement.forEach(point => {
+                    polygonElement.forEach((point) => {
                         this.transformPointCoordinates(point, crs);
                     });
                 });
             });
         }
         if (geoJSON.type === "GeometryCollection") {
-            var geometryCollection = geoJSON;
-            geometryCollection.geometries.forEach(geometry => {
+            const geometryCollection = geoJSON;
+            geometryCollection.geometries.forEach((geometry) => {
                 this.transformJSONCoordinates(geometry, crs);
             });
         }

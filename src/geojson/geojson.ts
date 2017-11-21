@@ -25,25 +25,25 @@ export class GeoJsonElement extends GeoJSONCoordinateHandler {
     private popupService: PopupService,
     private guidService: GuidService,
     private helperService: HelperService,
-    @Optional() private groupService?: GroupService,        
-    @Optional() private LeafletElement?: LeafletElement,
-    @Optional() private LeafletGroup?: LeafletGroup) {
+    @Optional() private groupService?: GroupService,
+    @Optional() private leafletElement?: LeafletElement,
+    @Optional() private leafletGroup?: LeafletGroup) {
     super();
   }
 
   ngOnInit() {
     //check if any of the two optional injections exist
-    if (this.LeafletElement || this.LeafletGroup) {
+    if (this.leafletElement || this.leafletGroup) {
       //polyline shouldn't have a fill
       let map = this.mapService.getMap();
 
       if (this.geojson) {
-        super.transformJSONCoordinates(this.geojson, this.LeafletElement.crs);
+        super.transformJSONCoordinates(this.geojson, this.leafletElement.crs);
 
         let gjson = L.geoJSON(this.geojson);
 
-        if (this.LeafletGroup) {
-          this.groupService.addOLayersToGroup(gjson, map, this.mapService, this.LeafletGroup, false, this.globalId);
+        if (this.leafletGroup) {
+          this.groupService.addOLayersToGroup(gjson, map, this.mapService, this.leafletGroup, false, this.globalId);
         } else {
           gjson.addTo(map);
         }

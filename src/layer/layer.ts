@@ -10,12 +10,12 @@ import * as L from 'leaflet';
 })
 
 export class LayerElement {
-  @Input() slippyLayer: string = '';
-  @Input() wmsLayer: string = '';
-  @Input() name: string = '';
-  @Input() opacity: number = 1;
-  @Input() type: string = 'overlay';
-  @Input() attribution: string = null;
+  @Input() public slippyLayer: string = '';
+  @Input() public wmsLayer: string = '';
+  @Input() public name: string = '';
+  @Input() public opacity: number = 1;
+  @Input() public type: string = 'overlay';
+  @Input() public attribution: string = null;
 
   constructor(private mapService: MapService) {
   }

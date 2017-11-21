@@ -1,4 +1,4 @@
-import { Component, Input, Optional, ElementRef, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, Optional, ElementRef, ViewChild } from '@angular/core';
 import { LeafletElement } from '../map/map';
 import { LeafletGroup } from '../group/group';
 import { MapService } from '../services/map.service';
@@ -16,37 +16,37 @@ import * as L from 'leaflet';
   styles: ['']
 })
 
-export class CircleMarkerElement extends CoordinateHandler {
-  @Input() lat: number = 52.6;
-  @Input() lon: number = -1.1;
-  @Input() mouseover: string | undefined = undefined;
-  @Input() onclick: string | undefined = undefined;
-  @Input() Options: any = new path(null);
-  @ViewChild('ngel') ngEl: ElementRef;  
+export class CircleMarkerElement extends CoordinateHandler implements OnInit {
+  @Input() public lat: number = 52.6;
+  @Input() public lon: number = -1.1;
+  @Input() public mouseover: string | undefined = undefined;
+  @Input() public onclick: string | undefined = undefined;
+  @Input() public Options: any = new path(null);
+  @ViewChild('ngel') public ngEl: ElementRef;  
   public circle: any = null;
 
   constructor(
     private mapService: MapService,
     private popupService: PopupService,
     @Optional() private groupService?: GroupService,        
-    @Optional() private LeafletElement?: LeafletElement,
-    @Optional() private LeafletGroup?: LeafletGroup) {
+    @Optional() private leafletElement?: LeafletElement,
+    @Optional() private leafletGroup?: LeafletGroup) {
     super();
   }
 
   ngOnInit() {
     super.assignCartesianPointToLeafletsLatLngSchema();
-    //check if any of the two optional injections exist
-    if (this.LeafletElement || this.LeafletGroup) {
+    // check if any of the two optional injections exist
+    if (this.leafletElement || this.leafletGroup) {
       let inheritedOptions: any = new path(this.Options);
       let map = this.mapService.getMap();
 
-      let elementPosition: any = super.transformPointCoordinates(this.LeafletElement.crs);
+      let elementPosition: any = super.transformPointCoordinates(this.leafletElement.crs);
 
       this.circle = L.circleMarker([this.lat, this.lon], inheritedOptions);
 
-      if (this.LeafletGroup) {
-        this.groupService.addOLayersToGroup(this.circle, map, this.mapService, this.LeafletGroup);
+      if (this.leafletGroup) {
+        this.groupService.addOLayersToGroup(this.circle, map, this.mapService, this.leafletGroup);
       } else {
         this.circle.addTo(map);
       }
@@ -62,7 +62,7 @@ export class CircleMarkerElement extends CoordinateHandler {
       textInput = textNode.nodeValue;
     }
 
-    //add popup methods on element only if any of the tests are not undefined
+    // add popup methods on element only if any of the tests are not undefined
     if (this.mouseover !== undefined || this.onclick !== undefined || textInput !== undefined) {
       this.popupService.enablePopup(this.mouseover, this.onclick, this.circle, textInput);
     }

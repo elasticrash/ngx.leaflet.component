@@ -1,12 +1,12 @@
 import { Input } from '@angular/core';
 
 export class CoordinateHandler {
-    @Input() lat: number;
-    @Input() lon: number;
-    @Input() x: number;
-    @Input() y: number;
-    @Input() latlngs: any;
-    @Input() xys: number;
+    @Input() public lat: number;
+    @Input() public lon: number;
+    @Input() public x: number;
+    @Input() public y: number;
+    @Input() public latlngs: any;
+    @Input() public xys: number;
 
     constructor() {
     }
@@ -70,7 +70,7 @@ export class CoordinateHandler {
             } else {
                 if (crs.code && crs.code !== "EPSG:3857") {
                     let trasformed = crs.unproject({ x: arr[0], y: arr[1] });
-                    arr = { lat: trasformed.lat, lng: trasformed.lng }
+                    arr = { lat: trasformed.lat, lng: trasformed.lng };
                 } else {
                     arr = { lat: arr[0], lng: arr[1] };
                 }

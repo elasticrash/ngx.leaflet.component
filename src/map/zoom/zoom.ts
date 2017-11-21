@@ -11,14 +11,14 @@ import * as L from 'leaflet';
     styles: ['']
 })
 export class ZoomControl {
-    @Input() Options: any = new zoomModel(null);
+    @Input() public Options: any = new zoomModel(null);
     constructor(
         private mapService: MapService,
-        @Optional() private LeafletElement?: LeafletElement) {
+        @Optional() private leafletElement?: LeafletElement) {
     }
 
     ngOnInit() {
-        if (this.LeafletElement) {
+        if (this.leafletElement) {
             let map = this.mapService.getMap();
             L.control.zoom(this.Options).addTo(map);
         } else {

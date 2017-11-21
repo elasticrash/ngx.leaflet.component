@@ -13,7 +13,7 @@ import * as L from 'leaflet';
 })
 
 export class LeafletGroup {
-    @Input() name: string = '';
+    @Input() public name: string = '';
     public globalId: string = this.guidService.newGuid();
 
     constructor(

@@ -11,13 +11,13 @@ import * as L from 'leaflet';
     styles: ['']
 })
 export class AttributionControl {
-    @Input() Options: any = new attributionModel(null);
+    @Input() public Options: any = new attributionModel(null);
     constructor(
         private mapService: MapService,
-        @Optional() private LeafletElement?: LeafletElement) { }
+        @Optional() private leafletElement?: LeafletElement) { }
         
     ngOnInit() {
-        if (this.LeafletElement) {
+        if (this.leafletElement) {
             let map = this.mapService.getMap();
             L.control.attribution(this.Options).addTo(map);
         } else {

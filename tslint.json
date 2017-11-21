@@ -22,11 +22,6 @@
         ],
         "component-selector": [
             true,
-            "element",
-            [
-                "cmp-prefix1",
-                "cmp-prefix2"
-            ],
             "kebab-case"
         ],
         "use-input-property-decorator": true,

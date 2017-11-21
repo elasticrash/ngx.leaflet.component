@@ -10,17 +10,17 @@ import * as L from 'leaflet';
 })
 
 export class WatermarkControl {
-    @Input() url: string;
-    @Input() imagewidth: number;
-    @Input() imageheight: number;
+    @Input() public url: string;
+    @Input() public imagewidth: number;
+    @Input() public imageheight: number;
 
-    constructor(private mapService: MapService,
-        @Optional() private LeafletElement?: LeafletElement)
-    { }
+    constructor(
+        private mapService: MapService,
+        @Optional() private leafletElement?: LeafletElement) { }
 
     ngOnInit() {
         var self = this;
-        if (this.LeafletElement) {
+        if (this.leafletElement) {
             let map = this.mapService.getMap();
             if (this.url) {
                 L.Control['Watermark'] = <any>{};
@@ -49,7 +49,7 @@ export class WatermarkControl {
 
                 L.control['watermark'] = function (opts) {
                     return new L.Control['Watermark'](opts);
-                }
+                };
             }
 
             L.control['watermark']({ position: "bottomleft" }).addTo(map);

@@ -11,14 +11,14 @@ import * as L from 'leaflet';
     styles: ['']
 })
 export class ScaleControl {
-    @Input() Options: any = new scaleModel(null);
+    @Input() public Options: any = new scaleModel(null);
     constructor(
         private mapService: MapService,
-        @Optional() private LeafletElement?: LeafletElement) {        
+        @Optional() private leafletElement?: LeafletElement) {        
     }
 
     ngOnInit() { 
-        if (this.LeafletElement) {
+        if (this.leafletElement) {
             let map = this.mapService.getMap();          
             L.control.scale(this.Options).addTo(map);
         } else {

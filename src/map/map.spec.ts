@@ -20,7 +20,7 @@ describe('LeafletElement', () => {
     fixture.detectChanges();
     const el = fixture.debugElement.nativeElement as HTMLElement;
     expect(fixture.componentInstance.lat).toBe(52.6);
-  }))
+  }));
 });
 
 describe('sub map test', () => {

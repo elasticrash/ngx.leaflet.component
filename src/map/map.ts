@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, Input, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { MapService } from '../services/map.service';
 import { CoordinateHandler } from '../helpers/coordinateHandler';
 import * as L from 'leaflet';
@@ -18,16 +18,16 @@ import * as L from 'leaflet';
   providers: [MapService]
 })
 
-export class LeafletElement extends CoordinateHandler {
-  @Input() lat: number = 52.6;
-  @Input() lon: number = -1.1;
-  @Input() zoom: number = 12;
-  @Input() minZoom: number = 4;
-  @Input() maxZoom: number = 19;
-  @Input() layerControl: boolean = false;
-  @Input() crs: any = L.CRS.EPSG3857;
-  @Input() zoomControl: boolean;
-  @Input() maxBounds: L.LatLngBounds = null;
+export class LeafletElement extends CoordinateHandler implements OnInit {
+  @Input() public lat: number = 52.6;
+  @Input() public lon: number = -1.1;
+  @Input() public zoom: number = 12;
+  @Input() public minZoom: number = 4;
+  @Input() public maxZoom: number = 19;
+  @Input() public layerControl: boolean = false;
+  @Input() public crs: any = L.CRS.EPSG3857;
+  @Input() public zoomControl: boolean;
+  @Input() public maxBounds: L.LatLngBounds = null;
   @ViewChild('map') mapElement: ElementRef;
 
   public layerControlObject = null;
@@ -65,7 +65,7 @@ export class LeafletElement extends CoordinateHandler {
     });
     this.mapElement.nativeElement.myMapProperty = map;
 
-    //set variables for childrent components
+    // set variables for childrent components
     this.mapService.setMap(map);
     this.mapService.setLayerControl(this.layerControl);
   }

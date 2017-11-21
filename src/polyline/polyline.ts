@@ -1,4 +1,4 @@
-import { Component, Input, Optional, ElementRef, ViewChild } from '@angular/core';
+import { Component, Input, OnInit, Optional, ElementRef, ViewChild } from '@angular/core';
 import { LeafletElement } from '../map/map';
 import { LeafletGroup } from '../group/group';
 import { MapService } from '../services/map.service';
@@ -17,12 +17,12 @@ import * as L from 'leaflet';
   styles: ['']
 })
 
-export class PolylineElement extends CoordinateHandler {
-  @Input() latlngs: any = [[52.6, -1.1], [52.605, -1.1], [52.606, -1.105], [52.697, -1.109]];
-  @Input() Options: any = new path(null);
-  @Input() mouseover: string | undefined = undefined;
-  @Input() onclick: string | undefined = undefined;
-  @ViewChild('ngel') ngEl: ElementRef;  
+export class PolylineElement extends CoordinateHandler implements OnInit {
+  @Input() public latlngs: any = [[52.6, -1.1], [52.605, -1.1], [52.606, -1.105], [52.697, -1.109]];
+  @Input() public Options: any = new path(null);
+  @Input() public mouseover: string | undefined = undefined;
+  @Input() public onclick: string | undefined = undefined;
+  @ViewChild('ngel') public ngEl: ElementRef;  
   public polyline: any = null;
   public originalObject: any = [...this.latlngs];
   public globalId: string = this.guidService.newGuid();
@@ -33,26 +33,26 @@ export class PolylineElement extends CoordinateHandler {
     private guidService: GuidService,
     private helperService: HelperService,
     @Optional() private groupService?: GroupService,        
-    @Optional() private LeafletElement?: LeafletElement,
-    @Optional() private LeafletGroup?: LeafletGroup) {
+    @Optional() private leafletElement?: LeafletElement,
+    @Optional() private leafletGroup?: LeafletGroup) {
     super();
   }
 
   ngOnInit() {
     super.assignCartesianArrayToLeafletsLatLngSchema();
-    //check if any of the two optional injections exist
-    if (this.LeafletElement || this.LeafletGroup) {
-      //polyline shouldn't have a fill
+    // check if any of the two optional injections exist
+    if (this.leafletElement || this.leafletGroup) {
+      // polyline shouldn't have a fill
       this.Options.fill = false;
       let inheritedOptions: any = new path(this.Options);
       let map = this.mapService.getMap();
 
-      super.transformArrayCoordinates(this.LeafletElement.crs);
+      super.transformArrayCoordinates(this.leafletElement.crs);
 
       this.polyline = L.polyline(this.latlngs, inheritedOptions);
 
-      if (this.LeafletGroup) {
-        this.groupService.addOLayersToGroup(this.polyline, map, this.mapService, this.LeafletGroup, false, this.globalId);
+      if (this.leafletGroup) {
+        this.groupService.addOLayersToGroup(this.polyline, map, this.mapService, this.leafletGroup, false, this.globalId);
       } else {
         this.polyline.addTo(map);
       }
@@ -68,7 +68,7 @@ export class PolylineElement extends CoordinateHandler {
       textInput = textNode.nodeValue;
     }
 
-    //add popup methods on element only if any of the tests are not undefined
+    // add popup methods on element only if any of the tests are not undefined
     if (this.mouseover !== undefined || this.onclick !== undefined || textInput !== undefined) {
       this.popupService.enablePopup(this.mouseover, this.onclick, this.polyline, textInput);
     }
@@ -81,13 +81,13 @@ export class PolylineElement extends CoordinateHandler {
 
     if (!same) {
       this.originalObject = [...this.latlngs];
-      //if the layer is part of a group
+      // if the layer is part of a group
       this.Options.fill = false;
       let inheritedOptions: any = new path(this.Options);
 
-      if (this.LeafletGroup) {
+      if (this.leafletGroup) {
         this.polyline = L.polyline(this.latlngs, inheritedOptions);
-        this.groupService.addOLayersToGroup(this.polyline, map, this.mapService, this.LeafletGroup, true, this.globalId);
+        this.groupService.addOLayersToGroup(this.polyline, map, this.mapService, this.leafletGroup, true, this.globalId);
       } else {
         map.removeLayer(this.polyline);
         this.polyline = L.polyline(this.latlngs, inheritedOptions);

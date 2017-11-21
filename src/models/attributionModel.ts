@@ -8,6 +8,6 @@ export class attributionModel {
             }
         }
     }
-    prefix: string = "Leaflet";	//The HTML text shown before the attributions. Pass false to disable.
-    position: string = "bottomright"  //The position of the control (one of the map corners). Possible values are 'topleft', 'topright', 'bottomleft' or 'bottomright'
+    prefix: string = "Leaflet";	// The HTML text shown before the attributions. Pass false to disable.
+    position: string = "bottomright";  // The position of the control (one of the map corners). Possible values are 'topleft', 'topright', 'bottomleft' or 'bottomright'
 }
