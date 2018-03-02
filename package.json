@@ -3,9 +3,9 @@
   "version": "1.4.2",
   "description": "an angular.io component collection for leaflet",
   "main": "./bundles/src/ngx.leaflet.components.umd.js",
-  "jsnext:main": "./esm5/src/ngx.leaflet.components.esm.js",
-  "module": "./esm5/src/ngx.leaflet.components.esm.js",
-  "es2015": "./esm2015/src/angular-library-starter.js",
+  "jsnext:main": "./esm5/src/ngx.leaflet.components.js",
+  "module": "./esm5/src/ngx.leaflet.components.js",
+  "es2015": "./esm2015/src/ngx.leaflet.components.js",
   "types": "./src/ngx.leaflet.components.d.ts",
   "scripts": {
     "start": "npm run clean && tsc",
