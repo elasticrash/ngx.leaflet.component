@@ -1,4 +1,4 @@
-import { Component, Input, Optional, ElementRef, ViewChild } from '@angular/core';
+import { Component, Input, Optional, ElementRef, ViewChild, OnInit, AfterViewInit } from '@angular/core';
 import { LeafletElement } from '../map/map';
 import { LeafletGroup } from '../group/group';
 import { MapService } from '../services/map.service';
@@ -9,64 +9,65 @@ import { path } from '../models/path';
 import { Ipath } from '../interfaces/path';
 import * as L from 'leaflet';
 
-
 @Component({
   selector: 'circle-element',
   template: `<div #ngel><ng-content></ng-content></div>`,
   styles: ['']
 })
 
-export class CircleElement extends CoordinateHandler {
-  @Input() lat: number = 52.6;
-  @Input() lon: number = -1.1;
-  @Input() radius: number = 20;
-  @Input() mouseover: string | undefined = undefined;
-  @Input() onclick: string | undefined = undefined;
-  @Input() Options: any = new path(null);
-  @ViewChild('ngel') ngEl: ElementRef;
-  
+export class CircleElement extends CoordinateHandler implements OnInit, AfterViewInit {
+  @Input() public lat: number = 52.6;
+  @Input() public lon: number = -1.1;
+  @Input() public radius: number = 20;
+  @Input() public mouseover: string | undefined = undefined;
+  @Input() public onclick: string | undefined = undefined;
+  @Input() public Options: any = new path(null);
+  @ViewChild('ngel') public ngEl: ElementRef;
+
   public circle: any = null;
 
   constructor(
     private mapService: MapService,
     private popupService: PopupService,
-    @Optional() private groupService?: GroupService,        
-    @Optional() private LeafletElement?: LeafletElement,
-    @Optional() private LeafletGroup?: LeafletGroup) {
+    @Optional() private groupService?: GroupService,
+    @Optional() private leafletElement?: LeafletElement,
+    @Optional() private leafletGroup?: LeafletGroup) {
     super();
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     super.assignCartesianPointToLeafletsLatLngSchema();
 
-    //check if any of the two optional injections exist
+    // check if any of the two optional injections exist
     if (this.LeafletElement || this.LeafletGroup) {
-      let inheritedOptions: any = new path(this.Options);
-      let map = this.mapService.getMap();
+      const inheritedOptions: any = new path(this.Options);
+      const map = this.mapService.getMap();
 
-      super.transformPointCoordinates(this.LeafletElement.crs);
+      super.transformPointCoordinates(this.leafletElement.crs);
 
       this.circle = L.circle([this.lat, this.lon], this.radius, inheritedOptions);
 
       if (this.LeafletGroup) {
-        this.groupService.addOLayersToGroup(this.circle, map, this.mapService, this.LeafletGroup);
+        this.groupService.addOLayersToGroup(this.circle, map, this.mapService, this.leafletGroup);
       } else {
         this.circle.addTo(map);
       }
     } else {
-      console.warn("This circle-element will not be rendered \n the expected parent node of circle-element should be either leaf-element or leaflet-group");
+      // tslint:disable-next-line:no-console
+      console.warn(`This circle-element will not be rendered
+       the expected parent node of circle-element should be either leaf-element or leaflet-group`);
     }
   }
 
-  ngAfterViewInit() {
+  public ngAfterViewInit() {
     if (this.LeafletElement || this.LeafletGroup) {
-      var textInput = undefined;
+      let textInput;
       if (this.ngEl.nativeElement.childNodes.length > 0) {
-        var textNode = this.ngEl.nativeElement.childNodes[0];
+        const textNode = this.ngEl.nativeElement.childNodes[0];
         textInput = textNode.nodeValue;
       }
 
-      //add popup methods on element only if any of the tests are not undefined
+      // add popup methods on element only if any of the tests are not undefined
       if (this.mouseover !== undefined || this.onclick !== undefined || textInput !== undefined) {
         this.popupService.enablePopup(this.mouseover, this.onclick, this.circle, textInput);
       }
