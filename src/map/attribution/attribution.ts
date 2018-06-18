@@ -1,7 +1,7 @@
 import { Component, Input, Optional } from '@angular/core';
 import { LeafletElement } from '../map';
 import { MapService } from '../../services/map.service';
-import { attributionModel } from '../../models/attributionModel';
+import { AttributionModel } from '../../models/AttributionModel';
 import * as L from 'leaflet';
 
 
@@ -11,11 +11,11 @@ import * as L from 'leaflet';
     styles: ['']
 })
 export class AttributionControl {
-    @Input() Options: any = new attributionModel(null);
+    @Input() Options: any = new AttributionModel(null);
     constructor(
         private mapService: MapService,
         @Optional() private LeafletElement?: LeafletElement) { }
-        
+
     ngOnInit() {
         if (this.LeafletElement) {
             let map = this.mapService.getMap();

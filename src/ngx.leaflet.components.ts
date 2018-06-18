@@ -20,7 +20,7 @@ export { GroupService } from './services/group.service'
 export { PopupService } from './services/popup.service';
 export { GuidService } from './services/globalId.service';
 export { HelperService } from './services/helper.service';
-export { attributionModel } from './models/attributionModel';
+export { AttributionModel } from './models/AttributionModel';
 export { path } from './models/path';
 export { scaleModel } from './models/scaleModel';
 export { zoomModel } from './models/zoomModel';

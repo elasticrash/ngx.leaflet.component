@@ -24,9 +24,9 @@ export class CoordinateHandler {
                 arr = this.xys;
             }
 
-            for (var i = 0; i < arr.length; i++) {
+            for (const v of arr) {
                 if (typeof (arr[0]) !== "number") {
-                    this.assignCartesianArrayToLeafletsLatLngSchema(arr[i]);
+                    this.assignCartesianArrayToLeafletsLatLngSchema(v);
                 } else {
                     arr.reverse();
                 }
@@ -67,7 +67,7 @@ export class CoordinateHandler {
             } else {
                 if (crs.code && crs.code !== "EPSG:3857") {
                     const trasformed = crs.unproject({ x: arr[0], y: arr[1] });
-                    arr = { lat: trasformed.lat, lng: trasformed.lng }
+                    arr = { lat: trasformed.lat, lng: trasformed.lng };
                 } else {
                     arr = { lat: arr[0], lng: arr[1] };
                 }
