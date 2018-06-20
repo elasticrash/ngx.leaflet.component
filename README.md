@@ -1,4 +1,4 @@
-# ngx.leaflet.component  ![alt text](https://circleci.com/gh/elasticrash/ngx.leaflet.component.png?circle-token=8ce7131b0ea08b0ce9299e456bd9291dd3cf1ba4 "Build Status") 
+# ngx.leaflet.component
 
 ## Native Angular Components designed to be used directly on the templates without much customization
 
