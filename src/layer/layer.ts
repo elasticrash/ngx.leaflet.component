@@ -1,7 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { MapService } from '../services/map.service';
 import * as L from 'leaflet';
-
 
 @Component({
   selector: 'layer-element',
@@ -9,20 +8,20 @@ import * as L from 'leaflet';
   styles: ['']
 })
 
-export class LayerElement {
-  @Input() slippyLayer: string = '';
-  @Input() wmsLayer: string = '';
-  @Input() name: string = '';
-  @Input() opacity: number = 1;
-  @Input() type: string = 'overlay';
-  @Input() attribution: string = null;
+export class LayerElement implements OnInit {
+  @Input() public slippyLayer: string = '';
+  @Input() public wmsLayer: string = '';
+  @Input() public name: string = '';
+  @Input() public opacity: number = 1;
+  @Input() public type: string = 'overlay';
+  @Input() public attribution: string = null;
 
   constructor(private mapService: MapService) {
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.mapService.increaseNumber();
-    let map = this.mapService.getMap();
+    const map = this.mapService.getMap();
     let layer = null;
     if (this.slippyLayer !== "") {
       layer = L.tileLayer(this.slippyLayer, {

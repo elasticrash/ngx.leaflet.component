@@ -21,14 +21,11 @@
             "camelCase"
         ],
         "component-selector": [
-            true,
+            false,
             "element",
-            [
-                "cmp-prefix1",
-                "cmp-prefix2"
-            ],
             "kebab-case"
         ],
+        "object-literal-sort-keys": false,
         "use-input-property-decorator": true,
         "use-output-property-decorator": true,
         "use-host-property-decorator": true,
@@ -36,6 +33,7 @@
         "no-input-rename": true,
         "no-output-rename": true,
         "no-forward-ref": true,
+        "no-bitwise": false,
         "use-view-encapsulation": false,
         "use-life-cycle-interface": true,
         "use-pipe-transform-interface": true,
@@ -45,12 +43,10 @@
             "Pipe"
         ],
         "component-class-suffix": [
-            true,
-            "Component"
+            false
         ],
         "directive-class-suffix": [
-            true,
-            "Directive"
+            false
         ],
         "ordered-imports": [
             false

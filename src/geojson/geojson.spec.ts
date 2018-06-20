@@ -14,28 +14,33 @@ import { MockComponent } from '../test/mock.component';
 describe('GeoJsonElement', () => {
 
     const g = {
-        "type": "FeatureCollection",
-        "features": [{
-            "type": "Feature",
-            "geometry": {
-                "type": "Point",
-                "coordinates": [375000, 4202000]
+        type: "FeatureCollection",
+        features: [{
+            type: "Feature",
+            geometry: {
+                type: "Point",
+                coordinates: [375000, 4202000]
             },
-            "properties": {
-                "prop0": "value0"
+            properties: {
+                prop0: "value0"
             }
         }, {
-            "type": "Feature",
-            "geometry": {
-                "type": "LineString",
-                "coordinates": [[376000, 4202500], [377000, 4203500]]
+            type: "Feature",
+            geometry: {
+                type: "LineString",
+                coordinates: [[376000, 4202500], [377000, 4203500]]
             },
-            "properties": {
-                "prop0": "value1"
+            properties: {
+                prop0: "value1"
             }
         }]
     };
-    const mock: any = MockComponent({ selector: "app-element", outputs: [], template: "<leaf-element [crs]=\"'L.CRS.EPSG3395'\" ><geojson-element [geojson]='" + JSON.stringify(g) + "'></geojson-element></leaf-element>" });
+    const mock: any = MockComponent(
+        {
+            selector: "app-element", outputs: [],
+            template: "<leaf-element [crs]=\"'L.CRS.EPSG3395'\" ><geojson-element [geojson]='"
+                + JSON.stringify(g) + "'></geojson-element></leaf-element>"
+        });
 
     beforeEach(() => {
         TestBed.configureTestingModule({

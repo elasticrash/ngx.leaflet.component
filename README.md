@@ -17,6 +17,7 @@ Examples sources can be found in the following github repository [here](https://
 Install
 ```terminal
 npm install ngx.leaflet.components
+npm install leaflet
 ```
 
 USE
@@ -29,7 +30,6 @@ import { ngxLeafletModule } from 'ngx.leaflet.components';
 })
 ```
 
-
 Leaflet stylesheets are not included automatically for the time, so you need to add it yourself
 
 for usage and basic examples check the wiki
@@ -38,3 +38,11 @@ https://github.com/elasticrash/ngx.leaflet.component/wiki
 
 
 If anyone wants to help in any way feel free to do a fork and a pull request
+
+## NOTE
+
+* angular 4/5 use for versions 1.4.2
+* angular 6 use versions 2.0.0+
+
+version 2.0.0 at the moment is not yet on npm due to not being tested properly but it can be easily be build by running
+* npm run build

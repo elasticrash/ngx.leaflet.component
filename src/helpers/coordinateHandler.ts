@@ -1,17 +1,14 @@
 import { Input } from '@angular/core';
 
 export class CoordinateHandler {
-    @Input() lat: number;
-    @Input() lon: number;
-    @Input() x: number;
-    @Input() y: number;
-    @Input() latlngs: any;
-    @Input() xys: number;
+    @Input() public lat: number;
+    @Input() public lon: number;
+    @Input() public x: number;
+    @Input() public y: number;
+    @Input() public latlngs: any;
+    @Input() public xys: number;
 
-    constructor() {
-    }
-
-    assignCartesianPointToLeafletsLatLngSchema() {
+    public assignCartesianPointToLeafletsLatLngSchema() {
         if (this.x !== undefined) {
             this.lon = this.x;
         }
@@ -21,15 +18,15 @@ export class CoordinateHandler {
         }
     }
 
-    assignCartesianArrayToLeafletsLatLngSchema(arr?) {
+    public assignCartesianArrayToLeafletsLatLngSchema(arr?) {
         if (this.xys !== undefined) {
             if (!arr) {
                 arr = this.xys;
             }
 
-            for (var i = 0; i < arr.length; i++) {
+            for (const v of arr) {
                 if (typeof (arr[0]) !== "number") {
-                    this.assignCartesianArrayToLeafletsLatLngSchema(arr[i]);
+                    this.assignCartesianArrayToLeafletsLatLngSchema(v);
                 } else {
                     arr.reverse();
                 }
@@ -38,7 +35,7 @@ export class CoordinateHandler {
         }
     }
 
-    transformPointCoordinates(crs) {
+    public transformPointCoordinates(crs) {
         /**
          * this is because leaflet default CRS is 3857 (so it can render wms properly)
          * but uses 4326 everywhere else so if CRS is 3857 don't reproject coordinates
@@ -47,30 +44,30 @@ export class CoordinateHandler {
          * how leaflet doesn't handle projections on a global state
          */
         if (crs.code && crs.code !== "EPSG:3857") {
-            let newlatlng = crs.unproject({ y: this.lat, x: this.lon });
+            const newlatlng = crs.unproject({ y: this.lat, x: this.lon });
             this.setNewLatLng(newlatlng);
         } else {
-            let newlatlng = { lat: this.lat, lng: this.lon };
+            const newlatlng = { lat: this.lat, lng: this.lon };
             this.setNewLatLng(newlatlng);
         }
     }
 
-    setNewLatLng(newlatlng) {
+    public setNewLatLng(newlatlng) {
         this.lat = newlatlng.lat;
         this.lon = newlatlng.lng;
     }
 
-    transformArrayCoordinates(crs, arr?) {
+    public transformArrayCoordinates(crs, arr?) {
         if (!arr) {
             arr = this.latlngs;
         }
-        for (var i = 0; i < arr.length; i++) {
+        for (let i = 0; i < arr.length; i++) {
             if (typeof (arr[0]) !== "number") {
                 arr[i] = this.transformArrayCoordinates(crs, arr[i]);
             } else {
                 if (crs.code && crs.code !== "EPSG:3857") {
-                    let trasformed = crs.unproject({ x: arr[0], y: arr[1] });
-                    arr = { lat: trasformed.lat, lng: trasformed.lng }
+                    const trasformed = crs.unproject({ x: arr[0], y: arr[1] });
+                    arr = { lat: trasformed.lat, lng: trasformed.lng };
                 } else {
                     arr = { lat: arr[0], lng: arr[1] };
                 }

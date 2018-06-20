@@ -9,28 +9,31 @@ import { MockComponent } from '../test/mock.component';
 import { LeafletElement } from '../map/map';
 import { GuidService } from '../services/globalId.service';
 
-
 describe('CircleElement', () => {
 
-const mock:any = MockComponent({selector:"app-element", outputs: [], template: "<leaf-element><circle-element [mouseover]='test'></circle-element></leaf-element>" });
+  const mock: any = MockComponent(
+    {
+      selector: "app-element", outputs: [],
+      template: "<leaf-element><circle-element [mouseover]='test'></circle-element></leaf-element>"
+    });
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [ mock,
-      LeafletElement, CircleElement],
-       providers: [
-                MapService,
-                GroupService,
-                PopupService,
-                GuidService
-            ]
+      declarations: [mock,
+        LeafletElement, CircleElement],
+      providers: [
+        MapService,
+        GroupService,
+        PopupService,
+        GuidService
+      ]
     }).compileComponents();
   });
 
   it('circle-element works well', async(() => {
     const fixture = TestBed.createComponent(mock);
-    //const el = fixture.debugElement.nativeElement as HTMLElement;
-    //fixture.detectChanges();
+    // const el = fixture.debugElement.nativeElement as HTMLElement;
+    // fixture.detectChanges();
     expect(1).toEqual(1);
-  }))
+  }));
 });

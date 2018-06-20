@@ -1,27 +1,28 @@
-import { Component, Input, Optional } from '@angular/core';
+import { Component, Input, Optional, OnInit } from '@angular/core';
 import { LeafletElement } from '../map';
 import { MapService } from '../../services/map.service';
-import { attributionModel } from '../../models/attributionModel';
+import { AttributionModel } from '../../models/AttributionModel';
 import * as L from 'leaflet';
-
 
 @Component({
     selector: 'attribution-control',
     template: ``,
     styles: ['']
 })
-export class AttributionControl {
-    @Input() Options: any = new attributionModel(null);
+export class AttributionControl implements OnInit {
+    @Input() public Options: any = new AttributionModel(null);
     constructor(
         private mapService: MapService,
-        @Optional() private LeafletElement?: LeafletElement) { }
-        
-    ngOnInit() {
-        if (this.LeafletElement) {
-            let map = this.mapService.getMap();
+        @Optional() private leafletElement?: LeafletElement) { }
+
+    public ngOnInit() {
+        if (this.leafletElement) {
+            const map = this.mapService.getMap();
             L.control.attribution(this.Options).addTo(map);
         } else {
-            console.warn("This attribution-control will not be rendered \n the expected parent node of attribution-control should be either leaf-element or layer-element");
+            // tslint:disable-next-line:no-console
+            console.warn(`This attribution-control will not be rendered
+             the expected parent node of attribution-control should be either leaf-element or layer-element`);
         }
     }
 }

@@ -1,19 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { GuidService } from '../services/globalId.service';
 import * as L from 'leaflet';
 
-
 @Injectable()
 export class GroupService {
-    private layerGroup: Array<any> = [];
-    private layerId: Array<any> = [];
+    private layerGroup: any[] = [];
+    private layerId: any[] = [];
     private layerGroupNumber: number = 0;
     private group: any = {};
 
     constructor(private guidService: GuidService) { }
 
-    public addOLayersToGroup(overlay, map, mapService, group, replace = false, gId?: String) {
+    public addOLayersToGroup(overlay, map, mapService, group, replace = false, gId?: string) {
         if (!gId) {
             gId = this.guidService.newGuid();
         }
@@ -45,8 +44,8 @@ export class GroupService {
     }
 
     public getObservableGroup() {
-        return Observable.create(observer => {
-            var group = this.getGroup();
+        return Observable.create((observer) => {
+            const group = this.getGroup();
             observer.next(group);
             observer.complete();
         });

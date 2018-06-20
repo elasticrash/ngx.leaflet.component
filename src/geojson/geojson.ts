@@ -1,4 +1,4 @@
-import { Component, Input, Optional } from '@angular/core';
+import { Component, OnInit, DoCheck, Optional } from '@angular/core';
 import { LeafletElement } from '../map/map';
 import { LeafletGroup } from '../group/group';
 import { MapService } from '../services/map.service';
@@ -16,7 +16,7 @@ import * as L from 'leaflet';
   styles: ['']
 })
 
-export class GeoJsonElement extends GeoJSONCoordinateHandler {
+export class GeoJsonElement extends GeoJSONCoordinateHandler implements OnInit, DoCheck {
   public originalObject: any = Object.assign({}, this.geojson);
   public globalId: string = this.guidService.newGuid();
 
@@ -25,38 +25,41 @@ export class GeoJsonElement extends GeoJSONCoordinateHandler {
     private popupService: PopupService,
     private guidService: GuidService,
     private helperService: HelperService,
-    @Optional() private groupService?: GroupService,        
-    @Optional() private LeafletElement?: LeafletElement,
-    @Optional() private LeafletGroup?: LeafletGroup) {
+    @Optional() private groupService?: GroupService,
+    @Optional() private leafletElement?: LeafletElement,
+    @Optional() private leafletGroup?: LeafletGroup) {
     super();
   }
 
-  ngOnInit() {
-    //check if any of the two optional injections exist
-    if (this.LeafletElement || this.LeafletGroup) {
-      //polyline shouldn't have a fill
-      let map = this.mapService.getMap();
+  public ngOnInit() {
+    // check if any of the two optional injections exist
+    if (this.leafletElement || this.leafletGroup) {
+      // polyline shouldn't have a fill
+      const map = this.mapService.getMap();
 
       if (this.geojson) {
-        super.transformJSONCoordinates(this.geojson, this.LeafletElement.crs);
+        super.transformJSONCoordinates(this.geojson, this.leafletElement.crs);
 
-        let gjson = L.geoJSON(this.geojson);
+        const gjson = L.geoJSON(this.geojson);
 
-        if (this.LeafletGroup) {
-          this.groupService.addOLayersToGroup(gjson, map, this.mapService, this.LeafletGroup, false, this.globalId);
+        if (this.leafletGroup) {
+          this.groupService.addOLayersToGroup(gjson, map, this.mapService, this.leafletGroup, false, this.globalId);
         } else {
           gjson.addTo(map);
         }
       } else {
+        // tslint:disable-next-line:no-console
         console.warn("geojson object seems to be undefined");
       }
     } else {
-      console.warn("This polyline-element will not be rendered \n the expected parent node of polyline-element should be either leaf-element or leaflet-group");
+      // tslint:disable-next-line:no-console
+      console.warn(`This polyline-element will not be rendered
+       the expected parent node of polyline-element should be either leaf-element or leaflet-group`);
     }
 
   }
 
-  ngDoCheck() {
-    let map = this.mapService.getMap();
+  public ngDoCheck() {
+    const map = this.mapService.getMap();
   }
 }

@@ -1,13 +1,17 @@
-export class attributionModel {
+export class AttributionModel {
+    // The HTML text shown before the attributions. Pass false to disable.
+    public prefix: string = "Leaflet";
+    // The position of the control (one of the map corners).
+    // Possible values are 'topleft', 'topright', 'bottomleft' or 'bottomright'
+    public position: string = "bottomright";
+
     constructor(options: any) {
         if (options !== null) {
-            for (var key in options) {
+            for (const key in options) {
                 if (options[key] !== undefined) {
                     this[key] = options[key];
                 }
             }
         }
     }
-    prefix: string = "Leaflet";	//The HTML text shown before the attributions. Pass false to disable.
-    position: string = "bottomright"  //The position of the control (one of the map corners). Possible values are 'topleft', 'topright', 'bottomleft' or 'bottomright'
 }

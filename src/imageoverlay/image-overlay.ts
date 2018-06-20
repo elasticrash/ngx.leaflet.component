@@ -1,9 +1,8 @@
-import { Component, Input, Optional } from '@angular/core';
+import { Component, Input, Optional, OnInit } from '@angular/core';
 import { LeafletElement } from '../map/map';
 import { MapService } from '../services/map.service';
 import { CoordinateHandler } from '../helpers/coordinateHandler';
 import * as L from 'leaflet';
-
 
 @Component({
   selector: 'image-overlay-element',
@@ -11,25 +10,26 @@ import * as L from 'leaflet';
   styles: ['']
 })
 
-export class ImageOverlayElement extends CoordinateHandler {
-  @Input() bounds: any = [[-26.5, -25], [1021.5, 1023]];
-  @Input() imagepath: string = '';
-  @Input() name: string = '';
-  @Input() opacity: number = 1;
-  @Input() type: string = 'overlay'
+export class ImageOverlayElement extends CoordinateHandler implements OnInit {
+  @Input() public bounds: any = [[-26.5, -25], [1021.5, 1023]];
+  @Input() public imagepath: string = '';
+  @Input() public name: string = '';
+  @Input() public opacity: number = 1;
+  @Input() public type: string = 'overlay';
   public latlngs: any;
 
-  constructor(private mapService: MapService,
-    @Optional() private LeafletElement?: LeafletElement) {
+  constructor(
+    private mapService: MapService,
+    @Optional() private leafletElement?: LeafletElement) {
     super();
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     this.latlngs = this.bounds;
-    
-    if (this.LeafletElement) {
-      let map = this.mapService.getMap();
-      super.transformArrayCoordinates(this.LeafletElement.crs);
+
+    if (this.leafletElement) {
+      const map = this.mapService.getMap();
+      super.transformArrayCoordinates(this.leafletElement.crs);
 
       let layer = null;
 

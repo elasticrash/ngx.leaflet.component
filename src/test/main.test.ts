@@ -14,7 +14,9 @@ declare var __karma__: any;
 declare var require: any;
 
 // Prevent Karma from running prematurely.
-__karma__.loaded = function () { };
+__karma__.loaded = () => {
+    // TODO
+};
 declare var System: any;
 
 Promise.all([
@@ -29,10 +31,10 @@ Promise.all([
         );
     })
     .then(() => require.context('../map', true, /\.spec\.ts/))
-    .then(context => context.keys().map(context))
+    .then((context) => context.keys().map(context))
     .then(() => require.context('../geojson', true, /\.spec\.ts/))
-    .then(context => context.keys().map(context))
+    .then((context) => context.keys().map(context))
     .then(() => require.context('../circle', true, /\.spec\.ts/))
-    .then(context => context.keys().map(context))
+    .then((context) => context.keys().map(context))
     // Finally, start Karma to run the tests.
     .then(__karma__.start, __karma__.error);

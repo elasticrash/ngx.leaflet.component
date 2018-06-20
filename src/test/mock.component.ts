@@ -8,11 +8,10 @@ export function MockComponent(options: Component): Component {
     outputs: options.outputs || []
   };
 
-  class Mock {}
-  
-    metadata.outputs.forEach(method => {
-      Mock.prototype[method] = new EventEmitter<any>();
-    });
-  
-    return Component(metadata)(Mock as any);
+  class Mock { }
+  metadata.outputs.forEach((method) => {
+    Mock.prototype[method] = new EventEmitter<any>();
+  });
+
+  return Component(metadata)(Mock as any);
 }

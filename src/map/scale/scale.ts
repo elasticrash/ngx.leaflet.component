@@ -1,7 +1,7 @@
-import { Component, Input, Optional } from '@angular/core';
+import { Component, Input, Optional, OnInit } from '@angular/core';
 import { LeafletElement } from '../map';
 import { MapService } from '../../services/map.service';
-import { scaleModel } from '../../models/scaleModel';
+import { ScaleModel } from '../../models/scaleModel';
 import * as L from 'leaflet';
 
 
@@ -10,19 +10,21 @@ import * as L from 'leaflet';
     template: ``,
     styles: ['']
 })
-export class ScaleControl {
-    @Input() Options: any = new scaleModel(null);
+export class ScaleControl implements OnInit {
+    @Input() public Options: any = new ScaleModel(null);
     constructor(
         private mapService: MapService,
-        @Optional() private LeafletElement?: LeafletElement) {        
+        @Optional() private leafletElement?: LeafletElement) {
     }
 
-    ngOnInit() { 
-        if (this.LeafletElement) {
-            let map = this.mapService.getMap();          
+    public ngOnInit() {
+        if (this.leafletElement) {
+            const map = this.mapService.getMap();
             L.control.scale(this.Options).addTo(map);
         } else {
-            console.warn("This scale-control will not be rendered \n the expected parent node of scale-control should be leaf-element");
+            // tslint:disable-next-line:no-console
+            console.warn(`This scale-control will not be rendered
+             the expected parent node of scale-control should be leaf-element`);
         }
     }
 }
