@@ -20,7 +20,7 @@ export class WatermarkControl implements OnInit {
 
     public ngOnInit() {
         const self = this;
-        if (this.LeafletElement) {
+        if (this.leafletElement) {
             const map = this.mapService.getMap();
             if (this.url) {
                 L.Control['Watermark'] = {} as any;

@@ -18,7 +18,7 @@ export class ScaleControl implements OnInit {
     }
 
     public ngOnInit() {
-        if (this.LeafletElement) {
+        if (this.leafletElement) {
             const map = this.mapService.getMap();
             L.control.scale(this.Options).addTo(map);
         } else {

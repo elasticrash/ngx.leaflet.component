@@ -13,11 +13,11 @@ export class ZoomControl implements OnInit {
     @Input() public Options: any = new ΖoomModel(null);
     constructor(
         private mapService: MapService,
-        @Optional() private λeafletElement?: LeafletElement) {
+        @Optional() private leafletElement?: LeafletElement) {
     }
 
     public ngOnInit() {
-        if (this.LeafletElement) {
+        if (this.leafletElement) {
             const map = this.mapService.getMap();
             L.control.zoom(this.Options).addTo(map);
         } else {

@@ -16,7 +16,7 @@ export class AttributionControl implements OnInit {
         @Optional() private leafletElement?: LeafletElement) { }
 
     public ngOnInit() {
-        if (this.LeafletElement) {
+        if (this.leafletElement) {
             const map = this.mapService.getMap();
             L.control.attribution(this.Options).addTo(map);
         } else {

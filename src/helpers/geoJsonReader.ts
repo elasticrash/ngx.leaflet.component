@@ -22,7 +22,7 @@ export class GeoJSONCoordinateHandler {
         }
         if (geoJSON.type === "Point") {
             const point = geoJSON;
-            point = this.transformPointCoordinates(point.coordinates, crs);
+            this.transformPointCoordinates(point.coordinates, crs);
         }
         if (geoJSON.type === "LineString") {
             const lineString = geoJSON;

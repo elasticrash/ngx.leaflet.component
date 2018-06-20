@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { GuidService } from '../services/globalId.service';
 import * as L from 'leaflet';
 

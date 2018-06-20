@@ -1,4 +1,4 @@
-export class ZoomModel {
+export class ΖoomModel {
     // The text set on the 'zoom in' button.
     public zoomInText: string = "+";
     // The title set on the 'zoom in' button.
