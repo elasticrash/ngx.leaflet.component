@@ -15,8 +15,8 @@ export { PolylineElement } from './polyline/polyline';
 export { GeoJsonElement } from './geojson/geojson';
 export { PopupElement } from './popup/popup';
 export { LeafletGroup } from './group/group';
-export { MapService } from './services/map.service'
-export { GroupService } from './services/group.service'
+export { MapService } from './services/map.service';
+export { GroupService } from './services/group.service';
 export { PopupService } from './services/popup.service';
 export { GuidService } from './services/globalId.service';
 export { HelperService } from './services/helper.service';
