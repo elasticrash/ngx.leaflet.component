@@ -1,15 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Popup } from 'leaflet';
-
 
 @Injectable()
 export class PopupService {
 
-    constructor() { }
-
     public enablePopup(mouseover, onclick, element, text) {
         if (mouseover && onclick) {
             mouseover = undefined;
+            // tslint:disable-next-line:no-console
             console.warn('you can not use mouseover and onclick at the same time, mouseover is going to be depressed');
         }
         if (mouseover) {
@@ -19,9 +16,9 @@ export class PopupService {
                 mouseover = "true";
             }
             element.bindPopup(mouseover);
-            element.on('mouseover', function (this: { openPopup: any, closePopup: any }) {
+            element.on('mouseover', function(this: { openPopup: any, closePopup: any }) {
                 this.openPopup();
-            }).on('mouseout', function (this: { openPopup: any, closePopup: any }) {
+            }).on('mouseout', function(this: { openPopup: any, closePopup: any }) {
                 this.closePopup();
             });
         }
@@ -32,15 +29,15 @@ export class PopupService {
                 onclick = "true";
             }
             element.bindPopup(onclick);
-            element.on('click', function (this: { openPopup: any, closePopup: any }) {
+            element.on('click', function(this: { openPopup: any, closePopup: any }) {
                 this.openPopup();
-            })
+            });
         }
         if (!mouseover && !onclick && text) {
             element.bindPopup(text);
-            element.on('mouseover', function (this: { openPopup: any, closePopup: any }) {
+            element.on('mouseover', function(this: { openPopup: any, closePopup: any }) {
                 this.openPopup();
-            }).on('mouseout', function (this: { openPopup: any, closePopup: any }) {
+            }).on('mouseout', function(this: { openPopup: any, closePopup: any }) {
                 this.closePopup();
             });
         }

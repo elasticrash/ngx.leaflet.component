@@ -2,19 +2,16 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import * as L from 'leaflet';
 
-
 @Injectable()
 export class MapService {
     private map;
     private basemaps: any = {};
     private overlays: any = {};
-    private layerControlflag: Boolean = false;
+    private layerControlflag: boolean = false;
     private layersInControlNumber: number = 0;
     private layerControlObject: any = {};
-    private groupIdentifiers: Array<string> = [];
-    private groupNames: Array<string> = [];
-
-    constructor() { }
+    private groupIdentifiers: string[] = [];
+    private groupNames: string[] = [];
 
     public setMap(map) {
         this.map = map;
@@ -38,7 +35,7 @@ export class MapService {
             this.basemaps[name] = basemap;
         } else {
             name = this.getUniqueName(name);
-            this.addBasemap(basemap, name)
+            this.addBasemap(basemap, name);
         }
     }
 
@@ -46,7 +43,7 @@ export class MapService {
         let nameindex: number = 0;
         let newName: string = name;
         if (name.indexOf('(') !== -1) {
-            nameindex = parseInt(name.split('(')[1].split(')')[0]);
+            nameindex = +(name.split('(')[1].split(')')[0]);
             nameindex += 1;
             newName = name.split('(')[0];
         } else {
@@ -57,9 +54,9 @@ export class MapService {
 
     public addOverlay(overlay, name: string, gId?: string) {
         if (this.groupIdentifiers.indexOf(gId) !== -1) {
-            let index = this.groupIdentifiers.indexOf(gId);
-            let existing_name: string = this.groupNames[index];
-            this.overlays[existing_name] = overlay;
+            const index = this.groupIdentifiers.indexOf(gId);
+            const existingName: string = this.groupNames[index];
+            this.overlays[existingName] = overlay;
         } else {
             if (name === '') {
                 name = 'unknown group';
@@ -91,25 +88,25 @@ export class MapService {
     }
 
     public getObservableOverlays() {
-        return Observable.create(observer => {
+        return Observable.create((observer) => {
             observer.next(this.overlays);
             observer.complete();
         });
     }
 
     public getObservableBasemaps() {
-        return Observable.create(observer => {
+        return Observable.create((observer) => {
             observer.next(this.basemaps);
             observer.complete();
         });
     }
 
     public refreshOverlays(remove, add) {
-        let overlays = this.getOverlays();
-        for (var key in overlays) {
+        const overlays = this.getOverlays();
+        for (const key in overlays) {
             if (overlays[key] instanceof Array) {
                 overlays[key].forEach((element, index, arr) => {
-                    if (element._leaflet_id == remove._leaflet_id) {
+                    if (element._leaflet_id === remove._leaflet_id) {
                         arr[index] = add;
                     }
                 });
@@ -127,7 +124,7 @@ export class MapService {
 
     public addControl() {
         if (this.layerControlflag) {
-            let map = this.getMap();
+            const map = this.getMap();
             if (Object.keys(this.layerControlObject).length !== 0) {
                 this.layerControlObject.getContainer().innerHTML = '';
                 map.removeControl(this.layerControlObject);

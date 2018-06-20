@@ -5,7 +5,7 @@ import { MapService } from '../services/map.service';
 import { GroupService } from '../services/group.service';
 import { PopupService } from '../services/popup.service';
 import { CoordinateHandler } from '../helpers/coordinateHandler';
-import { path } from '../models/path';
+import { Path } from '../models/path';
 import { Ipath } from '../interfaces/path';
 import * as L from 'leaflet';
 
@@ -21,7 +21,7 @@ export class CircleElement extends CoordinateHandler implements OnInit, AfterVie
   @Input() public radius: number = 20;
   @Input() public mouseover: string | undefined = undefined;
   @Input() public onclick: string | undefined = undefined;
-  @Input() public Options: any = new path(null);
+  @Input() public Options: any = new Path(null);
   @ViewChild('ngel') public ngEl: ElementRef;
 
   public circle: any = null;
@@ -39,15 +39,15 @@ export class CircleElement extends CoordinateHandler implements OnInit, AfterVie
     super.assignCartesianPointToLeafletsLatLngSchema();
 
     // check if any of the two optional injections exist
-    if (this.LeafletElement || this.LeafletGroup) {
-      const inheritedOptions: any = new path(this.Options);
+    if (this.leafletElement || this.leafletGroup) {
+      const inheritedOptions: any = new Path(this.Options);
       const map = this.mapService.getMap();
 
       super.transformPointCoordinates(this.leafletElement.crs);
 
       this.circle = L.circle([this.lat, this.lon], this.radius, inheritedOptions);
 
-      if (this.LeafletGroup) {
+      if (this.leafletGroup) {
         this.groupService.addOLayersToGroup(this.circle, map, this.mapService, this.leafletGroup);
       } else {
         this.circle.addTo(map);
@@ -60,7 +60,7 @@ export class CircleElement extends CoordinateHandler implements OnInit, AfterVie
   }
 
   public ngAfterViewInit() {
-    if (this.LeafletElement || this.LeafletGroup) {
+    if (this.leafletElement || this.leafletGroup) {
       let textInput;
       if (this.ngEl.nativeElement.childNodes.length > 0) {
         const textNode = this.ngEl.nativeElement.childNodes[0];

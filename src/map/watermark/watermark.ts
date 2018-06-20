@@ -1,4 +1,4 @@
-import { Component, Input, Optional } from '@angular/core';
+import { Component, Input, Optional, OnInit } from '@angular/core';
 import { MapService } from '../../services/map.service';
 import { LeafletElement } from '../map';
 import * as L from 'leaflet';
@@ -9,47 +9,48 @@ import * as L from 'leaflet';
     styles: ['']
 })
 
-export class WatermarkControl {
-    @Input() url: string;
-    @Input() imagewidth: number;
-    @Input() imageheight: number;
+export class WatermarkControl implements OnInit {
+    @Input() public url: string;
+    @Input() public imagewidth: number;
+    @Input() public imageheight: number;
 
-    constructor(private mapService: MapService,
-        @Optional() private LeafletElement?: LeafletElement)
-    { }
+    constructor(
+        private mapService: MapService,
+        @Optional() private leafletElement?: LeafletElement) { }
 
-    ngOnInit() {
-        var self = this;
+    public ngOnInit() {
+        const self = this;
         if (this.LeafletElement) {
-            let map = this.mapService.getMap();
+            const map = this.mapService.getMap();
             if (this.url) {
-                L.Control['Watermark'] = <any>{};
+                L.Control['Watermark'] = {} as any;
 
                 L.Control['Watermark'] = L.Control.extend({
-                    onAdd: function (map) {
-                        var basediv: any = L.DomUtil.create('div', 'watermark');
+                    onAdd: (fmap) => {
+                        const basediv: any = L.DomUtil.create('div', 'watermark');
 
-                        var howManyInX = Math.ceil(map.getSize().x / self.imagewidth);
-                        var howManyInY = Math.ceil(map.getSize().y / self.imageheight);
+                        const howManyInX = Math.ceil(fmap.getSize().x / self.imagewidth);
+                        const howManyInY = Math.ceil(fmap.getSize().y / self.imageheight);
 
-                        var numberOfLogo = howManyInX * howManyInY;
-                        console.log(numberOfLogo);
+                        const numberOfLogo = howManyInX * howManyInY;
+
                         let i = 0;
                         for (i; i < numberOfLogo; i++) {
-                            var img: any = L.DomUtil.create('img', 'watermark-elements', basediv);
+                            const img: any = L.DomUtil.create('img', 'watermark-elements', basediv);
                             img.src = self.url;
                             img.style.width = self.imagewidth + 'px';
                         }
                         return basediv;
                     },
 
-                    onRemove: function (map) {
+                    onRemove: (fmap) => {
+                        // TODO
                     }
                 });
 
-                L.control['watermark'] = function (opts) {
+                L.control['watermark'] = (opts) => {
                     return new L.Control['Watermark'](opts);
-                }
+                };
             }
 
             L.control['watermark']({ position: "bottomleft" }).addTo(map);

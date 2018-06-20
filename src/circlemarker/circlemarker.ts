@@ -5,7 +5,7 @@ import { MapService } from '../services/map.service';
 import { GroupService } from '../services/group.service';
 import { PopupService } from '../services/popup.service';
 import { CoordinateHandler } from '../helpers/coordinateHandler';
-import { path } from '../models/path';
+import { Path } from '../models/path';
 import { Ipath } from '../interfaces/path';
 import * as L from 'leaflet';
 
@@ -20,7 +20,7 @@ export class CircleMarkerElement extends CoordinateHandler implements OnInit, Af
   @Input() public lon: number = -1.1;
   @Input() public mouseover: string | undefined = undefined;
   @Input() public onclick: string | undefined = undefined;
-  @Input() public Options: any = new path(null);
+  @Input() public Options: any = new Path(null);
   @ViewChild('ngel') public ngEl: ElementRef;
   public circle: any = null;
 
@@ -37,7 +37,7 @@ export class CircleMarkerElement extends CoordinateHandler implements OnInit, Af
     super.assignCartesianPointToLeafletsLatLngSchema();
     // check if any of the two optional injections exist
     if (this.leafletElement || this.leafletGroup) {
-      const inheritedOptions: any = new path(this.Options);
+      const inheritedOptions: any = new Path(this.Options);
       const map = this.mapService.getMap();
 
       const elementPosition: any = super.transformPointCoordinates(this.leafletElement.crs);

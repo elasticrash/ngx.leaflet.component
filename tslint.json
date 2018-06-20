@@ -33,6 +33,7 @@
         "no-input-rename": true,
         "no-output-rename": true,
         "no-forward-ref": true,
+        "no-bitwise": false,
         "use-view-encapsulation": false,
         "use-life-cycle-interface": true,
         "use-pipe-transform-interface": true,

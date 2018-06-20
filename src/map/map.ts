@@ -1,4 +1,4 @@
-import { Component, Input, ViewChild, ElementRef } from '@angular/core';
+import { Component, Input, ViewChild, ElementRef, OnInit } from '@angular/core';
 import { MapService } from '../services/map.service';
 import { CoordinateHandler } from '../helpers/coordinateHandler';
 import * as L from 'leaflet';
@@ -18,17 +18,17 @@ import * as L from 'leaflet';
   providers: [MapService]
 })
 
-export class LeafletElement extends CoordinateHandler {
-  @Input() lat: number = 52.6;
-  @Input() lon: number = -1.1;
-  @Input() zoom: number = 12;
-  @Input() minZoom: number = 4;
-  @Input() maxZoom: number = 19;
-  @Input() layerControl: boolean = false;
-  @Input() crs: any = L.CRS.EPSG3857;
-  @Input() zoomControl: boolean;
-  @Input() maxBounds: L.LatLngBounds = null;
-  @ViewChild('map') mapElement: ElementRef;
+export class LeafletElement extends CoordinateHandler implements OnInit {
+  @Input() public lat: number = 52.6;
+  @Input() public lon: number = -1.1;
+  @Input() public zoom: number = 12;
+  @Input() public minZoom: number = 4;
+  @Input() public maxZoom: number = 19;
+  @Input() public layerControl: boolean = false;
+  @Input() public crs: any = L.CRS.EPSG3857;
+  @Input() public zoomControl: boolean;
+  @Input() public maxBounds: L.LatLngBounds = null;
+  @ViewChild('map') public mapElement: ElementRef;
 
   public layerControlObject = null;
 
@@ -36,14 +36,15 @@ export class LeafletElement extends CoordinateHandler {
     super();
   }
 
-  ngOnInit() {
+  public ngOnInit() {
     super.assignCartesianPointToLeafletsLatLngSchema();
 
     if (typeof (this.crs) === "string") {
-      var splitCrs = this.crs.split(".");
+      const splitCrs = this.crs.split(".");
       if (splitCrs[0] === "L") {
         this.crs = L[splitCrs[1]][splitCrs[2]];
       } else {
+        // tslint:disable-next-line:no-console
         console.warn("something is not right, reverting to default EPSG3857");
         this.crs = L.CRS.EPSG3857;
       }
@@ -51,7 +52,7 @@ export class LeafletElement extends CoordinateHandler {
 
     super.transformPointCoordinates(this.crs);
 
-    let map = L.map(this.mapElement.nativeElement, {
+    const map = L.map(this.mapElement.nativeElement, {
       crs: this.crs,
       zoomControl: this.zoomControl,
       center: L.latLng(this.lat, this.lon),
@@ -65,21 +66,19 @@ export class LeafletElement extends CoordinateHandler {
     });
     this.mapElement.nativeElement.myMapProperty = map;
 
-    //set variables for childrent components
+    // set variables for childrent components
     this.mapService.setMap(map);
     this.mapService.setLayerControl(this.layerControl);
   }
 
-  ngAfterViewInit() {
-  }
-
-  setLayerControl() {
+  public setLayerControl() {
     if (this.layerControl) {
-      let map = this.mapService.getMap();
+      const map = this.mapService.getMap();
       if (this.layerControlObject !== null) {
         this.layerControlObject.getContainer().innerHTML = '';
       }
-      this.layerControlObject = L.control.layers(this.mapService.getBasemaps(), this.mapService.getOverlays()).addTo(map);
+      this.layerControlObject = L.control.layers(this.mapService.getBasemaps(),
+        this.mapService.getOverlays()).addTo(map);
     }
   }
 }

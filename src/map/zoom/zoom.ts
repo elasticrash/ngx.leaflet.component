@@ -1,28 +1,29 @@
-import { Component, Input, Optional } from '@angular/core';
+import { Component, Input, Optional, OnInit } from '@angular/core';
 import { LeafletElement } from '../map';
 import { MapService } from '../../services/map.service';
-import { zoomModel } from '../../models/zoomModel';
+import { ΖoomModel } from '../../models/zoomModel';
 import * as L from 'leaflet';
-
 
 @Component({
     selector: 'zoom-control',
     template: ``,
     styles: ['']
 })
-export class ZoomControl {
-    @Input() Options: any = new zoomModel(null);
+export class ZoomControl implements OnInit {
+    @Input() public Options: any = new ΖoomModel(null);
     constructor(
         private mapService: MapService,
-        @Optional() private LeafletElement?: LeafletElement) {
+        @Optional() private λeafletElement?: LeafletElement) {
     }
 
-    ngOnInit() {
+    public ngOnInit() {
         if (this.LeafletElement) {
-            let map = this.mapService.getMap();
+            const map = this.mapService.getMap();
             L.control.zoom(this.Options).addTo(map);
         } else {
-            console.warn("This zoom-control will not be rendered \n the expected parent node of zoom-control should be leaf-element");
+            // tslint:disable-next-line:no-console
+            console.warn(`This zoom-control will not be rendered
+             the expected parent node of zoom-control should be leaf-element`);
         }
     }
 }
