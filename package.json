@@ -88,7 +88,7 @@
     "karma-spec-reporter": "0.0.26",
     "karma-webpack": "2.0.6",
     "leaflet": ">=1.0.0",
-    "node-sass": "^4.6.0",
+    "node-sass": "^7.0.0",
     "node-static": "^0.7.9",
     "phantomjs-prebuilt": "2.1.16",
     "plugin-typescript": "^5.3.3",
