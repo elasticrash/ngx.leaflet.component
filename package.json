@@ -92,7 +92,7 @@
     "node-static": "^0.7.9",
     "phantomjs-prebuilt": "2.1.16",
     "plugin-typescript": "^5.3.3",
-    "protractor": "~4.0.13",
+    "protractor": "~7.0.0",
     "reflect-metadata": "0.1.10",
     "remap-istanbul": "^0.8.4",
     "rollup": "^0.51.7",
